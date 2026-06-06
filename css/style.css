@@ -563,3 +563,35 @@ footer a {
     font-size: 0.75rem !important;
   }
 }
+/* BARRE GALA */
+  #barre-gala p {
+    font-size: 0.75rem !important;
+  }
+
+  #barre-gala {
+    padding: 6px 10px !important;
+  }
+
+  /* HERO padding pour éviter que la barre bloque les boutons */
+  .hero {
+    padding-top: 150px !important;
+    padding-bottom: 60px !important;
+  }
+
+  /* BOUTONS HERO */
+  .hero > div {
+    position: relative;
+    z-index: 10;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    pointer-events: all !important;
+  }
+
+  .hero a.btn {
+    position: relative;
+    z-index: 10;
+    pointer-events: all !important;
+    margin-left: 0 !important;
+  }
