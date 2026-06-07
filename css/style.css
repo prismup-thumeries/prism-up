@@ -79,7 +79,7 @@ nav {
   transition: 0.3s;
 }
 
-/* ─── HERO (bannière accueil) ─── */
+/* ─── HERO ─── */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -364,7 +364,7 @@ footer a {
   text-decoration: none;
 }
 
-/* ─── PAGE HEADER (pour les autres pages) ─── */
+/* ─── PAGE HEADER ─── */
 .page-header {
   padding: 140px 40px 60px;
   text-align: center;
@@ -384,44 +384,6 @@ footer a {
   letter-spacing: 2px;
 }
 
-/* ─── RESPONSIVE MOBILE ─── */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background: var(--violet-transparent);
-    padding: 20px 40px;
-    gap: 15px;
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .burger {
-    display: flex;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  section {
-    padding: 60px 20px;
-  }
-
-  .page-header {
-    padding: 120px 20px 40px;
-  }
-
-  .page-header h1 {
-    font-size: 2rem;
-  }
-}
 /* ─── HOVER MEMBRES BUREAU ─── */
 .membre-hover {
   position: absolute;
@@ -445,159 +407,51 @@ footer a {
   z-index: 10;
 }
 
-.membre-hover:hover .membre-hover-label {
+.membre-hover-label.visible {
   display: block;
 }
 
+/* ─── ANIMATION ─── */
 @keyframes apparaitre {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
 }
 
-/* ─── RESPONSIVE MOBILE COMPLET ─── */
+/* ─── NAV BAS MOBILE (cachée sur ordi) ─── */
+.nav-bottom {
+  display: none;
+}
+
+/* ─── RESPONSIVE MOBILE ─── */
 @media (max-width: 768px) {
 
-  /* GÉNÉRAL */
   body {
     overflow-x: hidden;
+    padding-bottom: 80px;
   }
 
-  section {
-    padding: 40px 15px;
+  /* NAVIGATION HAUT */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--violet-transparent);
+    padding: 20px 40px;
+    gap: 15px;
   }
 
-  .page-header {
-    padding: 100px 15px 40px;
+  .nav-links.open {
+    display: flex;
   }
 
-  .page-header h1 {
-    font-size: 2rem;
+  .burger {
+    display: flex;
   }
 
-  /* HERO ACCUEIL */
-  .hero {
-    padding: 120px 15px 60px;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-
-  .hero p {
-    font-size: 0.9rem;
-  }
-
-  .hero .btn {
-    text-align: center;
-    margin: 0;
-  }
-
-  .btn-outline {
-    margin-left: 0 !important;
-  }
-
-  /* GRILLES EN COLONNE */
-  div[style*="grid-template-columns:1fr 1fr"],
-  div[style*="grid-template-columns: 1fr 1fr"] {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-
-  /* CARDS GRID */
-  .cards-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* FOOTER RÉSEAUX SOCIAUX */
-  footer div[style*="display:flex"] {
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 10px !important;
-  }
-
-  footer a[style*="border-radius:50px"] {
-    font-size: 0.8rem !important;
-    padding: 6px 12px !important;
-  }
-
-  /* FOOTER BAS */
-  footer div[style*="justify-content:space-between"] {
-    flex-direction: column !important;
-    text-align: center !important;
-    align-items: center !important;
-  }
-
-  /* SECTION MARGIN */
-  section[style*="margin:0 40px"] {
-    margin: 0 15px !important;
-  }
-
-  /* COMPTEUR */
-  div[style*="display:flex;justify-content:center;gap:40px"] {
-    gap: 15px !important;
-  }
-
-  /* PLANNING COURS */
-  div[style*="grid-template-columns:1fr 1fr;gap:25px;margin-bottom:60px"] {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-
-  /* FILTRES ÉVÉNEMENTS */
-  .filtres {
-    flex-direction: column !important;
-  }
-
-  .filtres .btn {
-    width: 100% !important;
-    text-align: center !important;
-  }
-
-  /* CHOIX REJOINDRE */
-  .choix-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* BARRE GALA */
-  #barre-gala p {
-    font-size: 0.75rem !important;
-  }
-}
-/* BARRE GALA */
-  #barre-gala p {
-    font-size: 0.75rem !important;
-  }
-
-  #barre-gala {
-    padding: 6px 10px !important;
-  }
-
-  /* HERO padding pour éviter que la barre bloque les boutons */
-  .hero {
-    padding-top: 150px !important;
-    padding-bottom: 60px !important;
-  }
-
-  /* BOUTONS HERO */
-  .hero > div {
-    position: relative;
-    z-index: 10;
-    display: flex !important;
-    flex-wrap: wrap !important;
-    justify-content: center !important;
-    gap: 15px !important;
-    pointer-events: all !important;
-  }
-
-  .hero a.btn {
-    position: relative;
-    z-index: 10;
-    pointer-events: all !important;
-    margin-left: 0 !important;
-  }
-
-  /* ─── NAVIGATION BAS MOBILE ─── */
-@media (max-width: 768px) {
+  /* NAVIGATION BAS */
   .nav-bottom {
     display: flex;
     position: fixed;
@@ -628,7 +482,6 @@ footer a {
     flex: 1;
   }
 
-  .nav-bottom a.active,
   .nav-bottom a:hover {
     color: var(--violet-clair);
   }
@@ -637,13 +490,123 @@ footer a {
     font-size: 1.3rem;
   }
 
-  /* Ajoute de l'espace en bas pour ne pas cacher le contenu */
-  body {
-    padding-bottom: 80px;
+  /* GÉNÉRAL */
+  section {
+    padding: 40px 15px;
   }
-}
 
-/* Cache la nav bas sur ordinateur */
-.nav-bottom {
-  display: none;
+  .page-header {
+    padding: 100px 15px 40px;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+
+  /* HERO */
+  .hero {
+    padding-top: 150px !important;
+    padding-bottom: 60px !important;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  .hero > div {
+    position: relative;
+    z-index: 10;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    pointer-events: all !important;
+  }
+
+  .hero a.btn {
+    position: relative;
+    z-index: 10;
+    pointer-events: all !important;
+    margin-left: 0 !important;
+  }
+
+  .btn-outline {
+    margin-left: 0 !important;
+  }
+
+  /* GRILLES EN COLONNE */
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* CARDS */
+  .cards-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* FOOTER */
+  footer div[style*="display:flex"] {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+  }
+
+  footer a[style*="border-radius:50px"] {
+    font-size: 0.8rem !important;
+    padding: 6px 12px !important;
+  }
+
+  footer div[style*="justify-content:space-between"] {
+    flex-direction: column !important;
+    text-align: center !important;
+    align-items: center !important;
+  }
+
+  /* SECTIONS */
+  section[style*="margin:0 40px"] {
+    margin: 0 15px !important;
+  }
+
+  /* COMPTEUR */
+  div[style*="display:flex;justify-content:center;gap:40px"] {
+    gap: 15px !important;
+  }
+
+  /* PLANNING COURS */
+  div[style*="grid-template-columns:1fr 1fr;gap:25px;margin-bottom:60px"] {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* FILTRES */
+  .filtres {
+    flex-direction: column !important;
+  }
+
+  .filtres .btn {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* REJOINDRE */
+  .choix-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* BARRE GALA */
+  #barre-gala {
+    padding: 6px 10px !important;
+  }
+
+  #barre-gala p {
+    font-size: 0.75rem !important;
+  }
 }
