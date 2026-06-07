@@ -78,6 +78,8 @@ const EVENEMENTS = [
     lien_click_collect: "",
     type: "sortie"
   }
+
+  
 ];
 
 const MEMBRES = [
