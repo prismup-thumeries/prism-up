@@ -78,7 +78,73 @@ const EVENEMENTS = [
     lien_click_collect: "",
     type: "sortie"
   }
+{
+    titre: "Fête de la Musique",
+    date: "2026-06-21",
+    heure: "",
+    lieu: "Place du Général de Gaulle — Thumeries",
+    description: "Prism Up sera présent à la Fête de la Musique à Thumeries ! Venez nous retrouver pour partager un moment festif et découvrir nos danseurs. 🎵",
+    prix: "",
+    affiche: "",
+    estAffiche: false,
+    video: "",
+    photos: [],
+    lien: "",
+    lien_click_collect: "",
+    type: "evenement"
+  },
+  {
+    titre: "Portes ouvertes",
+    date: "2026-06-29",
+    heure: "Horaires des cours",
+    lieu: "Thumeries",
+    description: `Venez découvrir Prism Up lors de nos portes ouvertes ! Assistez à nos cours et rejoignez l'aventure pour la saison prochaine 🎉
 
+<div style="display:flex;flex-direction:column;gap:15px;margin:20px 0;">
+  <div style="background:rgba(152,148,219,0.1);border:1px solid rgba(152,148,219,0.3);border-radius:12px;padding:15px;">
+    <p style="color:#9894db;font-weight:700;margin-bottom:12px;">📅 Lundi 29 juin</p>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="background:rgba(152,148,219,0.1);border-radius:8px;padding:10px;">
+        <p style="font-weight:700;">18h – 19h</p>
+        <p style="color:#9894db;font-size:0.85rem;">Winning Dance · 7–9 ans</p>
+      </div>
+      <div style="background:rgba(152,148,219,0.1);border-radius:8px;padding:10px;">
+        <p style="font-weight:700;">19h – 20h</p>
+        <p style="color:#9894db;font-size:0.85rem;">Chipizzz · Adulte 1</p>
+      </div>
+      <div style="background:rgba(152,148,219,0.1);border-radius:8px;padding:10px;">
+        <p style="font-weight:700;">20h – 21h</p>
+        <p style="color:#9894db;font-size:0.85rem;">The Five's · 15–17 ans</p>
+      </div>
+    </div>
+  </div>
+  <div style="background:rgba(152,148,219,0.1);border:1px solid rgba(152,148,219,0.3);border-radius:12px;padding:15px;">
+    <p style="color:#9894db;font-weight:700;margin-bottom:12px;">📅 Samedi 4 juillet</p>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <div style="background:rgba(152,148,219,0.1);border-radius:8px;padding:10px;">
+        <p style="font-weight:700;">9h – 10h</p>
+        <p style="color:#9894db;font-size:0.85rem;">Mini Street · 4–6 ans</p>
+      </div>
+      <div style="background:rgba(152,148,219,0.1);border-radius:8px;padding:10px;">
+        <p style="font-weight:700;">10h – 11h</p>
+        <p style="color:#9894db;font-size:0.85rem;">Young Spirit · Adulte 2</p>
+      </div>
+      <div style="background:rgba(152,148,219,0.1);border-radius:8px;padding:10px;">
+        <p style="font-weight:700;">11h – 12h</p>
+        <p style="color:#9894db;font-size:0.85rem;">Sweet Vibes · 10–14 ans</p>
+      </div>
+    </div>
+  </div>
+</div>`,
+    prix: "",
+    affiche: "",
+    estAffiche: false,
+    video: "",
+    photos: [],
+    lien: "https://docs.google.com/forms/d/e/1FAIpQLSf3uDL0pPgTpzALXnGf6SNXveNGPy91PNsWZHT70MTCxFc83Q/viewform?usp=header",
+    lien_click_collect: "",
+    type: "evenement"
+  },
   
 ];
 
