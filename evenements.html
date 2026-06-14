@@ -313,8 +313,11 @@ border-top:1px solid rgba(152,148,219,0.15);">
 
       return `
         <div class="card-event" onclick="ouvrirModal(${EVENEMENTS.indexOf(ev)})">
-          ${ev.affiche ? `<img src="${ev.affiche}" alt="${ev.titre}" class="affiche">` : ''}
-          <div class="card-event-body">
+${ev.affiche ? `<img src="${ev.affiche}" alt="${ev.titre}" class="affiche">` : 
+`<div style="width:100%;height:200px;background:linear-gradient(135deg,rgba(152,148,219,0.2),rgba(36,6,83,0.4));
+display:flex;align-items:center;justify-content:center;font-size:3rem;">
+${ev.type === 'evenement' ? '🎭' : ev.type === 'stage' ? '💃' : '🎉'}
+</div>`}          <div class="card-event-body">
             <div class="card-date">${formaterDate(ev.date)} — ${ev.lieu}</div>
             <h3>${ev.titre}</h3>
             <p>${ev.description.replace(/<[^>]*>/g, '').substring(0, 100)}...</p>
