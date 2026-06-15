@@ -454,18 +454,19 @@ footer a {
     display: flex;
   }
 
-  /* NAVIGATION BAS */
+/* NAVIGATION BAS */
   .nav-bottom {
     display: flex;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: var(--violet-transparent);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(152,148,219,0.3);
+    background: rgba(20, 4, 60, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(152,148,219,0.15);
     z-index: 999;
-    padding: 8px 0 20px;
+    padding: 10px 0 25px;
     justify-content: space-around;
     align-items: center;
   }
@@ -474,10 +475,10 @@ footer a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     text-decoration: none;
-    color: rgba(255,255,255,0.5);
-    font-size: 0.6rem;
+    color: rgba(255,255,255,0.35);
+    font-size: 0.55rem;
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -485,11 +486,21 @@ footer a {
     flex: 1;
   }
 
-  .nav-bottom a:hover {
+  .nav-bottom a:hover,
+  .nav-bottom a[style*="violet"] {
     color: var(--violet-clair);
   }
 
   .nav-bottom a span.icon {
+    font-size: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-bottom a span.icon::before {
     font-size: 1.3rem;
   }
 
