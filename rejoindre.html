@@ -139,14 +139,19 @@
 
       <!-- ADHÉRENT -->
       <div class="choix-card" onclick="ouvrirModal('adherent')">
-        <div class="emoji">💃</div>
-        <div style="display:inline-block;background:rgba(230, 230, 230, 0.915);
-        border:1px solid var(--violet-clair);border-radius:50px;
-        padding:5px 15px;font-size:0.75rem;font-weight:700;
-        color:var(--violet-clair);letter-spacing:1px;margin-bottom:12px;">
-          📋 PRÉINSCRIPTIONS BIENTÔT OUVERTES
-        </div>
-        <h3>Devenir adhérent</h3>
+  <!-- ÉTIQUETTE -->
+  <div style="display:flex;align-items:center;justify-content:center;gap:8px;
+  background:linear-gradient(135deg,#9894db,#6b67c4);
+  border-radius:10px;padding:10px 16px;margin-bottom:20px;">
+    <div style="width:8px;height:8px;background:#fff;border-radius:50%;
+    animation:pulse 1.5s infinite;"></div>
+    <p style="font-weight:800;font-size:0.8rem;color:white;
+    letter-spacing:1.5px;text-transform:uppercase;">
+      Préinscriptions ouvertes
+    </p>
+  </div>
+  <div class="emoji">💃</div>
+  <h3>Devenir adhérent</h3>
         <p>Tu veux danser avec nous ? Rejoins Prism Up et participe à nos cours, stages et événements.</p>
         <ul>
           <li>✅ Accès aux cours hebdomadaires</li>
@@ -333,10 +338,12 @@ border-top:1px solid rgba(152,148,219,0.15);">
   <script>
     function ouvrirModal(type) {
       const contenu = {
-        adherent: {
+       adherent: {
           emoji: '💃',
           titre: 'Devenir adhérent',
-          texte: `Le formulaire d'adhésion arrive bientôt ! En attendant contacte-nous directement :`,
+          texte: `Les préinscriptions pour la saison prochaine sont ouvertes ! Clique sur le bouton ci-dessous pour t'inscrire.`,
+          lien: 'https://forms.gle/UMtVF2y5oxRN2GVh6',
+          lienTexte: '📋 Je me préinscris'
         },
         benevole: {
           emoji: '🙌',
@@ -373,9 +380,16 @@ border-top:1px solid rgba(152,148,219,0.15);">
           </div>
         </div>
         <br>
+        ${c.lien ? `
+        <a href="${c.lien}" target="_blank"
+        class="btn btn-primary" style="display:block;text-align:center;
+        text-decoration:none;margin-bottom:15px;">
+          ${c.lienTexte}
+        </a>` : ''}
         <a href="mailto:prismupcom@gmail.com?subject=${encodeURIComponent(c.titre)}"
-        class="btn btn-primary" style="display:block;text-align:center;text-decoration:none;">
-          📧 Envoyer un email
+        style="display:block;text-align:center;text-decoration:none;
+        color:rgba(255,255,255,0.5);font-size:0.85rem;margin-top:10px;">
+          📧 Ou nous contacter par email
         </a>
       `;
       document.getElementById('modal-overlay').classList.add('open');
