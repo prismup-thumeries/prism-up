@@ -72,21 +72,6 @@ const EVENEMENTS = [
     type: "stage"
   },
   {
-    titre: "Workshop #2 avec Paul",
-    date: "2026-06-27",
-    heure: "Samedi 27 & Dimanche 28 juin",
-    lieu: "Salle Pierre Legrain – 9 Rue Jean Moulin, 59239 Thumeries",
-    description: `Prism Up vous donne rendez-vous les 27 et 28 juin pour un nouveau weekend de stages avec Paul !<div style="display:flex;flex-direction:column;gap:15px;margin:20px 0;"><div style="background:rgba(152,148,219,0.1);border:1px solid rgba(152,148,219,0.3);border-radius:12px;padding:15px;"><p style="color:#9894db;font-weight:700;margin-bottom:12px;">📅 Samedi 27 juin</p><div style="display:flex;gap:10px;flex-wrap:wrap;"><div style="flex:1;min-width:200px;background:rgba(152,148,219,0.1);border-radius:8px;padding:12px;"><p style="font-weight:700;margin-bottom:4px;">🕐 13h30 – 15h00</p><p style="margin-bottom:4px;">Breakdance</p><p style="color:#9894db;font-size:0.85rem;">Débutant · 8 ans+</p></div><div style="flex:1;min-width:200px;background:rgba(152,148,219,0.1);border-radius:8px;padding:12px;"><p style="font-weight:700;margin-bottom:4px;">🕐 15h30 – 17h00</p><p style="margin-bottom:4px;">Hip-hop commercial</p><p style="color:#9894db;font-size:0.85rem;">Débutant/Intermédiaire · 7 ans+</p></div></div></div><div style="background:rgba(152,148,219,0.1);border:1px solid rgba(152,148,219,0.3);border-radius:12px;padding:15px;"><p style="color:#9894db;font-weight:700;margin-bottom:12px;">📅 Dimanche 28 juin</p><div style="display:flex;gap:10px;"><div style="flex:1;background:rgba(152,148,219,0.1);border-radius:8px;padding:12px;"><p style="font-weight:700;margin-bottom:4px;">🕐 10h00 – 11h30</p><p style="margin-bottom:4px;">Hip-hop commercial</p><p style="color:#9894db;font-size:0.85rem;">Intermédiaire/Avancé · 7 ans+</p></div></div></div></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin:20px 0;"><div style="flex:1;min-width:150px;background:rgba(152,148,219,0.1);border:1px solid rgba(152,148,219,0.3);border-radius:12px;padding:15px;text-align:center;"><p style="color:#9894db;font-weight:700;margin-bottom:5px;">💜 Adhérents</p><p style="font-size:1.8rem;font-weight:900;">10€</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.5);">par créneau</p></div><div style="flex:1;min-width:150px;background:rgba(152,148,219,0.1);border:1px solid rgba(152,148,219,0.3);border-radius:12px;padding:15px;text-align:center;"><p style="color:#9894db;font-weight:700;margin-bottom:5px;">🎟️ Extérieur</p><p style="font-size:1.8rem;font-weight:900;">15€</p><p style="font-size:0.8rem;color:rgba(255,255,255,0.5);">par créneau</p></div></div><div style="background:rgba(255,200,0,0.05);border:1px solid rgba(255,200,0,0.3);border-radius:12px;padding:15px;margin:15px 0;"><p style="color:rgba(255,200,0,0.9);font-weight:700;margin-bottom:8px;">⚠️ Important</p><p style="font-size:0.9rem;color:rgba(255,255,255,0.7);">Les adhérents Prism Up doivent utiliser le tarif adhérent. Toute inscription sera vérifiée. Aucun remboursement ne pourra être accordé.</p></div>`,
-    prix: "",
-    affiche: "images/stage2.jpg",
-    estAffiche: true,
-    video: "",
-    photos: ["images/stage2.jpg"],
-    lien: "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-paul-2",
-    lien_click_collect: "",
-    type: "stage"
-  },
-  {
     titre: "Sortie AGT Basket",
     date: "2026-05-24",
     heure: "",

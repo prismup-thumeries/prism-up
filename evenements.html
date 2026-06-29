@@ -325,7 +325,7 @@ ${ev.type === 'evenement' ? '🎭' : ev.type === 'stage' ? '💃' : '🎉'}
               <span class="tag ${estAvenir ? 'tag-avenir' : 'tag-passe'}">
                 ${estAvenir ? '📅 À venir' : '✅ Passé'}
               </span>
-              ${estFutur && ev.lien ? `
+              ${estFutur && ev.lien && !ev.annule ? `
                 <a href="${ev.lien}" target="_blank" class="btn btn-primary"
                 onclick="event.stopPropagation()"
                 style="padding:8px 20px;font-size:0.8rem;">
