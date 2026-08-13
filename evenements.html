@@ -2,91 +2,439 @@
 <html lang="fr">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5QQ5K7E4S0');
+  </script>
 
-  gtag('config', 'G-5QQ5K7E4S0');
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Événements — Prism Up</title>
   <link rel="stylesheet" href="css/style.css">
+
   <style>
-    /* FILTRES */
-    .filtres {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
+    /* ===============================
+       PAGE ÉVÉNEMENTS — VERSION SIMPLE
+    =============================== */
+
+    .events-shell {
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    /* CARTE ÉVÉNEMENT */
-    .card-event {
-      background: rgba(152,148,219,0.1);
-      border: 1px solid rgba(152,148,219,0.3);
-      border-radius: 16px;
+    .events-hero-card {
+      background:
+        radial-gradient(circle at top left, rgba(152,148,219,0.28), transparent 35%),
+        linear-gradient(135deg, rgba(152,148,219,0.14), rgba(36,6,83,0.5));
+      border: 1px solid rgba(152,148,219,0.4);
+      border-radius: 30px;
+      padding: 34px;
+      position: relative;
       overflow: hidden;
-      transition: all 0.3s;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+    }
+
+    .events-hero-card::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(152,148,219,0.07);
+      right: -80px;
+      bottom: -90px;
+    }
+
+    .events-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .events-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      background: rgba(152,148,219,0.18);
+      border: 1px solid rgba(152,148,219,0.45);
+      color: var(--violet-clair);
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .events-hero-card h2 {
+      font-size: 2.15rem;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .events-hero-card p {
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+      max-width: 780px;
+    }
+
+    .events-main-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 35px 0 35px;
+    }
+
+    .main-tab {
+      background: rgba(152,148,219,0.08);
+      border: 1px solid rgba(152,148,219,0.28);
+      color: white;
+      border-radius: 22px;
+      padding: 22px;
       cursor: pointer;
+      transition: all 0.25s;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
     }
 
-    .card-event:hover {
-      transform: translateY(-5px);
+    .main-tab:hover {
+      transform: translateY(-4px);
       border-color: var(--violet-clair);
-      box-shadow: 0 15px 40px rgba(152,148,219,0.2);
+      background: rgba(152,148,219,0.14);
     }
 
-    .card-event img.affiche {
+    .main-tab.active {
+      background: linear-gradient(135deg, var(--violet-clair), #6b67c4);
+      color: var(--violet-fonce);
+      border-color: var(--violet-clair);
+    }
+
+    .main-tab strong {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .main-tab span {
+      display: block;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      opacity: 0.75;
+      font-weight: 600;
+    }
+
+    .view-panel {
+      display: none;
+      animation: apparaitre 0.25s ease;
+    }
+
+    .view-panel.active {
+      display: block;
+    }
+
+    .section-heading-clean {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .section-heading-clean h2 {
+      color: var(--violet-clair);
+      font-size: 1.9rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading-clean p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* PROCHAIN ÉVÉNEMENT */
+    .next-event-card {
+      display: none;
+      background:
+        linear-gradient(135deg, rgba(152,148,219,0.25), rgba(36,6,83,0.5));
+      border: 2px solid var(--violet-clair);
+      border-radius: 30px;
+      overflow: hidden;
+      margin-bottom: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 18px 55px rgba(152,148,219,0.18);
+    }
+
+    .next-event-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 70px rgba(152,148,219,0.24);
+    }
+
+    .next-event-inner {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+    }
+
+    .next-event-media {
+      min-height: 260px;
+      background:
+        radial-gradient(circle at top left, rgba(152,148,219,0.3), transparent 35%),
+        linear-gradient(135deg, rgba(152,148,219,0.18), rgba(36,6,83,0.55));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      overflow: hidden;
+    }
+
+    .next-event-media img {
       width: 100%;
-      height: 200px;
+      height: 100%;
       object-fit: cover;
     }
 
-    .card-event-body {
-      padding: 20px;
+    .next-event-content {
+      padding: 32px;
     }
 
-    .card-event-body .card-date {
-      font-size: 0.8rem;
-      color: var(--violet-clair);
-      letter-spacing: 2px;
+    .next-label {
+      display: inline-block;
+      background: var(--violet-clair);
+      color: var(--violet-fonce);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .card-event-body h3 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .card-event-body p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.65);
-      line-height: 1.6;
       margin-bottom: 15px;
     }
 
-    .card-event-footer {
+    .next-event-content h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .next-meta {
+      color: var(--violet-clair);
+      font-weight: 800;
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .next-event-content p {
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* CARTES */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .event-card {
+      background: rgba(152,148,219,0.1);
+      border: 1px solid rgba(152,148,219,0.28);
+      border-radius: 22px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.28s;
+      position: relative;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--violet-clair);
+      box-shadow: 0 18px 45px rgba(152,148,219,0.18);
+    }
+
+    .event-card.annule {
+      opacity: 0.7;
+    }
+
+    .event-cancelled-banner {
+      background: #c0392b;
+      text-align: center;
+      padding: 8px;
+      font-weight: 900;
+      font-size: 0.72rem;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .event-media {
+      height: 190px;
+      background:
+        radial-gradient(circle at top left, rgba(152,148,219,0.28), transparent 35%),
+        linear-gradient(135deg, rgba(152,148,219,0.16), rgba(36,6,83,0.5));
       display: flex;
       align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      overflow: hidden;
+    }
+
+    .event-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .event-card.annule .event-media img {
+      filter: grayscale(85%);
+    }
+
+    .event-card-body {
+      padding: 20px;
+    }
+
+    .event-kind {
+      color: var(--violet-clair);
+      font-size: 0.7rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 9px;
+    }
+
+    .event-date {
+      color: rgba(255,255,255,0.48);
+      font-size: 0.78rem;
+      line-height: 1.5;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .event-card h3 {
+      font-size: 1.12rem;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .event-card p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.84rem;
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    .event-footer {
+      display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
       gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* ARCHIVES */
+    .archive-tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .archive-tab {
+      background: rgba(152,148,219,0.08);
+      border: 1px solid rgba(152,148,219,0.28);
+      color: white;
+      border-radius: 20px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-align: left;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .archive-tab:hover {
+      transform: translateY(-3px);
+      border-color: var(--violet-clair);
+    }
+
+    .archive-tab.active {
+      background: rgba(152,148,219,0.22);
+      border-color: var(--violet-clair);
+    }
+
+    .archive-tab strong {
+      display: block;
+      color: var(--violet-clair);
+      font-size: 1rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .archive-tab span {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .archive-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .small-filter {
+      border: 1px solid rgba(152,148,219,0.35);
+      background: rgba(152,148,219,0.08);
+      color: rgba(255,255,255,0.78);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .small-filter.active,
+    .small-filter:hover {
+      background: var(--violet-clair);
+      color: var(--violet-fonce);
+      border-color: var(--violet-clair);
+    }
+
+    .empty-state {
+      color: rgba(255,255,255,0.5);
+      background: rgba(152,148,219,0.06);
+      border: 1px solid rgba(152,148,219,0.18);
+      border-radius: 18px;
+      padding: 22px;
+      line-height: 1.7;
     }
 
     /* MODAL */
     .modal-overlay {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
+      inset: 0;
+      background: rgba(0,0,0,0.86);
       z-index: 2000;
       justify-content: center;
       align-items: center;
@@ -98,65 +446,67 @@
     }
 
     .modal {
-      background: #1a0440;
-      border: 1px solid var(--violet-clair);
-      border-radius: 20px;
-      max-width: 750px;
+      background:
+        radial-gradient(circle at top right, rgba(152,148,219,0.18), transparent 35%),
+        #1a0440;
+      border: 1px solid rgba(152,148,219,0.75);
+      border-radius: 24px;
+      max-width: 780px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
-      padding: 35px;
+      padding: 34px;
       position: relative;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.45);
     }
 
     .modal-close {
       position: absolute;
       top: 15px;
-      right: 20px;
-      font-size: 1.8rem;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
       cursor: pointer;
       color: var(--violet-clair);
-      background: none;
-      border: none;
+      background: rgba(152,148,219,0.12);
+      border: 1px solid rgba(152,148,219,0.35);
+      font-size: 1.5rem;
       line-height: 1;
     }
 
     .modal h2 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 900;
       margin-bottom: 8px;
+      padding-right: 35px;
     }
 
     .modal .modal-meta {
       color: var(--violet-clair);
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       letter-spacing: 1px;
       margin-bottom: 20px;
+      line-height: 1.6;
     }
 
-    .modal .modal-description {
+    .modal-description {
       color: rgba(255,255,255,0.8);
       line-height: 1.8;
       margin-bottom: 25px;
     }
 
-    /* DIAPORAMA */
     .diaporama {
-      position: relative;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
 
-  .diaporama img {
+    .diaporama img {
       width: 100%;
       max-height: 80vh;
       object-fit: contain;
-      border-radius: 8px;
-    }
-
-    .diaporama img.active {
-      display: block;
+      border-radius: 10px;
     }
 
     .diapo-controls {
@@ -164,7 +514,7 @@
       justify-content: center;
       align-items: center;
       gap: 15px;
-      margin-top: 10px;
+      margin-bottom: 18px;
     }
 
     .diapo-btn {
@@ -172,14 +522,13 @@
       border: 1px solid var(--violet-clair);
       color: var(--blanc);
       border-radius: 50%;
-      width: 35px;
-      height: 35px;
+      width: 36px;
+      height: 36px;
       cursor: pointer;
       font-size: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s;
     }
 
     .diapo-btn:hover {
@@ -191,20 +540,69 @@
       font-size: 0.85rem;
       color: rgba(255,255,255,0.5);
     }
+
+    @media (max-width: 768px) {
+      .events-hero-card {
+        padding: 24px;
+        border-radius: 22px;
+      }
+
+      .events-hero-card h2 {
+        font-size: 1.55rem;
+      }
+
+      .events-main-tabs {
+        grid-template-columns: 1fr;
+      }
+
+      .section-heading-clean h2 {
+        font-size: 1.45rem;
+      }
+
+      .next-event-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .next-event-media {
+        min-height: 190px;
+      }
+
+      .next-event-content {
+        padding: 24px;
+      }
+
+      .next-event-content h2 {
+        font-size: 1.45rem;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .archive-controls .small-filter {
+        flex: 1;
+        min-width: 130px;
+      }
+
+      .modal {
+        padding: 28px 22px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <!-- NAVIGATION -->
   <nav>
     <a href="index.html" class="nav-logo">PRISM UP</a>
     <ul class="nav-links">
-  <li><a href="index.html">Accueil</a></li>
-  <li><a href="association.html">Notre association</a></li>
-  <li><a href="cours.html">Nos cours</a></li>
-  <li><a href="evenements.html">Événements</a></li>
-  <li><a href="rejoindre.html">Nous rejoindre</a></li>
-</ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="association.html">Notre association</a></li>
+      <li><a href="cours.html">Nos cours</a></li>
+      <li><a href="evenements.html">Événements</a></li>
+      <li><a href="rejoindre.html">Nous rejoindre</a></li>
+    </ul>
     <div class="burger">
       <span></span>
       <span></span>
@@ -215,32 +613,71 @@
   <!-- HEADER -->
   <div class="page-header">
     <h1>Nos <span style="color:var(--violet-clair)">Événements</span></h1>
-    <p>Showcases · Stages · Sorties · Compétitions</p>
+    <p>À venir · Souvenirs · Stages · Sorties · Galas</p>
   </div>
 
-  <!-- CONTENU -->
   <section>
-    <!-- FILTRES -->
-    <div class="filtres">
-      <button class="btn btn-primary filtre-btn" data-filtre="tous">Tout voir</button>
-      <button class="btn btn-outline filtre-btn" data-filtre="evenement">Événements</button>
-      <button class="btn btn-outline filtre-btn" data-filtre="stage">Stages</button>
-      <button class="btn btn-outline filtre-btn" data-filtre="sortie">Sorties</button>
+    <div class="events-shell">
+
+      <!-- GRAND CHOIX -->
+      <div class="events-main-tabs">
+        <button class="main-tab active" id="tab-upcoming" onclick="changerVue('upcoming')">
+          <strong>📅 À venir</strong>
+          <span>Voir les prochains rendez-vous importants.</span>
+        </button>
+
+        <button class="main-tab" id="tab-archives" onclick="changerVue('archives')">
+          <strong>🗂️ Archives</strong>
+          <span>Retrouver les anciens événements par saison.</span>
+        </button>
+      </div>
+
+      <!-- VUE À VENIR -->
+      <div class="view-panel active" id="view-upcoming">
+        <div class="section-heading-clean">
+          <div>
+            <h2>À venir</h2>
+            <p>Les prochains événements de l'association.</p>
+          </div>
+        </div>
+
+        <div class="next-event-card" id="next-event-card"></div>
+
+        <div class="events-grid" id="upcoming-grid"></div>
+      </div>
+
+      <!-- VUE ARCHIVES -->
+      <div class="view-panel" id="view-archives">
+        <div class="section-heading-clean">
+          <div>
+            <h2>Archives</h2>
+            <p>Les souvenirs Prism Up, rangés proprement par saison.</p>
+          </div>
+        </div>
+
+        <div class="archive-tabs">
+          <button class="archive-tab active" data-saison="demi-2026">
+            <strong>Demi-saison 2026</strong>
+            <span>Janvier à juin 2026 · Les débuts de Prism Up</span>
+          </button>
+
+          <button class="archive-tab" data-saison="2026-2027">
+            <strong>Saison 2026-2027</strong>
+            <span>Septembre 2026 à juin 2027</span>
+          </button>
+        </div>
+
+        <div class="archive-controls">
+          <button class="small-filter active" data-type="tous">Tout</button>
+          <button class="small-filter" data-type="evenement">Événements</button>
+          <button class="small-filter" data-type="stage">Stages</button>
+          <button class="small-filter" data-type="sortie">Sorties</button>
+        </div>
+
+        <div class="events-grid" id="archives-grid"></div>
+      </div>
+
     </div>
-
-    <!-- À VENIR -->
-    <p class="section-title">À venir</p>
-    <div class="divider"></div>
-    <br>
-    <div class="cards-grid" id="evenements-avenir"></div>
-
-    <br><br>
-
-    <!-- PASSÉS -->
-    <p class="section-title">Passés</p>
-    <div class="divider"></div>
-    <br>
-    <div class="cards-grid" id="evenements-passes"></div>
   </section>
 
   <!-- MODAL -->
@@ -255,90 +692,145 @@
         <span class="diapo-compteur" id="diapo-compteur"></span>
         <button class="diapo-btn" onclick="changerPhoto(1)">›</button>
       </div>
-      <p class="modal-description" id="modal-description"></p>
+      <div class="modal-description" id="modal-description"></div>
       <div id="modal-lien"></div>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-  <p style="font-size:1.1rem;font-weight:700;color:var(--violet-clair);margin-bottom:10px;">PRISM UP</p>
-  <p>Association de danse · Thumeries</p>
-  <br>
-  <!-- RÉSEAUX SOCIAUX -->
-  <div style="display:flex;justify-content:center;gap:20px;margin:20px 0;">
-    <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
-    style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-    border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
-    transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
-    onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
-      📸 Instagram
-    </a>
-    <a href="https://www.facebook.com/profile.php?id=61582350400438" target="_blank"
-    style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-    border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
-    transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
-    onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
-      👥 Facebook
-    </a>
-    <a href="https://www.tiktok.com/@prismup" target="_blank"
-    style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-    border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
-    transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
-    onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
-      🎵 TikTok
-    </a>
-    <a href="https://www.youtube.com/@Prismup-n4i" target="_blank"
-    style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-    border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
-    transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
-    onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
-      ▶️ YouTube
-    </a>
-  </div>
-  <br>
-  <div style="display:flex;justify-content:space-between;align-items:center;
-flex-wrap:wrap;gap:20px;margin-top:20px;padding-top:20px;
-border-top:1px solid rgba(152,148,219,0.15);">
-  <p style="color:rgba(255,255,255,0.4);">© 2026 Prism Up · Tous droits réservés</p>
-  <div style="display:flex;align-items:center;gap:15px;">
-    <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;">NOS PARTENAIRES</p>
-    <img src="images/logosponsor.1.png" alt="Partenaire 1"
-    style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-    <img src="images/logosponsor.2.jpg" alt="Partenaire 2"
-    style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-  </div>
+    <p style="font-size:1.1rem;font-weight:700;color:var(--violet-clair);margin-bottom:10px;">PRISM UP</p>
+    <p>Association de danse · Thumeries</p>
+    <br>
+
+    <div style="display:flex;justify-content:center;gap:20px;margin:20px 0;flex-wrap:wrap;">
+      <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
+      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">
+        📸 Instagram
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61582350400438" target="_blank"
+      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">
+        👥 Facebook
+      </a>
+      <a href="https://www.tiktok.com/@prismup" target="_blank"
+      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">
+        🎵 TikTok
+      </a>
+      <a href="https://www.youtube.com/@Prismup-n4i" target="_blank"
+      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">
+        ▶️ YouTube
+      </a>
+    </div>
+
+    <br>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:20px;margin-top:20px;padding-top:20px;
+    border-top:1px solid rgba(152,148,219,0.15);">
+      <p style="color:rgba(255,255,255,0.4);">© 2026 Prism Up · Tous droits réservés</p>
+      <div style="display:flex;align-items:center;gap:15px;">
+        <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;">NOS PARTENAIRES</p>
+        <img src="images/logosponsor.1.png" alt="Partenaire 1"
+        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
+        <img src="images/logosponsor.2.jpg" alt="Partenaire 2"
+        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
+      </div>
+    </div>
+  </footer>
 
   <script src="events.js"></script>
   <script src="js/main.js"></script>
+
   <script>
     let photoIndex = 0;
     let photosActuelles = [];
+    let archiveSaisonActuelle = 'demi-2026';
+    let archiveTypeActuel = 'tous';
 
-    function creerCarteEvenementAvance(ev, estAvenir) {
+    function formatDateFr(dateStr) {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('fr-FR', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+    }
+
+    function nettoyerTexte(html) {
+      return (html || '').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+    }
+
+    function emojiType(type) {
+      if (type === 'stage') return '💃';
+      if (type === 'sortie') return '🎉';
+      return '🎭';
+    }
+
+    function labelType(type) {
+      if (type === 'stage') return 'Stage';
+      if (type === 'sortie') return 'Sortie';
+      return 'Événement';
+    }
+
+    function estAvenir(ev) {
       const aujourdhui = new Date();
       aujourdhui.setHours(0,0,0,0);
-      const estFutur = new Date(ev.date) >= aujourdhui;
+      return new Date(ev.date) >= aujourdhui;
+    }
+
+    function saisonPrismUp(ev) {
+      const d = new Date(ev.date);
+      const annee = d.getFullYear();
+      const mois = d.getMonth() + 1;
+
+      // Demi-saison fondatrice : janvier à juin 2026
+      if (annee === 2026 && mois >= 1 && mois <= 6) {
+        return 'demi-2026';
+      }
+
+      // Saison 2026-2027 : septembre 2026 à juin 2027
+      if (
+        (annee === 2026 && mois >= 9 && mois <= 12) ||
+        (annee === 2027 && mois >= 1 && mois <= 6)
+      ) {
+        return '2026-2027';
+      }
+
+      return 'autre';
+    }
+
+    function creerCarte(ev, futur) {
+      const index = EVENEMENTS.indexOf(ev);
+      const texteCourt = nettoyerTexte(ev.description).substring(0, 105);
+      const media = ev.affiche
+        ? `<img src="${ev.affiche}" alt="${ev.titre}">`
+        : emojiType(ev.type);
 
       return `
-        <div class="card-event" onclick="ouvrirModal(${EVENEMENTS.indexOf(ev)})">
-${ev.affiche ? `<img src="${ev.affiche}" alt="${ev.titre}" class="affiche">` : 
-`<div style="width:100%;height:200px;background:linear-gradient(135deg,rgba(152,148,219,0.2),rgba(36,6,83,0.4));
-display:flex;align-items:center;justify-content:center;font-size:3rem;">
-${ev.type === 'evenement' ? '🎭' : ev.type === 'stage' ? '💃' : '🎉'}
-</div>`}          <div class="card-event-body">
-            <div class="card-date">${formaterDate(ev.date)} — ${ev.lieu}</div>
+        <div class="event-card ${ev.annule ? 'annule' : ''}" onclick="ouvrirModal(${index})">
+          ${ev.annule ? `<div class="event-cancelled-banner">❌ Événement annulé</div>` : ''}
+          <div class="event-media">${media}</div>
+          <div class="event-card-body">
+            <div class="event-kind">${emojiType(ev.type)} ${labelType(ev.type)}</div>
+            <div class="event-date">
+              ${formatDateFr(ev.date)}${ev.heure ? ' · ' + ev.heure : ''}<br>
+              ${ev.lieu || ''}
+            </div>
             <h3>${ev.titre}</h3>
-            <p>${ev.description.replace(/<[^>]*>/g, '').substring(0, 100)}...</p>
-            <div class="card-event-footer">
-              <span class="tag ${estAvenir ? 'tag-avenir' : 'tag-passe'}">
-                ${estAvenir ? '📅 À venir' : '✅ Passé'}
+            <p>${texteCourt}${texteCourt.length >= 105 ? '...' : ''}</p>
+            <div class="event-footer">
+              <span class="tag ${futur ? 'tag-avenir' : 'tag-passe'}">
+                ${ev.annule ? '❌ Annulé' : futur ? '📅 À venir' : '✅ Passé'}
               </span>
-              ${estFutur && ev.lien && !ev.annule ? `
+              ${futur && ev.lien && !ev.annule ? `
                 <a href="${ev.lien}" target="_blank" class="btn btn-primary"
                 onclick="event.stopPropagation()"
-                style="padding:8px 20px;font-size:0.8rem;">
-                  🎟️ Billetterie
+                style="padding:8px 18px;font-size:0.75rem;">
+                  Infos
                 </a>` : ''}
             </div>
           </div>
@@ -346,96 +838,172 @@ ${ev.type === 'evenement' ? '🎭' : ev.type === 'stage' ? '💃' : '🎉'}
       `;
     }
 
-    function afficherTout(filtre) {
-      const aujourdhui = new Date();
-      aujourdhui.setHours(0,0,0,0);
+    function creerCartePrincipale(ev) {
+      const index = EVENEMENTS.indexOf(ev);
+      const media = ev.affiche
+        ? `<img src="${ev.affiche}" alt="${ev.titre}">`
+        : emojiType(ev.type);
 
-      const liste = filtre === 'tous'
-        ? EVENEMENTS
-        : EVENEMENTS.filter(e => e.type === filtre);
+      return `
+        <div class="next-event-inner" onclick="ouvrirModal(${index})">
+          <div class="next-event-media">${media}</div>
+          <div class="next-event-content">
+            <span class="next-label">Prochain rendez-vous</span>
+            <h2>${ev.titre}</h2>
+            <div class="next-meta">
+              ${formatDateFr(ev.date)}${ev.heure ? ' · ' + ev.heure : ''}<br>
+              ${ev.lieu || ''}
+            </div>
+            <p>${nettoyerTexte(ev.description).substring(0, 210)}${nettoyerTexte(ev.description).length > 210 ? '...' : ''}</p>
+            <span class="btn btn-primary" style="pointer-events:none;">Voir les détails</span>
+          </div>
+        </div>
+      `;
+    }
 
-      const avenir = liste
-        .filter(e => new Date(e.date) >= aujourdhui)
+    function afficherUpcoming() {
+      const avenir = EVENEMENTS
+        .filter(e => estAvenir(e))
         .sort((a,b) => new Date(a.date) - new Date(b.date));
 
-      const passes = liste
-        .filter(e => new Date(e.date) < aujourdhui)
+      const prochain = avenir.find(e => !e.annule) || avenir[0];
+      const nextCard = document.getElementById('next-event-card');
+      const grid = document.getElementById('upcoming-grid');
+
+      if (prochain) {
+        nextCard.style.display = 'block';
+        nextCard.innerHTML = creerCartePrincipale(prochain);
+      } else {
+        nextCard.style.display = 'none';
+      }
+
+      const autres = prochain
+        ? avenir.filter(e => e !== prochain)
+        : avenir;
+
+      grid.innerHTML = autres.length
+        ? autres.map(e => creerCarte(e, true)).join('')
+        : prochain
+          ? ''
+          : `<div class="empty-state">Aucun événement à venir pour le moment.</div>`;
+    }
+
+    function afficherArchives() {
+      let archives = EVENEMENTS
+        .filter(e => !estAvenir(e))
+        .filter(e => saisonPrismUp(e) === archiveSaisonActuelle)
         .sort((a,b) => new Date(b.date) - new Date(a.date));
 
-      document.getElementById('evenements-avenir').innerHTML = avenir.length
-        ? avenir.map(e => creerCarteEvenementAvance(e, true)).join('')
-        : '<p style="color:rgba(255,255,255,0.4)">Aucun élément à venir.</p>';
+      if (archiveTypeActuel !== 'tous') {
+        archives = archives.filter(e => e.type === archiveTypeActuel);
+      }
 
-      document.getElementById('evenements-passes').innerHTML = passes.length
-        ? passes.map(e => creerCarteEvenementAvance(e, false)).join('')
-        : '<p style="color:rgba(255,255,255,0.4)">Aucun élément passé.</p>';
+      const zone = document.getElementById('archives-grid');
+
+      zone.innerHTML = archives.length
+        ? archives.map(e => creerCarte(e, false)).join('')
+        : `<div class="empty-state">Aucun événement archivé dans cette sélection.</div>`;
     }
+
+    function changerVue(vue) {
+      document.getElementById('view-upcoming').classList.toggle('active', vue === 'upcoming');
+      document.getElementById('view-archives').classList.toggle('active', vue === 'archives');
+
+      document.getElementById('tab-upcoming').classList.toggle('active', vue === 'upcoming');
+      document.getElementById('tab-archives').classList.toggle('active', vue === 'archives');
+
+      if (vue === 'archives') {
+        afficherArchives();
+      } else {
+        afficherUpcoming();
+      }
+    }
+
+    document.querySelectorAll('.archive-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.archive-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        archiveSaisonActuelle = btn.dataset.saison;
+        afficherArchives();
+      });
+    });
+
+    document.querySelectorAll('.small-filter').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.small-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        archiveTypeActuel = btn.dataset.type;
+        afficherArchives();
+      });
+    });
 
     function ouvrirModal(index) {
       const ev = EVENEMENTS[index];
-      const aujourdhui = new Date();
-      aujourdhui.setHours(0,0,0,0);
-      const estFutur = new Date(ev.date) >= aujourdhui;
+      const futur = estAvenir(ev);
 
       document.getElementById('modal-titre').textContent = ev.titre;
       document.getElementById('modal-meta').textContent =
-        formaterDate(ev.date) + ' — ' + ev.lieu;
-      document.getElementById('modal-description').innerHTML = `
-  <div onclick="toggleDescription()" 
-  style="cursor:pointer;display:flex;justify-content:space-between;
-  align-items:center;background:rgba(152,148,219,0.1);
-  border:1px solid rgba(152,148,219,0.3);border-radius:10px;
-  padding:12px 18px;margin-bottom:10px;">
-    <span style="font-weight:700;color:#9894db;">📋 Description</span>
-    <span id="desc-arrow" style="color:#9894db;font-size:1.2rem;">▲</span>
-  </div>
-  <div id="desc-contenu">
-    ${ev.description.replace(/\n/g, '<br>')}
-  </div>
-`;
+        formatDateFr(ev.date) +
+        (ev.heure ? ' · ' + ev.heure : '') +
+        (ev.lieu ? ' — ' + ev.lieu : '');
 
-      // Diaporama
-     // Vidéo + Diaporama
+      document.getElementById('modal-description').innerHTML = `
+        ${ev.annule ? `
+          <div style="background:rgba(192,57,43,0.16);border:1px solid rgba(192,57,43,0.5);
+          border-radius:14px;padding:14px 18px;margin-bottom:18px;color:white;font-weight:800;">
+            ❌ Cet événement a été annulé.
+          </div>
+        ` : ''}
+
+        <div onclick="toggleDescription()"
+        style="cursor:pointer;display:flex;justify-content:space-between;
+        align-items:center;background:rgba(152,148,219,0.1);
+        border:1px solid rgba(152,148,219,0.3);border-radius:12px;
+        padding:13px 18px;margin-bottom:10px;">
+          <span style="font-weight:800;color:#9894db;">📋 Description</span>
+          <span id="desc-arrow" style="color:#9894db;font-size:1.2rem;">▲</span>
+        </div>
+
+        <div id="desc-contenu">
+          ${ev.description.replace(/\n/g, '<br>')}
+        </div>
+      `;
+
       const diapo = document.getElementById('modal-diaporama');
       const controls = document.getElementById('diapo-controls');
       let contenuMedia = '';
 
-      // Vidéo en premier si elle existe
       if (ev.video) {
-  contenuMedia += `
-    <a href="${ev.video}" target="_blank"
-    style="display:flex;align-items:center;gap:15px;
-    background:linear-gradient(135deg,rgba(152,148,219,0.2),rgba(36,6,83,0.4));
-    border:1px solid rgba(152,148,219,0.4);border-radius:14px;
-    padding:18px 25px;margin-bottom:25px;text-decoration:none;
-    transition:all 0.3s;cursor:pointer;"
-    onmouseover="this.style.borderColor='#9894db';this.style.transform='translateY(-2px)'"
-    onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.transform='none'">
-      <div style="width:50px;height:50px;background:red;border-radius:50%;
-      display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <span style="color:white;font-size:1.4rem;margin-left:4px;">▶</span>
-      </div>
-      <div>
-        <p style="color:white;font-weight:700;font-size:1rem;margin-bottom:3px;">
-          Voir la vidéo du stage
-        </p>
-        <p style="color:rgba(255,255,255,0.5);font-size:0.8rem;">
-          Ouvrir sur YouTube ↗
-        </p>
-      </div>
-    </a>
-  `;
-}
+        contenuMedia += `
+          <a href="${ev.video}" target="_blank"
+          style="display:flex;align-items:center;gap:15px;
+          background:linear-gradient(135deg,rgba(152,148,219,0.2),rgba(36,6,83,0.4));
+          border:1px solid rgba(152,148,219,0.4);border-radius:14px;
+          padding:18px 25px;margin-bottom:25px;text-decoration:none;">
+            <div style="width:50px;height:50px;background:red;border-radius:50%;
+            display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <span style="color:white;font-size:1.4rem;margin-left:4px;">▶</span>
+            </div>
+            <div>
+              <p style="color:white;font-weight:700;font-size:1rem;margin-bottom:3px;">
+                Voir la vidéo
+              </p>
+              <p style="color:rgba(255,255,255,0.5);font-size:0.8rem;">
+                Ouvrir sur YouTube ↗
+              </p>
+            </div>
+          </a>
+        `;
+      }
 
       diapo.innerHTML = contenuMedia;
 
-      // Photos en carrousel après la vidéo
       photosActuelles = ev.photos && ev.photos.length ? ev.photos : (ev.affiche ? [ev.affiche] : []);
       photoIndex = 0;
 
       if (photosActuelles.length > 0) {
         if (ev.type === 'sortie' && photosActuelles.length > 1) {
-          const photosHtml = `
+          diapo.innerHTML += `
             <div style="margin-top:15px;">
               <div style="position:relative;border-radius:12px;overflow:hidden;margin-bottom:10px;">
                 <img id="photo-principale" src="${photosActuelles[0]}"
@@ -453,22 +1021,19 @@ ${ev.type === 'evenement' ? '🎭' : ev.type === 'stage' ? '💃' : '🎉'}
               </div>
             </div>
           `;
-          diapo.innerHTML += photosHtml;
           controls.style.display = 'none';
         } else {
-          const photosHtml = `
+          diapo.innerHTML += `
             <div id="carrousel" style="position:relative;border-radius:12px;overflow:hidden;">
               ${photosActuelles.map((p, i) => `
                 <img src="${p}" class="${i === 0 ? 'active' : ''}"
-                style="width:100%;max-height:${ev.estAffiche ? '700px' : '400px'};
+                style="width:100%;max-height:${ev.estAffiche ? '700px' : '420px'};
                 object-fit:${ev.estAffiche ? 'contain' : 'cover'};
                 display:${i === 0 ? 'block' : 'none'};border-radius:12px;
-                background:${ev.estAffiche ? 'rgba(0,0,0,0.2)' : 'none'};
-                transition:opacity 0.3s;">
+                background:${ev.estAffiche ? 'rgba(0,0,0,0.2)' : 'none'};">
               `).join('')}
             </div>
           `;
-          diapo.innerHTML += photosHtml;
           controls.style.display = photosActuelles.length > 1 ? 'flex' : 'none';
           majCompteur();
         }
@@ -476,33 +1041,30 @@ ${ev.type === 'evenement' ? '🎭' : ev.type === 'stage' ? '💃' : '🎉'}
         controls.style.display = 'none';
       }
 
-      // Lien billetterie
-     const lienZone = document.getElementById('modal-lien');
       let boutonsLiens = '';
-      if (estFutur && ev.lien) {
+
+      if (futur && ev.lien && !ev.annule) {
+        const estLienInterne = ev.lien.endsWith('.html') || ev.lien.startsWith('#');
         boutonsLiens += `
-          <a href="${ev.lien}" target="_blank" class="btn btn-primary"
-          style="display:flex;align-items:center;gap:10px;margin-bottom:12px;
-          padding:14px 25px;border-radius:12px;text-decoration:none;">
-            🎟️ <div><p style="font-weight:700;margin:0;">Billetterie</p>
-            <p style="font-size:0.75rem;opacity:0.7;margin:0;">Réserver ma place</p></div>
+          <a href="${ev.lien}" ${estLienInterne ? '' : 'target="_blank"'} class="btn btn-primary"
+          style="display:inline-flex;align-items:center;gap:10px;margin-bottom:12px;
+          padding:14px 25px;border-radius:50px;text-decoration:none;">
+            Infos / inscription
           </a>`;
       }
-      if (estFutur && ev.lien_click_collect) {
+
+      if (futur && ev.lien_click_collect && !ev.annule) {
         boutonsLiens += `
           <a href="${ev.lien_click_collect}" target="_blank"
-          style="display:flex;align-items:center;gap:10px;margin-bottom:12px;
-          padding:14px 25px;border-radius:12px;text-decoration:none;
+          style="display:inline-flex;align-items:center;gap:10px;margin-bottom:12px;margin-left:10px;
+          padding:14px 25px;border-radius:50px;text-decoration:none;
           background:rgba(152,148,219,0.15);border:1px solid rgba(152,148,219,0.4);
-          color:white;transition:all 0.3s;"
-          onmouseover="this.style.borderColor='#9894db'"
-          onmouseout="this.style.borderColor='rgba(152,148,219,0.4)'">
-            🛍️ <div><p style="font-weight:700;margin:0;">Click & Collect</p>
-            <p style="font-size:0.75rem;opacity:0.7;margin:0;">Commander boissons & snacks</p></div>
+          color:white;">
+            🛍️ Click & Collect
           </a>`;
       }
-      lienZone.innerHTML = boutonsLiens;
 
+      document.getElementById('modal-lien').innerHTML = boutonsLiens;
       document.getElementById('modal-overlay').classList.add('open');
     }
 
@@ -513,80 +1075,82 @@ ${ev.type === 'evenement' ? '🎭' : ev.type === 'stage' ? '💃' : '🎉'}
     }
 
     function changerPhoto(direction) {
-  const imgs = document.querySelectorAll('#carrousel img');
-  if (!imgs.length) return;
-  imgs[photoIndex].style.display = 'none';
-  photoIndex = (photoIndex + direction + photosActuelles.length) % photosActuelles.length;
-  imgs[photoIndex].style.display = 'block';
-  majCompteur();
-}
+      const imgs = document.querySelectorAll('#carrousel img');
+      if (!imgs.length) return;
 
-    function majCompteur() {
-      document.getElementById('diapo-compteur').textContent =
-        (photoIndex + 1) + ' / ' + photosActuelles.length;
+      imgs[photoIndex].style.display = 'none';
+      photoIndex = (photoIndex + direction + photosActuelles.length) % photosActuelles.length;
+      imgs[photoIndex].style.display = 'block';
+      majCompteur();
     }
 
-    // Filtres
-    document.querySelectorAll('.filtre-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filtre-btn').forEach(b => {
-          b.classList.remove('btn-primary');
-          b.classList.add('btn-outline');
-        });
-        btn.classList.add('btn-primary');
-        btn.classList.remove('btn-outline');
-        afficherTout(btn.dataset.filtre);
-      });
-    });
+    function majCompteur() {
+      const compteur = document.getElementById('diapo-compteur');
+      if (compteur) {
+        compteur.textContent = (photoIndex + 1) + ' / ' + photosActuelles.length;
+      }
+    }
 
-    // Chargement initial
-    document.addEventListener('DOMContentLoaded', () => {
-      afficherTout('tous');
-    });
     function toggleDescription() {
-  const contenu = document.getElementById('desc-contenu');
-  const arrow = document.getElementById('desc-arrow');
-  if (contenu.style.display === 'none') {
-    contenu.style.display = 'block';
-    arrow.textContent = '▲';
-  } else {
-    contenu.style.display = 'none';
-    arrow.textContent = '▼';
-  }
-}
-// ... autres fonctions ...
+      const contenu = document.getElementById('desc-contenu');
+      const arrow = document.getElementById('desc-arrow');
+      if (!contenu || !arrow) return;
+
+      if (contenu.style.display === 'none') {
+        contenu.style.display = 'block';
+        arrow.textContent = '▲';
+      } else {
+        contenu.style.display = 'none';
+        arrow.textContent = '▼';
+      }
+    }
 
     function changerPhotoReportage(index) {
-      document.getElementById('photo-principale').src = photosActuelles[index];
+      const principale = document.getElementById('photo-principale');
+      if (!principale) return;
+
+      principale.src = photosActuelles[index];
+
       document.querySelectorAll('[id^="miniature-"]').forEach((m, i) => {
         m.style.opacity = i === index ? '1' : '0.5';
         m.style.border = i === index
           ? '2px solid #9894db'
           : '2px solid transparent';
       });
+
       photoIndex = index;
     }
 
+    document.addEventListener('DOMContentLoaded', () => {
+      afficherUpcoming();
+      afficherArchives();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('modal-overlay').classList.remove('open');
+      }
+    });
   </script>
 
   <!-- NAVIGATION BAS MOBILE -->
-<nav class="nav-bottom">
-  <a href="index.html" >
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-  </a>
-  <a href="association.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-  </a>
-  <a href="cours.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-  </a>
-  <a href="evenements.html" style="color:var(--violet-clair);background:rgba(152,148,219,0.25);">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-  </a>
-  <a href="rejoindre.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-  </a>
-</nav>
+  <nav class="nav-bottom">
+    <a href="index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <a href="association.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </a>
+    <a href="cours.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+    </a>
+    <a href="evenements.html" style="color:var(--violet-clair);background:rgba(152,148,219,0.25);">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    </a>
+    <a href="rejoindre.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+    </a>
+  </nav>
 
 </body>
 </html>

@@ -2,116 +2,579 @@
 <html lang="fr">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5QQ5K7E4S0');
+  </script>
 
-  gtag('config', 'G-5QQ5K7E4S0');
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nos cours — Prism Up</title>
   <link rel="stylesheet" href="css/style.css">
+
   <style>
-    .cours-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-bottom: 40px;
-    }
+    /* ===============================
+       PAGE COURS — VERSION MODERNE
+    =============================== */
 
-    .cours-card {
-      background: rgba(152,148,219,0.1);
-      border: 1px solid rgba(152,148,219,0.3);
-      border-radius: 16px;
+    .cours-hero-info {
+      max-width: 950px;
+      margin: 0 auto;
+      background:
+        radial-gradient(circle at top left, rgba(152,148,219,0.35), transparent 35%),
+        linear-gradient(135deg, rgba(152,148,219,0.14), rgba(36,6,83,0.55));
+      border: 1px solid rgba(152,148,219,0.45);
+      border-radius: 28px;
+      padding: 32px;
+      position: relative;
       overflow: hidden;
-      transition: all 0.3s;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
     }
 
-    .cours-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--violet-clair);
-      box-shadow: 0 15px 40px rgba(152,148,219,0.2);
-    }
-
-    .cours-card img {
-      width: 100%;
+    .cours-hero-info::after {
+      content: "";
+      position: absolute;
+      width: 220px;
       height: 220px;
-      object-fit: cover;
+      border-radius: 50%;
+      background: rgba(152,148,219,0.08);
+      right: -60px;
+      bottom: -80px;
     }
 
-    .cours-card-body {
-      padding: 20px;
+    .cours-hero-info-content {
+      position: relative;
+      z-index: 2;
     }
 
-    .cours-card-body h3 {
-      font-size: 1.2rem;
-      font-weight: 900;
+    .cours-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      background: rgba(152,148,219,0.18);
+      border: 1px solid rgba(152,148,219,0.45);
       color: var(--violet-clair);
-      letter-spacing: 1px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 5px;
+      margin-bottom: 18px;
     }
 
-    .cours-card-body .age {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.5);
-      letter-spacing: 1px;
+    .cours-hero-info h2 {
+      font-size: 2.3rem;
+      font-weight: 900;
+      line-height: 1.15;
       margin-bottom: 15px;
     }
 
-    .creneau {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(152,148,219,0.1);
-      border-radius: 8px;
-      padding: 10px 15px;
+    .cours-hero-info p {
+      color: rgba(255,255,255,0.75);
+      line-height: 1.8;
+      max-width: 720px;
+    }
+
+    .quick-infos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 28px;
+    }
+
+    .quick-info {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(152,148,219,0.22);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .quick-info span {
+      display: block;
+      font-size: 1.6rem;
       margin-bottom: 8px;
     }
 
-    .creneau-jour {
-      font-weight: 700;
-      font-size: 0.85rem;
+    .quick-info strong {
+      display: block;
       color: var(--violet-clair);
-      min-width: 70px;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
     }
 
-    .creneau-heure {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.8);
+    .quick-info p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.5;
     }
 
-    .planning-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
+    /* FILTRE */
+    .finder-box {
+      background:
+        radial-gradient(circle at top right, rgba(152,148,219,0.23), transparent 35%),
+        linear-gradient(135deg, rgba(152,148,219,0.12), rgba(36,6,83,0.35));
+      border: 1px solid rgba(152,148,219,0.38);
+      border-radius: 28px;
+      padding: 30px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
     }
 
-    .planning-table th {
-      background: rgba(152,148,219,0.2);
+    .finder-header h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .finder-header p {
+      color: rgba(255,255,255,0.68);
+      line-height: 1.7;
+      max-width: 760px;
+    }
+
+    .finder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(180px, 1fr)) auto;
+      gap: 15px;
+      align-items: end;
+      margin-top: 25px;
+    }
+
+    .finder-field label {
+      display: block;
       color: var(--violet-clair);
-      padding: 12px 20px;
-      text-align: left;
-      font-size: 0.85rem;
+      font-weight: 800;
+      font-size: 0.78rem;
       letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .finder-field select {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(152,148,219,0.35);
+      background: rgba(36,6,83,0.85);
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+    }
+
+    .finder-field select:focus {
+      outline: none;
+      border-color: var(--violet-clair);
+    }
+
+    .finder-field select option {
+      background: var(--violet-fonce);
+      color: white;
+    }
+
+    .finder-result {
+      margin-top: 18px;
+      color: rgba(255,255,255,0.58);
+      font-size: 0.9rem;
+    }
+
+    .no-result-box {
+      display: none;
+      background: rgba(192,57,43,0.12);
+      border: 1px solid rgba(192,57,43,0.45);
+      border-radius: 18px;
+      padding: 22px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+    }
+
+    .no-result-box strong {
+      color: white;
+    }
+
+    .slot-card.hidden-by-filter {
+      display: none !important;
+    }
+
+    .day-row.hidden-by-filter {
+      display: none !important;
+    }
+
+    .slot-card.highlight-filter {
+      border-color: var(--violet-clair) !important;
+      background: rgba(152,148,219,0.18) !important;
+    }
+
+    /* PLANNING */
+    .planning-modern {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      margin-top: 40px;
+    }
+
+    .day-row {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .day-label {
+      background:
+        linear-gradient(145deg, rgba(152,148,219,0.22), rgba(36,6,83,0.35));
+      border: 1px solid rgba(152,148,219,0.35);
+      border-radius: 22px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .day-label::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      top: -40px;
+      right: -40px;
+    }
+
+    .day-label h3 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--violet-clair);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .day-label p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .slots {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .slot-card {
+      background: rgba(152,148,219,0.09);
+      border: 1px solid rgba(152,148,219,0.25);
+      border-radius: 20px;
+      padding: 20px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+      min-height: 155px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slot-card::after {
+      content: "→";
+      position: absolute;
+      right: 18px;
+      top: 16px;
+      color: rgba(152,148,219,0.65);
+      font-size: 1.3rem;
+      transition: transform 0.25s ease;
+    }
+
+    .slot-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--violet-clair);
+      background: rgba(152,148,219,0.15);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.2);
+    }
+
+    .slot-card:hover::after {
+      transform: translateX(4px);
+    }
+
+    .slot-time {
+      color: var(--violet-clair);
+      font-weight: 900;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .slot-title {
+      font-size: 1.15rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+      line-height: 1.25;
+    }
+
+    .slot-subtitle {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .slot-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .mini-tag {
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(152,148,219,0.16);
+      border: 1px solid rgba(152,148,219,0.28);
+      color: rgba(255,255,255,0.78);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.6px;
       text-transform: uppercase;
     }
 
-    .planning-table td {
-      padding: 14px 20px;
-      border-bottom: 1px solid rgba(152,148,219,0.1);
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.8);
+    .mini-tag.special {
+      background: rgba(152,148,219,0.28);
+      color: var(--violet-clair);
+      border-color: rgba(152,148,219,0.55);
     }
 
-    .planning-table tr:hover td {
-      background: rgba(152,148,219,0.05);
+    /* ENCARTS */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      margin-top: 35px;
+    }
+
+    .focus-card {
+      background:
+        linear-gradient(145deg, rgba(152,148,219,0.13), rgba(255,255,255,0.035));
+      border: 1px solid rgba(152,148,219,0.3);
+      border-radius: 22px;
+      padding: 26px;
+    }
+
+    .focus-card .icon {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+
+    .focus-card h3 {
+      color: var(--violet-clair);
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .focus-card p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    .cta-cours {
+      margin-top: 50px;
+      background: linear-gradient(135deg, var(--violet-clair), #6b67c4);
+      border-radius: 28px;
+      padding: 42px 28px;
+      text-align: center;
+      color: var(--violet-fonce);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-cours h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .cta-cours p {
+      max-width: 650px;
+      margin: 0 auto 24px;
+      line-height: 1.7;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .cta-cours .btn {
+      background: white;
+      color: var(--violet-fonce);
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.86);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-cours {
+      width: 100%;
+      max-width: 620px;
+      background:
+        radial-gradient(circle at top right, rgba(152,148,219,0.25), transparent 40%),
+        #1a0440;
+      border: 1px solid rgba(152,148,219,0.75);
+      border-radius: 26px;
+      padding: 34px;
+      position: relative;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.45);
+      animation: apparaitre 0.25s ease;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(152,148,219,0.35);
+      background: rgba(152,148,219,0.12);
+      color: var(--violet-clair);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .modal-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 22px;
+      background: rgba(152,148,219,0.16);
+      border: 1px solid rgba(152,148,219,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .modal-cours h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .modal-meta {
+      color: var(--violet-clair);
+      font-weight: 700;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 22px;
+    }
+
+    .modal-text {
+      background: rgba(152,148,219,0.1);
+      border: 1px solid rgba(152,148,219,0.25);
+      border-radius: 18px;
+      padding: 20px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.85;
+      margin-bottom: 24px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .modal-actions .btn-outline {
+      margin-left: 0;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .cours-hero-info {
+        padding: 24px;
+        border-radius: 22px;
+      }
+
+      .cours-hero-info h2 {
+        font-size: 1.65rem;
+      }
+
+      .finder-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .finder-box {
+        padding: 24px;
+        border-radius: 22px;
+      }
+
+      .finder-header h2 {
+        font-size: 1.4rem;
+      }
+
+      .finder-grid .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .day-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .day-label {
+        padding: 20px;
+      }
+
+      .day-label h3 {
+        font-size: 1.25rem;
+      }
+
+      .slots {
+        grid-template-columns: 1fr;
+      }
+
+      .slot-card {
+        min-height: auto;
+      }
+
+      .modal-cours {
+        padding: 28px 22px;
+      }
+
+      .modal-actions {
+        flex-direction: column;
+      }
+
+      .modal-actions .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .cta-cours h2 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAVIGATION -->
@@ -134,239 +597,400 @@
   <!-- HEADER -->
   <div class="page-header">
     <h1>Nos <span style="color:var(--violet-clair)">Cours</span></h1>
-    <p>Street Jazz · Hip Hop · Styles Urbains</p>
+    <p>Saison 2026-2027 · Thumeries</p>
   </div>
 
-  <!-- BANDEAU SAISON -->
+  <!-- INTRO -->
   <section>
-    <div style="background:linear-gradient(135deg,rgba(152,148,219,0.15),rgba(36,6,83,0.3));
-    border:1px solid rgba(152,148,219,0.4);border-radius:14px;
-    padding:20px 25px;display:flex;align-items:center;gap:15px;margin-bottom:50px;">
-      <span style="font-size:2rem;">📅</span>
-      <div>
-        <p style="font-weight:700;color:var(--violet-clair);margin-bottom:4px;">
-          Créneaux valables jusqu'en juin 2026
+    <div class="cours-hero-info">
+      <div class="cours-hero-info-content">
+        <div class="cours-badge">✨ Planning officiel 2026-2027</div>
+        <h2>Une saison pensée pour chaque âge, chaque niveau et chaque envie.</h2>
+        <p>
+          Découvrez les nouveaux créneaux Prism Up pour la saison 2026-2027.
+          Les cours sont organisés par âge, par disponibilité et par niveau afin que chacun puisse progresser
+          dans un groupe adapté.
         </p>
-        <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;">
-          Les horaires de la saison 2026-2027 seront communiqués à la rentrée de septembre.
-          Restez connectés sur nos réseaux !
-        </p>
+
+        <div class="quick-infos">
+          <div class="quick-info">
+            <span>📍</span>
+            <strong>2 salles</strong>
+            <p>Salle annexe P. Legrain et salle des associations</p>
+          </div>
+          <div class="quick-info">
+            <span>🗓️</span>
+            <strong>4 jours</strong>
+            <p>Lundi, mardi, jeudi et samedi</p>
+          </div>
+          <div class="quick-info">
+            <span>💃</span>
+            <strong>11 créneaux</strong>
+            <p>Enfants, ados, adultes et approfondissement</p>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- PLANNING -->
-    <p class="section-title">Planning</p>
+  <!-- TROUVER MON COURS -->
+  <section>
+    <div class="finder-box">
+      <div class="finder-header">
+        <p class="cours-badge">🔎 Trouver mon cours</p>
+        <h2>Quel créneau est fait pour vous ?</h2>
+        <p>
+          Sélectionnez l'âge, les disponibilités et le niveau :
+          les cours compatibles restent visibles automatiquement.
+        </p>
+      </div>
+
+      <div class="finder-grid">
+        <div class="finder-field">
+          <label>Âge / classe</label>
+          <select id="filtre-age">
+            <option value="tous">Tous</option>
+            <option value="maternelle">Maternelle MS/GS</option>
+            <option value="cpce1">CP - CE1</option>
+            <option value="ce2cm1">CE2 - CM1</option>
+            <option value="cm1">CM1 uniquement</option>
+            <option value="cm2">CM2</option>
+            <option value="college">Collégiens</option>
+            <option value="lycee">Lycéens</option>
+            <option value="adulte">Adultes</option>
+            <option value="8plus">8 ans et +</option>
+            <option value="14plus">14 ans et +</option>
+          </select>
+        </div>
+
+        <div class="finder-field">
+          <label>Disponibilité</label>
+          <select id="filtre-jour">
+            <option value="tous">Tous les jours</option>
+            <option value="lundi">Lundi</option>
+            <option value="mardi">Mardi</option>
+            <option value="jeudi">Jeudi</option>
+            <option value="samedi">Samedi</option>
+          </select>
+        </div>
+
+        <div class="finder-field">
+          <label>Niveau / envie</label>
+          <select id="filtre-niveau">
+            <option value="tous">Tous</option>
+            <option value="debutant">Débutant / reprise</option>
+            <option value="normal">Cours classique</option>
+            <option value="approfondissement">Approfondissement</option>
+            <option value="plus-intense">Rythme plus rapide</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" onclick="reinitialiserFiltres()" type="button">
+          Réinitialiser
+        </button>
+      </div>
+
+      <p id="resultat-filtre" class="finder-result">
+        Tous les créneaux sont affichés.
+      </p>
+    </div>
+  </section>
+
+  <!-- PLANNING -->
+  <section>
+    <p class="section-title">Planning des cours</p>
     <div class="divider"></div>
-    <br>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-bottom:60px;">
+    <p class="section-subtitle">CLIQUEZ SUR UNE CARTE POUR VOIR LES DÉTAILS</p>
+
+    <div class="planning-modern">
+
+      <div id="no-result-box" class="no-result-box">
+        <strong>Aucun créneau ne correspond exactement à votre recherche.</strong><br>
+        Essayez de modifier vos filtres ou contactez-nous pour que l'on vous aide à choisir le bon groupe.
+        <br><br>
+        <a href="rejoindre.html" class="btn btn-primary">Nous contacter</a>
+      </div>
 
       <!-- LUNDI -->
-      <div style="background:rgba(152,148,219,0.1);border:1px solid rgba(152,148,219,0.3);
-      border-radius:16px;padding:25px;">
-        <p style="font-size:1.3rem;font-weight:900;color:var(--violet-clair);
-        margin-bottom:20px;letter-spacing:2px;">LUNDI</p>
-        <div class="creneau">
-          <span class="creneau-jour">18h – 19h</span>
-          <div>
-            <p class="creneau-heure">Winning Dance</p>
-            <p style="font-size:0.8rem;color:rgba(255,255,255,0.4);">7 – 9 ans</p>
+      <div class="day-row">
+        <div class="day-label">
+          <h3>Lundi</h3>
+          <p>📍 Salle annexe P. Legrain</p>
+        </div>
+
+        <div class="slots">
+          <div class="slot-card"
+          data-age="ce2cm1 cm1"
+          data-jour="lundi"
+          data-niveau="normal debutant"
+          onclick="ouvrirInfoCours('ce2cm1')">
+            <div>
+              <p class="slot-time">18h00 — 19h00</p>
+              <h4 class="slot-title">CE2 - CM1</h4>
+              <p class="slot-subtitle">Cours enfants</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag">Enfants</span>
+              <span class="mini-tag special">CM1 possible</span>
+            </div>
+          </div>
+
+          <div class="slot-card"
+          data-age="8plus"
+          data-jour="lundi"
+          data-niveau="approfondissement"
+          onclick="ouvrirInfoCours('appro8')">
+            <div>
+              <p class="slot-time">19h00 — 20h00</p>
+              <h4 class="slot-title">Approfondissement</h4>
+              <p class="slot-subtitle">8 ans et +</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag special">Technique</span>
+              <span class="mini-tag">8 ans +</span>
+            </div>
+          </div>
+
+          <div class="slot-card"
+          data-age="lycee"
+          data-jour="lundi"
+          data-niveau="normal"
+          onclick="ouvrirInfoCours('lyceens')">
+            <div>
+              <p class="slot-time">20h00 — 21h00</p>
+              <h4 class="slot-title">Lycéens</h4>
+              <p class="slot-subtitle">Cours ados</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag">Lycée</span>
+              <span class="mini-tag">Chorégraphie</span>
+            </div>
           </div>
         </div>
-        <div class="creneau">
-          <span class="creneau-jour">19h – 20h</span>
-          <div>
-            <p class="creneau-heure">Chipizzz</p>
-            <p style="font-size:0.8rem;color:rgba(255,255,255,0.4);">Adulte 1</p>
+      </div>
+
+      <!-- MARDI -->
+      <div class="day-row">
+        <div class="day-label">
+          <h3>Mardi</h3>
+          <p>📍 Salle des associations</p>
+        </div>
+
+        <div class="slots">
+          <div class="slot-card"
+          data-age="cpce1"
+          data-jour="mardi"
+          data-niveau="normal debutant"
+          onclick="ouvrirInfoCours('cpce1')">
+            <div>
+              <p class="slot-time">18h00 — 19h00</p>
+              <h4 class="slot-title">CP - CE1</h4>
+              <p class="slot-subtitle">Cours enfants</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag">Enfants</span>
+              <span class="mini-tag">Découverte</span>
+            </div>
+          </div>
+
+          <div class="slot-card"
+          data-age="14plus"
+          data-jour="mardi"
+          data-niveau="approfondissement"
+          onclick="ouvrirInfoCours('appro14')">
+            <div>
+              <p class="slot-time">19h00 — 20h00</p>
+              <h4 class="slot-title">Approfondissement</h4>
+              <p class="slot-subtitle">14 ans et +</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag special">Technique</span>
+              <span class="mini-tag">14 ans +</span>
+            </div>
+          </div>
+
+          <div class="slot-card"
+          data-age="adulte"
+          data-jour="mardi"
+          data-niveau="debutant normal"
+          onclick="ouvrirInfoCours('adultes3')">
+            <div>
+              <p class="slot-time">20h00 — 21h00</p>
+              <h4 class="slot-title">Adultes 3</h4>
+              <p class="slot-subtitle">Ouvert à tous</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag">Adultes</span>
+              <span class="mini-tag special">Débutants</span>
+            </div>
           </div>
         </div>
-        <div class="creneau">
-          <span class="creneau-jour">20h – 21h</span>
-          <div>
-            <p class="creneau-heure">The Five's</p>
-            <p style="font-size:0.8rem;color:rgba(255,255,255,0.4);">15 – 17 ans</p>
+      </div>
+
+      <!-- JEUDI -->
+      <div class="day-row">
+        <div class="day-label">
+          <h3>Jeudi</h3>
+          <p>📍 Salle des associations</p>
+        </div>
+
+        <div class="slots">
+          <div class="slot-card"
+          data-age="cm2 cm1"
+          data-jour="jeudi"
+          data-niveau="normal"
+          onclick="ouvrirInfoCours('cm2cm1')">
+            <div>
+              <p class="slot-time">18h00 — 19h00</p>
+              <h4 class="slot-title">CM2 - CM1</h4>
+              <p class="slot-subtitle">Cours enfants</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag">Enfants</span>
+              <span class="mini-tag special">CM1 possible</span>
+            </div>
+          </div>
+
+          <div class="slot-card"
+          data-age="adulte"
+          data-jour="jeudi"
+          data-niveau="plus-intense"
+          onclick="ouvrirInfoCours('adultes1')">
+            <div>
+              <p class="slot-time">19h00 — 20h00</p>
+              <h4 class="slot-title">Adultes 1</h4>
+              <p class="slot-subtitle">Bases, travail, rythme plus rapide</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag">Adultes</span>
+              <span class="mini-tag special">Plus intense</span>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- SAMEDI -->
-      <div style="background:rgba(152,148,219,0.1);border:1px solid rgba(152,148,219,0.3);
-      border-radius:16px;padding:25px;">
-        <p style="font-size:1.3rem;font-weight:900;color:var(--violet-clair);
-        margin-bottom:20px;letter-spacing:2px;">SAMEDI</p>
-        <div class="creneau">
-          <span class="creneau-jour">9h – 10h</span>
-          <div>
-            <p class="creneau-heure">Mini Street</p>
-            <p style="font-size:0.8rem;color:rgba(255,255,255,0.4);">4 – 6 ans</p>
+      <div class="day-row">
+        <div class="day-label">
+          <h3>Samedi</h3>
+          <p>📍 Salle annexe P. Legrain</p>
+        </div>
+
+        <div class="slots">
+          <div class="slot-card"
+          data-age="maternelle"
+          data-jour="samedi"
+          data-niveau="debutant normal"
+          onclick="ouvrirInfoCours('maternelle')">
+            <div>
+              <p class="slot-time">9h00 — 10h00</p>
+              <h4 class="slot-title">Maternelle</h4>
+              <p class="slot-subtitle">Moyenne et grande section</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag">Enfants</span>
+              <span class="mini-tag">Éveil</span>
+            </div>
+          </div>
+
+          <div class="slot-card"
+          data-age="adulte"
+          data-jour="samedi"
+          data-niveau="debutant normal"
+          onclick="ouvrirInfoCours('adultes2')">
+            <div>
+              <p class="slot-time">10h00 — 11h00</p>
+              <h4 class="slot-title">Adultes 2</h4>
+              <p class="slot-subtitle">Ouvert à tous</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag">Adultes</span>
+              <span class="mini-tag special">Débutants</span>
+            </div>
+          </div>
+
+          <div class="slot-card"
+          data-age="college"
+          data-jour="samedi"
+          data-niveau="normal"
+          onclick="ouvrirInfoCours('collegiens')">
+            <div>
+              <p class="slot-time">11h00 — 12h00</p>
+              <h4 class="slot-title">Collégiens</h4>
+              <p class="slot-subtitle">Cours ados</p>
+            </div>
+            <div class="slot-tags">
+              <span class="mini-tag">Collège</span>
+              <span class="mini-tag">Énergie</span>
+            </div>
           </div>
         </div>
-        <div class="creneau">
-          <span class="creneau-jour">10h – 11h</span>
-          <div>
-            <p class="creneau-heure">Young Spirit</p>
-            <p style="font-size:0.8rem;color:rgba(255,255,255,0.4);">Adulte 2</p>
-          </div>
-        </div>
-        <div class="creneau">
-          <span class="creneau-jour">11h – 12h</span>
-          <div>
-            <p class="creneau-heure">Sweet Vibes</p>
-            <p style="font-size:0.8rem;color:rgba(255,255,255,0.4);">10 – 14 ans</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- LES GROUPES -->
-    <p class="section-title">Nos groupes</p>
-    <div class="divider"></div>
-    <p class="section-subtitle">UNE PLACE POUR CHACUN</p>
-    <div class="cours-grid">
-
-      <div class="cours-card">
-        <img src="images/ministreet.png" alt="Mini Street" style="object-position: center center;">
-        <div class="cours-card-body">
-          <h3>Mini Street</h3>
-          <p class="age">4 – 6 ANS · SAMEDI 9H–10H</p>
-          <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.7;">
-            Les tout-petits découvrent la danse urbaine dans la joie et la bonne humeur !
-          </p>
-        </div>
       </div>
 
-      <div class="cours-card">
-        <img src="images/winningdance.png" alt="Winning Dance" style="object-position: center center;">
-        <div class="cours-card-body">
-          <h3>Winning Dance</h3>
-          <p class="age">7 – 9 ANS · LUNDI 18H–19H</p>
-          <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.7;">
-            Les bases du hip hop et du street jazz pour les jeunes danseurs en herbe.
-          </p>
-        </div>
-      </div>
-
-      <div class="cours-card">
-        <img src="images/sweetvibes.png" alt="Sweet Vibes" style="object-position: center top;">
-        <div class="cours-card-body">
-          <h3>Sweet Vibes</h3>
-          <p class="age">10 – 14 ANS · SAMEDI 11H–12H</p>
-          <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.7;">
-            Technique, expression et créativité pour les préados passionnés de danse.
-          </p>
-        </div>
-      </div>
-
-      <div class="cours-card">
-        <img src="images/thefives.png" alt="The Five's" style="object-position: center top;">
-        <div class="cours-card-body">
-          <h3>The Five's</h3>
-          <p class="age">15 – 17 ANS · LUNDI 20H–21H</p>
-          <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.7;">
-            Un groupe dynamique pour les ados qui veulent pousser leur niveau.
-          </p>
-        </div>
-      </div>
-
-      <div class="cours-card">
-        <img src="images/chipizzz.png" alt="Chipizzz" style="object-position: center top;">
-        <div class="cours-card-body">
-          <h3>Chipizzz</h3>
-          <p class="age">ADULTE 1 · LUNDI 19H–20H</p>
-          <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.7;">
-            Pour les adultes qui veulent se défouler et apprendre dans une ambiance conviviale.
-          </p>
-        </div>
-      </div>
-
-      <div class="cours-card">
-        <img src="images/youngspirit.png" alt="Young Spirit" style="object-position: center top;">
-        <div class="cours-card-body">
-          <h3>Young Spirit</h3>
-          <p class="age">ADULTE 2 · SAMEDI 10H–11H</p>
-          <p style="color:rgba(255,255,255,0.65);font-size:0.9rem;line-height:1.7;">
-            Le groupe adulte du samedi pour allier passion de la danse et bonne humeur.
-          </p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- TARIFS -->
-    <p class="section-title">Tarifs</p>
-    <div class="divider"></div>
-    <br>
-    <div style="background:rgba(152,148,219,0.1);border:1px solid rgba(152,148,219,0.3);
-    border-radius:16px;padding:25px;max-width:500px;">
-      <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;line-height:1.8;">
-        Pour connaître les tarifs d'adhésion et d'inscription, contacte-nous directement !
-      </p>
-      <br>
-      <a href="rejoindre.html" class="btn btn-primary">Nous contacter</a>
     </div>
   </section>
 
-<!-- PORTES OUVERTES -->
-<div style="position:relative;margin:0 40px 60px;border-radius:24px;overflow:hidden;">
-  <!-- Fond animé -->
-  <div style="background:linear-gradient(135deg,#240653,#3d0a8f,#9894db);
-  padding:50px 40px;text-align:center;position:relative;">
-    <!-- Cercles décoratifs -->
-    <div style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;
-    border-radius:50%;background:rgba(255,255,255,0.05);"></div>
-    <div style="position:absolute;bottom:-30px;left:-30px;width:150px;height:150px;
-    border-radius:50%;background:rgba(255,255,255,0.05);"></div>
+  <!-- FOCUS INFOS -->
+  <section style="background:rgba(152,148,219,0.05);border-radius:24px;margin:0 auto;max-width:1200px;">
+    <p class="section-title">Infos importantes</p>
+    <div class="divider"></div>
+    <p class="section-subtitle">POUR BIEN CHOISIR SON COURS</p>
 
-    <!-- Contenu -->
-    <div style="position:relative;z-index:1;">
-      <div style="display:inline-block;background:rgba(255,255,255,0.15);
-      border:1px solid rgba(255,255,255,0.3);border-radius:50px;
-      padding:6px 20px;font-size:0.8rem;font-weight:700;letter-spacing:2px;
-      margin-bottom:20px;">
-        🎉 ÉVÉNEMENT SPÉCIAL
+    <div class="focus-grid">
+      <div class="focus-card">
+        <div class="icon">💜</div>
+        <h3>Groupes adultes</h3>
+        <p>
+          Les groupes Adultes 2 et Adultes 3 sont ouverts à tous, notamment aux débutants
+          et aux personnes qui n'ont pas pratiqué depuis longtemps.
+          Le groupe Adultes 1 demande plus de travail, avec un rythme plus rapide.
+        </p>
       </div>
-      <h2 style="font-size:2.5rem;font-weight:900;letter-spacing:3px;
-      text-transform:uppercase;margin-bottom:15px;">
-        Portes ouvertes
-      </h2>
-      <p style="font-size:1.1rem;color:rgba(255,255,255,0.9);
-      margin-bottom:10px;line-height:1.8;">
-        Venez découvrir nos cours <strong>gratuitement</strong> !
-      </p>
-      <div style="display:flex;justify-content:center;gap:20px;
-      flex-wrap:wrap;margin:25px 0;">
-        <div style="background:rgba(255,255,255,0.15);border-radius:12px;
-        padding:15px 25px;backdrop-filter:blur(10px);">
-          <p style="font-weight:900;font-size:1.1rem;">📅 Lundi 29 juin</p>
-          <p style="font-size:0.85rem;opacity:0.8;margin-top:4px;">18h – 21h</p>
-        </div>
-        <div style="background:rgba(255,255,255,0.15);border-radius:12px;
-        padding:15px 25px;backdrop-filter:blur(10px);">
-          <p style="font-weight:900;font-size:1.1rem;">📅 Samedi 4 juillet</p>
-          <p style="font-size:0.85rem;opacity:0.8;margin-top:4px;">9h – 12h</p>
-        </div>
+
+      <div class="focus-card">
+        <div class="icon">✨</div>
+        <h3>Approfondissement</h3>
+        <p>
+          Les groupes d'approfondissement sont des cours supplémentaires destinés aux danseurs
+          qui souhaitent développer leur technique et leur sens artistique.
+        </p>
       </div>
-      <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;margin-bottom:30px;">
-        Ouvert à tous les âges · Aucun niveau requis · Entrée libre
+
+      <div class="focus-card">
+        <div class="icon">👧</div>
+        <h3>Cas des CM1</h3>
+        <p>
+          Deux groupes sont ouverts aux CM1 afin de faciliter la répartition.
+          Si votre enfant est disponible les deux jours, choisissez selon son expérience :
+          plutôt lundi pour un profil débutant, plutôt jeudi pour un enfant ayant déjà pratiqué en club.
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-cours">
+      <h2>Une question avant de vous inscrire ?</h2>
+      <p>
+        Si vous hésitez sur le créneau, le niveau ou le groupe le plus adapté,
+        contactez-nous directement. On vous aidera avec plaisir.
       </p>
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSf3uDL0pPgTpzALXnGf6SNXveNGPy91PNsWZHT70MTCxFc83Q/viewform?usp=header"
-      target="_blank"
-      style="display:inline-block;background:white;color:var(--violet-fonce);
-      font-weight:900;padding:16px 40px;border-radius:50px;text-decoration:none;
-      font-size:0.95rem;letter-spacing:1px;text-transform:uppercase;
-      transition:all 0.3s;box-shadow:0 10px 30px rgba(0,0,0,0.3);"
-      onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 15px 40px rgba(0,0,0,0.4)'"
-      onmouseout="this.style.transform='none';this.style.boxShadow='0 10px 30px rgba(0,0,0,0.3)'">
-        📝 Je m'inscris
-      </a>
+      <a href="rejoindre.html" class="btn">Nous rejoindre / Nous contacter</a>
+    </div>
+  </section>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-cours-overlay" onclick="fermerInfoCours(event)">
+    <div class="modal-cours">
+      <button class="modal-close" onclick="fermerInfoCours()">×</button>
+      <div id="modal-cours-contenu"></div>
     </div>
   </div>
-</div>
 
   <!-- FOOTER -->
   <footer>
     <p style="font-size:1.1rem;font-weight:700;color:var(--violet-clair);margin-bottom:10px;">PRISM UP</p>
     <p>Association de danse · Thumeries</p>
     <br>
+
     <div style="display:flex;justify-content:center;gap:20px;margin:20px 0;flex-wrap:wrap;">
       <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
       style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
@@ -389,40 +1013,244 @@
         ▶️ YouTube
       </a>
     </div>
+
     <br>
+
     <div style="display:flex;justify-content:space-between;align-items:center;
-flex-wrap:wrap;gap:20px;margin-top:20px;padding-top:20px;
-border-top:1px solid rgba(152,148,219,0.15);">
-  <p style="color:rgba(255,255,255,0.4);">© 2026 Prism Up · Tous droits réservés</p>
-  <div style="display:flex;align-items:center;gap:15px;">
-    <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;">NOS PARTENAIRES</p>
-    <img src="images/logosponsor.1.png" alt="Partenaire 1"
-    style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-    <img src="images/logosponsor.2.jpg" alt="Partenaire 2"
-    style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-  </div>
+    flex-wrap:wrap;gap:20px;margin-top:20px;padding-top:20px;
+    border-top:1px solid rgba(152,148,219,0.15);">
+      <p style="color:rgba(255,255,255,0.4);">© 2026 Prism Up · Tous droits réservés</p>
+      <div style="display:flex;align-items:center;gap:15px;">
+        <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;">NOS PARTENAIRES</p>
+        <img src="images/logosponsor.1.png" alt="Partenaire 1"
+        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
+        <img src="images/logosponsor.2.jpg" alt="Partenaire 2"
+        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
+      </div>
+    </div>
+  </footer>
 
   <script src="events.js"></script>
   <script src="js/main.js"></script>
 
+  <script>
+    const infosCours = {
+      ce2cm1: {
+        icon: "👧",
+        titre: "CE2 - CM1",
+        horaire: "Lundi · 18h00-19h00",
+        salle: "Salle annexe P. Legrain",
+        niveau: "Enfants",
+        texte: "Cours destiné aux enfants en CE2 et CM1. Pour les CM1, deux groupes existent afin de faciliter la répartition. Si votre enfant est disponible le lundi et le jeudi, le lundi est conseillé pour un profil débutant."
+      },
+      appro8: {
+        icon: "✨",
+        titre: "Approfondissement 8 ans et +",
+        horaire: "Lundi · 19h00-20h00",
+        salle: "Salle annexe P. Legrain",
+        niveau: "Cours supplémentaire",
+        texte: "Les groupes d'approfondissement sont des cours supplémentaires destinés à ceux qui souhaitent approfondir leurs techniques et développer davantage leur sens artistique."
+      },
+      lyceens: {
+        icon: "🔥",
+        titre: "Lycéens",
+        horaire: "Lundi · 20h00-21h00",
+        salle: "Salle annexe P. Legrain",
+        niveau: "Ados",
+        texte: "Cours destiné aux lycéens avec un travail chorégraphique adapté à leur âge, à leur énergie et à leur progression."
+      },
+      cpce1: {
+        icon: "🌟",
+        titre: "CP - CE1",
+        horaire: "Mardi · 18h00-19h00",
+        salle: "Salle des associations",
+        niveau: "Enfants",
+        texte: "Cours destiné aux enfants en CP et CE1. L'objectif est de découvrir la danse, apprendre les bases et progresser dans une ambiance bienveillante."
+      },
+      appro14: {
+        icon: "✨",
+        titre: "Approfondissement 14 ans et +",
+        horaire: "Mardi · 19h00-20h00",
+        salle: "Salle des associations",
+        niveau: "Cours supplémentaire",
+        texte: "Les groupes d'approfondissement sont des cours supplémentaires destinés à ceux qui souhaitent approfondir leurs techniques et développer davantage leur sens artistique."
+      },
+      adultes3: {
+        icon: "💃",
+        titre: "Adultes 3",
+        horaire: "Mardi · 20h00-21h00",
+        salle: "Salle des associations",
+        niveau: "Ouvert à tous",
+        texte: "Ce cours est ouvert à tous, notamment aux débutants et aux personnes qui n'ont pas pratiqué depuis longtemps."
+      },
+      cm2cm1: {
+        icon: "👧",
+        titre: "CM2 - CM1",
+        horaire: "Jeudi · 18h00-19h00",
+        salle: "Salle des associations",
+        niveau: "Enfants",
+        texte: "Cours destiné aux enfants en CM2 et CM1. Deux groupes sont ouverts aux CM1 afin de faciliter la répartition. Si votre enfant est disponible le lundi et le jeudi, le jeudi est plutôt conseillé pour un enfant ayant déjà pratiqué en club."
+      },
+      adultes1: {
+        icon: "⚡",
+        titre: "Adultes 1",
+        horaire: "Jeudi · 19h00-20h00",
+        salle: "Salle des associations",
+        niveau: "Rythme plus rapide",
+        texte: "Ce cours reprend les bases, avec une demande de travail plus importante et un rythme plus rapide."
+      },
+      maternelle: {
+        icon: "🧸",
+        titre: "Maternelle",
+        horaire: "Samedi · 9h00-10h00",
+        salle: "Salle annexe P. Legrain",
+        niveau: "Moyenne et grande section",
+        texte: "Cours destiné aux enfants de moyenne et grande section de maternelle. L'objectif est de découvrir la danse de manière ludique, joyeuse et adaptée aux plus jeunes."
+      },
+      adultes2: {
+        icon: "💜",
+        titre: "Adultes 2",
+        horaire: "Samedi · 10h00-11h00",
+        salle: "Salle annexe P. Legrain",
+        niveau: "Ouvert à tous",
+        texte: "Ce cours est ouvert à tous, notamment aux débutants et aux personnes qui n'ont pas pratiqué depuis longtemps."
+      },
+      collegiens: {
+        icon: "🎧",
+        titre: "Collégiens",
+        horaire: "Samedi · 11h00-12h00",
+        salle: "Salle annexe P. Legrain",
+        niveau: "Ados",
+        texte: "Cours destiné aux collégiens. Travail chorégraphique, énergie, progression, coordination et expression scénique."
+      }
+    };
+
+    function ouvrirInfoCours(id) {
+      const c = infosCours[id];
+      if (!c) return;
+
+      document.getElementById('modal-cours-contenu').innerHTML = `
+        <div class="modal-icon">${c.icon}</div>
+
+        <h2>${c.titre}</h2>
+
+        <p class="modal-meta">
+          ${c.horaire}<br>
+          📍 ${c.salle}<br>
+          ${c.niveau}
+        </p>
+
+        <div class="modal-text">
+          ${c.texte}
+        </div>
+
+        <div class="modal-actions">
+          <a href="rejoindre.html" class="btn btn-primary">Nous rejoindre</a>
+          <a href="rejoindre.html" class="btn btn-outline">Poser une question</a>
+        </div>
+      `;
+
+      document.getElementById('modal-cours-overlay').classList.add('open');
+    }
+
+    function fermerInfoCours(event) {
+      if (!event || event.target === document.getElementById('modal-cours-overlay')) {
+        document.getElementById('modal-cours-overlay').classList.remove('open');
+      }
+    }
+
+    function appliquerFiltresCours() {
+      const age = document.getElementById('filtre-age')?.value || 'tous';
+      const jour = document.getElementById('filtre-jour')?.value || 'tous';
+      const niveau = document.getElementById('filtre-niveau')?.value || 'tous';
+
+      const cartes = document.querySelectorAll('.slot-card');
+      let visibles = 0;
+
+      cartes.forEach(carte => {
+        const ages = (carte.dataset.age || '').split(' ');
+        const jourCarte = carte.dataset.jour || '';
+        const niveaux = (carte.dataset.niveau || '').split(' ');
+
+        const matchAge = age === 'tous' || ages.includes(age);
+        const matchJour = jour === 'tous' || jourCarte === jour;
+        const matchNiveau = niveau === 'tous' || niveaux.includes(niveau);
+
+        const visible = matchAge && matchJour && matchNiveau;
+
+        carte.classList.toggle('hidden-by-filter', !visible);
+        carte.classList.toggle(
+          'highlight-filter',
+          visible && (age !== 'tous' || jour !== 'tous' || niveau !== 'tous')
+        );
+
+        if (visible) visibles++;
+      });
+
+      document.querySelectorAll('.day-row').forEach(day => {
+        const visibleCards = day.querySelectorAll('.slot-card:not(.hidden-by-filter)');
+        day.classList.toggle('hidden-by-filter', visibleCards.length === 0);
+      });
+
+      const resultat = document.getElementById('resultat-filtre');
+      const noResult = document.getElementById('no-result-box');
+
+      if (resultat) {
+        if (age === 'tous' && jour === 'tous' && niveau === 'tous') {
+          resultat.textContent = 'Tous les créneaux sont affichés.';
+        } else {
+          resultat.textContent = visibles + ' créneau(x) correspondent à votre recherche.';
+        }
+      }
+
+      if (noResult) {
+        noResult.style.display = visibles === 0 ? 'block' : 'none';
+      }
+    }
+
+    function reinitialiserFiltres() {
+      document.getElementById('filtre-age').value = 'tous';
+      document.getElementById('filtre-jour').value = 'tous';
+      document.getElementById('filtre-niveau').value = 'tous';
+      appliquerFiltresCours();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      ['filtre-age', 'filtre-jour', 'filtre-niveau'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener('change', appliquerFiltresCours);
+        }
+      });
+
+      appliquerFiltresCours();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('modal-cours-overlay').classList.remove('open');
+      }
+    });
+  </script>
+
   <!-- NAVIGATION BAS MOBILE -->
-<nav class="nav-bottom">
-  <a href="index.html" >
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-  </a>
-  <a href="association.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-  </a>
-  <a href="cours.html" style="color:var(--violet-clair);background:rgba(152,148,219,0.25);">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-  </a>
-  <a href="evenements.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-  </a>
-  <a href="rejoindre.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-  </a>
-</nav>
+  <nav class="nav-bottom">
+    <a href="index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <a href="association.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </a>
+    <a href="cours.html" style="color:var(--violet-clair);background:rgba(152,148,219,0.25);">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+    </a>
+    <a href="evenements.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    </a>
+    <a href="rejoindre.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+    </a>
+  </nav>
 
 </body>
 </html>

@@ -3,79 +3,329 @@
 <head>
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5QQ5K7E4S0');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5QQ5K7E4S0');
+  </script>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nous rejoindre — Prism Up</title>
   <link rel="stylesheet" href="css/style.css">
+
   <style>
-    .choix-grid {
+    /* ===============================
+       PAGE REJOINDRE — VERSION ACTION
+    =============================== */
+
+    .join-shell {
+      max-width: 1150px;
+      margin: 0 auto;
+    }
+
+    .join-hero {
+      background:
+        radial-gradient(circle at top left, rgba(152,148,219,0.28), transparent 35%),
+        linear-gradient(135deg, rgba(152,148,219,0.13), rgba(36,6,83,0.48));
+      border: 1px solid rgba(152,148,219,0.4);
+      border-radius: 30px;
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+      margin-bottom: 32px;
+    }
+
+    .join-hero::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(152,148,219,0.07);
+      right: -80px;
+      bottom: -90px;
+    }
+
+    .join-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .join-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(152,148,219,0.18);
+      border: 1px solid rgba(152,148,219,0.45);
+      color: var(--violet-clair);
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .join-hero h2 {
+      font-size: 2.15rem;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .join-hero p {
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+      max-width: 760px;
+    }
+
+    .join-layout {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-bottom: 60px;
+      grid-template-columns: 1fr 330px;
+      gap: 24px;
+      align-items: start;
     }
 
-    .choix-card {
-      background: rgba(152,148,219,0.1);
-      border: 1px solid rgba(152,148,219,0.3);
-      border-radius: 16px;
-      padding: 35px;
-      text-align: center;
-      transition: all 0.3s;
+    .join-options {
+      display: grid;
+      gap: 18px;
+    }
+
+    .join-card {
+      background: rgba(152,148,219,0.09);
+      border: 1px solid rgba(152,148,219,0.28);
+      border-radius: 26px;
+      padding: 26px;
       cursor: pointer;
+      transition: all 0.28s;
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .choix-card:hover {
+    .join-card:hover {
       transform: translateY(-5px);
       border-color: var(--violet-clair);
-      box-shadow: 0 15px 40px rgba(152,148,219,0.2);
+      background: rgba(152,148,219,0.14);
+      box-shadow: 0 18px 45px rgba(152,148,219,0.18);
     }
 
-    .choix-card .emoji {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
+    .join-card::after {
+      content: "→";
+      color: rgba(152,148,219,0.65);
+      font-size: 1.5rem;
+      font-weight: 900;
+      transition: all 0.25s;
     }
 
-    .choix-card h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
+    .join-card:hover::after {
+      transform: translateX(5px);
+      color: var(--violet-clair);
+    }
+
+    .join-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 22px;
+      background: rgba(152,148,219,0.16);
+      border: 1px solid rgba(152,148,219,0.35);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .join-card h3 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--violet-clair);
+      margin-bottom: 7px;
+    }
+
+    .join-card p {
+      color: rgba(255,255,255,0.66);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .join-tag {
+      display: inline-flex;
+      margin-top: 10px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(152,148,219,0.18);
+      border: 1px solid rgba(152,148,219,0.32);
+      color: rgba(255,255,255,0.78);
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .join-tag.live {
+      background: linear-gradient(135deg,#9894db,#6b67c4);
+      color: var(--violet-fonce);
+      border-color: transparent;
+    }
+
+    .side-contact {
+      position: sticky;
+      top: 100px;
+      background:
+        radial-gradient(circle at top right, rgba(152,148,219,0.22), transparent 35%),
+        rgba(152,148,219,0.08);
+      border: 1px solid rgba(152,148,219,0.3);
+      border-radius: 26px;
+      padding: 24px;
+    }
+
+    .side-contact h3 {
+      color: var(--violet-clair);
+      font-size: 1.2rem;
+      font-weight: 900;
       margin-bottom: 12px;
     }
 
-    .choix-card p {
+    .side-contact p {
       color: rgba(255,255,255,0.65);
-      line-height: 1.8;
-      font-size: 0.9rem;
-      margin-bottom: 20px;
+      line-height: 1.7;
+      font-size: 0.88rem;
+      margin-bottom: 18px;
     }
 
-    .choix-card ul {
+    .quick-contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(152,148,219,0.09);
+      border: 1px solid rgba(152,148,219,0.22);
+      border-radius: 16px;
+      padding: 13px;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: all 0.25s;
+      font-size: 0.86rem;
+      line-height: 1.4;
+    }
+
+    .quick-contact-link:hover {
+      border-color: var(--violet-clair);
+      transform: translateY(-2px);
+    }
+
+    .quick-contact-link strong {
+      color: var(--violet-clair);
+      display: block;
+      font-size: 0.82rem;
+    }
+
+    .accordion-zone {
+      margin-top: 35px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .accordion-item {
+      background: rgba(152,148,219,0.06);
+      border: 1px solid rgba(152,148,219,0.22);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .accordion-header {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: white;
+      padding: 22px 26px;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
       text-align: left;
-      list-style: none;
-      color: rgba(255,255,255,0.7);
-      line-height: 2;
-      margin-bottom: 25px;
-      font-size: 0.9rem;
     }
 
-    /* MODAL FORMULAIRE */
+    .accordion-header strong {
+      display: block;
+      color: var(--violet-clair);
+      font-size: 1.15rem;
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
+
+    .accordion-header span {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .accordion-arrow {
+      font-size: 1.4rem;
+      color: var(--violet-clair);
+      transition: transform 0.25s;
+    }
+
+    .accordion-item.open .accordion-arrow {
+      transform: rotate(180deg);
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 0 26px 26px;
+      animation: apparaitre 0.25s ease;
+    }
+
+    .accordion-item.open .accordion-content {
+      display: block;
+    }
+
+    .form-panel {
+      max-width: 680px;
+    }
+
+    .form-actions-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .stars-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+
+    .etoile {
+      font-size: 2rem;
+      cursor: pointer;
+      opacity: 0.4;
+      transition: all 0.2s;
+    }
+
+    .etoile:hover {
+      transform: translateY(-2px);
+    }
+
+    /* MODAL */
     .modal-overlay {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
+      inset: 0;
+      background: rgba(0,0,0,0.86);
       z-index: 2000;
       justify-content: center;
       align-items: center;
@@ -87,41 +337,159 @@
     }
 
     .modal {
-      background: #1a0440;
-      border: 1px solid var(--violet-clair);
-      border-radius: 20px;
-      max-width: 600px;
+      background:
+        radial-gradient(circle at top right, rgba(152,148,219,0.18), transparent 35%),
+        #1a0440;
+      border: 1px solid rgba(152,148,219,0.75);
+      border-radius: 24px;
+      max-width: 620px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
-      padding: 35px;
+      padding: 34px;
       position: relative;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.45);
     }
 
     .modal-close {
       position: absolute;
       top: 15px;
-      right: 20px;
-      font-size: 1.8rem;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
       cursor: pointer;
       color: var(--violet-clair);
-      background: none;
-      border: none;
+      background: rgba(152,148,219,0.12);
+      border: 1px solid rgba(152,148,219,0.35);
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .modal-choice-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 22px;
+      background: rgba(152,148,219,0.16);
+      border: 1px solid rgba(152,148,219,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .modal h2 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .modal p {
+      color: rgba(255,255,255,0.72);
+      line-height: 1.8;
+    }
+
+    .modal-info-card {
+      background: rgba(152,148,219,0.1);
+      border: 1px solid rgba(152,148,219,0.25);
+      border-radius: 18px;
+      padding: 16px;
+      margin-top: 14px;
+    }
+
+    .modal-info-card strong {
+      color: var(--violet-clair);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .modal-actions .btn-outline {
+      margin-left: 0;
+    }
+
+    @media (max-width: 900px) {
+      .join-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .side-contact {
+        position: relative;
+        top: auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .join-hero {
+        padding: 24px;
+        border-radius: 22px;
+      }
+
+      .join-hero h2 {
+        font-size: 1.55rem;
+      }
+
+      .join-card {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .join-card::after {
+        display: none;
+      }
+
+      .join-icon {
+        width: 62px;
+        height: 62px;
+        border-radius: 18px;
+      }
+
+      .accordion-header {
+        padding: 20px;
+      }
+
+      .accordion-content {
+        padding: 0 20px 22px;
+      }
+
+      .form-actions-row .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .modal {
+        padding: 28px 22px;
+      }
+
+      .modal-actions {
+        flex-direction: column;
+      }
+
+      .modal-actions .btn {
+        width: 100%;
+        text-align: center;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAVIGATION -->
   <nav>
     <a href="index.html" class="nav-logo">PRISM UP</a>
     <ul class="nav-links">
-  <li><a href="index.html">Accueil</a></li>
-  <li><a href="association.html">Notre association</a></li>
-  <li><a href="cours.html">Nos cours</a></li>
-  <li><a href="evenements.html">Événements</a></li>
-  <li><a href="rejoindre.html">Nous rejoindre</a></li>
-</ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="association.html">Notre association</a></li>
+      <li><a href="cours.html">Nos cours</a></li>
+      <li><a href="evenements.html">Événements</a></li>
+      <li><a href="rejoindre.html">Nous rejoindre</a></li>
+    </ul>
     <div class="burger">
       <span></span>
       <span></span>
@@ -135,172 +503,237 @@
     <p>Adhérent · Bénévole · Sponsor · Famille Prism Up</p>
   </div>
 
-  <!-- INTRO -->
-  <section style="text-align:center;">
-    <p style="max-width:600px;margin:0 auto;line-height:1.9;
-    color:rgba(255,255,255,0.8);font-size:1.05rem;">
-      Tu veux faire partie de l'aventure Prism Up ? Que ce soit pour danser,
-      aider l'association ou nous soutenir, on a une place pour toi ! 💜
-    </p>
-  </section>
-
-  <!-- LES 3 OPTIONS -->
   <section>
-    <div class="choix-grid">
+    <div class="join-shell">
 
-      <!-- ADHÉRENT -->
-      <div class="choix-card" onclick="ouvrirModal('adherent')">
-  <!-- ÉTIQUETTE -->
-  <div style="display:flex;align-items:center;justify-content:center;gap:8px;
-  background:linear-gradient(135deg,#9894db,#6b67c4);
-  border-radius:10px;padding:10px 16px;margin-bottom:20px;">
-    <div style="width:8px;height:8px;background:#fff;border-radius:50%;
-    animation:pulse 1.5s infinite;"></div>
-    <p style="font-weight:800;font-size:0.8rem;color:white;
-    letter-spacing:1.5px;text-transform:uppercase;">
-      Préinscriptions ouvertes
-    </p>
-  </div>
-  <div class="emoji">💃</div>
-  <h3>Devenir adhérent</h3>
-        <p>Tu veux danser avec nous ? Rejoins Prism Up et participe à nos cours, stages et événements.</p>
-        <ul>
-          <li>✅ Accès aux cours hebdomadaires</li>
-          <li>✅ Participation aux showcases</li>
-          <li>✅ Tarifs préférentiels sur les stages</li>
-          <li>✅ Faire partie de la famille</li>
-        </ul>
-        <span class="btn btn-primary">Je veux danser !</span>
+      <!-- HERO -->
+      <div class="join-hero">
+        <div class="join-hero-content">
+          <div class="join-badge">💜 Une place pour chacun</div>
+          <h2>Tu veux danser, aider ou soutenir Prism Up ?</h2>
+          <p>
+            Choisis directement ce qui te correspond. Les informations importantes s’ouvrent dans une fenêtre,
+            et les formulaires restent accessibles juste en dessous si tu veux nous écrire.
+          </p>
+        </div>
       </div>
 
-      <!-- BÉNÉVOLE -->
-      <div class="choix-card" onclick="ouvrirModal('benevole')">
-        <div class="emoji">🙌</div>
-        <h3>Devenir bénévole</h3>
-        <p>Tu veux aider sans forcément danser ? Rejoins notre équipe selon tes compétences.</p>
-        <ul>
-          <li>✅ Organisation des événements</li>
-          <li>✅ Communication & réseaux sociaux</li>
-          <li>✅ Logistique et administration</li>
-          <li>✅ Soutien à l'équipe</li>
-        </ul>
-        <span class="btn btn-primary">Je veux aider !</span>
+      <div class="join-layout">
+
+        <!-- OPTIONS -->
+        <div class="join-options">
+
+          <div class="join-card" onclick="ouvrirModal('adherent')">
+            <div class="join-icon">💃</div>
+            <div>
+              <h3>Devenir adhérent</h3>
+              <p>
+                Tu veux danser avec nous et rejoindre les cours Prism Up pour la saison ?
+              </p>
+              <span class="join-tag live">Préinscriptions ouvertes</span>
+            </div>
+          </div>
+
+          <div class="join-card" onclick="ouvrirModal('benevole')">
+            <div class="join-icon">🙌</div>
+            <div>
+              <h3>Devenir bénévole</h3>
+              <p>
+                Tu veux aider sur les événements, la communication, la logistique ou l’organisation ?
+              </p>
+              <span class="join-tag">Aide ponctuelle ou régulière</span>
+            </div>
+          </div>
+
+          <div class="join-card" onclick="ouvrirModal('sponsor')">
+            <div class="join-icon">🤝</div>
+            <div>
+              <h3>Devenir sponsor</h3>
+              <p>
+                Tu veux soutenir l'association et associer ton image à un projet local et familial ?
+              </p>
+              <span class="join-tag">Partenariat local</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CONTACT RAPIDE -->
+        <aside class="side-contact">
+          <h3>Contact rapide</h3>
+          <p>
+            Pas besoin de chercher : tu peux nous contacter directement ici.
+          </p>
+
+          <a class="quick-contact-link" href="mailto:prismupcom@gmail.com">
+            <span>📧</span>
+            <span>
+              <strong>Email</strong>
+              prismupcom@gmail.com
+            </span>
+          </a>
+
+          <a class="quick-contact-link" href="https://www.instagram.com/prismup_thumeries/" target="_blank">
+            <span>📸</span>
+            <span>
+              <strong>Instagram</strong>
+              @prismup_thumeries
+            </span>
+          </a>
+
+          <a class="quick-contact-link" href="cours.html">
+            <span>📅</span>
+            <span>
+              <strong>Planning</strong>
+              Voir les cours 2026-2027
+            </span>
+          </a>
+
+          <button class="btn btn-primary" onclick="ouvrirAccordion('contact-box')" style="width:100%;margin-top:12px;">
+            Écrire un message
+          </button>
+        </aside>
+
       </div>
 
-      <!-- SPONSOR -->
-      <div class="choix-card" onclick="ouvrirModal('sponsor')">
-        <div class="emoji">🤝</div>
-        <h3>Devenir sponsor</h3>
-        <p>Tu veux soutenir Prism Up financièrement et faire partie de notre aventure ?</p>
-        <ul>
-          <li>✅ Visibilité sur nos supports</li>
-          <li>✅ Logo sur notre site et réseaux</li>
-          <li>✅ Invitations à nos événements</li>
-          <li>✅ Association à nos valeurs</li>
-        </ul>
-        <span class="btn btn-primary">Nous soutenir !</span>
+      <!-- ACCORDÉONS -->
+      <div class="accordion-zone">
+
+        <!-- CONTACT -->
+        <div class="accordion-item" id="contact-box">
+          <button class="accordion-header" onclick="toggleAccordion('contact-box')">
+            <span>
+              <strong>Nous contacter</strong>
+              <span>Une question sur les cours, l’inscription, un partenariat ou autre ?</span>
+            </span>
+            <span class="accordion-arrow">⌄</span>
+          </button>
+
+          <div class="accordion-content">
+            <div class="form-panel">
+              <div class="form-group">
+                <label>Prénom et nom *</label>
+                <input type="text" id="contact-nom" placeholder="Ex : Marie Dupont">
+              </div>
+
+              <div class="form-group">
+                <label>Adresse email *</label>
+                <input type="email" id="contact-email" placeholder="Ex : marie@email.com">
+              </div>
+
+              <div class="form-group">
+                <label>Sujet</label>
+                <select id="contact-sujet">
+                  <option value="">-- Choisir --</option>
+                  <option>Adhésion</option>
+                  <option>Bénévolat</option>
+                  <option>Partenariat / Sponsor</option>
+                  <option>Question générale</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Votre message *</label>
+                <textarea id="contact-message" rows="5" placeholder="Écris-nous ton message ici..."></textarea>
+              </div>
+
+              <div class="form-actions-row">
+                <button class="btn btn-primary" onclick="envoyerContact()">
+                  Envoyer le message 💜
+                </button>
+
+                <a class="btn btn-outline" href="mailto:prismupcom@gmail.com" style="margin-left:0;">
+                  Email direct
+                </a>
+              </div>
+
+              <p id="msg-confirmation" style="margin-top:20px;color:var(--violet-clair);
+              display:none;font-weight:600;">
+                ✅ Message envoyé ! On te répond très vite.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- AVIS -->
+        <div class="accordion-item" id="avis-box">
+          <button class="accordion-header" onclick="toggleAccordion('avis-box')">
+            <span>
+              <strong>Donner un avis</strong>
+              <span>Tu as participé à un cours, un stage ou un événement ? Ton retour nous aide.</span>
+            </span>
+            <span class="accordion-arrow">⌄</span>
+          </button>
+
+          <div class="accordion-content">
+            <div class="form-panel">
+              <div class="form-group">
+                <label>Votre note *</label>
+                <div id="etoiles" class="stars-row">
+                  <span class="etoile" data-valeur="1">⭐</span>
+                  <span class="etoile" data-valeur="2">⭐</span>
+                  <span class="etoile" data-valeur="3">⭐</span>
+                  <span class="etoile" data-valeur="4">⭐</span>
+                  <span class="etoile" data-valeur="5">⭐</span>
+                </div>
+                <input type="hidden" id="note-valeur" value="0">
+              </div>
+
+              <div class="form-group">
+                <label>Prénom optionnel</label>
+                <input type="text" id="avis-prenom" placeholder="Ex : Marie">
+              </div>
+
+              <div class="form-group">
+                <label>Votre avis *</label>
+                <textarea id="avis-message" rows="4"
+                placeholder="Ce que vous avez aimé, ce qu'on pourrait améliorer..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Vous êtes *</label>
+                <select id="avis-profil">
+                  <option value="">-- Choisir --</option>
+                  <option>Adhérent(e) Prism Up</option>
+                  <option>Parent d'un adhérent</option>
+                  <option>Participant à un stage</option>
+                  <option>Visiteur / Spectateur</option>
+                  <option>Autre</option>
+                </select>
+              </div>
+
+              <button class="btn btn-primary" onclick="envoyerAvis()">
+                Envoyer mon avis 💜
+              </button>
+
+              <p id="avis-confirmation" style="margin-top:20px;color:var(--violet-clair);
+              display:none;font-weight:600;">
+                ✅ Merci pour votre avis ! On en prend bonne note.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </section>
-  <!-- CONTACT -->
-  <section style="background:rgba(152,148,219,0.05);border-radius:24px;margin:0 40px;">
-    <p class="section-title">Nous contacter</p>
-    <div class="divider"></div>
-    <p class="section-subtitle">UNE QUESTION ? ON EST LÀ !</p>
-    <div style="max-width:600px;">
-      <div class="form-group">
-        <label>Prénom et nom *</label>
-        <input type="text" id="contact-nom" placeholder="Ex : Marie Dupont">
-      </div>
-      <div class="form-group">
-        <label>Adresse email *</label>
-        <input type="email" id="contact-email" placeholder="Ex : marie@email.com">
-      </div>
-      <div class="form-group">
-        <label>Sujet</label>
-        <select id="contact-sujet">
-          <option value="">-- Choisir --</option>
-          <option>Adhésion</option>
-          <option>Bénévolat</option>
-          <option>Partenariat / Sponsor</option>
-          <option>Question générale</option>
-          <option>Autre</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Votre message *</label>
-        <textarea id="contact-message" rows="5"
-        placeholder="Écris-nous ton message ici..."></textarea>
-      </div>
-      <button class="btn btn-primary" onclick="envoyerContact()">
-        Envoyer le message 💜
-      </button>
-      <p id="msg-confirmation" style="margin-top:20px;color:var(--violet-clair);
-      display:none;font-weight:600;">
-        ✅ Message envoyé ! On te répond très vite.
-      </p>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="fermerModal(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="fermerModal()">×</button>
+      <div id="modal-contenu"></div>
     </div>
-  </section>
-
-<!-- DONNER SON AVIS -->
-<section style="background:rgba(152,148,219,0.05);border-radius:24px;margin:0 40px;">
-  <p class="section-title">Votre avis</p>
-  <div class="divider"></div>
-  <p class="section-subtitle">AIDEZ-NOUS À NOUS AMÉLIORER</p>
-
-  <div style="max-width:600px;">
-    <!-- ÉTOILES -->
-    <div class="form-group">
-      <label>Votre note *</label>
-      <div id="etoiles" style="display:flex;gap:10px;margin-top:5px;">
-        <span class="etoile" data-valeur="1" style="font-size:2rem;cursor:pointer;opacity:0.4;transition:all 0.2s;">⭐</span>
-        <span class="etoile" data-valeur="2" style="font-size:2rem;cursor:pointer;opacity:0.4;transition:all 0.2s;">⭐</span>
-        <span class="etoile" data-valeur="3" style="font-size:2rem;cursor:pointer;opacity:0.4;transition:all 0.2s;">⭐</span>
-        <span class="etoile" data-valeur="4" style="font-size:2rem;cursor:pointer;opacity:0.4;transition:all 0.2s;">⭐</span>
-        <span class="etoile" data-valeur="5" style="font-size:2rem;cursor:pointer;opacity:0.4;transition:all 0.2s;">⭐</span>
-      </div>
-      <input type="hidden" id="note-valeur" value="0">
-    </div>
-
-    <div class="form-group">
-      <label>Prénom (optionnel)</label>
-      <input type="text" id="avis-prenom" placeholder="Ex : Marie">
-    </div>
-
-    <div class="form-group">
-      <label>Votre avis *</label>
-      <textarea id="avis-message" rows="4"
-      placeholder="Ce que vous avez aimé, ce qu'on pourrait améliorer..."></textarea>
-    </div>
-
-    <div class="form-group">
-      <label>Vous êtes *</label>
-      <select id="avis-profil">
-        <option value="">-- Choisir --</option>
-        <option>Adhérent(e) Prism Up</option>
-        <option>Parent d'un adhérent</option>
-        <option>Participant à un stage</option>
-        <option>Visiteur / Spectateur</option>
-        <option>Autre</option>
-      </select>
-    </div>
-
-    <button class="btn btn-primary" onclick="envoyerAvis()">
-      Envoyer mon avis 💜
-    </button>
-    <p id="avis-confirmation" style="margin-top:20px;color:var(--violet-clair);
-    display:none;font-weight:600;">
-      ✅ Merci pour votre avis ! On en prend bonne note.
-    </p>
   </div>
-</section>
 
   <!-- FOOTER -->
   <footer>
     <p style="font-size:1.1rem;font-weight:700;color:var(--violet-clair);margin-bottom:10px;">PRISM UP</p>
     <p>Association de danse · Thumeries</p>
     <br>
+
     <div style="display:flex;justify-content:center;gap:20px;margin:20px 0;flex-wrap:wrap;">
       <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
       style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
@@ -323,85 +756,104 @@
         ▶️ YouTube
       </a>
     </div>
-    <br>
-    <div style="display:flex;justify-content:space-between;align-items:center;
-flex-wrap:wrap;gap:20px;margin-top:20px;padding-top:20px;
-border-top:1px solid rgba(152,148,219,0.15);">
-  <p style="color:rgba(255,255,255,0.4);">© 2026 Prism Up · Tous droits réservés</p>
-  <div style="display:flex;align-items:center;gap:15px;">
-    <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;">NOS PARTENAIRES</p>
-    <img src="images/logosponsor.1.png" alt="Partenaire 1"
-    style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-    <img src="images/logosponsor.2.jpg" alt="Partenaire 2"
-    style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-  </div>
 
-  <!-- MODAL -->
-  <div class="modal-overlay" id="modal-overlay" onclick="fermerModal(event)">
-    <div class="modal">
-      <button class="modal-close" onclick="fermerModal()">×</button>
-      <div id="modal-contenu"></div>
+    <br>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:20px;margin-top:20px;padding-top:20px;
+    border-top:1px solid rgba(152,148,219,0.15);">
+      <p style="color:rgba(255,255,255,0.4);">© 2026 Prism Up · Tous droits réservés</p>
+      <div style="display:flex;align-items:center;gap:15px;">
+        <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;">NOS PARTENAIRES</p>
+        <img src="images/logosponsor.1.png" alt="Partenaire 1"
+        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
+        <img src="images/logosponsor.2.jpg" alt="Partenaire 2"
+        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
+      </div>
     </div>
-  </div>
+  </footer>
 
   <script src="events.js"></script>
   <script src="js/main.js"></script>
+
   <script>
     function ouvrirModal(type) {
       const contenu = {
-       adherent: {
+        adherent: {
           emoji: '💃',
           titre: 'Devenir adhérent',
-          texte: `Les préinscriptions pour la saison prochaine sont ouvertes ! Clique sur le bouton ci-dessous pour t'inscrire.`,
+          texte: `Les préinscriptions pour la saison sont ouvertes. Clique sur le bouton ci-dessous pour accéder au formulaire.`,
+          points: [
+            'Accès aux cours hebdomadaires',
+            'Participation aux événements',
+            'Tarifs préférentiels sur certains stages',
+            'Une ambiance familiale et motivante'
+          ],
           lien: 'https://forms.gle/UMtVF2y5oxRN2GVh6',
           lienTexte: '📋 Je me préinscris'
         },
         benevole: {
           emoji: '🙌',
           titre: 'Devenir bénévole',
-          texte: `Le formulaire de bénévolat arrive bientôt ! En attendant contacte-nous directement :`,
+          texte: `Tu peux nous aider selon tes disponibilités : événements, organisation, communication, logistique...`,
+          points: [
+            'Aide ponctuelle possible',
+            'Participation aux projets de l’association',
+            'Ambiance conviviale',
+            'Toutes les bonnes volontés sont les bienvenues'
+          ],
+          lien: '',
+          lienTexte: ''
         },
         sponsor: {
           emoji: '🤝',
           titre: 'Devenir sponsor',
-          texte: `Tu veux soutenir Prism Up ? Contacte-nous pour qu'on discute ensemble de notre partenariat :`,
+          texte: `Tu veux soutenir Prism Up et participer au développement d’un projet local ? Contacte-nous pour échanger.`,
+          points: [
+            'Visibilité sur nos supports',
+            'Présence sur le site et les réseaux',
+            'Soutien à une association locale',
+            'Partenariat adapté ensemble'
+          ],
+          lien: '',
+          lienTexte: ''
         }
       };
 
       const c = contenu[type];
+
       document.getElementById('modal-contenu').innerHTML = `
-        <div style="text-align:center;margin-bottom:25px;">
-          <p style="font-size:3rem;">${c.emoji}</p>
-          <h2 style="font-size:1.5rem;font-weight:900;margin-bottom:10px;">${c.titre}</h2>
-          <p style="color:rgba(255,255,255,0.7);line-height:1.8;">${c.texte}</p>
+        <div class="modal-choice-icon">${c.emoji}</div>
+
+        <h2>${c.titre}</h2>
+        <p>${c.texte}</p>
+
+        <div class="modal-info-card">
+          <strong>Ce que ça permet :</strong>
+          <ul style="margin-top:10px;line-height:1.9;color:rgba(255,255,255,0.72);padding-left:18px;">
+            ${c.points.map(p => `<li>${p}</li>`).join('')}
+          </ul>
         </div>
-        <div class="card" style="display:flex;align-items:center;gap:15px;margin-bottom:15px;">
-          <p style="font-size:1.5rem;">📧</p>
-          <div>
-            <p style="font-weight:700;color:var(--violet-clair)">Email</p>
-            <p style="color:rgba(255,255,255,0.6);">prismupcom@gmail.com</p>
-          </div>
+
+        <div class="modal-info-card">
+          <strong>Contact :</strong>
+          <p style="margin-top:8px;">📧 prismupcom@gmail.com</p>
+          <p>📸 <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
+          style="color:var(--violet-clair);">@prismup_thumeries</a></p>
         </div>
-        <div class="card" style="display:flex;align-items:center;gap:15px;">
-          <p style="font-size:1.5rem;">📸</p>
-          <div>
-            <p style="font-weight:700;color:var(--violet-clair)">Instagram</p>
-            <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
-            style="color:rgba(255,255,255,0.6);">@prismup_thumeries</a>
-          </div>
+
+        <div class="modal-actions">
+          ${c.lien ? `
+            <a href="${c.lien}" target="_blank" class="btn btn-primary">
+              ${c.lienTexte}
+            </a>
+          ` : ''}
+          <button class="btn btn-primary" onclick="fermerModal(); ouvrirAccordion('contact-box')">
+            Écrire un message
+          </button>
         </div>
-        <br>
-        ${c.lien ? `
-        <a href="${c.lien}" target="_blank"
-        class="btn btn-primary" style="display:block;text-align:center;
-        text-decoration:none;margin-bottom:15px;">
-          ${c.lienTexte}
-        </a>` : ''}
-        <a href="mailto:prismupcom@gmail.com?subject=${encodeURIComponent(c.titre)}"
-        style="display:block;text-align:center;text-decoration:none;
-        color:rgba(255,255,255,0.5);font-size:0.85rem;margin-top:10px;">
-        </a>
       `;
+
       document.getElementById('modal-overlay').classList.add('open');
     }
 
@@ -411,151 +863,174 @@ border-top:1px solid rgba(152,148,219,0.15);">
       }
     }
 
-   async function envoyerContact() {
-  const nom = document.getElementById('contact-nom').value;
-  const email = document.getElementById('contact-email').value;
-  const sujet = document.getElementById('contact-sujet').value;
-  const message = document.getElementById('contact-message').value;
+    function toggleAccordion(id) {
+      const item = document.getElementById(id);
+      if (!item) return;
+      item.classList.toggle('open');
+    }
 
-  if (!nom || !email || !message) {
-    alert('Merci de remplir tous les champs obligatoires !');
-    return;
-  }
+    function ouvrirAccordion(id) {
+      const item = document.getElementById(id);
+      if (!item) return;
 
-  const btn = document.querySelector('button[onclick="envoyerContact()"]');
-  btn.textContent = 'Envoi en cours...';
-  btn.disabled = true;
+      document.querySelectorAll('.accordion-item').forEach(el => {
+        if (el.id !== id) el.classList.remove('open');
+      });
 
-  try {
-    const response = await fetch('https://formspree.io/f/xkoagejw', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nom: nom,
-        email: email,
-        sujet: sujet,
-        message: message
-      })
-    });
+      item.classList.add('open');
 
-    if (response.ok) {
-      document.getElementById('msg-confirmation').style.display = 'block';
-      document.getElementById('contact-nom').value = '';
-      document.getElementById('contact-email').value = '';
-      document.getElementById('contact-sujet').value = '';
-      document.getElementById('contact-message').value = '';
-      btn.textContent = 'Envoyer le message 💜';
-      btn.disabled = false;
-    } else {
-      alert('Une erreur est survenue. Réessaie ou contacte-nous directement par email.');
+      setTimeout(() => {
+        item.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 150);
+    }
+
+    async function envoyerContact() {
+      const nom = document.getElementById('contact-nom').value;
+      const email = document.getElementById('contact-email').value;
+      const sujet = document.getElementById('contact-sujet').value;
+      const message = document.getElementById('contact-message').value;
+
+      if (!nom || !email || !message) {
+        alert('Merci de remplir tous les champs obligatoires !');
+        return;
+      }
+
+      const btn = document.querySelector('button[onclick="envoyerContact()"]');
+      btn.textContent = 'Envoi en cours...';
+      btn.disabled = true;
+
+      try {
+        const response = await fetch('https://formspree.io/f/xkoagejw', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'CONTACT SITE',
+            nom: nom,
+            email: email,
+            sujet: sujet,
+            message: message
+          })
+        });
+
+        if (response.ok) {
+          document.getElementById('msg-confirmation').style.display = 'block';
+          document.getElementById('contact-nom').value = '';
+          document.getElementById('contact-email').value = '';
+          document.getElementById('contact-sujet').value = '';
+          document.getElementById('contact-message').value = '';
+        } else {
+          alert('Une erreur est survenue. Réessaie ou contacte-nous directement par email.');
+        }
+      } catch (error) {
+        alert('Une erreur est survenue. Vérifie ta connexion internet.');
+      }
+
       btn.textContent = 'Envoyer le message 💜';
       btn.disabled = false;
     }
-  } catch (error) {
-    alert('Une erreur est survenue. Vérifie ta connexion internet.');
-    btn.textContent = 'Envoyer le message 💜';
-    btn.disabled = false;
-  }
-}
-// Système d'étoiles
-let noteSelectionnee = 0;
-document.querySelectorAll('.etoile').forEach(etoile => {
-  etoile.addEventListener('mouseover', () => {
-    const valeur = parseInt(etoile.dataset.valeur);
-    document.querySelectorAll('.etoile').forEach((e, i) => {
-      e.style.opacity = i < valeur ? '1' : '0.4';
-    });
-  });
 
-  etoile.addEventListener('mouseout', () => {
-    document.querySelectorAll('.etoile').forEach((e, i) => {
-      e.style.opacity = i < noteSelectionnee ? '1' : '0.4';
-    });
-  });
+    let noteSelectionnee = 0;
 
-  etoile.addEventListener('click', () => {
-    noteSelectionnee = parseInt(etoile.dataset.valeur);
-    document.getElementById('note-valeur').value = noteSelectionnee;
-    document.querySelectorAll('.etoile').forEach((e, i) => {
-      e.style.opacity = i < noteSelectionnee ? '1' : '0.4';
-    });
-  });
-});
+    document.querySelectorAll('.etoile').forEach(etoile => {
+      etoile.addEventListener('mouseover', () => {
+        const valeur = parseInt(etoile.dataset.valeur);
+        document.querySelectorAll('.etoile').forEach((e, i) => {
+          e.style.opacity = i < valeur ? '1' : '0.4';
+        });
+      });
 
-// Envoi de l'avis
-async function envoyerAvis() {
-  const note = document.getElementById('note-valeur').value;
-  const prenom = document.getElementById('avis-prenom').value;
-  const message = document.getElementById('avis-message').value;
-  const profil = document.getElementById('avis-profil').value;
+      etoile.addEventListener('mouseout', () => {
+        document.querySelectorAll('.etoile').forEach((e, i) => {
+          e.style.opacity = i < noteSelectionnee ? '1' : '0.4';
+        });
+      });
 
-  if (note === '0') {
-    alert('Merci de donner une note en cliquant sur les étoiles !');
-    return;
-  }
-  if (!message) {
-    alert('Merci d\'écrire votre avis !');
-    return;
-  }
-
-  const btn = document.querySelector('button[onclick="envoyerAvis()"]');
-  btn.textContent = 'Envoi en cours...';
-  btn.disabled = true;
-
-  try {
-    const response = await fetch('https://formspree.io/f/xkoagejw', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'AVIS CLIENT',
-        note: '⭐'.repeat(parseInt(note)) + ' (' + note + '/5)',
-        prenom: prenom || 'Anonyme',
-        profil: profil,
-        message: message
-      })
+      etoile.addEventListener('click', () => {
+        noteSelectionnee = parseInt(etoile.dataset.valeur);
+        document.getElementById('note-valeur').value = noteSelectionnee;
+        document.querySelectorAll('.etoile').forEach((e, i) => {
+          e.style.opacity = i < noteSelectionnee ? '1' : '0.4';
+        });
+      });
     });
 
-    if (response.ok) {
-      document.getElementById('avis-confirmation').style.display = 'block';
-      document.getElementById('avis-prenom').value = '';
-      document.getElementById('avis-message').value = '';
-      document.getElementById('avis-profil').value = '';
-      noteSelectionnee = 0;
-      document.getElementById('note-valeur').value = '0';
-      document.querySelectorAll('.etoile').forEach(e => e.style.opacity = '0.4');
-      btn.textContent = 'Envoyer mon avis 💜';
-      btn.disabled = false;
-    } else {
-      alert('Une erreur est survenue. Réessaie !');
+    async function envoyerAvis() {
+      const note = document.getElementById('note-valeur').value;
+      const prenom = document.getElementById('avis-prenom').value;
+      const message = document.getElementById('avis-message').value;
+      const profil = document.getElementById('avis-profil').value;
+
+      if (note === '0') {
+        alert('Merci de donner une note en cliquant sur les étoiles !');
+        return;
+      }
+
+      if (!message) {
+        alert('Merci d’écrire votre avis !');
+        return;
+      }
+
+      const btn = document.querySelector('button[onclick="envoyerAvis()"]');
+      btn.textContent = 'Envoi en cours...';
+      btn.disabled = true;
+
+      try {
+        const response = await fetch('https://formspree.io/f/xkoagejw', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'AVIS SITE',
+            note: '⭐'.repeat(parseInt(note)) + ' (' + note + '/5)',
+            prenom: prenom || 'Anonyme',
+            profil: profil,
+            message: message
+          })
+        });
+
+        if (response.ok) {
+          document.getElementById('avis-confirmation').style.display = 'block';
+          document.getElementById('avis-prenom').value = '';
+          document.getElementById('avis-message').value = '';
+          document.getElementById('avis-profil').value = '';
+          noteSelectionnee = 0;
+          document.getElementById('note-valeur').value = '0';
+          document.querySelectorAll('.etoile').forEach(e => e.style.opacity = '0.4');
+        } else {
+          alert('Une erreur est survenue. Réessaie !');
+        }
+      } catch (error) {
+        alert('Erreur de connexion. Vérifie internet.');
+      }
+
       btn.textContent = 'Envoyer mon avis 💜';
       btn.disabled = false;
     }
-  } catch (error) {
-    alert('Erreur de connexion. Vérifie internet.');
-    btn.textContent = 'Envoyer mon avis 💜';
-    btn.disabled = false;
-  }
-}
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('modal-overlay').classList.remove('open');
+      }
+    });
   </script>
 
-<!-- NAVIGATION BAS MOBILE -->
-<nav class="nav-bottom">
-  <a href="index.html" >
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-  </a>
-  <a href="association.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-  </a>
-  <a href="cours.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-  </a>
-  <a href="evenements.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-  </a>
-  <a href="rejoindre.html" style="color:var(--violet-clair);background:rgba(152,148,219,0.25);">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-  </a>
-</nav>
+  <!-- NAVIGATION BAS MOBILE -->
+  <nav class="nav-bottom">
+    <a href="index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <a href="association.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </a>
+    <a href="cours.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+    </a>
+    <a href="evenements.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    </a>
+    <a href="rejoindre.html" style="color:var(--violet-clair);background:rgba(152,148,219,0.25);">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+    </a>
+  </nav>
 
 </body>
 </html>
