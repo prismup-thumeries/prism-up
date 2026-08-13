@@ -92,7 +92,22 @@ const EVENEMENTS = [
     lien: "",
     lien_click_collect: "",
     type: "sortie"
-  }
+  },
+  {
+    titre: "Forum des associations",
+    date: "2026-09-05",
+    heure: "À confirmer",
+    lieu: "Thumeries",
+    description: "Venez nous retrouver au Forum des associations de Thumeries ! C'est l'occasion de découvrir Prism Up, rencontrer l'équipe et vous inscrire en physique pour la saison 2026-2027. 🎉",
+    prix: "",
+    affiche: "",
+    estAffiche: false,
+    video: "",
+    photos: [],
+    lien: "",
+    lien_click_collect: "",
+    type: "evenement"
+  },
 ];
 
 const MEMBRES = [
