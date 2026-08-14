@@ -586,6 +586,30 @@
         padding-bottom: 110px;
       }
 
+      .mobile-event-toggle {
+  display: block;
+  width: 100%;
+  background: rgba(152,148,219,0.1);
+  border: 1px solid rgba(152,148,219,0.35);
+  color: var(--violet-clair);
+  border-radius: 18px;
+  padding: 14px 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  margin: 18px 0 12px;
+}
+
+.mobile-collapsible-event {
+  display: none;
+}
+
+.mobile-collapsible-event.open {
+  display: flex;
+}
+
       .intro-logo {
         width: 92px;
         height: 92px;
@@ -801,6 +825,7 @@
         font-size: 2rem;
       }
 
+      
 
 
 .hero-logo-floating {
@@ -810,6 +835,11 @@
   height: 46px;
 }
     }
+
+    .mobile-event-toggle {
+  display: none;
+}
+
   </style>
 </head>
 
@@ -879,6 +909,10 @@
         </div>
       </div>
 
+<button class="mobile-event-toggle" onclick="toggleMobileEvent()">
+  Voir le prochain événement ↓
+</button>
+
       <!-- INFOS IMPORTANTES -->
       <div class="highlight-grid">
 
@@ -906,7 +940,7 @@
         </div>
 
         <!-- PROCHAIN ÉVÉNEMENT -->
-        <div class="highlight-card">
+        <div class="highlight-card mobile-collapsible-event" id="mobile-event-card">
           <div>
             <div class="highlight-top">
               <span class="highlight-label">Prochain événement</span>
@@ -1152,6 +1186,20 @@
   }
 });
 
+function toggleMobileEvent() {
+  const card = document.getElementById('mobile-event-card');
+  const btn = document.querySelector('.mobile-event-toggle');
+
+  if (!card || !btn) return;
+
+  card.classList.toggle('open');
+
+  if (card.classList.contains('open')) {
+    btn.textContent = 'Masquer le prochain événement ↑';
+  } else {
+    btn.textContent = 'Voir le prochain événement ↓';
+  }
+}
 
     window.addEventListener('scroll', () => {
       const barre = document.getElementById('barre-gala');
