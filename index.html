@@ -17,16 +17,148 @@
 
   <style>
     /* ===============================
-       ACCUEIL — VERSION ÉPURÉE
+       ACCUEIL — PRISM UP 2026-2027
     =============================== */
 
     body {
       background:
-        radial-gradient(circle at top right, rgba(152,148,219,0.14), transparent 30%),
+        radial-gradient(circle at top right, rgba(152,148,219,0.16), transparent 32%),
         radial-gradient(circle at bottom left, rgba(152,148,219,0.08), transparent 35%),
         var(--violet-fonce);
     }
 
+    .hero-title-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.hero-logo-floating {
+  position: absolute;
+  right: -85px;
+  top: -35px;
+  width: 92px;
+  height: 92px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid rgba(152,148,219,0.75);
+  padding: 7px;
+  background: rgba(36,6,83,0.7);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 45px rgba(152,148,219,0.28);
+  transform: rotate(8deg);
+  animation: floatLogo 4s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+  0%, 100% {
+    transform: rotate(8deg) translateY(0);
+  }
+  50% {
+    transform: rotate(8deg) translateY(-8px);
+  }
+}
+
+    /* INTRO ANIMÉE */
+    .intro-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 5000;
+      background:
+        radial-gradient(circle at top right, rgba(152,148,219,0.28), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(152,148,219,0.18), transparent 38%),
+        linear-gradient(135deg, #240653, #13022f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      animation: introFadeOut 0.8s ease forwards;
+      animation-delay: 2.25s;
+    }
+
+    .intro-card {
+      text-align: center;
+      animation: introPop 0.9s ease forwards;
+    }
+
+    .intro-logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: 50%;
+      border: 3px solid var(--violet-clair);
+      padding: 10px;
+      margin-bottom: 24px;
+      box-shadow: 0 0 45px rgba(152,148,219,0.35);
+      animation: logoPulseIntro 1.8s ease infinite;
+    }
+
+    .intro-small {
+      display: inline-block;
+      color: var(--violet-clair);
+      border: 1px solid rgba(152,148,219,0.45);
+      background: rgba(152,148,219,0.12);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 18px;
+    }
+
+    .intro-title {
+      font-size: clamp(2.2rem, 8vw, 5rem);
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 14px;
+      white-space: nowrap;
+    }
+
+    .intro-title span {
+      color: var(--violet-clair);
+    }
+
+    .intro-subtitle {
+      color: rgba(255,255,255,0.72);
+      font-weight: 700;
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    @keyframes introPop {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes introFadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+    }
+
+    @keyframes logoPulseIntro {
+      0%, 100% {
+        box-shadow: 0 0 32px rgba(152,148,219,0.25);
+      }
+      50% {
+        box-shadow: 0 0 60px rgba(152,148,219,0.5);
+      }
+    }
+
+    /* ANNONCE HAUT */
     .home-announcement {
       position: fixed;
       top: 0;
@@ -73,11 +205,12 @@
       white-space: nowrap;
     }
 
+    /* HERO */
     .home-hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 125px 40px 60px;
+      padding: 120px 40px 55px;
       position: relative;
       overflow: hidden;
     }
@@ -90,7 +223,7 @@
       border-radius: 50%;
       background: rgba(152,148,219,0.08);
       right: -180px;
-      top: 60px;
+      top: 70px;
     }
 
     .home-hero::after {
@@ -104,16 +237,20 @@
       bottom: -120px;
     }
 
-    .home-hero-inner {
+    .home-container {
       width: 100%;
-      max-width: 1150px;
+      max-width: 1180px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 430px;
-      gap: 45px;
-      align-items: center;
       position: relative;
       z-index: 2;
+    }
+
+    .hero-main {
+      text-align: center;
+      max-width: 850px;
+      margin: 0 auto 34px;
+      animation: pageRise 0.8s ease both;
+      animation-delay: 2.45s;
     }
 
     .hero-kicker {
@@ -132,31 +269,13 @@
       margin-bottom: 22px;
     }
 
-    .home-logo-row {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 18px;
-      flex-wrap: nowrap;
-    }
-
-    .home-logo-row img {
-      width: 105px;
-      height: 105px;
-      object-fit: contain;
-      border-radius: 50%;
-      border: 3px solid var(--violet-clair);
-      padding: 8px;
-      flex-shrink: 0;
-    }
-
     .home-title {
-      font-size: clamp(3rem, 7vw, 6rem);
+      font-size: clamp(3.4rem, 10vw, 7rem);
       font-weight: 900;
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       text-transform: uppercase;
       line-height: 1;
-      margin: 0;
+      margin: 0 0 16px;
       white-space: nowrap;
     }
 
@@ -166,182 +285,212 @@
 
     .home-subtitle {
       color: rgba(255,255,255,0.75);
-      font-size: 1.03rem;
+      font-size: 1.05rem;
       line-height: 1.8;
-      max-width: 610px;
-      margin-bottom: 28px;
+      max-width: 720px;
+      margin: 0 auto 26px;
     }
 
     .hero-actions {
       display: flex;
+      justify-content: center;
       flex-wrap: wrap;
       gap: 14px;
-      margin-bottom: 24px;
     }
 
     .hero-actions .btn-outline {
       margin-left: 0;
     }
 
-    .next-card {
+    /* CARTES IMPORTANTES */
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      animation: pageRise 0.8s ease both;
+      animation-delay: 2.6s;
+    }
+
+    .highlight-card {
       background:
-        radial-gradient(circle at top right, rgba(152,148,219,0.28), transparent 35%),
-        linear-gradient(145deg, rgba(152,148,219,0.16), rgba(255,255,255,0.035));
-      border: 1px solid rgba(152,148,219,0.42);
+        radial-gradient(circle at top right, rgba(152,148,219,0.24), transparent 35%),
+        linear-gradient(145deg, rgba(152,148,219,0.14), rgba(255,255,255,0.035));
+      border: 1px solid rgba(152,148,219,0.36);
       border-radius: 30px;
       padding: 28px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 22px 65px rgba(0,0,0,0.28);
+      min-height: 285px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 20px 55px rgba(0,0,0,0.22);
     }
 
-    .next-card-label {
+    .highlight-card.primary {
+      border-color: rgba(152,148,219,0.7);
+    }
+
+    .highlight-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .highlight-label {
       display: inline-block;
-      background: var(--violet-clair);
       color: var(--violet-fonce);
+      background: var(--violet-clair);
       padding: 7px 14px;
       border-radius: 999px;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       font-weight: 900;
-      letter-spacing: 1.4px;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      letter-spacing: 1.2px;
     }
 
-    .next-card h2 {
-      font-size: 1.55rem;
-      line-height: 1.28;
+    .calendar-badge {
+      width: 78px;
+      height: 78px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--violet-clair), #6b67c4);
+      color: var(--violet-fonce);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 15px 34px rgba(152,148,219,0.25);
+    }
+
+    .calendar-badge strong {
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .calendar-badge span {
+      font-size: 0.68rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .highlight-card h2 {
+      font-size: 1.65rem;
+      line-height: 1.25;
       font-weight: 900;
       margin-bottom: 10px;
     }
 
-    .next-meta {
-      color: var(--violet-clair);
-      font-size: 0.86rem;
-      font-weight: 800;
-      line-height: 1.6;
-      margin-bottom: 18px;
+    .highlight-card p {
+      color: rgba(255,255,255,0.68);
+      line-height: 1.75;
+      font-size: 0.92rem;
     }
 
-    .countdown-box {
+    .highlight-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .countdown-mini {
       display: grid;
-      grid-template-columns: 110px 1fr;
-      gap: 16px;
+      grid-template-columns: 100px 1fr;
+      gap: 15px;
       align-items: center;
-      background: rgba(0,0,0,0.18);
+      background: rgba(0,0,0,0.16);
       border: 1px solid rgba(152,148,219,0.22);
       border-radius: 20px;
-      padding: 17px;
-      margin-bottom: 20px;
+      padding: 15px;
+      margin-top: 18px;
     }
 
     .countdown-number {
-      font-size: 3.2rem;
-      line-height: 1;
-      font-weight: 900;
       color: var(--violet-clair);
+      font-size: 3rem;
+      font-weight: 900;
       text-align: center;
+      line-height: 1;
     }
 
-    .countdown-text strong {
+    .countdown-mini strong {
       display: block;
       color: white;
-      font-size: 0.95rem;
       margin-bottom: 5px;
     }
 
-    .countdown-text span {
+    .countdown-mini span {
       color: rgba(255,255,255,0.55);
       font-size: 0.8rem;
       line-height: 1.5;
     }
 
-    .home-stats {
+    /* NAV RAPIDE */
+    .quick-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 18px;
+      gap: 16px;
+      margin-top: 24px;
+      animation: pageRise 0.8s ease both;
+      animation-delay: 2.75s;
     }
 
-    .home-stat {
-      background: rgba(152,148,219,0.08);
-      border: 1px solid rgba(152,148,219,0.25);
-      border-radius: 18px;
-      padding: 16px;
+    .quick-link {
       text-decoration: none;
-      transition: all 0.25s;
-    }
-
-    .home-stat:hover {
-      transform: translateY(-3px);
-      border-color: var(--violet-clair);
-    }
-
-    .home-stat strong {
-      display: block;
-      color: var(--violet-clair);
-      font-size: 1.55rem;
-      font-weight: 900;
-      margin-bottom: 4px;
-    }
-
-    .home-stat span {
-      color: rgba(255,255,255,0.58);
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.7px;
-      text-transform: uppercase;
-      line-height: 1.4;
-    }
-
-    .home-shortcuts {
-      padding-top: 35px;
-    }
-
-    .shortcut-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .shortcut-card {
-      background: rgba(152,148,219,0.07);
-      border: 1px solid rgba(152,148,219,0.25);
-      border-radius: 24px;
-      padding: 24px;
       color: white;
-      text-decoration: none;
+      background: rgba(152,148,219,0.075);
+      border: 1px solid rgba(152,148,219,0.24);
+      border-radius: 22px;
+      padding: 20px;
       transition: all 0.25s;
-      min-height: 165px;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      min-height: 100px;
     }
 
-    .shortcut-card:hover {
-      transform: translateY(-5px);
+    .quick-link:hover {
+      transform: translateY(-4px);
       border-color: var(--violet-clair);
       background: rgba(152,148,219,0.13);
     }
 
-    .shortcut-card .icon {
+    .quick-link .icon {
       font-size: 2rem;
-      margin-bottom: 14px;
+      width: 50px;
+      flex-shrink: 0;
     }
 
-    .shortcut-card h3 {
+    .quick-link h3 {
       color: var(--violet-clair);
-      font-size: 1.08rem;
+      font-size: 1rem;
       font-weight: 900;
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
-    .shortcut-card p {
-      color: rgba(255,255,255,0.62);
-      font-size: 0.84rem;
-      line-height: 1.6;
+    .quick-link p {
+      color: rgba(255,255,255,0.58);
+      font-size: 0.78rem;
+      line-height: 1.45;
     }
 
+    @keyframes pageRise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* INFOS BAS */
     .home-info {
       padding-top: 45px;
     }
@@ -413,14 +562,14 @@
       filter: brightness(1.12);
     }
 
-    @media (max-width: 980px) {
-      .home-hero-inner {
+    /* MOBILE */
+    @media (max-width: 900px) {
+      .highlight-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
       }
 
-      .next-card {
-        max-width: 620px;
+      .quick-strip {
+        grid-template-columns: 1fr;
       }
 
       .home-info-card {
@@ -432,299 +581,252 @@
       }
     }
 
- @media (max-width: 768px) {
+    @media (max-width: 768px) {
+      body {
+        padding-bottom: 110px;
+      }
 
-  body {
-    padding-bottom: 110px;
-  }
+      .intro-logo {
+        width: 92px;
+        height: 92px;
+      }
 
-  .home-announcement {
-    padding: 7px 10px;
-  }
+      .intro-title {
+        font-size: 2.4rem;
+        letter-spacing: 2px;
+      }
 
-  .home-announcement p {
-    font-size: 0.68rem;
-    line-height: 1.35;
-  }
+      .intro-subtitle {
+        font-size: 0.88rem;
+      }
 
-  .floating-next {
-    right: 50%;
-    transform: translateX(50%);
-    bottom: 92px;
-    padding: 10px 16px;
-    max-width: 90%;
-  }
+      .home-announcement {
+        padding: 7px 10px;
+      }
 
-  .floating-next p {
-    font-size: 0.75rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+      .home-announcement p {
+        font-size: 0.68rem;
+        line-height: 1.35;
+      }
 
-  .home-hero {
-    min-height: auto;
-    padding: 120px 14px 38px;
-    display: block;
-  }
+      .floating-next {
+        right: 50%;
+        transform: translateX(50%);
+        bottom: 92px;
+        padding: 10px 16px;
+        max-width: 90%;
+      }
 
-  .home-hero::before {
-    width: 360px;
-    height: 360px;
-    right: -170px;
-    top: 80px;
-  }
+      .floating-next p {
+        font-size: 0.75rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
-  .home-hero::after {
-    width: 260px;
-    height: 260px;
-    left: -130px;
-    bottom: -80px;
-  }
+      .home-hero {
+        min-height: auto;
+        padding: 118px 14px 36px;
+      }
 
-  .home-hero-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-  }
+      .home-hero::before {
+        width: 360px;
+        height: 360px;
+        right: -170px;
+        top: 80px;
+      }
 
-  .hero-kicker {
-    font-size: 0.64rem;
-    letter-spacing: 1px;
-    padding: 7px 12px;
-    margin-bottom: 18px;
-    max-width: 100%;
-  }
+      .home-hero::after {
+        width: 260px;
+        height: 260px;
+        left: -130px;
+        bottom: -80px;
+      }
 
-  .home-logo-row {
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 16px;
-    width: 100%;
-  }
+      .hero-main {
+        margin-bottom: 24px;
+      }
 
-  .home-logo-row img {
-    width: 58px;
-    height: 58px;
-    padding: 4px;
-    border-width: 2px;
-  }
+      .hero-kicker {
+        font-size: 0.62rem;
+        padding: 7px 12px;
+        letter-spacing: 1px;
+      }
 
-  .home-title {
-    font-size: clamp(2rem, 14vw, 3.2rem);
-    letter-spacing: 1px;
-    white-space: nowrap;
-    line-height: 1;
-  }
-
-  .home-subtitle {
-    font-size: 0.9rem;
-    line-height: 1.7;
-    margin-bottom: 22px;
-  }
-
-  .hero-actions {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 11px;
-    margin-bottom: 0;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-    text-align: center;
-    padding: 13px 22px;
-    font-size: 0.82rem;
-  }
-
-  .hero-actions .btn-outline {
-    margin-left: 0;
-  }
-
-  .next-card {
-    border-radius: 24px;
-    padding: 22px;
-    width: 100%;
-  }
-
-  .next-card-label {
-    font-size: 0.62rem;
-    padding: 6px 12px;
-    margin-bottom: 14px;
-  }
-
-  .next-card h2 {
-    font-size: 1.3rem;
-    line-height: 1.3;
-  }
-
-  .next-meta {
-    font-size: 0.78rem;
-    line-height: 1.5;
-  }
-
-  .countdown-box {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    text-align: center;
-    padding: 16px;
-    border-radius: 18px;
-  }
-
-  .countdown-number {
-    font-size: 3rem;
-  }
-
-  .countdown-text strong {
-    font-size: 0.88rem;
-  }
-
-  .countdown-text span {
-    font-size: 0.76rem;
-  }
-
-  .next-card > a.btn {
-    width: 100%;
-    text-align: center;
-    padding: 13px 22px;
-    font-size: 0.82rem;
-  }
-
-  .home-stats {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-top: 12px;
-  }
-
-  .home-stat {
-    padding: 12px 8px;
-    border-radius: 15px;
-    text-align: center;
-  }
-
-  .home-stat strong {
-    font-size: 1.35rem;
-  }
-
-  .home-stat span {
-    font-size: 0.58rem;
-    letter-spacing: 0.4px;
-  }
-
-  .home-shortcuts {
-    padding: 25px 14px 0;
-  }
-
-  .shortcut-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .shortcut-card {
-    min-height: auto;
-    border-radius: 20px;
-    padding: 20px;
-  }
-
-  .shortcut-card .icon {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-  }
-
-  .shortcut-card h3 {
-    font-size: 1rem;
-  }
-
-  .shortcut-card p {
-    font-size: 0.8rem;
-  }
-
-  .home-info {
-    padding: 28px 14px 40px;
-  }
-
-  .home-info-card {
-    grid-template-columns: 1fr;
-    padding: 22px;
-    border-radius: 22px;
-    gap: 24px;
-  }
-
-  .home-info-card h2 {
-    font-size: 1.2rem;
-    letter-spacing: 1.2px;
-  }
-
-  .home-info-card p {
-    font-size: 0.86rem;
-    line-height: 1.7;
-  }
-
-  .style-chips {
-    gap: 8px;
-  }
-
-  .style-chip {
-    font-size: 0.68rem;
-    padding: 7px 10px;
-  }
-
-  .partners-mini {
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .partner-mini-box {
-    min-width: 120px;
-    padding: 14px;
-  }
-
-  .partner-mini-box img {
-    height: 48px;
-    max-width: 120px;
-  }
-
-  footer {
-    padding-bottom: 120px;
-  }
+     .hero-title-wrap {
+  margin-bottom: 14px;
 }
 
-    @media (max-width: 390px) {
-  .home-logo-row {
-    gap: 8px;
-  }
-
-  .home-logo-row img {
-    width: 50px;
-    height: 50px;
-  }
-
-  .home-title {
-    font-size: 1.85rem;
-    letter-spacing: 0.5px;
-  }
-
-  .hero-kicker {
-    font-size: 0.58rem;
-  }
-
-  .home-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .home-stat strong {
-    font-size: 1.55rem;
-  }
-
-  .home-stat span {
-    font-size: 0.65rem;
-  }
+.hero-logo-floating {
+  right: -32px;
+  top: -30px;
+  width: 54px;
+  height: 54px;
+  padding: 4px;
+  border-width: 1px;
 }
 
+
+      .home-title {
+        font-size: clamp(2.25rem, 15vw, 4rem);
+        letter-spacing: 1.5px;
+      }
+
+      .home-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 11px;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        text-align: center;
+        padding: 13px 22px;
+        font-size: 0.82rem;
+      }
+
+      .highlight-card {
+        border-radius: 24px;
+        padding: 22px;
+        min-height: auto;
+      }
+
+      .highlight-top {
+        gap: 12px;
+      }
+
+      .highlight-label {
+        font-size: 0.6rem;
+        padding: 6px 11px;
+      }
+
+      .calendar-badge {
+        width: 62px;
+        height: 62px;
+        border-radius: 18px;
+      }
+
+      .calendar-badge strong {
+        font-size: 1.55rem;
+      }
+
+      .calendar-badge span {
+        font-size: 0.58rem;
+      }
+
+      .highlight-card h2 {
+        font-size: 1.25rem;
+      }
+
+      .highlight-card p {
+        font-size: 0.82rem;
+      }
+
+      .highlight-actions .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .countdown-mini {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .countdown-number {
+        font-size: 3rem;
+      }
+
+      .quick-link {
+        min-height: auto;
+        border-radius: 20px;
+        padding: 18px;
+      }
+
+      .home-info {
+        padding: 28px 14px 40px;
+      }
+
+      .home-info-card {
+        padding: 22px;
+        border-radius: 22px;
+        gap: 24px;
+      }
+
+      .home-info-card h2 {
+        font-size: 1.2rem;
+        letter-spacing: 1.2px;
+      }
+
+      .home-info-card p {
+        font-size: 0.86rem;
+        line-height: 1.7;
+      }
+
+      .style-chip {
+        font-size: 0.68rem;
+        padding: 7px 10px;
+      }
+
+      .partners-mini {
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .partner-mini-box {
+        min-width: 120px;
+        padding: 14px;
+      }
+
+      .partner-mini-box img {
+        height: 48px;
+        max-width: 120px;
+      }
+
+      footer {
+        padding-bottom: 120px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .home-title {
+        font-size: 2rem;
+        letter-spacing: 1px;
+      }
+
+      .intro-title {
+        font-size: 2rem;
+      }
+
+
+
+.hero-logo-floating {
+  right: -24px;
+  top: -25px;
+  width: 46px;
+  height: 46px;
+}
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- INTRO ANIMÉE -->
+  <div class="intro-screen" id="intro-screen">
+    <div class="intro-card">
+      <img src="images/logo.png" alt="Logo Prism Up" class="intro-logo">
+      <div class="intro-small">Saison 2026-2027</div>
+      <div class="intro-title">PRISM <span>UP</span></div>
+      <p class="intro-subtitle">
+        Bienvenue chez Prism Up<br>
+        Rentrée des cours · semaine du 7 septembre
+      </p>
+    </div>
+  </div>
 
   <!-- BARRE ANNONCE DYNAMIQUE -->
   <div id="barre-gala" class="home-announcement">
@@ -755,15 +857,16 @@
 
   <!-- HERO -->
   <main class="home-hero">
-    <div class="home-hero-inner">
+    <div class="home-container">
 
-      <div>
+      <div class="hero-main">
         <div class="hero-kicker">💜 Association de danse · Thumeries</div>
 
-        <div class="home-logo-row">
-          <img src="images/logo.png" alt="Logo Prism Up">
-          <h1 class="home-title">PRISM <span>UP</span></h1>
-        </div>
+<div class="hero-title-wrap">
+  <h1 class="home-title">PRISM <span>UP</span></h1>
+  <img src="images/logo.png" alt="Logo Prism Up" class="hero-logo-floating">
+</div>
+
 
         <p class="home-subtitle">
           Street jazz, hip hop commercial et styles urbains dans une ambiance familiale,
@@ -776,72 +879,91 @@
         </div>
       </div>
 
-      <div>
-        <div class="next-card">
-          <span class="next-card-label">Prochain événement</span>
-          <h2 id="next-title">Chargement...</h2>
-          <div class="next-meta" id="next-meta"></div>
+      <!-- INFOS IMPORTANTES -->
+      <div class="highlight-grid">
 
-          <div class="countdown-box">
-            <div class="countdown-number" id="compteur-jours">0</div>
-            <div class="countdown-text">
-              <strong id="countdown-label">jours restants</strong>
-              <span id="countdown-subtitle">avant le prochain rendez-vous Prism Up</span>
+        <!-- RENTRÉE -->
+        <div class="highlight-card primary">
+          <div>
+            <div class="highlight-top">
+              <span class="highlight-label">Nouvelle saison</span>
+              <div class="calendar-badge">
+                <strong>7</strong>
+                <span>sept.</span>
+              </div>
+            </div>
+
+            <h2>Rentrée des cours 2026-2027</h2>
+            <p>
+              Les cours reprennent à partir de la semaine du 7 septembre.
+              Chaque groupe reprend sur son créneau habituel selon le planning.
+            </p>
+          </div>
+
+          <div class="highlight-actions">
+            <a href="cours.html" class="btn btn-primary">Voir le planning</a>
+          </div>
+        </div>
+
+        <!-- PROCHAIN ÉVÉNEMENT -->
+        <div class="highlight-card">
+          <div>
+            <div class="highlight-top">
+              <span class="highlight-label">Prochain événement</span>
+              <div class="calendar-badge">
+                <strong id="compteur-jours">0</strong>
+                <span>jours</span>
+              </div>
+            </div>
+
+            <h2 id="next-title">Chargement...</h2>
+            <p id="next-meta"></p>
+
+            <div class="countdown-mini">
+              <div class="countdown-number" id="countdown-number">0</div>
+              <div>
+                <strong id="countdown-label">jours restants</strong>
+                <span id="countdown-subtitle">avant le prochain rendez-vous Prism Up</span>
+              </div>
             </div>
           </div>
 
-          <a href="evenements.html" class="btn btn-primary">Voir l'événement</a>
+          <div class="highlight-actions">
+            <a href="evenements.html" class="btn btn-primary">Voir l'événement</a>
+          </div>
         </div>
 
-        <div class="home-stats">
-          <a href="cours.html" class="home-stat">
-            <strong id="stat-creneaux">11</strong>
-            <span>créneaux</span>
-          </a>
+      </div>
 
-          <a href="evenements.html" class="home-stat">
-            <strong id="stat-evenements">0</strong>
-            <span>événements</span>
-          </a>
+      <!-- ACCÈS RAPIDES -->
+      <div class="quick-strip">
+        <a href="cours.html" class="quick-link">
+          <div class="icon">💃</div>
+          <div>
+            <h3>Nos cours</h3>
+            <p>Trouver son créneau selon l'âge et le niveau.</p>
+          </div>
+        </a>
 
-          <a href="evenements.html" class="home-stat">
-            <strong id="stat-avenir">0</strong>
-            <span>à venir</span>
-          </a>
-        </div>
+        <a href="evenements.html" class="quick-link">
+          <div class="icon">🎭</div>
+          <div>
+            <h3>Événements</h3>
+            <p>Prochains rendez-vous et archives.</p>
+          </div>
+        </a>
+
+        <a href="association.html" class="quick-link">
+          <div class="icon">💜</div>
+          <div>
+            <h3>L'association</h3>
+            <p>Découvrir l'histoire et l'équipe.</p>
+          </div>
+        </a>
       </div>
 
     </div>
   </main>
-
-  <!-- RACCOURCIS -->
-  <section class="home-shortcuts">
-    <div class="shortcut-grid">
-      <a href="cours.html" class="shortcut-card">
-        <div>
-          <div class="icon">💃</div>
-          <h3>Nos cours</h3>
-          <p>Trouvez le créneau adapté selon l'âge, les disponibilités et le niveau.</p>
-        </div>
-      </a>
-
-      <a href="evenements.html" class="shortcut-card">
-        <div>
-          <div class="icon">🎭</div>
-          <h3>Événements</h3>
-          <p>Prochains rendez-vous et archives des saisons précédentes.</p>
-        </div>
-      </a>
-
-      <a href="association.html" class="shortcut-card">
-        <div>
-          <div class="icon">💜</div>
-          <h3>L'association</h3>
-          <p>Découvrez notre histoire, notre équipe et nos valeurs.</p>
-        </div>
-      </a>
-    </div>
-  </section>
 
   <!-- INFOS COMPACTES -->
   <section class="home-info">
@@ -962,28 +1084,21 @@
       const nextTitle = document.getElementById('next-title');
       const nextMeta = document.getElementById('next-meta');
       const compteur = document.getElementById('compteur-jours');
+      const countdownNumber = document.getElementById('countdown-number');
       const countdownLabel = document.getElementById('countdown-label');
       const countdownSubtitle = document.getElementById('countdown-subtitle');
 
-      const aujourdhui = new Date();
-      aujourdhui.setHours(0,0,0,0);
-
-      const futurs = EVENEMENTS.filter(e => new Date(e.date) >= aujourdhui && !e.annule);
-
-      document.getElementById('stat-evenements').textContent = EVENEMENTS.length;
-      document.getElementById('stat-avenir').textContent = futurs.length;
-      document.getElementById('stat-creneaux').textContent = 11;
-
       if (!next) {
         announcementText.innerHTML = `
-          💜 Aucun événement annoncé pour le moment ·
-          <a href="rejoindre.html">Nous contacter →</a>
+          💜 Rentrée Prism Up · cours à partir de la semaine du 7 septembre ·
+          <a href="cours.html">Voir le planning →</a>
         `;
 
         badgeText.textContent = '💜 Prism Up';
         nextTitle.textContent = 'Aucun événement annoncé';
         nextMeta.textContent = 'Les prochaines dates seront publiées bientôt.';
         compteur.textContent = '💜';
+        countdownNumber.textContent = '💜';
         countdownLabel.textContent = 'restez connectés';
         countdownSubtitle.textContent = 'les prochaines dates arriveront ici';
         return;
@@ -993,8 +1108,9 @@
       const dateFormatee = formatDateAccueil(next.date);
 
       announcementText.innerHTML = `
-        💜 Prochain événement : ${next.titre} — ${dateFormatee} ·
-        <a href="evenements.html">Voir les détails →</a>
+        💜 Rentrée des cours : semaine du 7 septembre ·
+        Prochain événement : ${next.titre} — ${dateFormatee} ·
+        <a href="evenements.html">Détails →</a>
       `;
 
       badgeText.innerHTML = `
@@ -1008,6 +1124,7 @@
         (next.lieu ? ' — ' + next.lieu : '');
 
       compteur.textContent = jours > 0 ? jours : '🎉';
+      countdownNumber.textContent = jours > 0 ? jours : '🎉';
 
       countdownLabel.textContent = jours > 1
         ? 'jours restants'
@@ -1018,9 +1135,23 @@
       countdownSubtitle.textContent = 'avant : ' + next.titre;
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      initialiserAccueil();
-    });
+   document.addEventListener('DOMContentLoaded', () => {
+  initialiserAccueil();
+
+  const intro = document.getElementById('intro-screen');
+  const introDejaVue = sessionStorage.getItem('introPrismUpVue');
+
+  if (introDejaVue === 'true') {
+    if (intro) intro.style.display = 'none';
+  } else {
+    sessionStorage.setItem('introPrismUpVue', 'true');
+
+    setTimeout(() => {
+      if (intro) intro.style.display = 'none';
+    }, 3200);
+  }
+});
+
 
     window.addEventListener('scroll', () => {
       const barre = document.getElementById('barre-gala');
