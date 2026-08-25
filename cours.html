@@ -17,7 +17,7 @@
 
   <style>
     /* ===============================
-       PAGE COURS — VERSION PROPRE
+       PAGE COURS — VERSION ÉPURÉE & PROGRESSIVE
     =============================== */
 
     .cours-hero-info {
@@ -32,22 +32,6 @@
       position: relative;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    }
-
-    .cours-hero-info::after {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      border-radius: 50%;
-      background: rgba(152,148,219,0.08);
-      right: -60px;
-      bottom: -80px;
-    }
-
-    .cours-hero-info-content {
-      position: relative;
-      z-index: 2;
     }
 
     .cours-badge {
@@ -166,6 +150,52 @@
       margin: 0;
     }
 
+    /* BARRE D'ACTIONS RAPIDES (OUTILS PLIABLES) */
+    .tools-bar {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin: 35px 0;
+      flex-wrap: wrap;
+    }
+
+    .tool-toggle-btn {
+      background: rgba(152,148,219,0.12);
+      border: 1px solid rgba(152,148,219,0.4);
+      color: var(--violet-clair);
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-toggle-btn:hover {
+      background: rgba(152,148,219,0.25);
+      border-color: var(--violet-clair);
+      transform: translateY(-2px);
+    }
+
+    .collapsible-section {
+      display: none;
+      margin-bottom: 40px;
+      animation: apparaitre 0.3s ease;
+    }
+
+    .collapsible-section.open {
+      display: block;
+    }
+
+    @keyframes apparaitre {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* FILTRE */
     .finder-box {
       background:
@@ -246,7 +276,6 @@
       border: 1px solid rgba(152,148,219,0.35);
       border-radius: 26px;
       padding: 24px;
-      margin-bottom: 40px;
     }
 
     .estimate-kicker {
@@ -356,7 +385,7 @@
       display: flex;
       flex-direction: column;
       gap: 26px;
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
     .day-row {
@@ -707,15 +736,42 @@
       margin-bottom: 18px;
     }
 
+    .modal-essai-box {
+      background: linear-gradient(135deg, rgba(152,148,219,0.18), rgba(107,103,196,0.12));
+      border: 1px solid rgba(152,148,219,0.45);
+      border-radius: 18px;
+      padding: 16px 20px;
+      margin-bottom: 18px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .modal-essai-box span {
+      font-size: 1.8rem;
+    }
+
+    .modal-essai-box strong {
+      display: block;
+      color: var(--violet-clair);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 3px;
+    }
+
+    .modal-essai-box p {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.88rem;
+      margin: 0;
+      font-weight: 600;
+    }
+
     .modal-actions {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
       margin-top: 6px;
-    }
-
-    .modal-actions .btn-outline {
-      margin-left: 0;
     }
 
     @media (max-width: 768px) {
@@ -772,7 +828,6 @@
         grid-template-columns: 1fr;
         padding: 20px;
         border-radius: 22px;
-        margin-bottom: 30px;
       }
 
       .estimate-bar h2 {
@@ -857,9 +912,8 @@
         <div class="cours-badge">✨ Planning officiel 2026-2027</div>
         <h2>Une saison pensée pour chaque âge, chaque niveau et chaque envie.</h2>
         <p>
-          Découvrez les nouveaux créneaux Prism Up pour la saison 2026-2027.
-          Les cours sont organisés par âge, par disponibilité et par niveau afin que chacun puisse progresser
-          dans un groupe adapté.
+          Découvrez les créneaux Prism Up pour la saison 2026-2027.
+          Cliquez sur n'importe quel cours pour découvrir les détails, les tarifs et la date exacte du cours d'essai gratuit.
         </p>
 
         <div class="rentree-banner">
@@ -868,10 +922,10 @@
             <span>sept.</span>
           </div>
           <div>
-            <h3>Début des cours</h3>
+            <h3>Semaine de rentrée & Cours d'essai</h3>
             <p>
-              La rentrée aura lieu à partir de la semaine du 7 septembre.
-              Chaque groupe reprend sur son créneau habituel.
+              La rentrée a lieu à partir de la semaine du 7 septembre.
+              Chaque cours d'essai gratuit se fait directement sur le premier cours de la saison !
             </p>
           </div>
         </div>
@@ -897,101 +951,116 @@
     </div>
   </section>
 
-  <!-- TROUVER MON COURS -->
-  <section>
-    <div class="finder-box">
-      <div class="finder-header">
-        <p class="cours-badge">🔎 Trouver mon cours</p>
-        <h2>Quel créneau est fait pour vous ?</h2>
-        <p>
-          Sélectionnez l'âge, les disponibilités et le niveau :
-          les cours compatibles restent visibles automatiquement.
-        </p>
-      </div>
-
-      <div class="finder-grid">
-        <div class="finder-field">
-          <label>Âge / classe</label>
-          <select id="filtre-age">
-            <option value="tous">Tous</option>
-            <option value="maternelle">Maternelle MS/GS</option>
-            <option value="cpce1">CP - CE1</option>
-            <option value="ce2cm1">CE2 - CM1</option>
-            <option value="cm1">CM1 uniquement</option>
-            <option value="cm2">CM2</option>
-            <option value="college">Collégiens</option>
-            <option value="lycee">Lycéens</option>
-            <option value="adulte">Adultes</option>
-            <option value="8plus">8 ans et +</option>
-            <option value="14plus">14 ans et +</option>
-          </select>
-        </div>
-
-        <div class="finder-field">
-          <label>Disponibilité</label>
-          <select id="filtre-jour">
-            <option value="tous">Tous les jours</option>
-            <option value="lundi">Lundi</option>
-            <option value="mardi">Mardi</option>
-            <option value="jeudi">Jeudi</option>
-            <option value="samedi">Samedi</option>
-          </select>
-        </div>
-
-        <div class="finder-field">
-          <label>Niveau / envie</label>
-          <select id="filtre-niveau">
-            <option value="tous">Tous</option>
-            <option value="debutant">Débutant / reprise</option>
-            <option value="normal">Cours classique</option>
-            <option value="approfondissement">Approfondissement</option>
-            <option value="plus-intense">Rythme plus rapide</option>
-          </select>
-        </div>
-
-        <button class="btn btn-primary" onclick="reinitialiserFiltres()" type="button">
-          Réinitialiser
-        </button>
-      </div>
-
-      <p id="resultat-filtre" class="finder-result">
-        Tous les créneaux sont affichés.
-      </p>
+  <!-- BARRE D'OUTILS PROGRESSIFS (FILTRER & ESTIMER) -->
+  <div style="max-width:1200px; margin:0 auto; padding:0 20px;">
+    <div class="tools-bar">
+      <button class="tool-toggle-btn" onclick="toggleSection('finder-section')">
+        🔍 Filtrer les cours
+      </button>
+      <button class="tool-toggle-btn" onclick="toggleSection('estimate-section')">
+        💶 Estimer mon tarif
+      </button>
     </div>
-  </section>
 
-  <!-- PLANNING + ESTIMATION -->
-  <section>
-    <div class="estimate-bar">
-      <div>
-        <p class="estimate-kicker">💶 Estimation tarif</p>
-        <h2>Construisez votre estimation depuis le planning</h2>
-        <p>
-          Cliquez sur une carte pour voir les détails, puis ajoutez-la à votre estimation.
-          Cours principal : <strong>65€</strong> · Approfondissement : <strong>+30€</strong>.
-          <br>
-          L’approfondissement est disponible uniquement à partir de 8 ans et en complément d’un cours principal.
-        </p>
-      </div>
-
-      <div class="estimate-summary">
-        <div id="estimate-content">
-          <span>Aucun cours sélectionné</span>
+    <!-- SECTION FILTRE PLIABLE -->
+    <div id="finder-section" class="collapsible-section">
+      <div class="finder-box">
+        <div class="finder-header">
+          <p class="cours-badge">🔎 Trouver mon cours</p>
+          <h2>Quel créneau est fait pour vous ?</h2>
+          <p>
+            Sélectionnez l'âge, les disponibilités et le niveau :
+            les cours compatibles restent visibles automatiquement.
+          </p>
         </div>
 
-        <div class="estimate-warning" id="estimate-warning"></div>
+        <div class="finder-grid">
+          <div class="finder-field">
+            <label>Âge / classe</label>
+            <select id="filtre-age">
+              <option value="tous">Tous</option>
+              <option value="maternelle">Maternelle MS/GS</option>
+              <option value="cpce1">CP - CE1</option>
+              <option value="ce2cm1">CE2 - CM1</option>
+              <option value="cm1">CM1 uniquement</option>
+              <option value="cm2">CM2</option>
+              <option value="college">Collégiens</option>
+              <option value="lycee">Lycéens</option>
+              <option value="adulte">Adultes</option>
+              <option value="8plus">8 ans et +</option>
+              <option value="14plus">14 ans et +</option>
+            </select>
+          </div>
 
-        <strong id="estimate-total">0€</strong>
+          <div class="finder-field">
+            <label>Disponibilité</label>
+            <select id="filtre-jour">
+              <option value="tous">Tous les jours</option>
+              <option value="lundi">Lundi</option>
+              <option value="mardi">Mardi</option>
+              <option value="jeudi">Jeudi</option>
+              <option value="samedi">Samedi</option>
+            </select>
+          </div>
 
-        <button type="button" onclick="resetEstimation()" class="estimate-reset">
-          Réinitialiser
-        </button>
+          <div class="finder-field">
+            <label>Niveau / envie</label>
+            <select id="filtre-niveau">
+              <option value="tous">Tous</option>
+              <option value="debutant">Débutant / reprise</option>
+              <option value="normal">Cours classique</option>
+              <option value="approfondissement">Approfondissement</option>
+              <option value="plus-intense">Rythme plus rapide</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" onclick="reinitialiserFiltres()" type="button">
+            Réinitialiser
+          </button>
+        </div>
+
+        <p id="resultat-filtre" class="finder-result">
+          Tous les créneaux sont affichés.
+        </p>
       </div>
     </div>
 
+    <!-- SECTION ESTIMATION PLIABLE -->
+    <div id="estimate-section" class="collapsible-section">
+      <div class="estimate-bar">
+        <div>
+          <p class="estimate-kicker">💶 Estimation tarif</p>
+          <h2>Construisez votre estimation depuis le planning</h2>
+          <p>
+            Cliquez sur une carte pour voir les détails, puis ajoutez-la à votre estimation.
+            Cours principal : <strong>65€</strong> · Approfondissement : <strong>+30€</strong>.
+            <br>
+            L’approfondissement est disponible uniquement à partir de 8 ans et en complément d’un cours principal.
+          </p>
+        </div>
+
+        <div class="estimate-summary">
+          <div id="estimate-content">
+            <span>Aucun cours sélectionné</span>
+          </div>
+
+          <div class="estimate-warning" id="estimate-warning"></div>
+
+          <strong id="estimate-total">0€</strong>
+
+          <button type="button" onclick="resetEstimation()" class="estimate-reset">
+            Réinitialiser
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANNING DES COURS -->
+  <section>
     <p class="section-title">Planning des cours</p>
     <div class="divider"></div>
-    <p class="section-subtitle">CLIQUEZ SUR UNE CARTE POUR VOIR LES DÉTAILS ET L’AJOUTER À L’ESTIMATION</p>
+    <p class="section-subtitle">CLIQUEZ SUR UNE CARTE POUR VOIR LES DÉTAILS, L'ESSAI GRATUIT ET L'ESTIMATION</p>
 
     <div class="planning-modern">
 
@@ -1391,6 +1460,7 @@
         horaire: "Lundi · 18h00-19h00",
         salle: "Salle annexe P. Legrain",
         niveau: "Enfants",
+        essai: "Lundi 7 septembre 2026 de 18h00 à 19h00",
         texte: "Cours destiné aux enfants en CE2 et CM1. Pour les CM1, deux groupes existent afin de faciliter la répartition. Si votre enfant est disponible le lundi et le jeudi, le lundi est conseillé pour un profil débutant."
       },
       appro8: {
@@ -1399,6 +1469,7 @@
         horaire: "Lundi · 19h00-20h00",
         salle: "Salle annexe P. Legrain",
         niveau: "Option complémentaire",
+        essai: "Lundi 7 septembre 2026 de 19h00 à 20h00",
         texte: "Cours supplémentaire destiné à ceux qui souhaitent approfondir leurs techniques et développer davantage leur sens artistique. Disponible à partir de 8 ans, en complément d’un cours principal."
       },
       lyceens: {
@@ -1407,6 +1478,7 @@
         horaire: "Lundi · 20h00-21h00",
         salle: "Salle annexe P. Legrain",
         niveau: "Ados",
+        essai: "Lundi 7 septembre 2026 de 20h00 à 21h00",
         texte: "Cours destiné aux lycéens avec un travail chorégraphique adapté à leur âge, à leur énergie et à leur progression."
       },
       cpce1: {
@@ -1415,6 +1487,7 @@
         horaire: "Mardi · 18h00-19h00",
         salle: "Salle des associations",
         niveau: "Enfants",
+        essai: "Mardi 8 septembre 2026 de 18h00 à 19h00",
         texte: "Cours destiné aux enfants en CP et CE1. L'objectif est de découvrir la danse, apprendre les bases et progresser dans une ambiance bienveillante."
       },
       appro14: {
@@ -1423,6 +1496,7 @@
         horaire: "Mardi · 19h00-20h00",
         salle: "Salle des associations",
         niveau: "Option complémentaire",
+        essai: "Mardi 8 septembre 2026 de 19h00 à 20h00",
         texte: "Cours supplémentaire destiné à ceux qui souhaitent approfondir leurs techniques et développer davantage leur sens artistique. Disponible à partir de 14 ans, en complément d’un cours principal."
       },
       adultes3: {
@@ -1431,6 +1505,7 @@
         horaire: "Mardi · 20h00-21h00",
         salle: "Salle des associations",
         niveau: "Ouvert à tous",
+        essai: "Mardi 8 septembre 2026 de 20h00 à 21h00",
         texte: "Ce cours est ouvert à tous, notamment aux débutants et aux personnes qui n'ont pas pratiqué depuis longtemps."
       },
       cm2cm1: {
@@ -1439,6 +1514,7 @@
         horaire: "Jeudi · 18h00-19h00",
         salle: "Salle des associations",
         niveau: "Enfants",
+        essai: "Jeudi 10 septembre 2026 de 18h00 à 19h00",
         texte: "Cours destiné aux enfants en CM2 et CM1. Deux groupes sont ouverts aux CM1 afin de faciliter la répartition. Si votre enfant est disponible le lundi et le jeudi, le jeudi est plutôt conseillé pour un enfant ayant déjà pratiqué en club."
       },
       adultes1: {
@@ -1447,6 +1523,7 @@
         horaire: "Jeudi · 19h00-20h00",
         salle: "Salle des associations",
         niveau: "Rythme plus rapide",
+        essai: "Jeudi 10 septembre 2026 de 19h00 à 20h00",
         texte: "Ce cours reprend les bases, avec une demande de travail plus importante et un rythme plus rapide."
       },
       maternelle: {
@@ -1455,6 +1532,7 @@
         horaire: "Samedi · 9h00-10h00",
         salle: "Salle annexe P. Legrain",
         niveau: "Moyenne et grande section",
+        essai: "Samedi 12 septembre 2026 de 9h00 à 10h00",
         texte: "Cours destiné aux enfants de moyenne et grande section de maternelle. L'objectif est de découvrir la danse de manière ludique, joyeuse et adaptée aux plus jeunes."
       },
       adultes2: {
@@ -1463,6 +1541,7 @@
         horaire: "Samedi · 10h00-11h00",
         salle: "Salle annexe P. Legrain",
         niveau: "Ouvert à tous",
+        essai: "Samedi 12 septembre 2026 de 10h00 à 11h00",
         texte: "Ce cours est ouvert à tous, notamment aux débutants et aux personnes qui n'ont pas pratiqué depuis longtemps."
       },
       collegiens: {
@@ -1471,12 +1550,27 @@
         horaire: "Samedi · 11h00-12h00",
         salle: "Salle annexe P. Legrain",
         niveau: "Ados",
+        essai: "Samedi 12 septembre 2026 de 11h00 à 12h00",
         texte: "Cours destiné aux collégiens. Travail chorégraphique, énergie, progression, coordination et expression scénique."
       }
     };
 
     let estimationPrincipal = null;
     let estimationOptions = [];
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      if (!section) return;
+      
+      // Ferme l'autre section pour garder l'interface propre
+      ['finder-section', 'estimate-section'].forEach(otherId => {
+        if (otherId !== id) {
+          document.getElementById(otherId).classList.remove('open');
+        }
+      });
+
+      section.classList.toggle('open');
+    }
 
     function getCarteCours(id) {
       return document.querySelector(`.slot-card[data-cours-id="${id}"]`);
@@ -1496,7 +1590,6 @@
       if (!c || !carte) return;
 
       const type = carte.dataset.tarifType;
-      const prix = carte.dataset.tarifPrix;
       const isOption = type === "option";
 
       document.getElementById('modal-cours-contenu').innerHTML = `
@@ -1509,6 +1602,14 @@
           📍 ${c.salle}<br>
           ${c.niveau}
         </p>
+
+        <div class="modal-essai-box">
+          <span>🎁</span>
+          <div>
+            <strong>Cours d'essai gratuit :</strong>
+            <p>${c.essai}</p>
+          </div>
+        </div>
 
         <div class="modal-text">
           ${c.texte}
@@ -1524,7 +1625,7 @@
           <button class="btn btn-primary" onclick="ajouterDepuisModal('${id}')">
             ${isOption ? 'Ajouter l’option à mon estimation' : 'Ajouter ce cours à mon estimation'}
           </button>
-          <a href="rejoindre.html" class="btn btn-outline">Poser une question</a>
+          <a href="rejoindre.html" class="btn btn-outline" style="margin-left:0;">Poser une question</a>
         </div>
       `;
 
@@ -1563,12 +1664,11 @@
       const id = carte.dataset.coursId;
       const nom = carte.dataset.tarifNom;
       const prix = parseInt(carte.dataset.tarifPrix);
-      const ageMin = parseInt(carte.dataset.ageMin || '0');
 
       afficherWarning('');
 
       if (type === 'principal') {
-        estimationPrincipal = { id, nom, prix, ageMin };
+        estimationPrincipal = { id, nom, prix, ageMin: parseInt(carte.dataset.ageMin || '0') };
 
         document.querySelectorAll('.slot-card[data-tarif-type="principal"]').forEach(c => {
           c.classList.remove('selected-course');
@@ -1576,7 +1676,7 @@
 
         carte.classList.add('selected-course');
 
-        if (ageMin < 8) {
+        if (estimationPrincipal.ageMin < 8) {
           estimationOptions = [];
           document.querySelectorAll('.slot-card[data-tarif-type="option"]').forEach(c => {
             c.classList.remove('selected-course');
@@ -1650,7 +1750,6 @@
 
     function majCompatibiliteOptions() {
       const options = document.querySelectorAll('.slot-card[data-tarif-type="option"]');
-
       options.forEach(option => {
         if (estimationPrincipal && estimationPrincipal.ageMin < 8) {
           option.classList.add('incompatible-option');
