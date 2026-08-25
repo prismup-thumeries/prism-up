@@ -1524,106 +1524,128 @@
   <script src="events.js"></script>
   <script src="js/main.js"></script>
 
-  <script>
+    <script>
     const infosCours = {
       ce2cm1: {
         icon: "👧",
         titre: "CE2 - CM1",
         horaire: "Lundi · 18h00-19h00",
-        salle: "Salle annexe P. Legrain",
+        salleNom: "Salle annexe P. Legrain",
+        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
+        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
         niveau: "Enfants",
         essai: "Lundi 7 septembre 2026 de 18h00 à 19h00",
-        texte: "Cours destiné aux enfants en CE2 et CM1. Pour les CM1, deux groupes existent afin de faciliter la répartition. Si votre enfant est disponible le lundi et le jeudi, le lundi est conseillé pour un profil débutant."
+        texte: "Cours destiné aux enfants en CE2 et CM1. Pour les CM1, deux groupes existent afin de faciliter la répartition."
       },
       appro8: {
         icon: "✨",
         titre: "Approfondissement 8 ans et +",
         horaire: "Lundi · 19h00-20h00",
-        salle: "Salle annexe P. Legrain",
+        salleNom: "Salle annexe P. Legrain",
+        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
+        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
         niveau: "Option complémentaire",
         essai: "Lundi 7 septembre 2026 de 19h00 à 20h00",
-        texte: "Cours supplémentaire destiné à ceux qui souhaitent approfondir leurs techniques et développer davantage leur sens artistique. Disponible à partir de 8 ans, en complément d’un cours principal."
+        texte: "Cours supplémentaire d'approfondissement technique et artistique, accessible dès 8 ans en complément d'un cours principal."
       },
       lyceens: {
         icon: "🔥",
         titre: "Lycéens",
         horaire: "Lundi · 20h00-21h00",
-        salle: "Salle annexe P. Legrain",
+        salleNom: "Salle annexe P. Legrain",
+        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
+        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
         niveau: "Ados",
         essai: "Lundi 7 septembre 2026 de 20h00 à 21h00",
-        texte: "Cours destiné aux lycéens avec un travail chorégraphique adapté à leur âge, à leur énergie et à leur progression."
+        texte: "Cours destiné aux lycéens avec un travail chorégraphique dynamique adapté à leur énergie."
       },
       cpce1: {
         icon: "🌟",
         titre: "CP - CE1",
         horaire: "Mardi · 18h00-19h00",
-        salle: "Salle des associations",
+        salleNom: "Salle des associations (Salle A)",
+        sallePrecision: "Salle à droite de l'école (Coordonnées exactes)",
+        mapsUrl: "https://maps.google.com/?q=50.476640928918926,3.054828500113795",
         niveau: "Enfants",
         essai: "Mardi 8 septembre 2026 de 18h00 à 19h00",
-        texte: "Cours destiné aux enfants en CP et CE1. L'objectif est de découvrir la danse, apprendre les bases et progresser dans une ambiance bienveillante."
+        texte: "Découverte de la danse, apprentissage des bases et progression dans une ambiance bienveillante."
       },
       appro14: {
         icon: "✨",
         titre: "Approfondissement 14 ans et +",
         horaire: "Mardi · 19h00-20h00",
-        salle: "Salle des associations",
+        salleNom: "Salle des associations (Salle A)",
+        sallePrecision: "Salle à droite de l'école (Coordonnées exactes)",
+        mapsUrl: "https://maps.google.com/?q=50.476640928918926,3.054828500113795",
         niveau: "Option complémentaire",
         essai: "Mardi 8 septembre 2026 de 19h00 à 20h00",
-        texte: "Cours supplémentaire destiné à ceux qui souhaitent approfondir leurs techniques et développer davantage leur sens artistique. Disponible à partir de 14 ans, en complément d’un cours principal."
+        texte: "Cours d'approfondissement technique pour les danseurs de 14 ans et plus."
       },
       adultes3: {
         icon: "💃",
         titre: "Adultes 3",
         horaire: "Mardi · 20h00-21h00",
-        salle: "Salle des associations",
+        salleNom: "Salle des associations (Salle A)",
+        sallePrecision: "Salle à droite de l'école (Coordonnées exactes)",
+        mapsUrl: "https://maps.google.com/?q=50.476640928918926,3.054828500113795",
         niveau: "Ouvert à tous",
         essai: "Mardi 8 septembre 2026 de 20h00 à 21h00",
-        texte: "Ce cours est ouvert à tous, notamment aux débutants et aux personnes qui n'ont pas pratiqué depuis longtemps."
+        texte: "Cours ouvert à tous, idéal pour les débutants et la reprise en douceur."
       },
       cm2cm1: {
         icon: "👧",
         titre: "CM2 - CM1",
         horaire: "Jeudi · 18h00-19h00",
-        salle: "Salle des associations",
+        salleNom: "Salle des associations (Salle A)",
+        sallePrecision: "Salle à droite de l'école (Coordonnées exactes)",
+        mapsUrl: "https://maps.google.com/?q=50.476640928918926,3.054828500113795",
         niveau: "Enfants",
         essai: "Jeudi 10 septembre 2026 de 18h00 à 19h00",
-        texte: "Cours destiné aux enfants en CM2 et CM1. Deux groupes sont ouverts aux CM1 afin de faciliter la répartition. Si votre enfant est disponible le lundi et le jeudi, le jeudi est plutôt conseillé pour un enfant ayant déjà pratiqué en club."
+        texte: "Cours pour les CM2 et CM1, conseillé le jeudi pour les enfants ayant déjà pratiqué en club."
       },
       adultes1: {
         icon: "⚡",
         titre: "Adultes 1",
         horaire: "Jeudi · 19h00-20h00",
-        salle: "Salle des associations",
+        salleNom: "Salle des associations (Salle A)",
+        sallePrecision: "Salle à droite de l'école (Coordonnées exactes)",
+        mapsUrl: "https://maps.google.com/?q=50.476640928918926,3.054828500113795",
         niveau: "Rythme plus rapide",
         essai: "Jeudi 10 septembre 2026 de 19h00 à 20h00",
-        texte: "Ce cours reprend les bases, avec une demande de travail plus importante et un rythme plus rapide."
+        texte: "Cours plus intense avec un rythme plus rapide pour un travail technique approfondi."
       },
       maternelle: {
         icon: "🧸",
         titre: "Maternelle",
         horaire: "Samedi · 9h00-10h00",
-        salle: "Salle annexe P. Legrain",
+        salleNom: "Salle annexe P. Legrain",
+        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
+        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
         niveau: "Moyenne et grande section",
         essai: "Samedi 12 septembre 2026 de 9h00 à 10h00",
-        texte: "Cours destiné aux enfants de moyenne et grande section de maternelle. L'objectif est de découvrir la danse de manière ludique, joyeuse et adaptée aux plus jeunes."
+        texte: "Éveil à la danse ludique et joyeux pour les plus petits."
       },
       adultes2: {
         icon: "💜",
         titre: "Adultes 2",
         horaire: "Samedi · 10h00-11h00",
-        salle: "Salle annexe P. Legrain",
+        salleNom: "Salle annexe P. Legrain",
+        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
+        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
         niveau: "Ouvert à tous",
         essai: "Samedi 12 septembre 2026 de 10h00 à 11h00",
-        texte: "Ce cours est ouvert à tous, notamment aux débutants et aux personnes qui n'ont pas pratiqué depuis longtemps."
+        texte: "Cours ouvert à tous, pour le plaisir et la progression dans la bienveillance."
       },
       collegiens: {
         icon: "🎧",
         titre: "Collégiens",
         horaire: "Samedi · 11h00-12h00",
-        salle: "Salle annexe P. Legrain",
+        salleNom: "Salle annexe P. Legrain",
+        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
+        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
         niveau: "Ados",
         essai: "Samedi 12 septembre 2026 de 11h00 à 12h00",
-        texte: "Cours destiné aux collégiens. Travail chorégraphique, énergie, progression, coordination et expression scénique."
+        texte: "Énergie, cohésion et travail chorégraphique pour les collégiens."
       }
     };
 
@@ -1633,14 +1655,9 @@
     function toggleSection(id) {
       const section = document.getElementById(id);
       if (!section) return;
-      
-      // Ferme l'autre section pour garder l'interface propre
       ['finder-section', 'estimate-section'].forEach(otherId => {
-        if (otherId !== id) {
-          document.getElementById(otherId).classList.remove('open');
-        }
+        if (otherId !== id) document.getElementById(otherId).classList.remove('open');
       });
-
       section.classList.toggle('open');
     }
 
@@ -1651,9 +1668,7 @@
     function getTarifTexte(id) {
       const carte = getCarteCours(id);
       if (!carte) return "";
-      return carte.dataset.tarifType === "option"
-        ? "30€ en option approfondissement."
-        : "65€ pour le cours principal.";
+      return carte.dataset.tarifType === "option" ? "30€ (option approfondissement)" : "65€ (cours principal)";
     }
 
     function ouvrirInfoCours(id) {
@@ -1664,40 +1679,43 @@
       const type = carte.dataset.tarifType;
       const isOption = type === "option";
 
+      // Modale épurée sans surcharge : juste l'essentiel regroupé proprement
       document.getElementById('modal-cours-contenu').innerHTML = `
         <div class="modal-icon">${c.icon}</div>
-
         <h2>${c.titre}</h2>
+        <p class="modal-meta">${c.horaire} · ${c.niveau}</p>
 
-        <p class="modal-meta">
-          ${c.horaire}<br>
-          📍 ${c.salle}<br>
-          ${c.niveau}
-        </p>
-
-        <div class="modal-essai-box">
-          <span>🎁</span>
+        <!-- LIEU AVEC LIEN GPS DIRECT -->
+        <div style="background:rgba(152,148,219,0.08);border:1px solid rgba(152,148,219,0.25);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;">
           <div>
-            <strong>Cours d'essai gratuit :</strong>
-            <p>${c.essai}</p>
+            <strong style="color:var(--violet-clair);font-size:0.85rem;display:block;">📍 ${c.salleNom}</strong>
+            <span style="color:rgba(255,255,255,0.6);font-size:0.75rem;">${c.sallePrecision}</span>
+          </div>
+          <a href="${c.mapsUrl}" target="_blank" class="btn btn-outline" style="padding:6px 12px;font-size:0.7rem;white-space:nowrap;margin:0;">
+            🗺️ Itinéraire
+          </a>
+        </div>
+
+        <!-- COURS D'ESSAI -->
+        <div style="background:rgba(152,148,219,0.12);border:1px solid rgba(152,148,219,0.3);border-radius:14px;padding:12px 16px;margin-bottom:14px;">
+          <strong style="color:var(--violet-clair);font-size:0.8rem;display:block;margin-bottom:2px;">🎁 Essai gratuit :</strong>
+          <p style="color:white;font-size:0.85rem;margin:0;font-weight:600;">${c.essai}</p>
+        </div>
+
+        <div class="modal-text" style="padding:14px;font-size:0.88rem;margin-bottom:14px;">
+          ${c.texte}
+          <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(152,148,219,0.2);font-weight:700;color:var(--violet-clair);">
+            Tarif : ${getTarifTexte(id)}
           </div>
         </div>
 
-        <div class="modal-text">
-          ${c.texte}
-        </div>
-
-        <div class="modal-text">
-          <strong style="color:var(--violet-clair);">Tarif :</strong>
-          ${getTarifTexte(id)}
-          ${isOption ? '<br><span style="color:rgba(255,255,255,0.58);font-size:0.85rem;">L’approfondissement doit être ajouté en complément d’un cours principal compatible.</span>' : ''}
-        </div>
-
-        <div class="modal-actions">
-          <button class="btn btn-primary" onclick="ajouterDepuisModal('${id}')">
-            ${isOption ? 'Ajouter l’option à mon estimation' : 'Ajouter ce cours à mon estimation'}
+        <div class="modal-actions" style="gap:8px;">
+          <button class="btn btn-primary" onclick="ajouterDepuisModal('${id}')" style="flex:1;padding:12px;font-size:0.8rem;">
+            ${isOption ? 'Ajouter l’option' : 'Ajouter à mon estimation'}
           </button>
-          <a href="rejoindre.html" class="btn btn-outline" style="margin-left:0;">Poser une question</a>
+          <a href="rejoindre.html" class="btn btn-outline" style="padding:12px;font-size:0.8rem;margin:0;">
+            Question ?
+          </a>
         </div>
       `;
 
@@ -1720,13 +1738,7 @@
     function afficherWarning(message) {
       const warning = document.getElementById('estimate-warning');
       if (!warning) return;
-
-      if (!message) {
-        warning.style.display = 'none';
-        warning.textContent = '';
-        return;
-      }
-
+      if (!message) { warning.style.display = 'none'; warning.textContent = ''; return; }
       warning.textContent = message;
       warning.style.display = 'block';
     }
@@ -1741,18 +1753,12 @@
 
       if (type === 'principal') {
         estimationPrincipal = { id, nom, prix, ageMin: parseInt(carte.dataset.ageMin || '0') };
-
-        document.querySelectorAll('.slot-card[data-tarif-type="principal"]').forEach(c => {
-          c.classList.remove('selected-course');
-        });
-
+        document.querySelectorAll('.slot-card[data-tarif-type="principal"]').forEach(c => c.classList.remove('selected-course'));
         carte.classList.add('selected-course');
 
         if (estimationPrincipal.ageMin < 8) {
           estimationOptions = [];
-          document.querySelectorAll('.slot-card[data-tarif-type="option"]').forEach(c => {
-            c.classList.remove('selected-course');
-          });
+          document.querySelectorAll('.slot-card[data-tarif-type="option"]').forEach(c => c.classList.remove('selected-course'));
           afficherWarning("L’approfondissement n’est pas disponible pour les groupes de moins de 8 ans.");
         }
       }
@@ -1762,14 +1768,12 @@
           afficherWarning("Sélectionnez d’abord un cours principal avant d’ajouter une option approfondissement.");
           return;
         }
-
         if (estimationPrincipal.ageMin < 8) {
           afficherWarning("L’approfondissement est disponible uniquement à partir de 8 ans.");
           return;
         }
 
         const existe = estimationOptions.find(o => o.id === id);
-
         if (existe) {
           estimationOptions = estimationOptions.filter(o => o.id !== id);
           carte.classList.remove('selected-course');
@@ -1786,7 +1790,6 @@
     function mettreAJourEstimation() {
       const zone = document.getElementById('estimate-content');
       const totalZone = document.getElementById('estimate-total');
-
       if (!zone || !totalZone) return;
 
       let html = '';
@@ -1794,35 +1797,22 @@
 
       if (estimationPrincipal) {
         total += estimationPrincipal.prix;
-        html += `
-          <div class="estimate-line">
-            <span><b>Cours</b><br>${estimationPrincipal.nom}</span>
-            <em>${estimationPrincipal.prix}€</em>
-          </div>
-        `;
+        html += `<div class="estimate-line"><span><b>Cours</b><br>${estimationPrincipal.nom}</span><em>${estimationPrincipal.prix}€</em></div>`;
       }
 
       estimationOptions.forEach(option => {
         total += option.prix;
-        html += `
-          <div class="estimate-line">
-            <span><b>Option</b><br>${option.nom}</span>
-            <em>${option.prix}€</em>
-          </div>
-        `;
+        html += `<div class="estimate-line"><span><b>Option</b><br>${option.nom}</span><em>${option.prix}€</em></div>`;
       });
 
-      if (!html) {
-        html = `<span>Aucun cours sélectionné</span>`;
-      }
+      if (!html) html = `<span>Aucun cours sélectionné</span>`;
 
       zone.innerHTML = html;
       totalZone.textContent = total + '€';
     }
 
     function majCompatibiliteOptions() {
-      const options = document.querySelectorAll('.slot-card[data-tarif-type="option"]');
-      options.forEach(option => {
+      document.querySelectorAll('.slot-card[data-tarif-type="option"]').forEach(option => {
         if (estimationPrincipal && estimationPrincipal.ageMin < 8) {
           option.classList.add('incompatible-option');
         } else {
@@ -1834,12 +1824,10 @@
     function resetEstimation() {
       estimationPrincipal = null;
       estimationOptions = [];
-
       document.querySelectorAll('.slot-card').forEach(carte => {
         carte.classList.remove('selected-course');
         carte.classList.remove('incompatible-option');
       });
-
       afficherWarning('');
       mettreAJourEstimation();
     }
@@ -1862,13 +1850,7 @@
         const matchNiveau = niveau === 'tous' || niveaux.includes(niveau);
 
         const visible = matchAge && matchJour && matchNiveau;
-
         carte.classList.toggle('hidden-by-filter', !visible);
-        carte.classList.toggle(
-          'highlight-filter',
-          visible && (age !== 'tous' || jour !== 'tous' || niveau !== 'tous')
-        );
-
         if (visible) visibles++;
       });
 
@@ -1876,21 +1858,6 @@
         const visibleCards = day.querySelectorAll('.slot-card:not(.hidden-by-filter)');
         day.classList.toggle('hidden-by-filter', visibleCards.length === 0);
       });
-
-      const resultat = document.getElementById('resultat-filtre');
-      const noResult = document.getElementById('no-result-box');
-
-      if (resultat) {
-        if (age === 'tous' && jour === 'tous' && niveau === 'tous') {
-          resultat.textContent = 'Tous les créneaux sont affichés.';
-        } else {
-          resultat.textContent = visibles + ' créneau(x) correspondent à votre recherche.';
-        }
-      }
-
-      if (noResult) {
-        noResult.style.display = visibles === 0 ? 'block' : 'none';
-      }
     }
 
     function reinitialiserFiltres() {
@@ -1903,21 +1870,14 @@
     document.addEventListener('DOMContentLoaded', () => {
       ['filtre-age', 'filtre-jour', 'filtre-niveau'].forEach(id => {
         const el = document.getElementById(id);
-        if (el) {
-          el.addEventListener('change', appliquerFiltresCours);
-        }
+        if (el) el.addEventListener('change', appliquerFiltresCours);
       });
-
       appliquerFiltresCours();
       mettreAJourEstimation();
     });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        document.getElementById('modal-cours-overlay').classList.remove('open');
-      }
-    });
   </script>
+
+
 
   <!-- NAVIGATION BAS MOBILE -->
   <nav class="nav-bottom">
