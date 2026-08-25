@@ -931,3 +931,83 @@ footer a {
     font-size: 1.2rem !important;
   }
 }
+
+/* ===============================
+   IMMERSION & AMBIANCE NÉON — PRISM UP
+================================ */
+
+/* 1. Effet lueur / néon (Glow) sur les boutons et cartes au survol */
+.btn-primary:hover, 
+.slot-card:hover, 
+.highlight-card:hover, 
+.join-card:hover,
+.event-card:hover {
+  box-shadow: 0 0 30px rgba(152, 148, 219, 0.4), inset 0 0 15px rgba(152, 148, 219, 0.15);
+  border-color: var(--violet-clair);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Lueur spécifique pour le logo flottant sur l'accueil */
+.hero-logo-floating {
+  filter: drop-shadow(0 0 15px rgba(152, 148, 219, 0.7));
+  transition: filter 0.3s ease;
+}
+.hero-logo-floating:hover {
+  filter: drop-shadow(0 0 25px rgba(152, 148, 219, 1));
+}
+
+/* 2. Micro-animations fluides au scroll / apparition des blocs */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Application fluide sur les sections principales et cartes */
+section, 
+.card, 
+.focus-card, 
+.event-card, 
+.join-card, 
+.finder-box {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Effet de transition douce générale sur les éléments interactifs */
+a, button, .slot-card, .event-card, .join-card, .main-tab, .archive-tab {
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* ===============================
+   CORRECTIONS MOBILE — SPÉCIAL PRISM UP
+================================ */
+
+@media (max-width: 768px) {
+  /* Masquer la barre de navigation du haut sur mobile pour libérer de l'espace */
+  nav:not(.nav-bottom) {
+    display: none !important;
+  }
+
+  /* Ajuster le padding de la page pour ne pas être caché par la barre du bas */
+  body {
+    padding-bottom: 90px !important;
+  }
+
+  .page-header {
+    padding-top: 40px; /* Compense la disparition de la nav du haut */
+  }
+
+  /* Système d'onglets rapides par jour sur mobile pour éviter le scroll infini */
+  .day-row {
+    display: none !important; /* On masque tous les jours par défaut */
+  }
+
+  .day-row.mobile-active-day {
+    display: grid !important; /* On n'affiche que le jour sélectionné */
+  }
+}

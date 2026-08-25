@@ -1056,6 +1056,78 @@
     </div>
   </div>
 
+  <!-- ONGLETS DE JOURS POUR MOBILE (uniquement visible sur smartphone) -->
+<div class="mobile-days-tabs" id="mobile-days-tabs">
+  <button class="m-day-btn active" onclick="filtrerJourMobile('lundi', this)">Lundi</button>
+  <button class="m-day-btn" onclick="filtrerJourMobile('mardi', this)">Mardi</button>
+  <button class="m-day-btn" onclick="filtrerJourMobile('jeudi', this)">Jeudi</button>
+  <button class="m-day-btn" onclick="filtrerJourMobile('samedi', this)">Samedi</button>
+</div>
+
+<style>
+  /* Style des onglets mobiles (caché sur grand écran) */
+  .mobile-days-tabs {
+    display: none;
+    gap: 8px;
+    justify-content: center;
+    margin: 20px 0;
+    overflow-x: auto;
+    padding-bottom: 5px;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-days-tabs {
+      display: flex;
+    }
+  }
+
+  .m-day-btn {
+    background: rgba(152,148,219,0.1);
+    border: 1px solid rgba(152,148,219,0.3);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.8rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .m-day-btn.active {
+    background: var(--violet-clair);
+    color: var(--violet-fonce);
+    border-color: var(--violet-clair);
+  }
+</style>
+
+<script>
+  /* Fonction pour basculer d'un jour à l'autre sur mobile */
+  function filtrerJourMobile(jourCible, bouton) {
+    // Activer le bouton cliqué
+    document.querySelectorAll('.m-day-btn').forEach(b => b.classList.remove('active'));
+    bouton.classList.add('active');
+
+    // Afficher uniquement le jour correspondant
+    document.querySelectorAll('.day-row').forEach(row => {
+      const h3 = row.querySelector('.day-label h3');
+      if (h3 && h3.textContent.toLowerCase().includes(jourCible)) {
+        row.classList.add('mobile-active-day');
+      } else {
+        row.classList.remove('mobile-active-day');
+      }
+    });
+  }
+
+  // Activer le Lundi par défaut au chargement sur mobile
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth <= 768) {
+      const premierBtn = document.querySelector('.m-day-btn');
+      if (premierBtn) filtrerJourMobile('lundi', premierBtn);
+    }
+  });
+</script>
+
   <!-- PLANNING DES COURS -->
   <section>
     <p class="section-title">Planning des cours</p>
