@@ -16,7 +16,7 @@
 
   <style>
     /* ===============================
-       PAGE COURS — VERSION COMPLÈTE & OPTIMISÉE
+       PAGE COURS — VERSION COMPLÈTE & CORRIGÉE (MAPS)
     =============================== */
 
     .cours-hero-info {
@@ -461,7 +461,7 @@
       color: rgba(255,255,255,0.8);
     }
 
-    /* SECTION INFOS IMPORTANTES STYLE MODERNISÉ */
+    /* SECTION INFOS IMPORTANTES */
     .infos-importantes-section {
       max-width: 1200px;
       margin: 60px auto 30px;
@@ -638,79 +638,15 @@
       margin-top: 6px;
     }
 
-    /* RESPONSIVE MOBILE */
-    @media (max-width: 900px) {
-      .infos-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .cours-hero-info {
-        padding: 20px;
-        border-radius: 20px;
-      }
-
-      .cours-hero-info h2 {
-        font-size: 1.45rem;
-      }
-
-      .cours-action-box {
-        grid-template-columns: 1fr;
-        padding: 16px;
-      }
-
-      .cours-action-right {
-        align-items: stretch;
-        width: 100%;
-      }
-
-      .cours-action-right .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .day-row {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .day-label {
-        padding: 16px;
-        border-radius: 18px;
-      }
-
-      .day-label h3 {
-        font-size: 1.2rem;
-        margin-bottom: 4px;
-      }
-
-      .slots {
-        grid-template-columns: 1fr;
-      }
-
-      .slot-card {
-        min-height: auto;
-        padding: 16px;
-      }
-
-      .mobile-days-tabs {
-        display: flex;
-      }
-
-      .infos-importantes-card {
-        padding: 22px;
-        border-radius: 20px;
-      }
-    }
-
+    /* ONGLETS JOURS MOBILE */
     .mobile-days-tabs {
       display: none;
       gap: 8px;
-      justify-content: center;
+      justify-content: flex-start;
       margin: 20px 0;
       overflow-x: auto;
-      padding-bottom: 5px;
+      padding-bottom: 6px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .m-day-btn {
@@ -724,12 +660,45 @@
       font-size: 0.78rem;
       cursor: pointer;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .m-day-btn.active {
       background: var(--violet-clair);
       color: var(--violet-fonce);
       border-color: var(--violet-clair);
+    }
+
+    /* RESPONSIVE MOBILE SPÉCIFIQUE */
+    @media (max-width: 900px) {
+      .infos-grid { grid-template-columns: 1fr; }
+      .estimate-bar { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .cours-hero-info { padding: 20px; border-radius: 20px; }
+      .cours-hero-info h2 { font-size: 1.45rem; }
+      .cours-action-box { grid-template-columns: 1fr; padding: 16px; }
+      .cours-action-right { align-items: stretch; width: 100%; }
+      .cours-action-right .btn { width: 100%; text-align: center; }
+
+      .mobile-days-tabs { display: flex; }
+      
+      .day-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        display: none !important;
+      }
+
+      .day-row.mobile-visible {
+        display: grid !important;
+      }
+
+      .day-label { padding: 16px; border-radius: 18px; }
+      .day-label h3 { font-size: 1.2rem; margin-bottom: 4px; }
+      .slots { grid-template-columns: 1fr; }
+      .slot-card { min-height: auto; padding: 16px; }
+      .infos-importantes-card { padding: 22px; border-radius: 20px; }
     }
   </style>
 </head>
@@ -889,40 +858,17 @@
     </div>
   </div>
 
-  <div class="mobile-days-tabs" id="mobile-days-tabs">
-    <button class="m-day-btn active" onclick="filtrerJourMobile('lundi', this)">Lundi</button>
-    <button class="m-day-btn" onclick="filtrerJourMobile('mardi', this)">Mardi</button>
-    <button class="m-day-btn" onclick="filtrerJourMobile('jeudi', this)">Jeudi</button>
-    <button class="m-day-btn" onclick="filtrerJourMobile('samedi', this)">Samedi</button>
-  </div>
-
-  <script>
-    function filtrerJourMobile(jourCible, bouton) {
-      document.querySelectorAll('.m-day-btn').forEach(b => b.classList.remove('active'));
-      bouton.classList.add('active');
-
-      document.querySelectorAll('.day-row').forEach(row => {
-        const h3 = row.querySelector('.day-label h3');
-        if (h3 && h3.textContent.toLowerCase().includes(jourCible)) {
-          row.style.display = 'grid';
-        } else {
-          row.style.display = 'none';
-        }
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.innerWidth <= 768) {
-        const premierBtn = document.querySelector('.m-day-btn');
-        if (premierBtn) filtrerJourMobile('lundi', premierBtn);
-      }
-    });
-  </script>
-
   <section>
     <p class="section-title">Planning des cours</p>
     <div class="divider"></div>
     <p class="section-subtitle">CLIQUEZ SUR UNE CARTE POUR VOIR LES DÉTAILS, L'ESSAI GRATUIT ET L'ESTIMATION</p>
+
+    <div class="mobile-days-tabs" id="mobile-days-tabs">
+      <button class="m-day-btn active" onclick="filtrerJourMobile('lundi', this)">Lundi</button>
+      <button class="m-day-btn" onclick="filtrerJourMobile('mardi', this)">Mardi</button>
+      <button class="m-day-btn" onclick="filtrerJourMobile('jeudi', this)">Jeudi</button>
+      <button class="m-day-btn" onclick="filtrerJourMobile('samedi', this)">Samedi</button>
+    </div>
 
     <div class="planning-modern">
 
@@ -930,7 +876,7 @@
         <strong>Aucun créneau ne correspond exactement à votre recherche.</strong>
       </div>
 
-      <div class="day-row" data-jour-row="lundi">
+      <div class="day-row mobile-visible" data-jour-row="lundi">
         <div class="day-label">
           <h3>Lundi</h3>
           <p>📍 Salle annexe P. Legrain</p>
@@ -1269,18 +1215,34 @@
 
   <script>
     const infosCours = {
-      ce2cm1: { icon: "👧", titre: "CE2 - CM1", horaire: "Lundi · 18h00-19h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Enfants", essai: "Lundi 7 septembre 2026 de 18h00 à 19h00", texte: "Cours destiné aux enfants en CE2 et CM1." },
-      appro8: { icon: "✨", titre: "Approfondissement 8 ans et +", horaire: "Lundi · 19h00-20h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Option complémentaire", essai: "Lundi 7 septembre 2026 de 19h00 à 20h00", texte: "Cours supplémentaire d'approfondissement technique." },
-      lyceens: { icon: "🔥", titre: "Lycéens", horaire: "Lundi · 20h00-21h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Ados", essai: "Lundi 7 septembre 2026 de 20h00 à 21h00", texte: "Cours destiné aux lycéens." },
-      cpce1: { icon: "🌟", titre: "CP - CE1", horaire: "Mardi · 18h00-19h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "#", niveau: "Enfants", essai: "Mardi 8 septembre 2026 de 18h00 à 19h00", texte: "Découverte de la danse." },
-      appro14: { icon: "✨", titre: "Approfondissement 14 ans et +", horaire: "Mardi · 19h00-20h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "#", niveau: "Option complémentaire", essai: "Mardi 8 septembre 2026 de 19h00 à 20h00", texte: "Cours d'approfondissement technique." },
-      adultes3: { icon: "💃", titre: "Adultes 3", horaire: "Mardi · 20h00-21h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "#", niveau: "Ouvert à tous", essai: "Mardi 8 septembre 2026 de 20h00 à 21h00", texte: "Cours ouvert à tous, idéal débutants." },
-      cm2cm1: { icon: "👧", titre: "CM2 - CM1", horaire: "Jeudi · 18h00-19h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "#", niveau: "Enfants", essai: "Jeudi 10 septembre 2026 de 18h00 à 19h00", texte: "Cours pour les CM2 et CM1." },
-      adultes1: { icon: "⚡", titre: "Adultes 1", horaire: "Jeudi · 19h00-20h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "#", niveau: "Rythme plus rapide", essai: "Jeudi 10 septembre 2026 de 19h00 à 20h00", texte: "Cours plus intense." },
-      maternelle: { icon: "🧸", titre: "Maternelle", horaire: "Samedi · 9h00-10h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Moyenne et grande section", essai: "Samedi 12 septembre 2026 de 9h00 à 10h00", texte: "Éveil à la danse ludique." },
-      adultes2: { icon: "💜", titre: "Adultes 2", horaire: "Samedi · 10h00-11h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Ouvert à tous", essai: "Samedi 12 septembre 2026 de 10h00 à 11h00", texte: "Cours ouvert à tous." },
-      collegiens: { icon: "🎧", titre: "Collégiens", horaire: "Samedi · 11h00-12h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Ados", essai: "Samedi 12 septembre 2026 de 11h00 à 12h00", texte: "Énergie et cohésion." }
+      ce2cm1: { icon: "👧", titre: "CE2 - CM1", horaire: "Lundi · 18h00-19h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "https://www.google.com/maps?q=50.4851,3.0642", niveau: "Enfants", essai: "Lundi 7 septembre 2026 de 18h00 à 19h00", texte: "Cours destiné aux enfants en CE2 et CM1." },
+      appro8: { icon: "✨", titre: "Approfondissement 8 ans et +", horaire: "Lundi · 19h00-20h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "https://www.google.com/maps?q=50.4851,3.0642", niveau: "Option complémentaire", essai: "Lundi 7 septembre 2026 de 19h00 à 20h00", texte: "Cours supplémentaire d'approfondissement technique." },
+      lyceens: { icon: "🔥", titre: "Lycéens", horaire: "Lundi · 20h00-21h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "https://www.google.com/maps?q=50.4851,3.0642", niveau: "Ados", essai: "Lundi 7 septembre 2026 de 20h00 à 21h00", texte: "Cours destiné aux lycéens." },
+      
+      cpce1: { icon: "🌟", titre: "CP - CE1", horaire: "Mardi · 18h00-19h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "https://www.google.com/maps?q=50.476677,3.054848", niveau: "Enfants", essai: "Mardi 8 septembre 2026 de 18h00 à 19h00", texte: "Découverte de la danse." },
+      appro14: { icon: "✨", titre: "Approfondissement 14 ans et +", horaire: "Mardi · 19h00-20h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "https://www.google.com/maps?q=50.476677,3.054848", niveau: "Option complémentaire", essai: "Mardi 8 septembre 2026 de 19h00 à 20h00", texte: "Cours d'approfondissement technique." },
+      adultes3: { icon: "💃", titre: "Adultes 3", horaire: "Mardi · 20h00-21h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "https://www.google.com/maps?q=50.476677,3.054848", niveau: "Ouvert à tous", essai: "Mardi 8 septembre 2026 de 20h00 à 21h00", texte: "Cours ouvert à tous, idéal débutants." },
+      cm2cm1: { icon: "👧", titre: "CM2 - CM1", horaire: "Jeudi · 18h00-19h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "https://www.google.com/maps?q=50.476677,3.054848", niveau: "Enfants", essai: "Jeudi 10 septembre 2026 de 18h00 à 19h00", texte: "Cours pour les CM2 et CM1." },
+      adultes1: { icon: "⚡", titre: "Adultes 1", horaire: "Jeudi · 19h00-20h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "https://www.google.com/maps?q=50.476677,3.054848", niveau: "Rythme plus rapide", essai: "Jeudi 10 septembre 2026 de 19h00 à 20h00", texte: "Cours plus intense." },
+      
+      maternelle: { icon: "🧸", titre: "Maternelle", horaire: "Samedi · 9h00-10h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "https://www.google.com/maps?q=50.4851,3.0642", niveau: "Moyenne et grande section", essai: "Samedi 12 septembre 2026 de 9h00 à 10h00", texte: "Éveil à la danse ludique." },
+      adultes2: { icon: "💜", titre: "Adultes 2", horaire: "Samedi · 10h00-11h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "https://www.google.com/maps?q=50.4851,3.0642", niveau: "Ouvert à tous", essai: "Samedi 12 septembre 2026 de 10h00 à 11h00", texte: "Cours ouvert à tous." },
+      collegiens: { icon: "🎧", titre: "Collégiens", horaire: "Samedi · 11h00-12h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "https://www.google.com/maps?q=50.4851,3.0642", niveau: "Ados", essai: "Samedi 12 septembre 2026 de 11h00 à 12h00", texte: "Énergie et cohésion." }
     };
+
+    function filtrerJourMobile(jourCible, bouton) {
+      document.querySelectorAll('.m-day-btn').forEach(b => b.classList.remove('active'));
+      bouton.classList.add('active');
+
+      document.querySelectorAll('.day-row').forEach(row => {
+        const jourRow = row.dataset.jourRow;
+        if (jourRow === jourCible) {
+          row.classList.add('mobile-visible');
+        } else {
+          row.classList.remove('mobile-visible');
+        }
+      });
+    }
 
     let estimationPrincipal = null;
     let estimationOptions = [];
@@ -1351,11 +1313,20 @@
         <div class="modal-icon">${c.icon}</div>
         <h2>${c.titre}</h2>
         <p class="modal-meta">${c.horaire} · ${c.niveau}</p>
-        <div style="background:rgba(152,148,219,0.12);border-radius:14px;padding:12px 16px;margin-bottom:14px;">
-          <strong style="color:var(--violet-clair);font-size:0.8rem;display:block;">🎁 Essai gratuit :</strong>
+        
+        <div style="background:rgba(152,148,219,0.12);border-radius:14px;padding:12px 16px;margin-bottom:12px;">
+          <strong style="color:var(--violet-clair);font-size:0.78rem;display:block;">📍 Localisation :</strong>
+          <p style="color:white;font-size:0.85rem;margin:2px 0 6px 0;font-weight:600;">${c.salleNom} (${c.sallePrecision})</p>
+          <a href="${c.mapsUrl}" target="_blank" style="color:var(--violet-clair);font-size:0.8rem;font-weight:800;text-decoration:underline;">🗺️ Ouvrir l'itinéraire Google Maps →</a>
+        </div>
+
+        <div style="background:rgba(152,148,219,0.12);border-radius:14px;padding:12px 16px;margin-bottom:12px;">
+          <strong style="color:var(--violet-clair);font-size:0.78rem;display:block;">🎁 Essai gratuit :</strong>
           <p style="color:white;font-size:0.85rem;margin:0;font-weight:600;">${c.essai}</p>
         </div>
-        <div class="modal-text" style="padding:14px;font-size:0.88rem;margin-bottom:14px;">${c.texte}</div>
+
+        <div class="modal-text" style="padding:14px;font-size:0.85rem;margin-bottom:14px;">${c.texte}</div>
+
         <div class="modal-actions" style="gap:8px;">
           <button class="btn btn-primary" onclick="ajouterDepuisModal('${id}')" style="flex:1;padding:12px;font-size:0.8rem;">
             ${isOption ? 'Ajouter l’option' : 'Ajouter à mon estimation'}
