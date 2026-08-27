@@ -794,21 +794,17 @@
     // Variable globale pour suivre si l'inscription est ouverte (sécurisée)
     let inscriptionsOuvertes = false;
 
-       // SÉCURITÉ & DÉCOMPTE POUR LE BADGE DE LA PAGE REJOINDRE
-    function verifierStatutAdhesionPage() {
+        function verifierStatutAdhesionPage() {
       const badge = document.getElementById('badge-statut-adhesion');
       if (!badge) return;
 
       const dateOuverture = new Date('2026-09-05T18:00:00');
-      const maintenant = new Date(); // Utilise l'heure de l'appareil pour un affichage fluide et instantané
+      
+      // 1. Affichage fluide du badge en local
+      const maintenantLocal = new Date();
+      const diff = dateOuverture - maintenantLocal;
 
-      if (maintenant >= dateOuverture) {
-        window.inscriptionsOuvertes = true;
-        badge.textContent = "✨ Inscriptions ouvertes";
-      } else {
-        window.inscriptionsOuvertes = false;
-        
-        const diff = dateOuverture - maintenant;
+      if (diff > 0) {
         const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
         const heures = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -818,8 +814,31 @@
         } else {
           badge.textContent = `🔒 Ouverture dans ${heures}h ${minutes}min`;
         }
+        window.inscriptionsOuvertes = false;
       }
+
+      // 2. Vérification stricte d'Internet en arrière-plan pour la variable de sécurité
+      fetch('https://worldtimeapi.org/api/timezone/Europe/Paris', { cache: 'no-store' })
+        .then(response => response.json())
+        .then(data => {
+          const maintenantInternet = new Date(data.datetime);
+          if (maintenantInternet >= dateOuverture) {
+            window.inscriptionsOuvertes = true;
+            badge.textContent = "✨ Inscriptions ouvertes";
+          } else {
+            window.inscriptionsOuvertes = false;
+          }
+        })
+        .catch(e => {
+          window.inscriptionsOuvertes = false;
+        });
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      verifierStatutAdhesionPage();
+      setInterval(verifierStatutAdhesionPage, 1000);
+    });
+
 
     // Lancement et actualisation chaque seconde pour le badge
     document.addEventListener('DOMContentLoaded', () => {

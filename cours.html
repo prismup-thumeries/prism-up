@@ -1247,27 +1247,19 @@
     let estimationPrincipal = null;
     let estimationOptions = [];
 
-        function gererOuvertureInscriptionsCours() {
+         function gererOuvertureInscriptionsCours() {
       const btn = document.getElementById('btn-cours-billetterie');
       const statut = document.getElementById('statut-cours-billetterie');
       
       if (!btn || !statut) return;
 
       const dateOuverture = new Date('2026-09-05T18:00:00');
-      const maintenant = new Date();
+      
+      // 1. COMPTE À REBOURS LOCAL (Fluide)
+      const maintenantLocal = new Date();
+      const diff = dateOuverture - maintenantLocal;
 
-      if (maintenant >= dateOuverture) {
-        btn.href = "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027";
-        btn.style.opacity = "1";
-        btn.style.pointerEvents = "auto";
-        btn.textContent = "✨ S'inscrire sur HelloAsso";
-        statut.textContent = "✅ Inscriptions ouvertes !";
-      } else {
-        btn.href = "#";
-        btn.style.opacity = "0.5";
-        btn.style.pointerEvents = "none";
-        
-        const diff = dateOuverture - maintenant;
+      if (diff > 0) {
         const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
         const heures = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -1278,10 +1270,45 @@
         } else {
           btn.textContent = `🔒 Ouverture dans ${heures}h ${minutes}min ${secondes}s`;
         }
-        
         statut.textContent = "Ouverture de la billetterie le 5 septembre à 18h.";
       }
+
+      // 2. SÉCURITÉ DU LIEN INTERNET (Anti-triche)
+      fetch('https://worldtimeapi.org/api/timezone/Europe/Paris', { cache: 'no-store' })
+        .then(response => response.json())
+        .then(data => {
+          const maintenantInternet = new Date(data.datetime);
+          
+          if (maintenantInternet >= dateOuverture) {
+            btn.href = "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027";
+            btn.style.opacity = "1";
+            btn.style.pointerEvents = "auto";
+            btn.textContent = "✨ S'inscrire sur HelloAsso";
+            statut.textContent = "✅ Inscriptions ouvertes !";
+          } else {
+            btn.href = "#";
+            btn.style.opacity = "0.5";
+            btn.style.pointerEvents = "none";
+          }
+        })
+        .catch(e => {
+          btn.href = "#";
+          btn.style.opacity = "0.5";
+          btn.style.pointerEvents = "none";
+        });
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      gererOuvertureInscriptionsCours();
+      setInterval(gererOuvertureInscriptionsCours, 1000);
+    });
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+      gererOuvertureInscriptions();
+      setInterval(gererOuvertureInscriptions, 1000); // Met à jour l'affichage chaque seconde
+    });
+
 
     document.addEventListener('DOMContentLoaded', () => {
       gererOuvertureInscriptionsCours();

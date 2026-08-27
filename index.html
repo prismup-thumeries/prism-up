@@ -754,30 +754,19 @@
       return Math.ceil((cible - auj) / (1000 * 60 * 60 * 24));
     }
 
-         function gererOuvertureInscriptions() {
-      // Ajuste l'ID selon la page ('btn-accueil-billetterie', 'btn-cours-billetterie' ou 'btn-rejoindre-billetterie')
+        function gererOuvertureInscriptions() {
       const btn = document.getElementById('btn-accueil-billetterie'); 
       const statut = document.getElementById('statut-accueil-billetterie'); 
       
       if (!btn || !statut) return;
 
       const dateOuverture = new Date('2026-09-05T18:00:00');
-      const maintenant = new Date();
+      
+      // 1. LE COMPTE À REBOURS UTILISE L'APPAREIL (fluide, en direct, sans bloquer si internet rame)
+      const maintenantLocal = new Date();
+      const diff = dateOuverture - maintenantLocal;
 
-      if (maintenant >= dateOuverture) {
-        // C'est l'heure : le lien s'active !
-        btn.href = "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027";
-        btn.style.opacity = "1";
-        btn.style.pointerEvents = "auto";
-        btn.textContent = "✨ S'inscrire sur HelloAsso";
-        statut.textContent = "✅ Inscriptions ouvertes !";
-      } else {
-        // Avant l'heure : le bouton affiche le compte à rebours, et le statut reste sobre
-        btn.href = "#";
-        btn.style.opacity = "0.5";
-        btn.style.pointerEvents = "none";
-        
-        const diff = dateOuverture - maintenant;
+      if (diff > 0) {
         const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
         const heures = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
@@ -788,11 +777,42 @@
         } else {
           btn.textContent = `🔒 Ouverture dans ${heures}h ${minutes}min ${secondes}s`;
         }
-        
-        // Le texte du dessous ne fait pas doublon
         statut.textContent = "Ouverture de la billetterie le 5 septembre à 18h.";
       }
+
+      // 2. LA SÉCURITÉ DU LIEN UTILISE INTERNET (anti-triche strict en arrière-plan)
+      fetch('https://worldtimeapi.org/api/timezone/Europe/Paris', { cache: 'no-store' })
+        .then(response => response.json())
+        .then(data => {
+          const maintenantInternet = new Date(data.datetime);
+          
+          if (maintenantInternet >= dateOuverture) {
+            // C'est l'heure officielle : le lien s'active vraiment !
+            btn.href = "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027";
+            btn.style.opacity = "1";
+            btn.style.pointerEvents = "auto";
+            btn.textContent = "✨ S'inscrire sur HelloAsso";
+            statut.textContent = "✅ Inscriptions ouvertes !";
+          } else {
+            // Ce n'est pas encore l'heure officielle : on force le verrouillage du lien (même si le téléphone triche)
+            btn.href = "#";
+            btn.style.opacity = "0.5";
+            btn.style.pointerEvents = "none";
+          }
+        })
+        .catch(e => {
+          // En cas de panne d'internet, on bloque le lien par sécurité
+          btn.href = "#";
+          btn.style.opacity = "0.5";
+          btn.style.pointerEvents = "none";
+        });
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      gererOuvertureInscriptions();
+      setInterval(gererOuvertureInscriptions, 1000); // Met à jour l'affichage chaque seconde
+    });
+
 
     document.addEventListener('DOMContentLoaded', () => {
       gererOuvertureInscriptions();
