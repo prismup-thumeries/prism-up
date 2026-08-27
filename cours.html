@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -17,7 +16,7 @@
 
   <style>
     /* ===============================
-       PAGE COURS — VERSION ÉPURÉE & PROGRESSIVE
+       PAGE COURS — VERSION COMPLÈTE & OPTIMISÉE
     =============================== */
 
     .cours-hero-info {
@@ -96,7 +95,7 @@
       line-height: 1.5;
     }
 
-    /* ENCART D'INSCRIPTION & COMPTE À REBOURS STYLE CARTE HERO */
+    /* ENCART D'INSCRIPTION */
     .cours-action-box {
       margin-top: 26px;
       background:
@@ -138,7 +137,7 @@
       min-width: 220px;
     }
 
-    /* BARRE D'ACTIONS RAPIDES (OUTILS PLIABLES) */
+    /* BARRE D'OUTILS */
     .tools-bar {
       display: flex;
       gap: 15px;
@@ -201,12 +200,6 @@
       margin-bottom: 10px;
     }
 
-    .finder-header p {
-      color: rgba(255,255,255,0.68);
-      line-height: 1.7;
-      max-width: 760px;
-    }
-
     .finder-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(180px, 1fr)) auto;
@@ -234,16 +227,6 @@
       color: white;
       font-family: 'Montserrat', sans-serif;
       font-weight: 600;
-    }
-
-    .finder-field select:focus {
-      outline: none;
-      border-color: var(--violet-clair);
-    }
-
-    .finder-field select option {
-      background: var(--violet-fonce);
-      color: white;
     }
 
     .finder-result {
@@ -287,10 +270,6 @@
       font-size: 0.9rem;
     }
 
-    .estimate-bar p strong {
-      color: var(--violet-clair);
-    }
-
     .estimate-summary {
       background: rgba(0,0,0,0.18);
       border: 1px solid rgba(152,148,219,0.22);
@@ -305,10 +284,6 @@
       min-height: 48px;
     }
 
-    #estimate-content span {
-      color: rgba(255,255,255,0.45);
-    }
-
     .estimate-line {
       display: flex;
       justify-content: space-between;
@@ -317,16 +292,8 @@
       padding: 8px 0;
     }
 
-    .estimate-line b {
-      color: white;
-    }
-
-    .estimate-line em {
-      color: var(--violet-clair);
-      font-style: normal;
-      font-weight: 900;
-      white-space: nowrap;
-    }
+    .estimate-line b { color: white; }
+    .estimate-line em { color: var(--violet-clair); font-style: normal; font-weight: 900; }
 
     #estimate-total {
       display: block;
@@ -351,11 +318,6 @@
       cursor: pointer;
     }
 
-    .estimate-reset:hover {
-      color: var(--violet-clair);
-      border-color: var(--violet-clair);
-    }
-
     .estimate-warning {
       display: none;
       margin-top: 14px;
@@ -365,7 +327,6 @@
       padding: 12px;
       color: rgba(255,255,255,0.78);
       font-size: 0.78rem;
-      line-height: 1.55;
     }
 
     /* PLANNING */
@@ -384,24 +345,12 @@
     }
 
     .day-label {
-      background:
-        linear-gradient(145deg, rgba(152,148,219,0.22), rgba(36,6,83,0.35));
+      background: linear-gradient(145deg, rgba(152,148,219,0.22), rgba(36,6,83,0.35));
       border: 1px solid rgba(152,148,219,0.35);
       border-radius: 22px;
       padding: 24px;
       position: relative;
       overflow: hidden;
-    }
-
-    .day-label::before {
-      content: "";
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.05);
-      top: -40px;
-      right: -40px;
     }
 
     .day-label h3 {
@@ -411,16 +360,12 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 12px;
-      position: relative;
-      z-index: 1;
     }
 
     .day-label p {
       color: rgba(255,255,255,0.65);
       font-size: 0.85rem;
       line-height: 1.6;
-      position: relative;
-      z-index: 1;
     }
 
     .slots {
@@ -437,7 +382,7 @@
       cursor: pointer;
       position: relative;
       overflow: hidden;
-      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
       min-height: 155px;
       display: flex;
       flex-direction: column;
@@ -451,72 +396,17 @@
       top: 16px;
       color: rgba(152,148,219,0.65);
       font-size: 1.3rem;
-      transition: transform 0.25s ease;
     }
 
     .slot-card:hover {
       transform: translateY(-5px);
       border-color: var(--violet-clair);
       background: rgba(152,148,219,0.15);
-      box-shadow: 0 18px 45px rgba(0,0,0,0.2);
-    }
-
-    .slot-card:hover::after {
-      transform: translateX(4px);
     }
 
     .slot-card.selected-course {
       border-color: var(--violet-clair) !important;
       background: rgba(152,148,219,0.22) !important;
-      box-shadow: 0 12px 35px rgba(152,148,219,0.16);
-    }
-
-    .slot-card.selected-course::before {
-      content: "✓ sélectionné";
-      position: absolute;
-      right: 14px;
-      bottom: 14px;
-      background: var(--violet-clair);
-      color: var(--violet-fonce);
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 0.65rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      z-index: 3;
-    }
-
-    .slot-card.incompatible-option {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
-
-    .slot-card.incompatible-option::before {
-      content: "non disponible";
-      position: absolute;
-      right: 14px;
-      bottom: 14px;
-      background: rgba(192,57,43,0.9);
-      color: white;
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 0.65rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      z-index: 3;
-    }
-
-    .slot-card.hidden-by-filter {
-      display: none !important;
-    }
-
-    .day-row.hidden-by-filter {
-      display: none !important;
-    }
-
-    .slot-card.highlight-filter:not(.selected-course) {
-      border-color: rgba(152,148,219,0.55) !important;
-      background: rgba(152,148,219,0.14) !important;
     }
 
     .slot-time {
@@ -531,13 +421,11 @@
       font-size: 1.15rem;
       font-weight: 900;
       margin-bottom: 8px;
-      line-height: 1.25;
     }
 
     .slot-subtitle {
       color: rgba(255,255,255,0.55);
       font-size: 0.82rem;
-      line-height: 1.5;
     }
 
     .slot-tags {
@@ -556,14 +444,12 @@
       color: rgba(255,255,255,0.78);
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.6px;
       text-transform: uppercase;
     }
 
     .mini-tag.special {
       background: rgba(152,148,219,0.28);
       color: var(--violet-clair);
-      border-color: rgba(152,148,219,0.55);
     }
 
     .no-result-box {
@@ -573,74 +459,98 @@
       border-radius: 18px;
       padding: 22px;
       color: rgba(255,255,255,0.8);
-      line-height: 1.7;
     }
 
-    .no-result-box strong {
-      color: white;
+    /* SECTION INFOS IMPORTANTES STYLE MODERNISÉ */
+    .infos-importantes-section {
+      max-width: 1200px;
+      margin: 60px auto 30px;
+      padding: 0 20px;
     }
 
-    /* ENCARTS */
-    .focus-grid {
+    .infos-importantes-card {
+      background: rgba(152,148,219,0.06);
+      border: 1px solid rgba(152,148,219,0.25);
+      border-radius: 28px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .infos-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
-      margin-top: 35px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 30px;
     }
 
-    .focus-card {
-      background:
-        linear-gradient(145deg, rgba(152,148,219,0.13), rgba(255,255,255,0.035));
-      border: 1px solid rgba(152,148,219,0.3);
-      border-radius: 22px;
-      padding: 26px;
+    .info-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(152,148,219,0.2);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
-    .focus-card .icon {
+    .info-box:hover {
+      transform: translateY(-3px);
+      border-color: rgba(152,148,219,0.5);
+    }
+
+    .info-box .icon {
       font-size: 2.2rem;
-      margin-bottom: 12px;
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: rgba(152,148,219,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .focus-card h3 {
+    .info-box h3 {
       color: var(--violet-clair);
-      font-size: 1.15rem;
-      margin-bottom: 10px;
+      font-size: 1.1rem;
+      font-weight: 900;
     }
 
-    .focus-card p {
+    .info-box p {
       color: rgba(255,255,255,0.7);
-      font-size: 0.9rem;
-      line-height: 1.75;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin: 0;
     }
 
     .cta-cours {
       margin-top: 50px;
       background: linear-gradient(135deg, var(--violet-clair), #6b67c4);
       border-radius: 28px;
-      padding: 42px 28px;
+      padding: 40px 28px;
       text-align: center;
       color: var(--violet-fonce);
-      position: relative;
-      overflow: hidden;
     }
 
     .cta-cours h2 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 900;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .cta-cours p {
-      max-width: 650px;
-      margin: 0 auto 24px;
-      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 22px;
+      line-height: 1.6;
       font-weight: 600;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     .cta-cours .btn {
       background: white;
       color: var(--violet-fonce);
+      border: none;
     }
 
     /* MODAL */
@@ -662,15 +572,12 @@
     .modal-cours {
       width: 100%;
       max-width: 620px;
-      background:
-        radial-gradient(circle at top right, rgba(152,148,219,0.25), transparent 40%),
-        #1a0440;
+      background: radial-gradient(circle at top right, rgba(152,148,219,0.25), transparent 40%), #1a0440;
       border: 1px solid rgba(152,148,219,0.75);
       border-radius: 26px;
       padding: 34px;
       position: relative;
       box-shadow: 0 25px 80px rgba(0,0,0,0.45);
-      animation: apparaitre 0.25s ease;
     }
 
     .modal-close {
@@ -731,19 +638,26 @@
       margin-top: 6px;
     }
 
+    /* RESPONSIVE MOBILE */
+    @media (max-width: 900px) {
+      .infos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 768px) {
       .cours-hero-info {
-        padding: 24px;
-        border-radius: 22px;
+        padding: 20px;
+        border-radius: 20px;
       }
 
       .cours-hero-info h2 {
-        font-size: 1.65rem;
+        font-size: 1.45rem;
       }
 
       .cours-action-box {
         grid-template-columns: 1fr;
-        padding: 18px;
+        padding: 16px;
       }
 
       .cours-action-right {
@@ -756,50 +670,19 @@
         text-align: center;
       }
 
-      .finder-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .finder-box {
-        padding: 24px;
-        border-radius: 22px;
-      }
-
-      .finder-header h2 {
-        font-size: 1.4rem;
-      }
-
-      .finder-grid .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      .estimate-bar {
-        grid-template-columns: 1fr;
-        padding: 20px;
-        border-radius: 22px;
-      }
-
-      .estimate-bar h2 {
-        font-size: 1.2rem;
-      }
-
-      #estimate-total {
-        text-align: left;
-        font-size: 2rem;
-      }
-
       .day-row {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
       }
 
       .day-label {
-        padding: 20px;
+        padding: 16px;
+        border-radius: 18px;
       }
 
       .day-label h3 {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
+        margin-bottom: 4px;
       }
 
       .slots {
@@ -808,31 +691,51 @@
 
       .slot-card {
         min-height: auto;
+        padding: 16px;
       }
 
-      .modal-cours {
-        padding: 28px 22px;
+      .mobile-days-tabs {
+        display: flex;
       }
 
-      .modal-actions {
-        flex-direction: column;
+      .infos-importantes-card {
+        padding: 22px;
+        border-radius: 20px;
       }
+    }
 
-      .modal-actions .btn {
-        width: 100%;
-        text-align: center;
-      }
+    .mobile-days-tabs {
+      display: none;
+      gap: 8px;
+      justify-content: center;
+      margin: 20px 0;
+      overflow-x: auto;
+      padding-bottom: 5px;
+    }
 
-      .cta-cours h2 {
-        font-size: 1.5rem;
-      }
+    .m-day-btn {
+      background: rgba(152,148,219,0.1);
+      border: 1px solid rgba(152,148,219,0.3);
+      color: white;
+      padding: 9px 16px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 0.78rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .m-day-btn.active {
+      background: var(--violet-clair);
+      color: var(--violet-fonce);
+      border-color: var(--violet-clair);
     }
   </style>
 </head>
 
 <body>
 
-  <!-- NAVIGATION -->
   <nav>
     <a href="index.html" class="nav-logo">PRISM UP</a>
     <ul class="nav-links">
@@ -849,13 +752,11 @@
     </div>
   </nav>
 
-  <!-- HEADER -->
   <div class="page-header">
     <h1>Nos <span style="color:var(--violet-clair)">Cours</span></h1>
     <p>Saison 2026-2027 · Thumeries</p>
   </div>
 
-  <!-- INTRO -->
   <section>
     <div class="cours-hero-info">
       <div class="cours-hero-info-content">
@@ -866,7 +767,6 @@
           Cliquez sur n'importe quel cours pour découvrir les détails, les tarifs et la date exacte du cours d'essai gratuit.
         </p>
 
-        <!-- ENCART INSCRIPTION / DÉCOMPTE SÉCURISÉ -->
         <div class="cours-action-box">
           <div class="cours-action-left">
             <h3>✨ Inscriptions Saison 2026-2027</h3>
@@ -878,7 +778,7 @@
             <a id="btn-cours-billetterie" href="#" target="_blank" class="btn btn-primary" style="opacity: 0.5; pointer-events: none; white-space: nowrap; font-size: 0.8rem; text-align: center;">
               🔒 Ouvert le 5 sept. à 18h
             </a>
-            <span id="statut-cours-billetterie" style="font-size: 0.74rem; color: rgba(255,255,255,0.65); text-align: right;">
+            <span id="statut-cours-billetterie" style="font-size: 0.72rem; color: rgba(255,255,255,0.65); text-align: right;">
               Vérification de l'heure...
             </span>
           </div>
@@ -905,7 +805,6 @@
     </div>
   </section>
 
-  <!-- BARRE D'OUTILS PROGRESSIFS (FILTRER & ESTIMER) -->
   <div style="max-width:1200px; margin:0 auto; padding:0 20px;">
     <div class="tools-bar">
       <button class="tool-toggle-btn" onclick="toggleSection('finder-section')">
@@ -916,16 +815,11 @@
       </button>
     </div>
 
-    <!-- SECTION FILTRE PLIABLE -->
     <div id="finder-section" class="collapsible-section">
       <div class="finder-box">
         <div class="finder-header">
           <p class="cours-badge">🔎 Trouver mon cours</p>
           <h2>Quel créneau est fait pour vous ?</h2>
-          <p>
-            Sélectionnez l'âge, les disponibilités et le niveau :
-            les cours compatibles restent visibles automatiquement.
-          </p>
         </div>
 
         <div class="finder-grid">
@@ -973,86 +867,34 @@
           </button>
         </div>
 
-        <p id="resultat-filtre" class="finder-result">
-          Tous les créneaux sont affichés.
-        </p>
+        <p id="resultat-filtre" class="finder-result">Tous les créneaux sont affichés.</p>
       </div>
     </div>
 
-    <!-- SECTION ESTIMATION PLIABLE -->
     <div id="estimate-section" class="collapsible-section">
       <div class="estimate-bar">
         <div>
           <p class="estimate-kicker">💶 Estimation tarif</p>
           <h2>Construisez votre estimation depuis le planning</h2>
-          <p>
-            Cliquez sur une carte pour voir les détails, puis ajoutez-la à votre estimation.
-            Cours principal : <strong>65€</strong> · Approfondissement : <strong>+30€</strong>.
-            <br>
-            L’approfondissement est disponible uniquement à partir de 8 ans et en complément d’un cours principal.
-          </p>
+          <p>Cours principal : <strong>65€</strong> · Approfondissement : <strong>+30€</strong>.</p>
         </div>
 
         <div class="estimate-summary">
-          <div id="estimate-content">
-            <span>Aucun cours sélectionné</span>
-          </div>
-
+          <div id="estimate-content"><span>Aucun cours sélectionné</span></div>
           <div class="estimate-warning" id="estimate-warning"></div>
-
           <strong id="estimate-total">0€</strong>
-
-          <button type="button" onclick="resetEstimation()" class="estimate-reset">
-            Réinitialiser
-          </button>
+          <button type="button" onclick="resetEstimation()" class="estimate-reset">Réinitialiser</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ONGLETS DE JOURS POUR MOBILE -->
   <div class="mobile-days-tabs" id="mobile-days-tabs">
     <button class="m-day-btn active" onclick="filtrerJourMobile('lundi', this)">Lundi</button>
     <button class="m-day-btn" onclick="filtrerJourMobile('mardi', this)">Mardi</button>
     <button class="m-day-btn" onclick="filtrerJourMobile('jeudi', this)">Jeudi</button>
     <button class="m-day-btn" onclick="filtrerJourMobile('samedi', this)">Samedi</button>
   </div>
-
-  <style>
-    .mobile-days-tabs {
-      display: none;
-      gap: 8px;
-      justify-content: center;
-      margin: 20px 0;
-      overflow-x: auto;
-      padding-bottom: 5px;
-    }
-
-    @media (max-width: 768px) {
-      .mobile-days-tabs {
-        display: flex;
-      }
-    }
-
-    .m-day-btn {
-      background: rgba(152,148,219,0.1);
-      border: 1px solid rgba(152,148,219,0.3);
-      color: white;
-      padding: 10px 16px;
-      border-radius: 50px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 0.8rem;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .m-day-btn.active {
-      background: var(--violet-clair);
-      color: var(--violet-fonce);
-      border-color: var(--violet-clair);
-    }
-  </style>
 
   <script>
     function filtrerJourMobile(jourCible, bouton) {
@@ -1077,7 +919,6 @@
     });
   </script>
 
-  <!-- PLANNING DES COURS -->
   <section>
     <p class="section-title">Planning des cours</p>
     <div class="divider"></div>
@@ -1086,14 +927,10 @@
     <div class="planning-modern">
 
       <div id="no-result-box" class="no-result-box">
-        <strong>Aucun créneau ne correspond exactement à votre recherche.</strong><br>
-        Essayez de modifier vos filtres ou contactez-nous pour que l'on vous aide à choisir le bon groupe.
-        <br><br>
-        <a href="rejoindre.html" class="btn btn-primary">Nous contacter</a>
+        <strong>Aucun créneau ne correspond exactement à votre recherche.</strong>
       </div>
 
-      <!-- LUNDI -->
-      <div class="day-row">
+      <div class="day-row" data-jour-row="lundi">
         <div class="day-label">
           <h3>Lundi</h3>
           <p>📍 Salle annexe P. Legrain</p>
@@ -1118,7 +955,6 @@
             <div class="slot-tags">
               <span class="mini-tag">65€</span>
               <span class="mini-tag">Enfants</span>
-              <span class="mini-tag special">CM1 possible</span>
             </div>
           </div>
 
@@ -1140,7 +976,6 @@
             <div class="slot-tags">
               <span class="mini-tag">+30€</span>
               <span class="mini-tag special">Technique</span>
-              <span class="mini-tag">8 ans +</span>
             </div>
           </div>
 
@@ -1162,14 +997,12 @@
             <div class="slot-tags">
               <span class="mini-tag">65€</span>
               <span class="mini-tag">Lycée</span>
-              <span class="mini-tag">Chorégraphie</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- MARDI -->
-      <div class="day-row">
+      <div class="day-row" data-jour-row="mardi">
         <div class="day-label">
           <h3>Mardi</h3>
           <p>📍 Salle des associations</p>
@@ -1194,7 +1027,6 @@
             <div class="slot-tags">
               <span class="mini-tag">65€</span>
               <span class="mini-tag">Enfants</span>
-              <span class="mini-tag">Découverte</span>
             </div>
           </div>
 
@@ -1216,7 +1048,6 @@
             <div class="slot-tags">
               <span class="mini-tag">+30€</span>
               <span class="mini-tag special">Technique</span>
-              <span class="mini-tag">14 ans +</span>
             </div>
           </div>
 
@@ -1238,14 +1069,12 @@
             <div class="slot-tags">
               <span class="mini-tag">65€</span>
               <span class="mini-tag">Adultes</span>
-              <span class="mini-tag special">Débutants</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- JEUDI -->
-      <div class="day-row">
+      <div class="day-row" data-jour-row="jeudi">
         <div class="day-label">
           <h3>Jeudi</h3>
           <p>📍 Salle des associations</p>
@@ -1270,7 +1099,6 @@
             <div class="slot-tags">
               <span class="mini-tag">65€</span>
               <span class="mini-tag">Enfants</span>
-              <span class="mini-tag special">CM1 possible</span>
             </div>
           </div>
 
@@ -1287,19 +1115,17 @@
             <div>
               <p class="slot-time">19h00 — 20h00</p>
               <h4 class="slot-title">Adultes 1</h4>
-              <p class="slot-subtitle">Bases, travail, rythme plus rapide</p>
+              <p class="slot-subtitle">Rythme plus rapide</p>
             </div>
             <div class="slot-tags">
               <span class="mini-tag">65€</span>
               <span class="mini-tag">Adultes</span>
-              <span class="mini-tag special">Plus intense</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SAMEDI -->
-      <div class="day-row">
+      <div class="day-row" data-jour-row="samedi">
         <div class="day-label">
           <h3>Samedi</h3>
           <p>📍 Salle annexe P. Legrain</p>
@@ -1323,7 +1149,6 @@
             </div>
             <div class="slot-tags">
               <span class="mini-tag">65€</span>
-              <span class="mini-tag">Enfants</span>
               <span class="mini-tag">Éveil</span>
             </div>
           </div>
@@ -1346,7 +1171,6 @@
             <div class="slot-tags">
               <span class="mini-tag">65€</span>
               <span class="mini-tag">Adultes</span>
-              <span class="mini-tag special">Débutants</span>
             </div>
           </div>
 
@@ -1368,7 +1192,6 @@
             <div class="slot-tags">
               <span class="mini-tag">65€</span>
               <span class="mini-tag">Collège</span>
-              <span class="mini-tag">Énergie</span>
             </div>
           </div>
         </div>
@@ -1377,55 +1200,50 @@
     </div>
   </section>
 
-  <!-- FOCUS INFOS -->
-  <section style="background:rgba(152,148,219,0.05);border-radius:24px;margin:0 auto;max-width:1200px;">
-    <p class="section-title">Infos importantes</p>
-    <div class="divider"></div>
-    <p class="section-subtitle">POUR BIEN CHOISIR SON COURS</p>
-
-    <div class="focus-grid">
-      <div class="focus-card">
-        <div class="icon">💜</div>
-        <h3>Groupes adultes</h3>
-        <p>
-          Les groupes Adultes 2 et Adultes 3 sont ouverts à tous, notamment aux débutants
-          et aux personnes qui n'ont pas pratiqué depuis longtemps.
-          Le groupe Adultes 1 demande plus de travail, avec un rythme plus rapide.
-        </p>
-      </div>
-
-      <div class="focus-card">
-        <div class="icon">✨</div>
-        <h3>Approfondissement</h3>
-        <p>
-          Les groupes d'approfondissement sont des cours supplémentaires destinés aux danseurs
-          qui souhaitent développer leur technique et leur sens artistique. Cette option est disponible
-          à partir de 8 ans, en complément d’un cours principal.
-        </p>
-      </div>
-
-      <div class="focus-card">
-        <div class="icon">👧</div>
-        <h3>Cas des CM1</h3>
-        <p>
-          Deux groupes sont ouverts aux CM1 afin de faciliter la répartition.
-          Si votre enfant est disponible les deux jours, choisissez selon son expérience :
-          plutôt lundi pour un profil débutant, plutôt jeudi pour un enfant ayant déjà pratiqué en club.
-        </p>
-      </div>
-    </div>
-
-    <div class="cta-cours">
-      <h2>Une question avant de vous inscrire ?</h2>
-      <p>
-        Si vous hésitez sur le créneau, le niveau ou le groupe le plus adapté,
-        contactez-nous directement. On vous aidera avec plaisir.
+  <div class="infos-importantes-section">
+    <div class="infos-importantes-card">
+      <p class="cours-badge">💡 À retenir</p>
+      <h2>Informations importantes</h2>
+      <p style="color:rgba(255,255,255,0.7); font-size:0.95rem; line-height:1.7;">
+        Quelques repères pour vous aider à choisir le groupe idéal selon vos envies ou l'âge de votre enfant.
       </p>
-      <a href="rejoindre.html" class="btn">Nous rejoindre / Nous contacter</a>
-    </div>
-  </section>
 
-  <!-- MODAL -->
+      <div class="infos-grid">
+        <div class="info-box">
+          <div class="icon">💜</div>
+          <h3>Groupes adultes</h3>
+          <p>
+            Les groupes Adultes 2 et Adultes 3 sont ouverts à tous, notamment aux débutants et à ceux qui souhaitent reprendre en douceur. Le groupe Adultes 1 propose un rythme plus dynamique et intense.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <div class="icon">✨</div>
+          <h3>Option Approfondissement</h3>
+          <p>
+            Destiné aux danseurs qui veulent pousser leur technique et leur sens artistique. Disponible dès 8 ans en complément obligatoire d’un cours principal.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <div class="icon">👧</div>
+          <h3>Répartition des CM1</h3>
+          <p>
+            Deux créneaux s'offrent aux CM1. Privilégiez le lundi pour un profil débutant/découverte, et le jeudi si l'enfant a déjà une expérience en club.
+          </p>
+        </div>
+      </div>
+
+      <div class="cta-cours">
+        <h2>Une question avant de vous inscrire ?</h2>
+        <p>
+          Si vous hésitez sur le créneau, le niveau ou le groupe le plus adapté, contactez-nous directement. On vous répond avec grand plaisir !
+        </p>
+        <a href="rejoindre.html" class="btn">Nous rejoindre / Nous contacter</a>
+      </div>
+    </div>
+  </div>
+
   <div class="modal-overlay" id="modal-cours-overlay" onclick="fermerInfoCours(event)">
     <div class="modal-cours">
       <button class="modal-close" onclick="fermerInfoCours()">×</button>
@@ -1433,40 +1251,16 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <p style="font-size:1.1rem;font-weight:700;color:var(--violet-clair);margin-bottom:10px;">PRISM UP</p>
     <p>Association de danse · Thumeries</p>
     <br>
-
-    <div style="display:flex;justify-content:center;gap:20px;margin:20px 0;flex-wrap:wrap;">
-      <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">📸 Instagram</a>
-      <a href="https://www.facebook.com/profile.php?id=61582350400438" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">👥 Facebook</a>
-      <a href="https://www.tiktok.com/@prismup" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">🎵 TikTok</a>
-      <a href="https://www.youtube.com/@Prismup-n4i" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">▶️ YouTube</a>
+    <div style="display:flex;justify-content:center;gap:15px;margin:20px 0;flex-wrap:wrap;">
+      <a href="https://www.instagram.com/prismup_thumeries/" target="_blank" style="color:var(--blanc);text-decoration:none;font-size:0.85rem;border:1px solid rgba(152,148,219,0.4);padding:8px 15px;border-radius:50px;">📸 Instagram</a>
+      <a href="https://www.facebook.com/profile.php?id=61582350400438" target="_blank" style="color:var(--blanc);text-decoration:none;font-size:0.85rem;border:1px solid rgba(152,148,219,0.4);padding:8px 15px;border-radius:50px;">👥 Facebook</a>
     </div>
-
-    <br>
-
-    <div style="display:flex;justify-content:space-between;align-items:center;
-    flex-wrap:wrap;gap:20px;margin-top:20px;padding-top:20px;
-    border-top:1px solid rgba(152,148,219,0.15);">
-      <p style="color:rgba(255,255,255,0.4);">© 2026 Prism Up · Tous droits réservés</p>
-      <div style="display:flex;align-items:center;gap:15px;">
-        <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;">NOS PARTENAIRES</p>
-        <img src="images/logosponsor.1.png" alt="Partenaire 1"
-        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-        <img src="images/logosponsor.2.jpg" alt="Partenaire 2"
-        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-      </div>
+    <div style="text-align:center;margin-top:20px;border-top:1px solid rgba(152,148,219,0.15);padding-top:15px;">
+      <p style="color:rgba(255,255,255,0.4);font-size:0.75rem;">© 2026 Prism Up · Tous droits réservés</p>
     </div>
   </footer>
 
@@ -1475,137 +1269,25 @@
 
   <script>
     const infosCours = {
-      ce2cm1: {
-        icon: "👧",
-        titre: "CE2 - CM1",
-        horaire: "Lundi · 18h00-19h00",
-        salleNom: "Salle annexe P. Legrain",
-        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
-        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
-        niveau: "Enfants",
-        essai: "Lundi 7 septembre 2026 de 18h00 à 19h00",
-        texte: "Cours destiné aux enfants en CE2 et CM1. Pour les CM1, deux groupes existent afin de faciliter la répartition."
-      },
-      appro8: {
-        icon: "✨",
-        titre: "Approfondissement 8 ans et +",
-        horaire: "Lundi · 19h00-20h00",
-        salleNom: "Salle annexe P. Legrain",
-        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
-        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
-        niveau: "Option complémentaire",
-        essai: "Lundi 7 septembre 2026 de 19h00 à 20h00",
-        texte: "Cours supplémentaire d'approfondissement technique et artistique, accessible dès 8 ans en complément d'un cours principal."
-      },
-      lyceens: {
-        icon: "🔥",
-        titre: "Lycéens",
-        horaire: "Lundi · 20h00-21h00",
-        salleNom: "Salle annexe P. Legrain",
-        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
-        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
-        niveau: "Ados",
-        essai: "Lundi 7 septembre 2026 de 20h00 à 21h00",
-        texte: "Cours destiné aux lycéens avec un travail chorégraphique dynamique adapté à leur énergie."
-      },
-      cpce1: {
-        icon: "🌟",
-        titre: "CP - CE1",
-        horaire: "Mardi · 18h00-19h00",
-        salleNom: "Salle des associations (Salle A)",
-        sallePrecision: "Salle à droite de l'école (Coordonnées exactes)",
-        mapsUrl: "https://maps.google.com/?q=50.476640928918926,3.054828500113795",
-        niveau: "Enfants",
-        essai: "Mardi 8 septembre 2026 de 18h00 à 19h00",
-        texte: "Découverte de la danse, apprentissage des bases et progression dans une ambiance bienveillante."
-      },
-      appro14: {
-        icon: "✨",
-        titre: "Approfondissement 14 ans et +",
-        horaire: "Mardi · 19h00-20h00",
-        salleNom: "Salle des associations (Salle A)",
-        sallePrecision: "Salle à droite de l'école (Coordonnées exactes)",
-        mapsUrl: "https://maps.google.com/?q=50.476640928918926,3.054828500113795",
-        niveau: "Option complémentaire",
-        essai: "Mardi 8 septembre 2026 de 19h00 à 20h00",
-        texte: "Cours d'approfondissement technique pour les danseurs de 14 ans et plus."
-      },
-      adultes3: {
-        icon: "💃",
-        titre: "Adultes 3",
-        horaire: "Mardi · 20h00-21h00",
-        salleNom: "Salle des associations (Salle A)",
-        sallePrecision: "Salle à droite de l'école (Coordonnées exactes)",
-        mapsUrl: "https://maps.google.com/?q=50.476640928918926,3.054828500113795",
-        niveau: "Ouvert à tous",
-        essai: "Mardi 8 septembre 2026 de 20h00 à 21h00",
-        texte: "Cours ouvert à tous, idéal pour les débutants et la reprise en douceur."
-      },
-      cm2cm1: {
-        icon: "👧",
-        titre: "CM2 - CM1",
-        horaire: "Jeudi · 18h00-19h00",
-        salleNom: "Salle des associations (Salle A)",
-        sallePrecision: "Salle à droite de l'école (Coordonnées exactes)",
-        mapsUrl: "https://maps.google.com/?q=50.476640928918926,3.054828500113795",
-        niveau: "Enfants",
-        essai: "Jeudi 10 septembre 2026 de 18h00 à 19h00",
-        texte: "Cours pour les CM2 et CM1, conseillé le jeudi pour les enfants ayant déjà pratiqué en club."
-      },
-      adultes1: {
-        icon: "⚡",
-        titre: "Adultes 1",
-        horaire: "Jeudi · 19h00-20h00",
-        salleNom: "Salle des associations (Salle A)",
-        sallePrecision: "Salle à droite de l'école (Coordonnées exactes)",
-        mapsUrl: "https://maps.google.com/?q=50.476640928918926,3.054828500113795",
-        niveau: "Rythme plus rapide",
-        essai: "Jeudi 10 septembre 2026 de 19h00 à 20h00",
-        texte: "Cours plus intense avec un rythme plus rapide pour un travail technique approfondi."
-      },
-      maternelle: {
-        icon: "🧸",
-        titre: "Maternelle",
-        horaire: "Samedi · 9h00-10h00",
-        salleNom: "Salle annexe P. Legrain",
-        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
-        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
-        niveau: "Moyenne et grande section",
-        essai: "Samedi 12 septembre 2026 de 9h00 à 10h00",
-        texte: "Éveil à la danse ludique et joyeux pour les plus petits."
-      },
-      adultes2: {
-        icon: "💜",
-        titre: "Adultes 2",
-        horaire: "Samedi · 10h00-11h00",
-        salleNom: "Salle annexe P. Legrain",
-        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
-        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
-        niveau: "Ouvert à tous",
-        essai: "Samedi 12 septembre 2026 de 10h00 à 11h00",
-        texte: "Cours ouvert à tous, pour le plaisir et la progression dans la bienveillance."
-      },
-      collegiens: {
-        icon: "🎧",
-        titre: "Collégiens",
-        horaire: "Samedi · 11h00-12h00",
-        salleNom: "Salle annexe P. Legrain",
-        sallePrecision: "Salle des sports Pierre Legrain (petite salle à gauche de la salle des sports)",
-        mapsUrl: "https://maps.google.com/?q=Salle+des+sports+Pierre+Legrain+Thumeries",
-        niveau: "Ados",
-        essai: "Samedi 12 septembre 2026 de 11h00 à 12h00",
-        texte: "Énergie, cohésion et travail chorégraphique pour les collégiens."
-      }
+      ce2cm1: { icon: "👧", titre: "CE2 - CM1", horaire: "Lundi · 18h00-19h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Enfants", essai: "Lundi 7 septembre 2026 de 18h00 à 19h00", texte: "Cours destiné aux enfants en CE2 et CM1." },
+      appro8: { icon: "✨", titre: "Approfondissement 8 ans et +", horaire: "Lundi · 19h00-20h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Option complémentaire", essai: "Lundi 7 septembre 2026 de 19h00 à 20h00", texte: "Cours supplémentaire d'approfondissement technique." },
+      lyceens: { icon: "🔥", titre: "Lycéens", horaire: "Lundi · 20h00-21h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Ados", essai: "Lundi 7 septembre 2026 de 20h00 à 21h00", texte: "Cours destiné aux lycéens." },
+      cpce1: { icon: "🌟", titre: "CP - CE1", horaire: "Mardi · 18h00-19h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "#", niveau: "Enfants", essai: "Mardi 8 septembre 2026 de 18h00 à 19h00", texte: "Découverte de la danse." },
+      appro14: { icon: "✨", titre: "Approfondissement 14 ans et +", horaire: "Mardi · 19h00-20h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "#", niveau: "Option complémentaire", essai: "Mardi 8 septembre 2026 de 19h00 à 20h00", texte: "Cours d'approfondissement technique." },
+      adultes3: { icon: "💃", titre: "Adultes 3", horaire: "Mardi · 20h00-21h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "#", niveau: "Ouvert à tous", essai: "Mardi 8 septembre 2026 de 20h00 à 21h00", texte: "Cours ouvert à tous, idéal débutants." },
+      cm2cm1: { icon: "👧", titre: "CM2 - CM1", horaire: "Jeudi · 18h00-19h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "#", niveau: "Enfants", essai: "Jeudi 10 septembre 2026 de 18h00 à 19h00", texte: "Cours pour les CM2 et CM1." },
+      adultes1: { icon: "⚡", titre: "Adultes 1", horaire: "Jeudi · 19h00-20h00", salleNom: "Salle des associations", sallePrecision: "Salle à droite de l'école", mapsUrl: "#", niveau: "Rythme plus rapide", essai: "Jeudi 10 septembre 2026 de 19h00 à 20h00", texte: "Cours plus intense." },
+      maternelle: { icon: "🧸", titre: "Maternelle", horaire: "Samedi · 9h00-10h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Moyenne et grande section", essai: "Samedi 12 septembre 2026 de 9h00 à 10h00", texte: "Éveil à la danse ludique." },
+      adultes2: { icon: "💜", titre: "Adultes 2", horaire: "Samedi · 10h00-11h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Ouvert à tous", essai: "Samedi 12 septembre 2026 de 10h00 à 11h00", texte: "Cours ouvert à tous." },
+      collegiens: { icon: "🎧", titre: "Collégiens", horaire: "Samedi · 11h00-12h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "#", niveau: "Ados", essai: "Samedi 12 septembre 2026 de 11h00 à 12h00", texte: "Énergie et cohésion." }
     };
 
     let estimationPrincipal = null;
     let estimationOptions = [];
 
-    // SÉCURITÉ ANTI-TRICHE HORLOGE POUR LE BOUTON D'INSCRIPTION SUR LA PAGE COURS
     async function gererOuvertureInscriptionsCours() {
       const btn = document.getElementById('btn-cours-billetterie');
       const statut = document.getElementById('statut-cours-billetterie');
-      
       if (!btn || !statut) return;
 
       let maintenant;
@@ -1657,12 +1339,6 @@
       return document.querySelector(`.slot-card[data-cours-id="${id}"]`);
     }
 
-    function getTarifTexte(id) {
-      const carte = getCarteCours(id);
-      if (!carte) return "";
-      return carte.dataset.tarifType === "option" ? "30€ (option approfondissement)" : "65€ (cours principal)";
-    }
-
     function ouvrirInfoCours(id) {
       const c = infosCours[id];
       const carte = getCarteCours(id);
@@ -1675,39 +1351,17 @@
         <div class="modal-icon">${c.icon}</div>
         <h2>${c.titre}</h2>
         <p class="modal-meta">${c.horaire} · ${c.niveau}</p>
-
-        <div style="background:rgba(152,148,219,0.08);border:1px solid rgba(152,148,219,0.25);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;">
-          <div>
-            <strong style="color:var(--violet-clair);font-size:0.85rem;display:block;">📍 ${c.salleNom}</strong>
-            <span style="color:rgba(255,255,255,0.6);font-size:0.75rem;">${c.sallePrecision}</span>
-          </div>
-          <a href="${c.mapsUrl}" target="_blank" class="btn btn-outline" style="padding:6px 12px;font-size:0.7rem;white-space:nowrap;margin:0;">
-            🗺️ Itinéraire
-          </a>
-        </div>
-
-        <div style="background:rgba(152,148,219,0.12);border:1px solid rgba(152,148,219,0.3);border-radius:14px;padding:12px 16px;margin-bottom:14px;">
-          <strong style="color:var(--violet-clair);font-size:0.8rem;display:block;margin-bottom:2px;">🎁 Essai gratuit :</strong>
+        <div style="background:rgba(152,148,219,0.12);border-radius:14px;padding:12px 16px;margin-bottom:14px;">
+          <strong style="color:var(--violet-clair);font-size:0.8rem;display:block;">🎁 Essai gratuit :</strong>
           <p style="color:white;font-size:0.85rem;margin:0;font-weight:600;">${c.essai}</p>
         </div>
-
-        <div class="modal-text" style="padding:14px;font-size:0.88rem;margin-bottom:14px;">
-          ${c.texte}
-          <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(152,148,219,0.2);font-weight:700;color:var(--violet-clair);">
-            Tarif : ${getTarifTexte(id)}
-          </div>
-        </div>
-
+        <div class="modal-text" style="padding:14px;font-size:0.88rem;margin-bottom:14px;">${c.texte}</div>
         <div class="modal-actions" style="gap:8px;">
           <button class="btn btn-primary" onclick="ajouterDepuisModal('${id}')" style="flex:1;padding:12px;font-size:0.8rem;">
             ${isOption ? 'Ajouter l’option' : 'Ajouter à mon estimation'}
           </button>
-          <a href="rejoindre.html" class="btn btn-outline" style="padding:12px;font-size:0.8rem;margin:0;">
-            Question ?
-          </a>
         </div>
       `;
-
       document.getElementById('modal-cours-overlay').classList.add('open');
     }
 
@@ -1739,29 +1393,16 @@
       const prix = parseInt(carte.dataset.tarifPrix);
 
       afficherWarning('');
-
       if (type === 'principal') {
         estimationPrincipal = { id, nom, prix, ageMin: parseInt(carte.dataset.ageMin || '0') };
         document.querySelectorAll('.slot-card[data-tarif-type="principal"]').forEach(c => c.classList.remove('selected-course'));
         carte.classList.add('selected-course');
-
-        if (estimationPrincipal.ageMin < 8) {
-          estimationOptions = [];
-          document.querySelectorAll('.slot-card[data-tarif-type="option"]').forEach(c => c.classList.remove('selected-course'));
-          afficherWarning("L’approfondissement n’est pas disponible pour les groupes de moins de 8 ans.");
-        }
       }
-
       if (type === 'option') {
         if (!estimationPrincipal) {
-          afficherWarning("Sélectionnez d’abord un cours principal avant d’ajouter une option approfondissement.");
+          afficherWarning("Sélectionnez d’abord un cours principal.");
           return;
         }
-        if (estimationPrincipal.ageMin < 8) {
-          afficherWarning("L’approfondissement est disponible uniquement à partir de 8 ans.");
-          return;
-        }
-
         const existe = estimationOptions.find(o => o.id === id);
         if (existe) {
           estimationOptions = estimationOptions.filter(o => o.id !== id);
@@ -1771,9 +1412,7 @@
           carte.classList.add('selected-course');
         }
       }
-
       mettreAJourEstimation();
-      majCompatibiliteOptions();
     }
 
     function mettreAJourEstimation() {
@@ -1783,31 +1422,17 @@
 
       let html = '';
       let total = 0;
-
       if (estimationPrincipal) {
         total += estimationPrincipal.prix;
         html += `<div class="estimate-line"><span><b>Cours</b><br>${estimationPrincipal.nom}</span><em>${estimationPrincipal.prix}€</em></div>`;
       }
-
       estimationOptions.forEach(option => {
         total += option.prix;
         html += `<div class="estimate-line"><span><b>Option</b><br>${option.nom}</span><em>${option.prix}€</em></div>`;
       });
-
       if (!html) html = `<span>Aucun cours sélectionné</span>`;
-
       zone.innerHTML = html;
       totalZone.textContent = total + '€';
-    }
-
-    function majCompatibiliteOptions() {
-      document.querySelectorAll('.slot-card[data-tarif-type="option"]').forEach(option => {
-        if (estimationPrincipal && estimationPrincipal.ageMin < 8) {
-          option.classList.add('incompatible-option');
-        } else {
-          option.classList.remove('incompatible-option');
-        }
-      });
     }
 
     function resetEstimation() {
@@ -1815,7 +1440,6 @@
       estimationOptions = [];
       document.querySelectorAll('.slot-card').forEach(carte => {
         carte.classList.remove('selected-course');
-        carte.classList.remove('incompatible-option');
       });
       afficherWarning('');
       mettreAJourEstimation();
@@ -1826,10 +1450,7 @@
       const jour = document.getElementById('filtre-jour')?.value || 'tous';
       const niveau = document.getElementById('filtre-niveau')?.value || 'tous';
 
-      const cartes = document.querySelectorAll('.slot-card');
-      let visibles = 0;
-
-      cartes.forEach(carte => {
+      document.querySelectorAll('.slot-card').forEach(carte => {
         const ages = (carte.dataset.age || '').split(' ');
         const jourCarte = carte.dataset.jour || '';
         const niveaux = (carte.dataset.niveau || '').split(' ');
@@ -1840,7 +1461,6 @@
 
         const visible = matchAge && matchJour && matchNiveau;
         carte.classList.toggle('hidden-by-filter', !visible);
-        if (visible) visibles++;
       });
 
       document.querySelectorAll('.day-row').forEach(day => {
@@ -1869,7 +1489,6 @@
     });
   </script>
 
-  <!-- NAVIGATION BAS MOBILE -->
   <nav class="nav-bottom">
     <a href="index.html">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>

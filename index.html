@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -75,7 +74,7 @@
       justify-content: center;
       padding: 30px;
       animation: introFadeOut 0.5s ease forwards;
-      animation-delay: 1.2s; /* Disparition beaucoup plus rapide */
+      animation-delay: 1.2s;
     }
 
     .intro-card {
@@ -249,7 +248,7 @@
       text-align: center;
       max-width: 850px;
       margin: 0 auto 34px;
-      animation: pageRise 0.5s ease both; /* Affichage direct sans temps mort */
+      animation: pageRise 0.5s ease both;
     }
 
     .hero-kicker {
@@ -364,7 +363,7 @@
     }
 
     .calendar-badge strong {
-      font-size: 1.4rem; /* Légèrement réduit pour faire tenir les mois écrits */
+      font-size: 1.4rem;
       line-height: 1;
       font-weight: 900;
     }
@@ -398,19 +397,19 @@
 
     .countdown-mini {
       display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 15px;
+      grid-template-columns: 80px 1fr;
+      gap: 12px;
       align-items: center;
       background: rgba(0,0,0,0.16);
       border: 1px solid rgba(152,148,219,0.22);
-      border-radius: 20px;
-      padding: 15px;
-      margin-top: 18px;
+      border-radius: 18px;
+      padding: 12px;
+      margin-top: 15px;
     }
 
     .countdown-number {
       color: var(--violet-clair);
-      font-size: 3rem;
+      font-size: 2.2rem;
       font-weight: 900;
       text-align: center;
       line-height: 1;
@@ -419,13 +418,14 @@
     .countdown-mini strong {
       display: block;
       color: white;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
+      font-size: 0.85rem;
     }
 
     .countdown-mini span {
       color: rgba(255,255,255,0.55);
-      font-size: 0.8rem;
-      line-height: 1.5;
+      font-size: 0.75rem;
+      line-height: 1.4;
     }
 
     /* NAV RAPIDE */
@@ -559,7 +559,7 @@
       filter: brightness(1.12);
     }
 
-    /* MOBILE (CARROUSEL TACTILE FLUIDE) */
+    /* CORRECTIONS MOBILE ADOUCIES (POUR QUE RIEN NE DISPARAISSE) */
     @media (max-width: 900px) {
       .highlight-grid {
         display: flex;
@@ -597,222 +597,105 @@
       }
 
       .intro-logo {
-        width: 92px;
-        height: 92px;
+        width: 80px;
+        height: 80px;
+        margin-bottom: 16px;
       }
 
       .intro-title {
-        font-size: 2.4rem;
-        letter-spacing: 2px;
-      }
-
-      .intro-subtitle {
-        font-size: 0.88rem;
+        font-size: 2rem;
       }
 
       .home-announcement {
-        padding: 7px 10px;
+        padding: 6px 10px;
       }
 
       .home-announcement p {
-        font-size: 0.68rem;
-        line-height: 1.35;
-      }
-
-      .floating-next {
-        right: 50%;
-        transform: translateX(50%);
-        bottom: 92px;
-        padding: 10px 16px;
-        max-width: 90%;
-      }
-
-      .floating-next p {
-        font-size: 0.75rem;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        font-size: 0.65rem;
       }
 
       .home-hero {
         min-height: auto;
-        padding: 118px 14px 36px;
-      }
-
-      .home-hero::before {
-        width: 360px;
-        height: 360px;
-        right: -170px;
-        top: 80px;
-      }
-
-      .home-hero::after {
-        width: 260px;
-        height: 260px;
-        left: -130px;
-        bottom: -80px;
-      }
-
-      .hero-main {
-        margin-bottom: 24px;
-      }
-
-      .hero-kicker {
-        font-size: 0.62rem;
-        padding: 7px 12px;
-        letter-spacing: 1px;
-      }
-
-      .hero-title-wrap {
-        margin-bottom: 14px;
-      }
-
-      .hero-logo-floating {
-        right: -32px;
-        top: -30px;
-        width: 54px;
-        height: 54px;
-        padding: 4px;
-        border-width: 1px;
+        padding: 100px 14px 30px;
       }
 
       .home-title {
-        font-size: clamp(2.25rem, 15vw, 4rem);
-        letter-spacing: 1.5px;
+        font-size: clamp(2.2rem, 12vw, 3.5rem);
+        letter-spacing: 2px;
       }
 
       .home-subtitle {
-        font-size: 0.9rem;
-        line-height: 1.7;
+        font-size: 0.88rem;
       }
 
       .hero-actions {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 11px;
+        gap: 10px;
       }
 
       .hero-actions .btn {
         width: 100%;
         text-align: center;
-        padding: 13px 22px;
-        font-size: 0.82rem;
+        padding: 12px;
+        font-size: 0.8rem;
       }
 
+      /* Cartes d'accueil compactes et lisibles sur mobile */
       .highlight-card {
-        border-radius: 24px;
-        padding: 22px;
+        border-radius: 20px;
+        padding: 18px;
         min-height: auto;
-      }
-
-      .highlight-top {
-        gap: 12px;
-      }
-
-      .highlight-label {
-        font-size: 0.6rem;
-        padding: 6px 11px;
-      }
-
-      .calendar-badge {
-        width: 62px;
-        height: 62px;
-        border-radius: 18px;
-      }
-
-      .calendar-badge strong {
-        font-size: 1.25rem;
-      }
-
-      .calendar-badge span {
-        font-size: 0.55rem;
       }
 
       .highlight-card h2 {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
       }
 
       .highlight-card p {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
+        line-height: 1.5;
       }
 
-      .highlight-actions .btn {
-        width: 100%;
-        text-align: center;
+      .calendar-badge {
+        width: 54px;
+        height: 54px;
+        border-radius: 14px;
+      }
+
+      .calendar-badge strong {
+        font-size: 1.1rem;
+      }
+
+      .calendar-badge span {
+        font-size: 0.5rem;
       }
 
       .countdown-mini {
-        grid-template-columns: 1fr;
-        text-align: center;
+        grid-template-columns: 60px 1fr;
+        padding: 10px;
+        margin-top: 10px;
       }
 
       .countdown-number {
-        font-size: 3rem;
+        font-size: 1.8rem;
+      }
+
+      .countdown-mini strong {
+        font-size: 0.75rem;
+      }
+
+      .countdown-mini span {
+        font-size: 0.65rem;
       }
 
       .quick-link {
-        min-height: auto;
-        border-radius: 20px;
-        padding: 18px;
-      }
-
-      .home-info {
-        padding: 28px 14px 40px;
+        padding: 15px;
+        border-radius: 18px;
       }
 
       .home-info-card {
-        padding: 22px;
-        border-radius: 22px;
-        gap: 24px;
-      }
-
-      .home-info-card h2 {
-        font-size: 1.2rem;
-        letter-spacing: 1.2px;
-      }
-
-      .home-info-card p {
-        font-size: 0.86rem;
-        line-height: 1.7;
-      }
-
-      .style-chip {
-        font-size: 0.68rem;
-        padding: 7px 10px;
-      }
-
-      .partners-mini {
-        justify-content: center;
-        gap: 10px;
-      }
-
-      .partner-mini-box {
-        min-width: 120px;
-        padding: 14px;
-      }
-
-      .partner-mini-box img {
-        height: 48px;
-        max-width: 120px;
-      }
-
-      footer {
-        padding-bottom: 120px;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .home-title {
-        font-size: 2rem;
-        letter-spacing: 1px;
-      }
-
-      .intro-title {
-        font-size: 2rem;
-      }
-
-      .hero-logo-floating {
-        right: -24px;
-        top: -25px;
+        padding: 18px;
       }
     }
   </style>
@@ -820,7 +703,6 @@
 
 <body>
 
-  <!-- INTRO ANIMÉE RAPIDE -->
   <div class="intro-screen" id="intro-screen">
     <div class="intro-card">
       <img src="images/logo.png" alt="Logo Prism Up" class="intro-logo">
@@ -833,17 +715,14 @@
     </div>
   </div>
 
-  <!-- BARRE ANNONCE DYNAMIQUE -->
   <div id="barre-gala" class="home-announcement">
     <p id="announcement-text">Chargement du prochain événement...</p>
   </div>
 
-  <!-- BADGE FLOTTANT DYNAMIQUE -->
   <div id="badge-gala" class="floating-next" onclick="window.location.href='evenements.html'">
     <p id="badge-text">Prochain événement</p>
   </div>
 
-  <!-- NAVIGATION -->
   <nav>
     <a href="index.html" class="nav-logo">PRISM UP</a>
     <ul class="nav-links">
@@ -860,7 +739,6 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <main class="home-hero">
     <div class="home-container">
 
@@ -883,10 +761,8 @@
         </div>
       </div>
 
-      <!-- LES 3 CARTES -->
       <div class="highlight-grid">
 
-        <!-- 1. RENTRÉE -->
         <div class="highlight-card primary">
           <div>
             <div class="highlight-top">
@@ -905,11 +781,10 @@
           </div>
 
           <div class="highlight-actions">
-            <a href="cours.html" class="btn btn-primary">Voir le planning</a>
+            <a href="cours.html" class="btn btn-primary" style="width:100%;text-align:center;">Voir le planning</a>
           </div>
         </div>
 
-        <!-- 2. INSCRIPTIONS -->
         <div class="highlight-card primary">
           <div>
             <div class="highlight-top">
@@ -922,7 +797,7 @@
 
             <h2>Inscriptions 2026-2027</h2>
             <p>
-              Ouverture officielle de la billetterie en ligne le 5 septembre à 18h00 (après le Forum des associations).
+              Ouverture officielle de la billetterie en ligne le 5 septembre à 18h00.
             </p>
           </div>
 
@@ -930,13 +805,12 @@
             <a id="btn-accueil-billetterie" href="#" target="_blank" class="btn btn-primary" style="opacity: 0.5; pointer-events: none; width: 100%; text-align: center; white-space: nowrap; font-size: 0.78rem; overflow: hidden; text-overflow: ellipsis;">
               🔒 Ouvert le 5 sept. à 18h
             </a>
-            <p id="statut-accueil-billetterie" style="font-size: 0.76rem; color: rgba(255,255,255,0.6); text-align: center; margin: 0;">
+            <p id="statut-accueil-billetterie" style="font-size: 0.72rem; color: rgba(255,255,255,0.6); text-align: center; margin: 0;">
               Vérification de l'heure...
             </p>
           </div>
         </div>
 
-        <!-- 3. PROCHAIN ÉVÉNEMENT (AVEC LA VRAIE DATE EN HAUT À DROITE) -->
         <div class="highlight-card" id="mobile-event-card">
           <div>
             <div class="highlight-top">
@@ -947,32 +821,31 @@
               </div>
             </div>
 
-            <h2 id="next-title">Chargement...</h2>
-            <p id="next-meta"></p>
+            <h2 id="next-title" style="font-size:1.35rem;">Chargement...</h2>
+            <p id="next-meta" style="font-size:0.82rem;"></p>
 
             <div class="countdown-mini">
               <div class="countdown-number" id="countdown-number">0</div>
               <div>
                 <strong id="countdown-label">jours restants</strong>
-                <span id="countdown-subtitle">avant le prochain rendez-vous Prism Up</span>
+                <span id="countdown-subtitle">rendez-vous Prism Up</span>
               </div>
             </div>
           </div>
 
           <div class="highlight-actions">
-            <a href="evenements.html" class="btn btn-primary">Voir l'événement</a>
+            <a href="evenements.html" class="btn btn-primary" style="width:100%;text-align:center;">Voir l'événement</a>
           </div>
         </div>
 
       </div>
 
-      <!-- ACCÈS RAPIDES -->
       <div class="quick-strip">
         <a href="cours.html" class="quick-link">
           <div class="icon">💃</div>
           <div>
             <h3>Nos cours</h3>
-            <p>Trouver son créneau selon l'âge et le niveau.</p>
+            <p>Créneaux selon l'âge et le niveau.</p>
           </div>
         </a>
 
@@ -980,7 +853,7 @@
           <div class="icon">🎭</div>
           <div>
             <h3>Événements</h3>
-            <p>Prochains rendez-vous et archives.</p>
+            <p>Prochains rendez-vous.</p>
           </div>
         </a>
 
@@ -988,7 +861,7 @@
           <div class="icon">💜</div>
           <div>
             <h3>L'association</h3>
-            <p>Découvrir l'histoire et l'équipe.</p>
+            <p>Histoire et équipe.</p>
           </div>
         </a>
       </div>
@@ -996,22 +869,19 @@
     </div>
   </main>
 
-  <!-- INFOS COMPACTES -->
   <section class="home-info">
     <div class="home-info-card">
       <div>
         <h2>Une passion, une famille</h2>
         <p>
           Prism Up est une association de danse basée à Thumeries.
-          Notre objectif : partager la danse urbaine dans une ambiance conviviale,
-          accessible et motivante.
+          Notre objectif : partager la danse urbaine dans une ambiance conviviale.
         </p>
 
         <div class="style-chips">
           <span class="style-chip">Street Jazz</span>
           <span class="style-chip">Hip Hop Commercial</span>
           <span class="style-chip">Styles Urbains</span>
-          <span class="style-chip">Tous niveaux</span>
         </div>
       </div>
 
@@ -1029,51 +899,32 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p style="font-size:1.1rem;font-weight:700;color:var(--violet-clair);margin-bottom:10px;">PRISM UP</p>
     <p>Association de danse · Thumeries</p>
     <br>
 
-    <div style="display:flex;justify-content:center;gap:20px;margin:20px 0;flex-wrap:wrap;">
+    <div style="display:flex;justify-content:center;gap:15px;margin:20px 0;flex-wrap:wrap;">
       <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">
-        📸 Instagram
-      </a>
-
+      style="color:var(--blanc);text-decoration:none;font-size:0.85rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 15px;border-radius:50px;">📸 Instagram</a>
       <a href="https://www.facebook.com/profile.php?id=61582350400438" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">
-        👥 Facebook
-      </a>
-
+      style="color:var(--blanc);text-decoration:none;font-size:0.85rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 15px;border-radius:50px;">👥 Facebook</a>
       <a href="https://www.tiktok.com/@prismup" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">
-        🎵 TikTok
-      </a>
-
+      style="color:var(--blanc);text-decoration:none;font-size:0.85rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 15px;border-radius:50px;">🎵 TikTok</a>
       <a href="https://www.youtube.com/@Prismup-n4i" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;">
-        ▶️ YouTube
-      </a>
+      style="color:var(--blanc);text-decoration:none;font-size:0.85rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 15px;border-radius:50px;">▶️ YouTube</a>
     </div>
 
     <br>
 
     <div style="display:flex;justify-content:space-between;align-items:center;
-    flex-wrap:wrap;gap:20px;margin-top:20px;padding-top:20px;
+    flex-wrap:wrap;gap:15px;margin-top:20px;padding-top:20px;
     border-top:1px solid rgba(152,148,219,0.15);">
-      <p style="color:rgba(255,255,255,0.4);">© 2026 Prism Up · Tous droits réservés</p>
-      <div style="display:flex;align-items:center;gap:15px;">
-        <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;">NOS PARTENAIRES</p>
-        <img src="images/logosponsor.1.png" alt="Partenaire 1"
-        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-        <img src="images/logosponsor.2.jpg" alt="Partenaire 2"
-        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-      </div>
+      <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;">© 2026 Prism Up · Tous droits réservés</p>
     </div>
   </footer>
 
@@ -1107,7 +958,6 @@
       return Math.ceil((cible - auj) / (1000 * 60 * 60 * 24));
     }
 
-    // SÉCURITÉ ANTI-TRICHE HORLOGE
     async function gererOuvertureInscriptions() {
       const btn = document.getElementById('btn-accueil-billetterie');
       const statut = document.getElementById('statut-accueil-billetterie');
@@ -1190,7 +1040,6 @@
 
       badgeText.innerHTML = `💜 ${jours > 0 ? jours + 'j' : 'Aujourd’hui'}`;
 
-      // Affichage de la vraie date sur le badge en haut à droite de la carte
       if (badgeJourNum) badgeJourNum.textContent = jourNum;
       if (badgeMoisTxt) badgeMoisTxt.textContent = moisTxt;
 
@@ -1217,7 +1066,7 @@
         sessionStorage.setItem('introPrismUpVue', 'true');
         setTimeout(() => {
           if (intro) intro.style.display = 'none';
-        }, 1200); // Animation d'intro raccourcie à 1.2s pour aller plus vite
+        }, 1200);
       }
     });
 
@@ -1237,7 +1086,6 @@
     });
   </script>
 
-  <!-- NAVIGATION BAS MOBILE -->
   <nav class="nav-bottom">
     <a href="index.html" style="color:var(--violet-clair);background:rgba(152,148,219,0.25);">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
