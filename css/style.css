@@ -1105,7 +1105,7 @@ a, button, .slot-card, .event-card, .join-card, .main-tab, .archive-tab {
       50% { opacity: 1; transform: scale(1.2); }
     }
 
-        /* Variante Rouge pour les cours complets */
+       /* 1. Variante ROUGE : Pour la forte demande (Urgence max) */
     .cyber-badge.rouge {
       background: rgba(231, 76, 60, 0.15);
       border: 1px solid rgba(231, 76, 60, 0.5);
@@ -1115,4 +1115,16 @@ a, button, .slot-card, .event-card, .join-card, .main-tab, .archive-tab {
     .cyber-badge.rouge .dot-pulse {
       background-color: #e74c3c;
       box-shadow: 0 0 8px #e74c3c;
+    }
+
+    /* 2. Variante BLEU/CYAN : Pour la liste d'attente / Complet */
+    .cyber-badge.attente {
+      background: rgba(52, 152, 219, 0.15);
+      border: 1px solid rgba(52, 152, 219, 0.5);
+      color: #3498db;
+      box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+    }
+    .cyber-badge.attente .dot-pulse {
+      background-color: #3498db;
+      box-shadow: 0 0 8px #3498db;
     }
