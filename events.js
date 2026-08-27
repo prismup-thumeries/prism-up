@@ -97,7 +97,7 @@ const EVENEMENTS = [
   {
     titre: "Forum des associations — Inscriptions 2026-2027",
     date: "2026-09-05",
-    heure: "heure à confirmer",
+    heure: "à partir de 10h",
     lieu: "Thumeries",
     description: "Rendez-vous au Forum des associations de Thumeries le samedi 5 septembre 2026. C'est l'événement important de la rentrée : vous pourrez rencontrer l'équipe Prism Up, poser vos questions et faire votre inscription en physique pour la saison 2026-2027. 💜",
     prix: "",
