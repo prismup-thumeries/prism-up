@@ -16,7 +16,7 @@
 
   <style>
     /* ===============================
-       ACCUEIL — PRISM UP 2026-2027 (MOBILE CORRIGÉ)
+       ACCUEIL — CARROUSEL MOBILE & BUREAU INTACT
     =============================== */
 
     body {
@@ -249,7 +249,7 @@
       gap: 12px;
     }
 
-    /* CARTES IMPORTANTES */
+    /* CARTES IMPORTANTES (BUREAU) */
     .highlight-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -347,6 +347,27 @@
     .countdown-mini strong { display: block; color: white; margin-bottom: 2px; font-size: 0.78rem; }
     .countdown-mini span { color: rgba(255,255,255,0.55); font-size: 0.7rem; }
 
+    /* INDICATEURS DU CARROUSEL MOBILE */
+    .carousel-dots {
+      display: none;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 15px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(152,148,219,0.3);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .dot.active {
+      background: var(--violet-clair);
+      transform: scale(1.25);
+    }
+
     /* NAV RAPIDE */
     .quick-strip {
       display: grid;
@@ -422,21 +443,26 @@
 
     .partner-mini-box img { height: 45px; max-width: 120px; object-fit: contain; filter: brightness(1.12); }
 
-    /* CORRECTIONS STRICTES POUR SMARTPHONES */
+    /* CARROUSEL & PROPORTIONS STRICTES SMARTPHONES */
     @media (max-width: 900px) {
       .highlight-grid {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         gap: 12px;
-        padding-bottom: 10px;
+        padding-bottom: 5px;
+        -webkit-overflow-scrolling: touch;
       }
       .highlight-grid::-webkit-scrollbar { display: none; }
+      
       .highlight-grid .highlight-card {
-        min-width: 88%;
+        min-width: 85vw;
+        max-width: 85vw;
         scroll-snap-align: center;
         flex-shrink: 0;
       }
+
+      .carousel-dots { display: flex; }
       .quick-strip { grid-template-columns: 1fr; }
       .home-info-card { grid-template-columns: 1fr; }
       .partners-mini { justify-content: flex-start; }
@@ -448,11 +474,18 @@
       .home-title { font-size: clamp(2.4rem, 11vw, 3.2rem); letter-spacing: 2px; }
       .home-subtitle { font-size: 0.85rem; line-height: 1.6; }
       .hero-logo-floating { width: 65px; height: 65px; right: -55px; top: -25px; }
-      .highlight-card { padding: 18px; border-radius: 20px; }
-      .highlight-card h2 { font-size: 1.15rem; }
-      .highlight-card p { font-size: 0.8rem; }
-      .calendar-badge { width: 52px; height: 52px; border-radius: 14px; }
-      .calendar-badge strong { font-size: 1rem; }
+      
+      .highlight-card {
+        padding: 16px;
+        border-radius: 18px;
+        min-height: 290px;
+      }
+      .highlight-card h2 { font-size: 1.05rem; }
+      .highlight-card p { font-size: 0.78rem; line-height: 1.45; }
+      .calendar-badge { width: 48px; height: 48px; border-radius: 12px; }
+      .calendar-badge strong { font-size: 0.95rem; }
+      .calendar-badge span { font-size: 0.48rem; }
+      
       .quick-link { padding: 12px 14px; border-radius: 14px; }
     }
   </style>
@@ -518,7 +551,7 @@
         </div>
       </div>
 
-      <div class="highlight-grid">
+      <div class="highlight-grid" id="highlight-carousel">
 
         <div class="highlight-card primary">
           <div>
@@ -578,7 +611,7 @@
               </div>
             </div>
 
-            <h2 id="next-title" style="font-size:1.2rem;">Chargement...</h2>
+            <h2 id="next-title" style="font-size:1.15rem;">Chargement...</h2>
             <p id="next-meta" style="font-size:0.78rem;"></p>
 
             <div class="countdown-mini">
@@ -595,6 +628,12 @@
           </div>
         </div>
 
+      </div>
+
+      <div class="carousel-dots" id="carousel-dots">
+        <span class="dot active" onclick="scrollToCard(0)"></span>
+        <span class="dot" onclick="scrollToCard(1)"></span>
+        <span class="dot" onclick="scrollToCard(2)"></span>
       </div>
 
       <div class="quick-strip">
@@ -809,10 +848,31 @@
       if (countdownSubtitle) countdownSubtitle.textContent = 'avant : ' + next.titre;
     }
 
+    // Gestion active des points du carrousel au défilement tactile
+    function scrollToCard(index) {
+      const carousel = document.getElementById('highlight-carousel');
+      if (!carousel) return;
+      const card = carousel.children[index];
+      if (card) {
+        carousel.scrollTo({ left: card.offsetLeft - carousel.offsetLeft, behavior: 'smooth' });
+      }
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       initialiserAccueil();
       gererOuvertureInscriptions();
       setInterval(gererOuvertureInscriptions, 30000);
+
+      const carousel = document.getElementById('highlight-carousel');
+      const dots = document.querySelectorAll('.dot');
+      if (carousel && dots.length > 0) {
+        carousel.addEventListener('scroll', () => {
+          const index = Math.round(carousel.scrollLeft / carousel.clientWidth);
+          dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+          });
+        });
+      }
 
       const intro = document.getElementById('intro-screen');
       const introDejaVue = sessionStorage.getItem('introPrismUpVue');
