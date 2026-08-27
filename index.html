@@ -16,7 +16,7 @@
 
   <style>
     /* ===============================
-       ACCUEIL — PRISM UP 2026-2027
+       ACCUEIL — PRISM UP 2026-2027 (MOBILE CORRIGÉ)
     =============================== */
 
     body {
@@ -52,12 +52,8 @@
     }
 
     @keyframes floatLogo {
-      0%, 100% {
-        transform: rotate(8deg) translateY(0);
-      }
-      50% {
-        transform: rotate(8deg) translateY(-8px);
-      }
+      0%, 100% { transform: rotate(8deg) translateY(0); }
+      50% { transform: rotate(8deg) translateY(-8px); }
     }
 
     /* INTRO ANIMÉE RAPIDE */
@@ -118,9 +114,7 @@
       white-space: nowrap;
     }
 
-    .intro-title span {
-      color: var(--violet-clair);
-    }
+    .intro-title span { color: var(--violet-clair); }
 
     .intro-subtitle {
       color: rgba(255,255,255,0.72);
@@ -130,31 +124,17 @@
     }
 
     @keyframes introPop {
-      from {
-        opacity: 0;
-        transform: translateY(18px) scale(0.96);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: translateY(18px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     @keyframes introFadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
+      to { opacity: 0; visibility: hidden; pointer-events: none; }
     }
 
     @keyframes logoPulseIntro {
-      0%, 100% {
-        box-shadow: 0 0 32px rgba(152,148,219,0.25);
-      }
-      50% {
-        box-shadow: 0 0 60px rgba(152,148,219,0.5);
-      }
+      0%, 100% { box-shadow: 0 0 32px rgba(152,148,219,0.25); }
+      50% { box-shadow: 0 0 60px rgba(152,148,219,0.5); }
     }
 
     /* ANNONCE HAUT */
@@ -185,55 +165,32 @@
 
     .floating-next {
       position: fixed;
-      bottom: 100px;
+      bottom: 90px;
       right: 20px;
       background: linear-gradient(135deg, var(--violet-clair), #6b67c4);
       border-radius: 50px;
-      padding: 12px 20px;
+      padding: 10px 18px;
       z-index: 998;
       display: none;
       cursor: pointer;
       box-shadow: 0 5px 20px rgba(152,148,219,0.5);
-      transition: all 0.3s;
     }
 
     .floating-next p {
       color: var(--violet-fonce);
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       white-space: nowrap;
     }
 
     /* HERO */
     .home-hero {
-      min-height: 100vh;
+      min-height: 90vh;
       display: flex;
       align-items: center;
-      padding: 120px 40px 55px;
+      padding: 100px 20px 40px;
       position: relative;
       overflow: hidden;
-    }
-
-    .home-hero::before {
-      content: "";
-      position: absolute;
-      width: 620px;
-      height: 620px;
-      border-radius: 50%;
-      background: rgba(152,148,219,0.08);
-      right: -180px;
-      top: 70px;
-    }
-
-    .home-hero::after {
-      content: "";
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      border-radius: 50%;
-      background: rgba(152,148,219,0.06);
-      left: -120px;
-      bottom: -120px;
     }
 
     .home-container {
@@ -247,57 +204,49 @@
     .hero-main {
       text-align: center;
       max-width: 850px;
-      margin: 0 auto 34px;
-      animation: pageRise 0.5s ease both;
+      margin: 0 auto 28px;
     }
 
     .hero-kicker {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 16px;
+      padding: 6px 14px;
       border-radius: 50px;
       background: rgba(152,148,219,0.16);
       border: 1px solid rgba(152,148,219,0.42);
       color: var(--violet-clair);
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 900;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 22px;
+      margin-bottom: 16px;
     }
 
     .home-title {
-      font-size: clamp(3.4rem, 10vw, 7rem);
+      font-size: clamp(3rem, 9vw, 6rem);
       font-weight: 900;
-      letter-spacing: 5px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       line-height: 1;
-      margin: 0 0 16px;
-      white-space: nowrap;
+      margin: 0 0 14px;
     }
 
-    .home-title span {
-      color: var(--violet-clair);
-    }
+    .home-title span { color: var(--violet-clair); }
 
     .home-subtitle {
       color: rgba(255,255,255,0.75);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      max-width: 720px;
-      margin: 0 auto 26px;
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 700px;
+      margin: 0 auto 22px;
     }
 
     .hero-actions {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .hero-actions .btn-outline {
-      margin-left: 0;
+      gap: 12px;
     }
 
     /* CARTES IMPORTANTES */
@@ -305,7 +254,6 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      animation: pageRise 0.5s ease both;
     }
 
     .highlight-card {
@@ -313,45 +261,41 @@
         radial-gradient(circle at top right, rgba(152,148,219,0.24), transparent 35%),
         linear-gradient(145deg, rgba(152,148,219,0.14), rgba(255,255,255,0.035));
       border: 1px solid rgba(152,148,219,0.36);
-      border-radius: 30px;
-      padding: 28px;
+      border-radius: 26px;
+      padding: 24px;
       position: relative;
-      overflow: hidden;
-      min-height: 285px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-shadow: 0 20px 55px rgba(0,0,0,0.22);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     }
 
-    .highlight-card.primary {
-      border-color: rgba(152,148,219,0.7);
-    }
+    .highlight-card.primary { border-color: rgba(152,148,219,0.7); }
 
     .highlight-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 18px;
-      margin-bottom: 20px;
+      gap: 14px;
+      margin-bottom: 16px;
     }
 
     .highlight-label {
       display: inline-block;
       color: var(--violet-fonce);
       background: var(--violet-clair);
-      padding: 7px 14px;
+      padding: 6px 12px;
       border-radius: 999px;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
     }
 
     .calendar-badge {
-      width: 78px;
-      height: 78px;
-      border-radius: 22px;
+      width: 68px;
+      height: 68px;
+      border-radius: 18px;
       background: linear-gradient(135deg, var(--violet-clair), #6b67c4);
       color: var(--violet-fonce);
       display: flex;
@@ -359,82 +303,56 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      box-shadow: 0 15px 34px rgba(152,148,219,0.25);
+      box-shadow: 0 10px 25px rgba(152,148,219,0.25);
     }
 
-    .calendar-badge strong {
-      font-size: 1.4rem;
-      line-height: 1;
-      font-weight: 900;
-    }
-
-    .calendar-badge span {
-      font-size: 0.62rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+    .calendar-badge strong { font-size: 1.25rem; line-height: 1; font-weight: 900; }
+    .calendar-badge span { font-size: 0.55rem; font-weight: 900; text-transform: uppercase; }
 
     .highlight-card h2 {
-      font-size: 1.65rem;
-      line-height: 1.25;
+      font-size: 1.4rem;
+      line-height: 1.2;
       font-weight: 900;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .highlight-card p {
       color: rgba(255,255,255,0.68);
-      line-height: 1.75;
-      font-size: 0.92rem;
+      line-height: 1.6;
+      font-size: 0.88rem;
     }
 
-    .highlight-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
+    .highlight-actions { margin-top: 20px; }
 
     .countdown-mini {
       display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 12px;
+      grid-template-columns: 65px 1fr;
+      gap: 10px;
       align-items: center;
       background: rgba(0,0,0,0.16);
       border: 1px solid rgba(152,148,219,0.22);
-      border-radius: 18px;
-      padding: 12px;
-      margin-top: 15px;
+      border-radius: 14px;
+      padding: 10px;
+      margin-top: 12px;
     }
 
     .countdown-number {
       color: var(--violet-clair);
-      font-size: 2.2rem;
+      font-size: 1.8rem;
       font-weight: 900;
       text-align: center;
       line-height: 1;
     }
 
-    .countdown-mini strong {
-      display: block;
-      color: white;
-      margin-bottom: 3px;
-      font-size: 0.85rem;
-    }
-
-    .countdown-mini span {
-      color: rgba(255,255,255,0.55);
-      font-size: 0.75rem;
-      line-height: 1.4;
-    }
+    .countdown-mini strong { display: block; color: white; margin-bottom: 2px; font-size: 0.78rem; }
+    .countdown-mini span { color: rgba(255,255,255,0.55); font-size: 0.7rem; }
 
     /* NAV RAPIDE */
     .quick-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 24px;
-      animation: pageRise 0.5s ease both;
+      gap: 14px;
+      margin-top: 22px;
     }
 
     .quick-link {
@@ -442,261 +360,100 @@
       color: white;
       background: rgba(152,148,219,0.075);
       border: 1px solid rgba(152,148,219,0.24);
-      border-radius: 22px;
-      padding: 20px;
-      transition: all 0.25s;
+      border-radius: 18px;
+      padding: 16px;
       display: flex;
       align-items: center;
-      gap: 14px;
-      min-height: 100px;
+      gap: 12px;
     }
 
-    .quick-link:hover {
-      transform: translateY(-4px);
-      border-color: var(--violet-clair);
-      background: rgba(152,148,219,0.13);
-    }
-
-    .quick-link .icon {
-      font-size: 2rem;
-      width: 50px;
-      flex-shrink: 0;
-    }
-
-    .quick-link h3 {
-      color: var(--violet-clair);
-      font-size: 1rem;
-      font-weight: 900;
-      margin-bottom: 4px;
-    }
-
-    .quick-link p {
-      color: rgba(255,255,255,0.58);
-      font-size: 0.78rem;
-      line-height: 1.45;
-    }
-
-    @keyframes pageRise {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    .quick-link .icon { font-size: 1.6rem; width: 40px; flex-shrink: 0; }
+    .quick-link h3 { color: var(--violet-clair); font-size: 0.95rem; font-weight: 900; margin-bottom: 3px; }
+    .quick-link p { color: rgba(255,255,255,0.58); font-size: 0.75rem; }
 
     /* INFOS BAS */
-    .home-info {
-      padding-top: 45px;
-    }
+    .home-info { padding: 30px 20px 50px; max-width: 1180px; margin: 0 auto; }
 
     .home-info-card {
       background: rgba(152,148,219,0.06);
       border: 1px solid rgba(152,148,219,0.22);
-      border-radius: 28px;
-      padding: 30px;
+      border-radius: 24px;
+      padding: 26px;
       display: grid;
       grid-template-columns: 1fr 0.8fr;
-      gap: 28px;
+      gap: 24px;
       align-items: center;
     }
 
     .home-info-card h2 {
       color: var(--violet-clair);
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 900;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-transform: uppercase;
-      letter-spacing: 1.8px;
+      letter-spacing: 1.5px;
     }
 
-    .home-info-card p {
-      color: rgba(255,255,255,0.72);
-      line-height: 1.85;
-    }
+    .home-info-card p { color: rgba(255,255,255,0.72); line-height: 1.7; font-size: 0.9rem; }
 
-    .style-chips {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
+    .style-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
 
     .style-chip {
-      padding: 8px 13px;
+      padding: 6px 12px;
       border-radius: 999px;
       background: rgba(152,148,219,0.13);
       border: 1px solid rgba(152,148,219,0.28);
       color: rgba(255,255,255,0.78);
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       font-weight: 800;
     }
 
-    .partners-mini {
-      display: flex;
-      gap: 14px;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-    }
+    .partners-mini { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; }
 
     .partner-mini-box {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(152,148,219,0.2);
-      border-radius: 18px;
-      padding: 16px 20px;
+      border-radius: 14px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 135px;
     }
 
-    .partner-mini-box img {
-      height: 58px;
-      max-width: 140px;
-      object-fit: contain;
-      filter: brightness(1.12);
-    }
+    .partner-mini-box img { height: 45px; max-width: 120px; object-fit: contain; filter: brightness(1.12); }
 
-    /* CORRECTIONS MOBILE ADOUCIES (POUR QUE RIEN NE DISPARAISSE) */
+    /* CORRECTIONS STRICTES POUR SMARTPHONES */
     @media (max-width: 900px) {
       .highlight-grid {
         display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        gap: 15px;
-        padding-bottom: 12px;
-        -webkit-overflow-scrolling: touch;
+        gap: 12px;
+        padding-bottom: 10px;
       }
-      .highlight-grid::-webkit-scrollbar {
-        display: none;
-      }
+      .highlight-grid::-webkit-scrollbar { display: none; }
       .highlight-grid .highlight-card {
-        min-width: 85%;
+        min-width: 88%;
         scroll-snap-align: center;
         flex-shrink: 0;
       }
-
-      .quick-strip {
-        grid-template-columns: 1fr;
-      }
-
-      .home-info-card {
-        grid-template-columns: 1fr;
-      }
-
-      .partners-mini {
-        justify-content: flex-start;
-      }
+      .quick-strip { grid-template-columns: 1fr; }
+      .home-info-card { grid-template-columns: 1fr; }
+      .partners-mini { justify-content: flex-start; }
     }
 
     @media (max-width: 768px) {
-      body {
-        padding-bottom: 110px;
-      }
-
-      .intro-logo {
-        width: 80px;
-        height: 80px;
-        margin-bottom: 16px;
-      }
-
-      .intro-title {
-        font-size: 2rem;
-      }
-
-      .home-announcement {
-        padding: 6px 10px;
-      }
-
-      .home-announcement p {
-        font-size: 0.65rem;
-      }
-
-      .home-hero {
-        min-height: auto;
-        padding: 100px 14px 30px;
-      }
-
-      .home-title {
-        font-size: clamp(2.2rem, 12vw, 3.5rem);
-        letter-spacing: 2px;
-      }
-
-      .home-subtitle {
-        font-size: 0.88rem;
-      }
-
-      .hero-actions {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .hero-actions .btn {
-        width: 100%;
-        text-align: center;
-        padding: 12px;
-        font-size: 0.8rem;
-      }
-
-      /* Cartes d'accueil compactes et lisibles sur mobile */
-      .highlight-card {
-        border-radius: 20px;
-        padding: 18px;
-        min-height: auto;
-      }
-
-      .highlight-card h2 {
-        font-size: 1.15rem;
-      }
-
-      .highlight-card p {
-        font-size: 0.8rem;
-        line-height: 1.5;
-      }
-
-      .calendar-badge {
-        width: 54px;
-        height: 54px;
-        border-radius: 14px;
-      }
-
-      .calendar-badge strong {
-        font-size: 1.1rem;
-      }
-
-      .calendar-badge span {
-        font-size: 0.5rem;
-      }
-
-      .countdown-mini {
-        grid-template-columns: 60px 1fr;
-        padding: 10px;
-        margin-top: 10px;
-      }
-
-      .countdown-number {
-        font-size: 1.8rem;
-      }
-
-      .countdown-mini strong {
-        font-size: 0.75rem;
-      }
-
-      .countdown-mini span {
-        font-size: 0.65rem;
-      }
-
-      .quick-link {
-        padding: 15px;
-        border-radius: 18px;
-      }
-
-      .home-info-card {
-        padding: 18px;
-      }
+      body { padding-bottom: 80px; }
+      .home-hero { padding: 90px 14px 20px; min-height: auto; }
+      .home-title { font-size: clamp(2.4rem, 11vw, 3.2rem); letter-spacing: 2px; }
+      .home-subtitle { font-size: 0.85rem; line-height: 1.6; }
+      .hero-logo-floating { width: 65px; height: 65px; right: -55px; top: -25px; }
+      .highlight-card { padding: 18px; border-radius: 20px; }
+      .highlight-card h2 { font-size: 1.15rem; }
+      .highlight-card p { font-size: 0.8rem; }
+      .calendar-badge { width: 52px; height: 52px; border-radius: 14px; }
+      .calendar-badge strong { font-size: 1rem; }
+      .quick-link { padding: 12px 14px; border-radius: 14px; }
     }
   </style>
 </head>
@@ -756,8 +513,8 @@
         </p>
 
         <div class="hero-actions">
-          <a href="cours.html" class="btn btn-primary">Voir les cours</a>
-          <a href="rejoindre.html" class="btn btn-outline">Nous rejoindre</a>
+          <a href="cours.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.82rem;">Voir les cours</a>
+          <a href="rejoindre.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.82rem;">Nous rejoindre</a>
         </div>
       </div>
 
@@ -781,7 +538,7 @@
           </div>
 
           <div class="highlight-actions">
-            <a href="cours.html" class="btn btn-primary" style="width:100%;text-align:center;">Voir le planning</a>
+            <a href="cours.html" class="btn btn-primary" style="width:100%; text-align:center; padding: 10px; font-size: 0.8rem;">Voir le planning</a>
           </div>
         </div>
 
@@ -802,10 +559,10 @@
           </div>
 
           <div class="highlight-actions" style="display:flex; flex-direction:column; gap:6px;">
-            <a id="btn-accueil-billetterie" href="#" target="_blank" class="btn btn-primary" style="opacity: 0.5; pointer-events: none; width: 100%; text-align: center; white-space: nowrap; font-size: 0.78rem; overflow: hidden; text-overflow: ellipsis;">
+            <a id="btn-accueil-billetterie" href="#" target="_blank" class="btn btn-primary" style="opacity: 0.5; pointer-events: none; width: 100%; text-align: center; white-space: nowrap; font-size: 0.75rem; padding: 10px;">
               🔒 Ouvert le 5 sept. à 18h
             </a>
-            <p id="statut-accueil-billetterie" style="font-size: 0.72rem; color: rgba(255,255,255,0.6); text-align: center; margin: 0;">
+            <p id="statut-accueil-billetterie" style="font-size: 0.68rem; color: rgba(255,255,255,0.6); text-align: center; margin: 0;">
               Vérification de l'heure...
             </p>
           </div>
@@ -821,20 +578,20 @@
               </div>
             </div>
 
-            <h2 id="next-title" style="font-size:1.35rem;">Chargement...</h2>
-            <p id="next-meta" style="font-size:0.82rem;"></p>
+            <h2 id="next-title" style="font-size:1.2rem;">Chargement...</h2>
+            <p id="next-meta" style="font-size:0.78rem;"></p>
 
             <div class="countdown-mini">
               <div class="countdown-number" id="countdown-number">0</div>
               <div>
-                <strong id="countdown-label">jours restants</strong>
-                <span id="countdown-subtitle">rendez-vous Prism Up</span>
+                <strong id="countdown-label" style="font-size: 0.75rem;">jours restants</strong>
+                <span id="countdown-subtitle" style="font-size: 0.65rem;">rendez-vous Prism Up</span>
               </div>
             </div>
           </div>
 
           <div class="highlight-actions">
-            <a href="evenements.html" class="btn btn-primary" style="width:100%;text-align:center;">Voir l'événement</a>
+            <a href="evenements.html" class="btn btn-primary" style="width:100%; text-align:center; padding: 10px; font-size: 0.8rem;">Voir l'événement</a>
           </div>
         </div>
 
@@ -904,27 +661,27 @@
     <p>Association de danse · Thumeries</p>
     <br>
 
-    <div style="display:flex;justify-content:center;gap:15px;margin:20px 0;flex-wrap:wrap;">
+    <div style="display:flex;justify-content:center;gap:12px;margin:15px 0;flex-wrap:wrap;">
       <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.85rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 15px;border-radius:50px;">📸 Instagram</a>
+      style="color:var(--blanc);text-decoration:none;font-size:0.8rem;
+      border:1px solid rgba(152,148,219,0.4);padding:6px 14px;border-radius:50px;">📸 Instagram</a>
       <a href="https://www.facebook.com/profile.php?id=61582350400438" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.85rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 15px;border-radius:50px;">👥 Facebook</a>
+      style="color:var(--blanc);text-decoration:none;font-size:0.8rem;
+      border:1px solid rgba(152,148,219,0.4);padding:6px 14px;border-radius:50px;">👥 Facebook</a>
       <a href="https://www.tiktok.com/@prismup" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.85rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 15px;border-radius:50px;">🎵 TikTok</a>
+      style="color:var(--blanc);text-decoration:none;font-size:0.8rem;
+      border:1px solid rgba(152,148,219,0.4);padding:6px 14px;border-radius:50px;">🎵 TikTok</a>
       <a href="https://www.youtube.com/@Prismup-n4i" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.85rem;
-      border:1px solid rgba(152,148,219,0.4);padding:8px 15px;border-radius:50px;">▶️ YouTube</a>
+      style="color:var(--blanc);text-decoration:none;font-size:0.8rem;
+      border:1px solid rgba(152,148,219,0.4);padding:6px 14px;border-radius:50px;">▶️ YouTube</a>
     </div>
 
     <br>
 
     <div style="display:flex;justify-content:space-between;align-items:center;
-    flex-wrap:wrap;gap:15px;margin-top:20px;padding-top:20px;
+    flex-wrap:wrap;gap:12px;margin-top:15px;padding-top:15px;
     border-top:1px solid rgba(152,148,219,0.15);">
-      <p style="color:rgba(255,255,255,0.4);font-size:0.8rem;">© 2026 Prism Up · Tous droits réservés</p>
+      <p style="color:rgba(255,255,255,0.4);font-size:0.75rem;">© 2026 Prism Up · Tous droits réservés</p>
     </div>
   </footer>
 
