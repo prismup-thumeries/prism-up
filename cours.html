@@ -96,58 +96,46 @@
       line-height: 1.5;
     }
 
-    .rentree-banner {
+    /* ENCART D'INSCRIPTION & COMPTE À REBOURS STYLE CARTE HERO */
+    .cours-action-box {
       margin-top: 26px;
-      display: flex;
-      gap: 16px;
+      background:
+        radial-gradient(circle at top right, rgba(152,148,219,0.28), transparent 45%),
+        linear-gradient(145deg, rgba(152,148,219,0.16), rgba(255,255,255,0.04));
+      border: 1px solid rgba(152,148,219,0.55);
+      border-radius: 22px;
+      padding: 22px 26px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
       align-items: center;
-      background: rgba(152,148,219,0.1);
-      border: 1px solid rgba(152,148,219,0.32);
-      border-radius: 20px;
-      padding: 16px;
-      max-width: 760px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     }
 
-    .rentree-date {
-      width: 62px;
-      height: 62px;
-      border-radius: 18px;
-      background: linear-gradient(135deg,var(--violet-clair),#6b67c4);
-      color: var(--violet-fonce);
+    .cours-action-left h3 {
+      color: var(--violet-clair);
+      font-size: 1.15rem;
+      font-weight: 900;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cours-action-left p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin: 0;
+      max-width: 520px;
+    }
+
+    .cours-action-right {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      flex-shrink: 0;
-    }
-
-    .rentree-date strong {
-      font-size: 1.7rem;
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .rentree-date span {
-      font-size: 0.62rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .rentree-banner h3 {
-      color: var(--violet-clair);
-      font-size: 1rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-
-    .rentree-banner p {
-      color: rgba(255,255,255,0.68);
-      font-size: 0.86rem;
-      line-height: 1.6;
-      margin: 0;
+      align-items: flex-end;
+      gap: 8px;
+      min-width: 220px;
     }
 
     /* BARRE D'ACTIONS RAPIDES (OUTILS PLIABLES) */
@@ -736,37 +724,6 @@
       margin-bottom: 18px;
     }
 
-    .modal-essai-box {
-      background: linear-gradient(135deg, rgba(152,148,219,0.18), rgba(107,103,196,0.12));
-      border: 1px solid rgba(152,148,219,0.45);
-      border-radius: 18px;
-      padding: 16px 20px;
-      margin-bottom: 18px;
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-
-    .modal-essai-box span {
-      font-size: 1.8rem;
-    }
-
-    .modal-essai-box strong {
-      display: block;
-      color: var(--violet-clair);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 3px;
-    }
-
-    .modal-essai-box p {
-      color: rgba(255,255,255,0.85);
-      font-size: 0.88rem;
-      margin: 0;
-      font-weight: 600;
-    }
-
     .modal-actions {
       display: flex;
       gap: 12px;
@@ -784,26 +741,19 @@
         font-size: 1.65rem;
       }
 
-      .rentree-banner {
-        align-items: flex-start;
+      .cours-action-box {
+        grid-template-columns: 1fr;
+        padding: 18px;
       }
 
-      .rentree-date {
-        width: 54px;
-        height: 54px;
-        border-radius: 16px;
+      .cours-action-right {
+        align-items: stretch;
+        width: 100%;
       }
 
-      .rentree-date strong {
-        font-size: 1.45rem;
-      }
-
-      .rentree-banner h3 {
-        font-size: 0.82rem;
-      }
-
-      .rentree-banner p {
-        font-size: 0.78rem;
+      .cours-action-right .btn {
+        width: 100%;
+        text-align: center;
       }
 
       .finder-grid {
@@ -916,17 +866,21 @@
           Cliquez sur n'importe quel cours pour découvrir les détails, les tarifs et la date exacte du cours d'essai gratuit.
         </p>
 
-        <div class="rentree-banner">
-          <div class="rentree-date">
-            <strong>7</strong>
-            <span>sept.</span>
-          </div>
-          <div>
-            <h3>Semaine de rentrée & Cours d'essai</h3>
+        <!-- ENCART INSCRIPTION / DÉCOMPTE SÉCURISÉ -->
+        <div class="cours-action-box">
+          <div class="cours-action-left">
+            <h3>✨ Inscriptions Saison 2026-2027</h3>
             <p>
-              La rentrée a lieu à partir de la semaine du 7 septembre.
-              Chaque cours d'essai gratuit se fait directement sur le premier cours de la saison !
+              Prêt(e) à nous rejoindre ? La billetterie en ligne ouvre officiellement le 5 septembre à 18h00.
             </p>
+          </div>
+          <div class="cours-action-right">
+            <a id="btn-cours-billetterie" href="#" target="_blank" class="btn btn-primary" style="opacity: 0.5; pointer-events: none; white-space: nowrap; font-size: 0.8rem; text-align: center;">
+              🔒 Ouvert le 5 sept. à 18h
+            </a>
+            <span id="statut-cours-billetterie" style="font-size: 0.74rem; color: rgba(255,255,255,0.65); text-align: right;">
+              Vérification de l'heure...
+            </span>
           </div>
         </div>
 
@@ -1056,77 +1010,72 @@
     </div>
   </div>
 
-  <!-- ONGLETS DE JOURS POUR MOBILE (uniquement visible sur smartphone) -->
-<div class="mobile-days-tabs" id="mobile-days-tabs">
-  <button class="m-day-btn active" onclick="filtrerJourMobile('lundi', this)">Lundi</button>
-  <button class="m-day-btn" onclick="filtrerJourMobile('mardi', this)">Mardi</button>
-  <button class="m-day-btn" onclick="filtrerJourMobile('jeudi', this)">Jeudi</button>
-  <button class="m-day-btn" onclick="filtrerJourMobile('samedi', this)">Samedi</button>
-</div>
+  <!-- ONGLETS DE JOURS POUR MOBILE -->
+  <div class="mobile-days-tabs" id="mobile-days-tabs">
+    <button class="m-day-btn active" onclick="filtrerJourMobile('lundi', this)">Lundi</button>
+    <button class="m-day-btn" onclick="filtrerJourMobile('mardi', this)">Mardi</button>
+    <button class="m-day-btn" onclick="filtrerJourMobile('jeudi', this)">Jeudi</button>
+    <button class="m-day-btn" onclick="filtrerJourMobile('samedi', this)">Samedi</button>
+  </div>
 
-<style>
-  /* Style des onglets mobiles (caché sur grand écran) */
-  .mobile-days-tabs {
-    display: none;
-    gap: 8px;
-    justify-content: center;
-    margin: 20px 0;
-    overflow-x: auto;
-    padding-bottom: 5px;
-  }
-
-  @media (max-width: 768px) {
+  <style>
     .mobile-days-tabs {
-      display: flex;
+      display: none;
+      gap: 8px;
+      justify-content: center;
+      margin: 20px 0;
+      overflow-x: auto;
+      padding-bottom: 5px;
     }
-  }
 
-  .m-day-btn {
-    background: rgba(152,148,219,0.1);
-    border: 1px solid rgba(152,148,219,0.3);
-    color: white;
-    padding: 10px 16px;
-    border-radius: 50px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800;
-    font-size: 0.8rem;
-    cursor: pointer;
-    white-space: nowrap;
-  }
+    @media (max-width: 768px) {
+      .mobile-days-tabs {
+        display: flex;
+      }
+    }
 
-  .m-day-btn.active {
-    background: var(--violet-clair);
-    color: var(--violet-fonce);
-    border-color: var(--violet-clair);
-  }
-</style>
+    .m-day-btn {
+      background: rgba(152,148,219,0.1);
+      border: 1px solid rgba(152,148,219,0.3);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
 
-<script>
-  /* Fonction pour basculer d'un jour à l'autre sur mobile */
-  function filtrerJourMobile(jourCible, bouton) {
-    // Activer le bouton cliqué
-    document.querySelectorAll('.m-day-btn').forEach(b => b.classList.remove('active'));
-    bouton.classList.add('active');
+    .m-day-btn.active {
+      background: var(--violet-clair);
+      color: var(--violet-fonce);
+      border-color: var(--violet-clair);
+    }
+  </style>
 
-    // Afficher uniquement le jour correspondant
-    document.querySelectorAll('.day-row').forEach(row => {
-      const h3 = row.querySelector('.day-label h3');
-      if (h3 && h3.textContent.toLowerCase().includes(jourCible)) {
-        row.classList.add('mobile-active-day');
-      } else {
-        row.classList.remove('mobile-active-day');
+  <script>
+    function filtrerJourMobile(jourCible, bouton) {
+      document.querySelectorAll('.m-day-btn').forEach(b => b.classList.remove('active'));
+      bouton.classList.add('active');
+
+      document.querySelectorAll('.day-row').forEach(row => {
+        const h3 = row.querySelector('.day-label h3');
+        if (h3 && h3.textContent.toLowerCase().includes(jourCible)) {
+          row.style.display = 'grid';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.innerWidth <= 768) {
+        const premierBtn = document.querySelector('.m-day-btn');
+        if (premierBtn) filtrerJourMobile('lundi', premierBtn);
       }
     });
-  }
-
-  // Activer le Lundi par défaut au chargement sur mobile
-  document.addEventListener('DOMContentLoaded', () => {
-    if (window.innerWidth <= 768) {
-      const premierBtn = document.querySelector('.m-day-btn');
-      if (premierBtn) filtrerJourMobile('lundi', premierBtn);
-    }
-  });
-</script>
+  </script>
 
   <!-- PLANNING DES COURS -->
   <section>
@@ -1524,7 +1473,7 @@
   <script src="events.js"></script>
   <script src="js/main.js"></script>
 
-    <script>
+  <script>
     const infosCours = {
       ce2cm1: {
         icon: "👧",
@@ -1652,6 +1601,49 @@
     let estimationPrincipal = null;
     let estimationOptions = [];
 
+    // SÉCURITÉ ANTI-TRICHE HORLOGE POUR LE BOUTON D'INSCRIPTION SUR LA PAGE COURS
+    async function gererOuvertureInscriptionsCours() {
+      const btn = document.getElementById('btn-cours-billetterie');
+      const statut = document.getElementById('statut-cours-billetterie');
+      
+      if (!btn || !statut) return;
+
+      let maintenant;
+      try {
+        const response = await fetch('https://worldtimeapi.org/api/timezone/Europe/Paris');
+        const data = await response.json();
+        maintenant = new Date(data.datetime);
+      } catch (e) {
+        maintenant = new Date();
+      }
+
+      const dateOuverture = new Date('2026-09-05T18:00:00');
+
+      if (maintenant >= dateOuverture) {
+        btn.href = "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027";
+        btn.style.opacity = "1";
+        btn.style.pointerEvents = "auto";
+        btn.textContent = "✨ S'inscrire sur HelloAsso";
+        statut.textContent = "✅ Inscriptions ouvertes !";
+      } else {
+        btn.href = "#";
+        btn.style.opacity = "0.5";
+        btn.style.pointerEvents = "none";
+        btn.textContent = "🔒 Ouvert le 5 sept. à 18h";
+        
+        const diff = dateOuverture - maintenant;
+        const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const heures = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        
+        if (jours > 0) {
+          statut.textContent = `Ouverture dans ${jours}j ${heures}h ${minutes}min`;
+        } else {
+          statut.textContent = `Ouverture dans ${heures}h ${minutes}min`;
+        }
+      }
+    }
+
     function toggleSection(id) {
       const section = document.getElementById(id);
       if (!section) return;
@@ -1679,13 +1671,11 @@
       const type = carte.dataset.tarifType;
       const isOption = type === "option";
 
-      // Modale épurée sans surcharge : juste l'essentiel regroupé proprement
       document.getElementById('modal-cours-contenu').innerHTML = `
         <div class="modal-icon">${c.icon}</div>
         <h2>${c.titre}</h2>
         <p class="modal-meta">${c.horaire} · ${c.niveau}</p>
 
-        <!-- LIEU AVEC LIEN GPS DIRECT -->
         <div style="background:rgba(152,148,219,0.08);border:1px solid rgba(152,148,219,0.25);border-radius:14px;padding:12px 16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;">
           <div>
             <strong style="color:var(--violet-clair);font-size:0.85rem;display:block;">📍 ${c.salleNom}</strong>
@@ -1696,7 +1686,6 @@
           </a>
         </div>
 
-        <!-- COURS D'ESSAI -->
         <div style="background:rgba(152,148,219,0.12);border:1px solid rgba(152,148,219,0.3);border-radius:14px;padding:12px 16px;margin-bottom:14px;">
           <strong style="color:var(--violet-clair);font-size:0.8rem;display:block;margin-bottom:2px;">🎁 Essai gratuit :</strong>
           <p style="color:white;font-size:0.85rem;margin:0;font-weight:600;">${c.essai}</p>
@@ -1868,6 +1857,9 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      gererOuvertureInscriptionsCours();
+      setInterval(gererOuvertureInscriptionsCours, 30000);
+
       ['filtre-age', 'filtre-jour', 'filtre-niveau'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener('change', appliquerFiltresCours);
@@ -1876,8 +1868,6 @@
       mettreAJourEstimation();
     });
   </script>
-
-
 
   <!-- NAVIGATION BAS MOBILE -->
   <nav class="nav-bottom">

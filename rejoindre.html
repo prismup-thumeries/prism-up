@@ -111,6 +111,13 @@
       overflow: hidden;
     }
 
+    /* Carte principale adhésion mise en valeur avec effet néon subtil */
+    .join-card.featured {
+      border-color: rgba(152,148,219,0.7);
+      background: radial-gradient(circle at top right, rgba(152,148,219,0.18), rgba(152,148,219,0.06));
+      box-shadow: 0 10px 30px rgba(152,148,219,0.12);
+    }
+
     .join-card:hover {
       transform: translateY(-5px);
       border-color: var(--violet-clair);
@@ -175,6 +182,12 @@
       background: linear-gradient(135deg,#9894db,#6b67c4);
       color: var(--violet-fonce);
       border-color: transparent;
+      animation: pulseBadge 2s infinite;
+    }
+
+    @keyframes pulseBadge {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
     }
 
     .side-contact {
@@ -523,14 +536,15 @@
         <!-- OPTIONS -->
         <div class="join-options">
 
-          <div class="join-card" onclick="ouvrirModal('adherent')">
+          <!-- CARTE ADHÉRENT (SÉCURISÉE AVEC COMPTE À REBOURS ET STYLE MODERNE) -->
+          <div class="join-card featured" onclick="gererClicAdherent()">
             <div class="join-icon">💃</div>
             <div>
               <h3>Devenir adhérent</h3>
               <p>
-                Tu veux danser avec nous et rejoindre les cours Prism Up pour la saison ?
+                Tu veux danser avec nous et rejoindre les cours Prism Up pour la saison 2026-2027 ?
               </p>
-              <span class="join-tag live">Préinscriptions ouvertes</span>
+              <span id="badge-statut-adhesion" class="join-tag live">🔒 Ouverture le 5 sept. à 18h</span>
             </div>
           </div>
 
@@ -777,20 +791,70 @@
   <script src="js/main.js"></script>
 
   <script>
+    // Variable globale pour suivre si l'inscription est ouverte (sécurisée)
+    let inscriptionsOuvertes = false;
+
+    // SÉCURITÉ ANTI-TRICHE HORLOGE POUR LA PAGE REJOINDRE
+    async function verifierStatutAdhesionPage() {
+      const badge = document.getElementById('badge-statut-adhesion');
+      if (!badge) return;
+
+      let maintenant;
+      try {
+        const response = await fetch('https://worldtimeapi.org/api/timezone/Europe/Paris');
+        const data = await response.json();
+        maintenant = new Date(data.datetime);
+      } catch (e) {
+        maintenant = new Date();
+      }
+
+      const dateOuverture = new Date('2026-09-05T18:00:00');
+
+      if (maintenant >= dateOuverture) {
+        inscriptionsOuvertes = true;
+        badge.textContent = "✨ Inscriptions ouvertes";
+      } else {
+        inscriptionsOuvertes = false;
+        
+        const diff = dateOuverture - maintenant;
+        const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const heures = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        
+        if (jours > 0) {
+          badge.textContent = `🔒 Ouverture dans ${jours}j ${heures}h`;
+        } else {
+          badge.textContent = `🔒 Ouverture dans ${heures}h`;
+        }
+      }
+    }
+
+    // Gestion du clic sur la carte Adhérent
+    function gererClicAdherent() {
+      if (inscriptionsOuvertes) {
+        // Redirige directement vers HelloAsso si c'est ouvert
+        window.open('https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027', '_blank');
+      } else {
+        // Ouvre la modale explicative avec compte à rebours si c'est avant le 5 sept
+        ouvrirModal('adherent');
+      }
+    }
+
     function ouvrirModal(type) {
       const contenu = {
         adherent: {
           emoji: '💃',
           titre: 'Devenir adhérent',
-          texte: `Les préinscriptions pour la saison sont ouvertes. Clique sur le bouton ci-dessous pour accéder au formulaire.`,
+          texte: inscriptionsOuvertes 
+            ? `La billetterie en ligne est ouverte ! Clique ci-dessous pour procéder à ton adhésion sur HelloAsso.`
+            : `Les inscriptions en ligne ouvriront officiellement le **5 septembre 2026 à 18h00** (suite au Forum des associations).`,
           points: [
             'Accès aux cours hebdomadaires',
             'Participation aux événements',
             'Tarifs préférentiels sur certains stages',
             'Une ambiance familiale et motivante'
           ],
-          lien: 'https://forms.gle/UMtVF2y5oxRN2GVh6',
-          lienTexte: '📋 Je me préinscris'
+          lien: inscriptionsOuvertes ? 'https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027' : '',
+          lienTexte: '✨ S’inscrire sur HelloAsso'
         },
         benevole: {
           emoji: '🙌',
@@ -1005,6 +1069,11 @@
       btn.textContent = 'Envoyer mon avis 💜';
       btn.disabled = false;
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      verifierStatutAdhesionPage();
+      setInterval(verifierStatutAdhesionPage, 30000);
+    });
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
