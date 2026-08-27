@@ -754,40 +754,25 @@
       return Math.ceil((cible - auj) / (1000 * 60 * 60 * 24));
     }
 
-         async function gererOuvertureInscriptions() {
+         function gererOuvertureInscriptions() {
       // Ajuste l'ID selon la page ('btn-accueil-billetterie', 'btn-cours-billetterie' ou 'btn-rejoindre-billetterie')
       const btn = document.getElementById('btn-accueil-billetterie'); 
-      const statut = document.getElementById('statut-accueil-billetterie'); // Ajuste aussi si besoin ('statut-cours-billetterie', etc.)
+      const statut = document.getElementById('statut-accueil-billetterie'); 
       
       if (!btn || !statut) return;
 
-      let maintenant;
-      try {
-        // Récupération de l'heure officielle sur Internet (impossible de tricher avec l'appareil)
-        const response = await fetch('https://worldtimeapi.org/api/timezone/Europe/Paris', { cache: 'no-store' });
-        const data = await response.json();
-        maintenant = new Date(data.datetime);
-      } catch (e) {
-        // Sécurité par défaut si pas de réseau
-        btn.href = "#";
-        btn.style.opacity = "0.5";
-        btn.style.pointerEvents = "none";
-        btn.textContent = "🔒 Ouvert le 5 sept. à 18h";
-        statut.textContent = "Vérification de l'heure...";
-        return;
-      }
-
       const dateOuverture = new Date('2026-09-05T18:00:00');
+      const maintenant = new Date();
 
       if (maintenant >= dateOuverture) {
-        // Si la date est passée : on débloque le vrai lien HelloAsso
+        // C'est l'heure : le lien s'active !
         btn.href = "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027";
         btn.style.opacity = "1";
         btn.style.pointerEvents = "auto";
         btn.textContent = "✨ S'inscrire sur HelloAsso";
         statut.textContent = "✅ Inscriptions ouvertes !";
       } else {
-        // Si on est avant : le bouton RESTE bloqué ET affiche le compte à rebours exact
+        // Avant l'heure : le bouton affiche le compte à rebours, et le statut reste sobre
         btn.href = "#";
         btn.style.opacity = "0.5";
         btn.style.pointerEvents = "none";
@@ -796,16 +781,31 @@
         const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
         const heures = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secondes = Math.floor((diff % (1000 * 60)) / 1000);
         
         if (jours > 0) {
           btn.textContent = `🔒 Ouverture dans ${jours}j ${heures}h ${minutes}min`;
-          statut.textContent = `Ouverture dans ${jours}j ${heures}h ${minutes}min`;
         } else {
-          btn.textContent = `🔒 Ouverture dans ${heures}h ${minutes}min`;
-          statut.textContent = `Ouverture dans ${heures}h ${minutes}min`;
+          btn.textContent = `🔒 Ouverture dans ${heures}h ${minutes}min ${secondes}s`;
         }
+        
+        // Le texte du dessous ne fait pas doublon
+        statut.textContent = "Ouverture de la billetterie le 5 septembre à 18h.";
       }
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      gererOuvertureInscriptions();
+      setInterval(gererOuvertureInscriptions, 1000); 
+    });
+
+
+    // Lancement au chargement de la page + mise à jour chaque seconde pour que les secondes bougent en direct
+    document.addEventListener('DOMContentLoaded', () => {
+      gererOuvertureInscriptions();
+      setInterval(gererOuvertureInscriptions, 1000); 
+    });
+
 
 
 

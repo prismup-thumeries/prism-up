@@ -794,39 +794,39 @@
     // Variable globale pour suivre si l'inscription est ouverte (sécurisée)
     let inscriptionsOuvertes = false;
 
-    // SÉCURITÉ ANTI-TRICHE HORLOGE POUR LA PAGE REJOINDRE
-    async function verifierStatutAdhesionPage() {
+       // SÉCURITÉ & DÉCOMPTE POUR LE BADGE DE LA PAGE REJOINDRE
+    function verifierStatutAdhesionPage() {
       const badge = document.getElementById('badge-statut-adhesion');
       if (!badge) return;
 
-      let maintenant;
-      try {
-        const response = await fetch('https://worldtimeapi.org/api/timezone/Europe/Paris');
-        const data = await response.json();
-        maintenant = new Date(data.datetime);
-      } catch (e) {
-        maintenant = new Date();
-      }
-
       const dateOuverture = new Date('2026-09-05T18:00:00');
+      const maintenant = new Date(); // Utilise l'heure de l'appareil pour un affichage fluide et instantané
 
       if (maintenant >= dateOuverture) {
-        inscriptionsOuvertes = true;
+        window.inscriptionsOuvertes = true;
         badge.textContent = "✨ Inscriptions ouvertes";
       } else {
-        inscriptionsOuvertes = false;
+        window.inscriptionsOuvertes = false;
         
         const diff = dateOuverture - maintenant;
         const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
         const heures = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         
         if (jours > 0) {
           badge.textContent = `🔒 Ouverture dans ${jours}j ${heures}h`;
         } else {
-          badge.textContent = `🔒 Ouverture dans ${heures}h`;
+          badge.textContent = `🔒 Ouverture dans ${heures}h ${minutes}min`;
         }
       }
     }
+
+    // Lancement et actualisation chaque seconde pour le badge
+    document.addEventListener('DOMContentLoaded', () => {
+      verifierStatutAdhesionPage();
+      setInterval(verifierStatutAdhesionPage, 1000);
+    });
+
 
     // Gestion du clic sur la carte Adhérent
     function gererClicAdherent() {
