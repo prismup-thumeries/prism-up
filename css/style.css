@@ -1128,3 +1128,37 @@ a, button, .slot-card, .event-card, .join-card, .main-tab, .archive-tab {
       background-color: #3498db;
       box-shadow: 0 0 8px #3498db;
     }
+
+       /* BADGE LISTE D'ATTENTE - CYAN NÉON AVEC POINT LUMINEUX */
+    .badge-liste-attente {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: rgba(0, 242, 254, 0.12);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      color: #00f2fe;
+    }
+
+    .badge-liste-attente .cyan-dot {
+      width: 5px;
+      height: 5px;
+      background-color: #00f2fe;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #00f2fe;
+      animation: cyan-pulse 1.8s infinite ease-in-out;
+    }
+
+    @keyframes cyan-pulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
+
+
+
