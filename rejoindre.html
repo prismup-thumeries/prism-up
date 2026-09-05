@@ -537,7 +537,7 @@
         <!-- OPTIONS -->
         <div class="join-options">
 
-          <!-- CARTE ADHÉRENT (SÉCURISÉE AVEC COMPTE À REBOURS ET STYLE MODERNE) -->
+          <!-- CARTE ADHÉRENT DIRECTE VERS HELLOASSO -->
           <div class="join-card featured" onclick="gererClicAdherent()">
             <div class="join-icon">💃</div>
             <div>
@@ -545,7 +545,7 @@
               <p>
                 Tu veux danser avec nous et rejoindre les cours Prism Up pour la saison 2026-2027 ?
               </p>
-              <span id="badge-statut-adhesion" class="join-tag live">🔒 Ouverture le 5 sept. à 18h</span>
+              <span id="badge-statut-adhesion" class="join-tag live">✨ Inscriptions ouvertes</span>
             </div>
           </div>
 
@@ -792,71 +792,9 @@
   <script src="js/main.js"></script>
 
   <script>
-    // Variable globale pour suivre si l'inscription est ouverte (sécurisée)
-    let inscriptionsOuvertes = false;
-
-        function verifierStatutAdhesionPage() {
-      const badge = document.getElementById('badge-statut-adhesion');
-      if (!badge) return;
-
-      const dateOuverture = new Date('2026-09-05T18:00:00');
-      
-      // 1. Affichage fluide du badge en local
-      const maintenantLocal = new Date();
-      const diff = dateOuverture - maintenantLocal;
-
-      if (diff > 0) {
-        const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const heures = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        
-        if (jours > 0) {
-          badge.textContent = `🔒 Ouverture dans ${jours}j ${heures}h`;
-        } else {
-          badge.textContent = `🔒 Ouverture dans ${heures}h ${minutes}min`;
-        }
-        window.inscriptionsOuvertes = false;
-      }
-
-      // 2. Vérification stricte d'Internet en arrière-plan pour la variable de sécurité
-      fetch('https://worldtimeapi.org/api/timezone/Europe/Paris', { cache: 'no-store' })
-        .then(response => response.json())
-        .then(data => {
-          const maintenantInternet = new Date(data.datetime);
-          if (maintenantInternet >= dateOuverture) {
-            window.inscriptionsOuvertes = true;
-            badge.textContent = "✨ Inscriptions ouvertes";
-          } else {
-            window.inscriptionsOuvertes = false;
-          }
-        })
-        .catch(e => {
-          window.inscriptionsOuvertes = false;
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      verifierStatutAdhesionPage();
-      setInterval(verifierStatutAdhesionPage, 1000);
-    });
-
-
-    // Lancement et actualisation chaque seconde pour le badge
-    document.addEventListener('DOMContentLoaded', () => {
-      verifierStatutAdhesionPage();
-      setInterval(verifierStatutAdhesionPage, 1000);
-    });
-
-
-    // Gestion du clic sur la carte Adhérent
+    // GESTION DIRECTE SANS RESTRICTION D'HEURE SUR LA PAGE REJOINDRE
     function gererClicAdherent() {
-      if (inscriptionsOuvertes) {
-        // Redirige directement vers HelloAsso si c'est ouvert
-        window.open('https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027', '_blank');
-      } else {
-        // Ouvre la modale explicative avec compte à rebours si c'est avant le 5 sept
-        ouvrirModal('adherent');
-      }
+      window.open('https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027', '_blank');
     }
 
     function ouvrirModal(type) {
@@ -864,16 +802,14 @@
         adherent: {
           emoji: '💃',
           titre: 'Devenir adhérent',
-          texte: inscriptionsOuvertes 
-            ? `La billetterie en ligne est ouverte ! Clique ci-dessous pour procéder à ton adhésion sur HelloAsso.`
-            : `Les inscriptions en ligne ouvriront officiellement le **5 septembre 2026 à 18h00** (suite au Forum des associations).`,
+          texte: `La billetterie en ligne est ouverte ! Clique ci-dessous pour procéder à ton adhésion sur HelloAsso.`,
           points: [
             'Accès aux cours hebdomadaires',
             'Participation aux événements',
             'Tarifs préférentiels sur certains stages',
             'Une ambiance familiale et motivante'
           ],
-          lien: inscriptionsOuvertes ? 'https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027' : '',
+          lien: 'https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027',
           lienTexte: '✨ S’inscrire sur HelloAsso'
         },
         benevole: {
@@ -1089,11 +1025,6 @@
       btn.textContent = 'Envoyer mon avis 💜';
       btn.disabled = false;
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      verifierStatutAdhesionPage();
-      setInterval(verifierStatutAdhesionPage, 30000);
-    });
 
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {

@@ -1129,36 +1129,57 @@ a, button, .slot-card, .event-card, .join-card, .main-tab, .archive-tab {
       box-shadow: 0 0 8px #3498db;
     }
 
-       /* BADGE LISTE D'ATTENTE - CYAN NÉON AVEC POINT LUMINEUX */
-    .badge-liste-attente {
+        /* CARTE COMPLÈTE ET GRISEE */
+    .slot-card.is-complet {
+      opacity: 0.6;
+      background: rgba(25, 20, 35, 0.4) !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      position: relative;
+      overflow: hidden; /* Empêche le ruban de dépasser des bords de la carte */
+    }
+
+    .slot-card.is-complet:hover {
+      opacity: 0.8;
+    }
+
+    /* LE RUBAN / BANDEROLE DIAGONALE */
+    .complet-ribbon {
+      position: absolute;
+      top: 18px;
+      right: -35px;
+      transform: rotate(45deg);
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: white;
+      padding: 5px 40px;
+      font-size: 0.55rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Bouton nous contacter sur la carte */
+    .btn-contact-carte {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      font-size: 0.65rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      background: rgba(0, 242, 254, 0.12);
-      border: 1px solid rgba(0, 242, 254, 0.4);
-      color: #00f2fe;
+      gap: 5px;
+      margin-top: 10px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      width: fit-content;
     }
 
-    .badge-liste-attente .cyan-dot {
-      width: 5px;
-      height: 5px;
-      background-color: #00f2fe;
-      border-radius: 50%;
-      box-shadow: 0 0 6px #00f2fe;
-      animation: cyan-pulse 1.8s infinite ease-in-out;
+    .btn-contact-carte:hover {
+      background: #ffffff;
+      color: #1a153b;
     }
-
-    @keyframes cyan-pulse {
-      0%, 100% { opacity: 0.4; transform: scale(0.8); }
-      50% { opacity: 1; transform: scale(1.2); }
-    }
-
-
-
-

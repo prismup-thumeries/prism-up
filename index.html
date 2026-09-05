@@ -588,16 +588,17 @@
 
             <h2>Inscriptions 2026-2027</h2>
             <p>
-              Ouverture officielle de la billetterie en ligne le 5 septembre à 18h00.
+              Ouverture officielle de la billetterie en ligne.
             </p>
           </div>
 
           <div class="highlight-actions" style="display:flex; flex-direction:column; gap:6px;">
-            <a id="btn-accueil-billetterie" href="#" target="_blank" class="btn btn-primary" style="opacity: 0.5; pointer-events: none; width: 100%; text-align: center; white-space: nowrap; font-size: 0.75rem; padding: 10px;">
-              🔒 Ouvert le 5 sept. à 18h
+            <!-- BOUTON DÉBLOQUÉ DIRECTEMENT VERS HELLOASSO -->
+            <a id="btn-accueil-billetterie" href="https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027" target="_blank" class="btn btn-primary" style="opacity: 1; pointer-events: auto; width: 100%; text-align: center; white-space: nowrap; font-size: 0.75rem; padding: 10px;">
+              ✨ S'inscrire sur HelloAsso
             </a>
             <p id="statut-accueil-billetterie" style="font-size: 0.68rem; color: rgba(255,255,255,0.6); text-align: center; margin: 0;">
-              Vérification de l'heure...
+              ✅ Inscriptions ouvertes !
             </p>
           </div>
         </div>
@@ -755,80 +756,19 @@
       return Math.ceil((cible - auj) / (1000 * 60 * 60 * 24));
     }
 
-        function gererOuvertureInscriptions() {
+    // FONCTION DIRECTE SANS RESTRICTION D'HEURE SUR L'ACCUEIL
+    function gererOuvertureInscriptions() {
       const btn = document.getElementById('btn-accueil-billetterie'); 
       const statut = document.getElementById('statut-accueil-billetterie'); 
       
       if (!btn || !statut) return;
 
-      const dateOuverture = new Date('2026-09-05T18:00:00');
-      
-      // 1. LE COMPTE À REBOURS UTILISE L'APPAREIL (fluide, en direct, sans bloquer si internet rame)
-      const maintenantLocal = new Date();
-      const diff = dateOuverture - maintenantLocal;
-
-      if (diff > 0) {
-        const jours = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const heures = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const secondes = Math.floor((diff % (1000 * 60)) / 1000);
-        
-        if (jours > 0) {
-          btn.textContent = `🔒 Ouverture dans ${jours}j ${heures}h ${minutes}min`;
-        } else {
-          btn.textContent = `🔒 Ouverture dans ${heures}h ${minutes}min ${secondes}s`;
-        }
-        statut.textContent = "Ouverture de la billetterie le 5 septembre à 18h.";
-      }
-
-      // 2. LA SÉCURITÉ DU LIEN UTILISE INTERNET (anti-triche strict en arrière-plan)
-      fetch('https://worldtimeapi.org/api/timezone/Europe/Paris', { cache: 'no-store' })
-        .then(response => response.json())
-        .then(data => {
-          const maintenantInternet = new Date(data.datetime);
-          
-          if (maintenantInternet >= dateOuverture) {
-            // C'est l'heure officielle : le lien s'active vraiment !
-            btn.href = "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027";
-            btn.style.opacity = "1";
-            btn.style.pointerEvents = "auto";
-            btn.textContent = "✨ S'inscrire sur HelloAsso";
-            statut.textContent = "✅ Inscriptions ouvertes !";
-          } else {
-            // Ce n'est pas encore l'heure officielle : on force le verrouillage du lien (même si le téléphone triche)
-            btn.href = "#";
-            btn.style.opacity = "0.5";
-            btn.style.pointerEvents = "none";
-          }
-        })
-        .catch(e => {
-          // En cas de panne d'internet, on bloque le lien par sécurité
-          btn.href = "#";
-          btn.style.opacity = "0.5";
-          btn.style.pointerEvents = "none";
-        });
+      btn.href = "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027";
+      btn.style.opacity = "1";
+      btn.style.pointerEvents = "auto";
+      btn.textContent = "✨ S'inscrire sur HelloAsso";
+      statut.textContent = "✅ Inscriptions ouvertes !";
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      gererOuvertureInscriptions();
-      setInterval(gererOuvertureInscriptions, 1000); // Met à jour l'affichage chaque seconde
-    });
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-      gererOuvertureInscriptions();
-      setInterval(gererOuvertureInscriptions, 1000); 
-    });
-
-
-    // Lancement au chargement de la page + mise à jour chaque seconde pour que les secondes bougent en direct
-    document.addEventListener('DOMContentLoaded', () => {
-      gererOuvertureInscriptions();
-      setInterval(gererOuvertureInscriptions, 1000); 
-    });
-
-
-
 
     function initialiserAccueil() {
       const next = prochainEvenement();
@@ -895,7 +835,6 @@
     document.addEventListener('DOMContentLoaded', () => {
       initialiserAccueil();
       gererOuvertureInscriptions();
-      setInterval(gererOuvertureInscriptions, 30000);
 
       const carousel = document.getElementById('highlight-carousel');
       const dots = document.querySelectorAll('.dot');
