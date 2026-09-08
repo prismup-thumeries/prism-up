@@ -164,6 +164,65 @@
       text-decoration: underline;
     }
 
+    /* BANDEAU PRESSE ÉPHÉMÈRE ACCUEIL */
+    .press-banner-home {
+      background: linear-gradient(135deg, rgba(241, 196, 15, 0.15), rgba(152,148,219,0.2));
+      border-bottom: 1px solid rgba(241, 196, 15, 0.35);
+      padding: 10px 20px;
+      margin-top: 65px; /* Pour se placer juste sous la navbar fixe */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 997;
+    }
+
+    .press-banner-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .press-banner-content p {
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .press-pulse-dot {
+      width: 7px;
+      height: 7px;
+      background-color: #f1c40f;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #f1c40f;
+      animation: pulse-dot 1.5s infinite;
+    }
+
+    .press-link-btn {
+      background: #f1c40f;
+      color: #1a0440;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform 0.2s;
+    }
+
+    .press-link-btn:hover {
+      transform: scale(1.05);
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 0.4; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.2); }
+    }
+
     .floating-next {
       position: fixed;
       bottom: 90px;
@@ -189,7 +248,7 @@
       min-height: 90vh;
       display: flex;
       align-items: center;
-      padding: 100px 20px 40px;
+      padding: 80px 20px 40px;
       position: relative;
       overflow: hidden;
     }
@@ -471,7 +530,7 @@
 
     @media (max-width: 768px) {
       body { padding-bottom: 80px; }
-      .home-hero { padding: 90px 14px 20px; min-height: auto; }
+      .home-hero { padding: 70px 14px 20px; min-height: auto; }
       .home-title { font-size: clamp(2.4rem, 11vw, 3.2rem); letter-spacing: 2px; }
       .home-subtitle { font-size: 0.85rem; line-height: 1.6; }
       .hero-logo-floating { width: 65px; height: 65px; right: -55px; top: -25px; }
@@ -529,6 +588,15 @@
       <span></span>
     </div>
   </nav>
+
+  <!-- BANDEAU PRESSE ÉPHÉMÈRE -->
+  <div class="press-banner-home">
+    <div class="press-banner-content">
+      <span class="press-pulse-dot"></span>
+      <p>📰 <strong>Vu dans la presse :</strong> Prism Up à l'honneur dans La Voix du Nord !</p>
+      <a href="https://www.lavoixdunord.fr/1734957/article/2026-09-07/prism-une-nouvelle-asso-petillante-pour-apprendre-les-danses-urbaines" target="_blank" class="press-link-btn">Lire l'article →</a>
+    </div>
+  </div>
 
   <main class="home-hero">
     <div class="home-container">
@@ -593,7 +661,6 @@
           </div>
 
           <div class="highlight-actions" style="display:flex; flex-direction:column; gap:6px;">
-            <!-- BOUTON DÉBLOQUÉ DIRECTEMENT VERS HELLOASSO -->
             <a id="btn-accueil-billetterie" href="https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027" target="_blank" class="btn btn-primary" style="opacity: 1; pointer-events: auto; width: 100%; text-align: center; white-space: nowrap; font-size: 0.75rem; padding: 10px;">
               ✨ S'inscrire sur HelloAsso
             </a>
@@ -756,7 +823,6 @@
       return Math.ceil((cible - auj) / (1000 * 60 * 60 * 24));
     }
 
-    // FONCTION DIRECTE SANS RESTRICTION D'HEURE SUR L'ACCUEIL
     function gererOuvertureInscriptions() {
       const btn = document.getElementById('btn-accueil-billetterie'); 
       const statut = document.getElementById('statut-accueil-billetterie'); 
@@ -822,7 +888,6 @@
       if (countdownSubtitle) countdownSubtitle.textContent = 'avant : ' + next.titre;
     }
 
-    // Gestion active des points du carrousel au défilement tactile
     function scrollToCard(index) {
       const carousel = document.getElementById('highlight-carousel');
       if (!carousel) return;

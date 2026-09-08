@@ -2,19 +2,199 @@
 <html lang="fr">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'G-5QQ5K7E4S0');
-</script>
+    gtag('config', 'G-5QQ5K7E4S0');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notre Association — Prism Up</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/png" href="logosite.png">
+
+  <style>
+    /* ===============================
+       STYLES SUR MESURE — PAGE ASSOCIATION
+    =============================== */
+    .asso-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .asso-text-side p {
+      line-height: 1.85;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .asso-badges-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .asso-mini-card {
+      background: rgba(152,148,219,0.06);
+      border: 1px solid rgba(152,148,219,0.22);
+      border-radius: 20px;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all 0.25s ease;
+    }
+
+    .asso-mini-card:hover {
+      border-color: rgba(152,148,219,0.5);
+      transform: translateY(-2px);
+      background: rgba(152,148,219,0.1);
+    }
+
+    .asso-mini-icon {
+      font-size: 1.8rem;
+      width: 45px;
+      height: 45px;
+      border-radius: 14px;
+      background: rgba(152,148,219,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .asso-mini-card h4 {
+      color: var(--violet-clair);
+      font-size: 0.9rem;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .asso-mini-card p, .asso-mini-card span {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.82rem;
+      margin: 0;
+    }
+
+    .salles-links-inline {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .salle-pill {
+      display: inline-block;
+      background: rgba(152,148,219,0.15);
+      border: 1px solid rgba(152,148,219,0.3);
+      padding: 3px 10px;
+      border-radius: 50px;
+      color: var(--violet-clair);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .salle-pill:hover {
+      background: var(--violet-clair);
+      color: var(--violet-fonce);
+    }
+
+    /* SECTION STYLES HARMONISÉE ET CENTRÉE */
+    .styles-section-wrap {
+      max-width: 1180px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .styles-container-box {
+      background: rgba(152,148,219,0.05);
+      border: 1px solid rgba(152,148,219,0.2);
+      border-radius: 28px;
+      padding: 40px 30px;
+    }
+
+    /* ENCART PRESSE PERMANENT STYLÉ */
+    .press-section-permanent {
+      max-width: 1180px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .press-card-box {
+      background:
+        radial-gradient(circle at top right, rgba(241, 196, 15, 0.15), transparent 40%),
+        linear-gradient(135deg, rgba(152,148,219,0.12), rgba(36,6,83,0.6));
+      border: 1px solid rgba(241, 196, 15, 0.35);
+      border-radius: 26px;
+      padding: 35px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .press-badge-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 50px;
+      background: rgba(241, 196, 15, 0.12);
+      border: 1px solid rgba(241, 196, 15, 0.3);
+      color: #f1c40f;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .press-card-box h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .press-snippet {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .press-footer-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      border-top: 1px solid rgba(152,148,219,0.2);
+      padding-top: 18px;
+    }
+
+    .press-date {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .asso-layout { grid-template-columns: 1fr; gap: 30px; }
+      .styles-container-box { padding: 25px 15px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -22,12 +202,12 @@
   <nav>
     <a href="index.html" class="nav-logo">PRISM UP</a>
     <ul class="nav-links">
-  <li><a href="index.html">Accueil</a></li>
-  <li><a href="association.html">Notre association</a></li>
-  <li><a href="cours.html">Nos cours</a></li>
-  <li><a href="evenements.html">Événements</a></li>
-  <li><a href="rejoindre.html">Nous rejoindre</a></li>
-</ul>
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="association.html">Notre association</a></li>
+      <li><a href="cours.html">Nos cours</a></li>
+      <li><a href="evenements.html">Événements</a></li>
+      <li><a href="rejoindre.html">Nous rejoindre</a></li>
+    </ul>
     <div class="burger">
       <span></span>
       <span></span>
@@ -42,246 +222,263 @@
   </div>
 
   <!-- NOTRE HISTOIRE -->
-  <section>
-    <p class="section-title">Notre histoire</p>
-    <div class="divider"></div>
-    <br>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;">
-      <div>
-        <p style="line-height:1.9;color:rgba(255,255,255,0.8);font-size:1rem;">
+  <section style="padding: 20px 0;">
+    <div class="asso-layout">
+      <div class="asso-text-side">
+        <p class="section-title" style="text-align: left; margin-bottom: 5px;">Notre histoire</p>
+        <div class="divider" style="margin: 0 0 20px 0;"></div>
+        <p>
           Prism Up est une jeune association née d’une passion commune pour la danse et l’envie de partager cette passion avec le plus grand nombre. Créée par des membres d’une même famille, l’association repose sur des valeurs de convivialité, de bienveillance et de partage.
-
-Notre objectif est de réunir des personnes de tous âges autour de la danse, dans une ambiance chaleureuse et familiale. Que l’on soit débutant ou danseur confirmé, chacun trouve sa place au sein de Prism Up pour apprendre, progresser, s’exprimer et surtout prendre du plaisir.
         </p>
-        <br>
-        <p style="line-height:1.9;color:rgba(255,255,255,0.8);font-size:1rem;">
+        <p>
+          Notre objectif est de réunir des personnes de tous âges autour de la danse, dans une ambiance chaleureuse et familiale. Que l’on soit débutant ou danseur confirmé, chacun trouve sa place au sein de Prism Up pour apprendre, progresser, s’exprimer et surtout prendre du plaisir.
+        </p>
+        <p>
           Au-delà de la danse, nous souhaitons créer de véritables moments d’échange et de rencontre entre les générations, tout en favorisant l’esprit d’équipe et le respect de chacun. Aujourd’hui, Prism Up continue de grandir avec la volonté de transmettre sa passion et de faire vivre des expériences enrichissantes à tous ses adhérents.
-          <strong style="color:var(--violet-clair)"></strong>.
         </p>
       </div>
-      <div style="display:flex;flex-direction:column;gap:20px;">
-        <div class="card" style="display:flex;align-items:center;gap:20px;">
-          <p style="font-size:2.5rem;">📅</p>
+
+      <!-- MINI-CARTES MODERNES (Création, Salles, Mission) -->
+      <div class="asso-badges-stack">
+        <div class="asso-mini-card">
+          <div class="asso-mini-icon">📅</div>
           <div>
-            <p style="font-weight:700;color:var(--violet-clair)">Année de création</p>
-            <p style="color:rgba(255,255,255,0.6);">01 janvier 2026</p>
+            <h4>Création</h4>
+            <p>Janvier 2026 (Saison 2026-2027)</p>
           </div>
         </div>
-        <div class="card" style="display:flex;align-items:center;gap:20px;">
-          <p style="font-size:2.5rem;">📍</p>
+
+        <div class="asso-mini-card">
+          <div class="asso-mini-icon">📍</div>
           <div>
-            <p style="font-weight:700;color:var(--violet-clair)">Basée à</p>
-            <p style="color:rgba(255,255,255,0.6);">Thumeries</p>
+            <h4>Thumeries</h4>
+            <div class="salles-links-inline">
+              <a href="https://www.google.com/maps/place/Salle+Pierre+Legrain/@50.4703563,3.067669,20.56z" target="_blank" class="salle-pill">📍 Salle P. Legrain →</a>
+              <a href="https://www.google.com/maps?q=50.476677,3.054848" target="_blank" class="salle-pill">📍 Salle des assos →</a>
+            </div>
           </div>
         </div>
-        <div class="card" style="display:flex;align-items:center;gap:20px;">
-          <p style="font-size:2.5rem;">💜</p>
+
+        <div class="asso-mini-card">
+          <div class="asso-mini-icon">💜</div>
           <div>
-            <p style="font-weight:700;color:var(--violet-clair)">Notre mission</p>
-            <p style="color:rgba(255,255,255,0.6);">Promouvoir la danse urbaine</p>
+            <h4>Notre engagement</h4>
+            <p>Partager et faire vibrer la danse urbaine avec passion.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ENCART PRESSE PERMANENT (LA VOIX DU NORD) -->
+  <div class="press-section-permanent">
+    <div class="press-card-box">
+      <div class="press-badge-top">📰 Revue de presse · La Voix du Nord</div>
+      <h2>"Une nouvelle asso pétillante pour apprendre les danses urbaines"</h2>
+      <p class="press-snippet">
+        Le journal <em>La Voix du Nord</em> met en lumière Prism Up, notre énergie, notre vision et notre engagement pour le street jazz et le hip-hop commercial à Thumeries.
+      </p>
+      <div class="press-footer-card">
+        <span class="press-date">Paru le 7 septembre 2026</span>
+        <a href="https://www.lavoixdunord.fr/1734957/article/2026-09-07/prism-une-nouvelle-asso-petillante-pour-apprendre-les-danses-urbaines" target="_blank" class="btn btn-primary" style="font-size: 0.8rem; padding: 10px 20px;">
+          Lire l'article complet sur La Voix du Nord →
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- NOS STYLES -->
-  <section style="background:rgba(152,148,219,0.05);border-radius:24px;margin:0 40px;">
-    <p class="section-title">Nos styles</p>
+  <div class="styles-section-wrap">
+    <div class="styles-container-box">
+      <p class="section-title">Nos styles</p>
+      <div class="divider"></div>
+      <br>
+      <div class="cards-grid">
+        <div class="card" style="text-align:center;">
+          <p style="font-size:3rem;margin-bottom:15px;">🎭</p>
+          <h3>Street Jazz</h3>
+          <p>Un mélange de technique jazz et d'énergie urbaine pour des performances percutantes.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <p style="font-size:3rem;margin-bottom:15px;">🎤</p>
+          <h3>Hip Hop Commercial</h3>
+          <p>Le hip hop dans sa version la plus accessible, dynamique et spectaculaire.</p>
+        </div>
+        <div class="card" style="text-align:center;">
+          <p style="font-size:3rem;margin-bottom:15px;">✨</p>
+          <h3>Autres styles urbains</h3>
+          <p>Ouverture sur tous les styles urbains pour une pratique riche et variée.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEMBRES DU BUREAU -->
+  <section>
+    <p class="section-title">Le bureau</p>
     <div class="divider"></div>
-    <br>
-    <div class="cards-grid">
-      <div class="card" style="text-align:center;">
-        <p style="font-size:3rem;margin-bottom:15px;">🎭</p>
-        <h3>Street Jazz</h3>
-        <p>Un mélange de technique jazz et d'énergie urbaine pour des performances percutantes.</p>
+    <p class="section-subtitle">LES PERSONNES QUI FONT VIVRE L'ASSOCIATION</p>
+
+    <div style="position:relative;display:inline-block;width:100%;border-radius:16px;overflow:hidden;max-width:1180px;margin:0 auto;">
+      <img src="images/bureaux.jpg" alt="Bureau Prism Up" 
+      id="photo-groupe"
+      style="width:100%;max-height:500px;object-fit:cover;border-radius:16px;display:block;">
+
+      <!-- RANGÉE DU FOND -->
+      <div class="membre-hover" style="position:absolute;top:2%;left:20%;width:13%;">
+        <div class="membre-hover-label">
+          <p style="font-weight:700;font-size:0.9rem;">Raphaëlle Verdière</p>
+          <p style="color:var(--violet-clair);font-size:0.75rem;">Présidente</p>
+        </div>
       </div>
-      <div class="card" style="text-align:center;">
-        <p style="font-size:3rem;margin-bottom:15px;">🎤</p>
-        <h3>Hip Hop Commercial</h3>
-        <p>Le hip hop dans sa version la plus accessible, dynamique et spectaculaire.</p>
+
+      <div class="membre-hover" style="position:absolute;top:10%;left:25%;width:13%;">
+        <div class="membre-hover-label">
+          <p style="font-weight:700;font-size:0.9rem;">Clément Bouquerel</p>
+          <p style="color:var(--violet-clair);font-size:0.75rem;">Communication</p>
+        </div>
       </div>
-      <div class="card" style="text-align:center;">
-        <p style="font-size:3rem;margin-bottom:15px;">✨</p>
-        <h3>Autres styles urbains</h3>
-        <p>Ouverture sur tous les styles urbains pour une pratique riche et variée.</p>
+
+      <div class="membre-hover" style="position:absolute;top:5%;left:42%;width:13%;">
+        <div class="membre-hover-label">
+          <p style="font-weight:700;font-size:0.9rem;">Tanguy Carette</p>
+          <p style="color:var(--violet-clair);font-size:0.75rem;">Trésorier</p>
+        </div>
       </div>
+
+      <div class="membre-hover" style="position:absolute;top:1%;left:62%;width:13%;">
+        <div class="membre-hover-label">
+          <p style="font-weight:700;font-size:0.9rem;">Maxime Verdière</p>
+          <p style="color:var(--violet-clair);font-size:0.75rem;">Monteur vidéo</p>
+        </div>
+      </div>
+
+      <div class="membre-hover" style="position:absolute;top:20%;left:80%;width:13%;">
+        <div class="membre-hover-label">
+          <p style="font-weight:700;font-size:0.9rem;">Julien Delauttre</p>
+          <p style="color:var(--violet-clair);font-size:0.75rem;">Secrétaire</p>
+        </div>
+      </div>
+
+      <!-- RANGÉE DEVANT -->
+      <div class="membre-hover" style="position:absolute;top:20%;left:32%;width:13%;">
+        <div class="membre-hover-label">
+          <p style="font-weight:700;font-size:0.9rem;">Eloïse Verdière</p>
+          <p style="color:var(--violet-clair);font-size:0.75rem;">Professeure de danse</p>
+        </div>
+      </div>
+
+      <div class="membre-hover" style="position:absolute;top:40%;left:52%;width:13%;">
+        <div class="membre-hover-label">
+          <p style="font-weight:700;font-size:0.9rem;">Romane Cartier</p>
+          <p style="color:var(--violet-clair);font-size:0.75rem;">Vice-Présidente</p>
+        </div>
+      </div>
+
     </div>
   </section>
-
-<!-- MEMBRES DU BUREAU -->
-<!-- MEMBRES DU BUREAU -->
-<section>
-  <p class="section-title">Le bureau</p>
-  <div class="divider"></div>
-  <p class="section-subtitle">LES PERSONNES QUI FONT VIVRE L'ASSOCIATION</p>
-
-  <div style="position:relative;display:inline-block;width:100%;border-radius:16px;overflow:hidden;">
-    <img src="images/bureaux.jpg" alt="Bureau Prism Up" 
-    id="photo-groupe"
-    style="width:100%;max-height:500px;object-fit:cover;border-radius:16px;display:block;">
-
-    <!-- RANGÉE DU FOND -->
-    <!-- Raphaëlle - tout à gauche -->
-    <div class="membre-hover" style="position:absolute;top:2%;left:20%;width:13%;">
-      <div class="membre-hover-label">
-        <p style="font-weight:700;font-size:0.9rem;">Raphaëlle Verdière</p>
-        <p style="color:var(--violet-clair);font-size:0.75rem;">Présidente</p>
-      </div>
-    </div>
-
-    <!-- Clément - deuxième depuis la gauche -->
-    <div class="membre-hover" style="position:absolute;top:10%;left:25%;width:13%;">
-      <div class="membre-hover-label">
-        <p style="font-weight:700;font-size:0.9rem;">Clément Bouquerel</p>
-        <p style="color:var(--violet-clair);font-size:0.75rem;">Communication</p>
-      </div>
-    </div>
-
-    <!-- Tanguy - milieu fond -->
-    <div class="membre-hover" style="position:absolute;top:5%;left:42%;width:13%;">
-      <div class="membre-hover-label">
-        <p style="font-weight:700;font-size:0.9rem;">Tanguy Carette</p>
-        <p style="color:var(--violet-clair);font-size:0.75rem;">Trésorier</p>
-      </div>
-    </div>
-
-    <!-- Maxime - droite fond -->
-    <div class="membre-hover" style="position:absolute;top:1%;left:62%;width:13%;">
-      <div class="membre-hover-label">
-        <p style="font-weight:700;font-size:0.9rem;">Maxime Verdière</p>
-        <p style="color:var(--violet-clair);font-size:0.75rem;">Monteur vidéo</p>
-      </div>
-    </div>
-
-    <!-- Julien - tout à droite fond -->
-    <div class="membre-hover" style="position:absolute;top:20%;left:80%;width:13%;">
-      <div class="membre-hover-label">
-        <p style="font-weight:700;font-size:0.9rem;">Julien Delauttre</p>
-        <p style="color:var(--violet-clair);font-size:0.75rem;">Secrétaire</p>
-      </div>
-    </div>
-
-    <!-- RANGÉE DEVANT -->
-    <!-- Eloïse - entre Clément et Tanguy -->
-    <div class="membre-hover" style="position:absolute;top:20%;left:32%;width:13%;">
-      <div class="membre-hover-label">
-        <p style="font-weight:700;font-size:0.9rem;">Eloïse Verdière</p>
-        <p style="color:var(--violet-clair);font-size:0.75rem;">Professeure de danse</p>
-      </div>
-    </div>
-
-    <!-- Romane - entre Tanguy et Maxime -->
-    <div class="membre-hover" style="position:absolute;top:40%;left:52%;width:13%;">
-      <div class="membre-hover-label">
-        <p style="font-weight:700;font-size:0.9rem;">Romane Cartier</p>
-        <p style="color:var(--violet-clair);font-size:0.75rem;">Vice-Présidente</p>
-      </div>
-    </div>
-
-  </div>
-</section>
 
   <!-- FOOTER -->
   <footer>
-  <p style="font-size:1.1rem;font-weight:700;color:var(--violet-clair);margin-bottom:10px;">PRISM UP</p>
-  <p>Association de danse · Thumeries</p>
-  <br>
-  <!-- RÉSEAUX SOCIAUX -->
-  <div style="display:flex;justify-content:center;gap:20px;margin:20px 0;">
-    <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
-    style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-    border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
-    transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
-    onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
-      📸 Instagram
-    </a>
-    <a href="https://www.facebook.com/profile.php?id=61582350400438" target="_blank"
-    style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-    border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
-    transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
-    onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
-      👥 Facebook
-    </a>
-    <a href="https://www.tiktok.com/@prismup" target="_blank"
-    style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-    border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
-    transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
-    onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
-      🎵 TikTok
-    </a>
-    <a href="https://www.youtube.com/@Prismup-n4i" target="_blank"
-    style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
-    border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
-    transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
-    onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
-      ▶️ YouTube
-    </a>
-  </div>
-  <br>
-  <div style="display:flex;justify-content:space-between;align-items:center;
-flex-wrap:wrap;gap:20px;margin-top:20px;padding-top:20px;
-border-top:1px solid rgba(152,148,219,0.15);">
-  <p style="color:rgba(255,255,255,0.4);">© 2026 Prism Up · Tous droits réservés</p>
-  <div style="display:flex;align-items:center;gap:15px;">
-    <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;">NOS PARTENAIRES</p>
-    <img src="images/logosponsor.1.png" alt="Partenaire 1"
-    style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-    <img src="images/logosponsor.2.jpg" alt="Partenaire 2"
-    style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
-  </div>
+    <p style="font-size:1.1rem;font-weight:700;color:var(--violet-clair);margin-bottom:10px;">PRISM UP</p>
+    <p>Association de danse · Thumeries</p>
+    <br>
+    <!-- RÉSEAUX SOCIAUX -->
+    <div style="display:flex;justify-content:center;gap:20px;margin:20px 0;flex-wrap:wrap;">
+      <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
+      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
+      transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
+      onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
+        📸 Instagram
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61582350400438" target="_blank"
+      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
+      transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
+      onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
+        👥 Facebook
+      </a>
+      <a href="https://www.tiktok.com/@prismup" target="_blank"
+      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
+      transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
+      onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
+        🎵 TikTok
+      </a>
+      <a href="https://www.youtube.com/@Prismup-n4i" target="_blank"
+      style="color:var(--blanc);text-decoration:none;font-size:0.9rem;
+      border:1px solid rgba(152,148,219,0.4);padding:8px 18px;border-radius:50px;
+      transition:all 0.3s;" onmouseover="this.style.borderColor='#9894db';this.style.color='#9894db'"
+      onmouseout="this.style.borderColor='rgba(152,148,219,0.4)';this.style.color='white'">
+        ▶️ YouTube
+      </a>
+    </div>
+    <br>
+    <div style="display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:20px;margin-top:20px;padding-top:20px;
+    border-top:1px solid rgba(152,148,219,0.15);max-width:1180px;margin-left:auto;margin-right:auto;">
+      <p style="color:rgba(255,255,255,0.4);">© 2026 Prism Up · Tous droits réservés</p>
+      <div style="display:flex;align-items:center;gap:15px;">
+        <p style="color:rgba(255,255,255,0.3);font-size:0.75rem;letter-spacing:1px;">NOS PARTENAIRES</p>
+        <img src="images/logosponsor.1.png" alt="Partenaire 1"
+        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
+        <img src="images/logosponsor.2.jpg" alt="Partenaire 2"
+        style="height:35px;object-fit:contain;opacity:0.7;filter:brightness(1.2);">
+      </div>
+    </div>
+  </footer>
 
-<script src="events.js"></script>
-<script src="js/main.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const zone = document.getElementById('membres-grid');
-    if (zone) {
-      zone.innerHTML = MEMBRES.map(m => `
-        <div class="membre-card">
-          ${m.photo ? `<img src="${m.photo}" alt="${m.nom}">` : 
-          `<div style="width:120px;height:120px;border-radius:50%;
-          background:rgba(152,148,219,0.2);border:3px solid var(--violet-clair);
-          display:flex;align-items:center;justify-content:center;
-          font-size:2rem;margin:0 auto 15px;">👤</div>`}
-          <h3>${m.nom}</h3>
-          <p>${m.role}</p>
-        </div>
-      `).join('');
-    }
-  });
-</script>
-<script>
-  document.querySelectorAll('.membre-hover').forEach(el => {
-    el.addEventListener('click', () => {
-      const label = el.querySelector('.membre-hover-label');
-      // Ferme tous les autres
-      document.querySelectorAll('.membre-hover-label').forEach(l => {
-        if (l !== label) l.classList.remove('visible');
-      });
-      // Ouvre ou ferme celui-ci
-      label.classList.toggle('visible');
+  <script src="events.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const zone = document.getElementById('membres-grid');
+      if (zone) {
+        zone.innerHTML = MEMBRES.map(m => `
+          <div class="membre-card">
+            ${m.photo ? `<img src="${m.photo}" alt="${m.nom}">` : 
+            `<div style="width:120px;height:120px;border-radius:50%;
+            background:rgba(152,148,219,0.2);border:3px solid var(--violet-clair);
+            display:flex;align-items:center;justify-content:center;
+            font-size:2rem;margin:0 auto 15px;">👤</div>`}
+            <h3>${m.nom}</h3>
+            <p>${m.role}</p>
+          </div>
+        `).join('');
+      }
     });
-  });
-</script>
-<!-- NAVIGATION BAS MOBILE -->
-<nav class="nav-bottom">
-  <a href="index.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-  </a>
-  <a href="association.html" style="color:var(--violet-clair);background:rgba(152,148,219,0.25);">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-  </a>
-  <a href="cours.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-  </a>
-  <a href="evenements.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-  </a>
-  <a href="rejoindre.html">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-  </a>
-</nav>
+  </script>
+  <script>
+    document.querySelectorAll('.membre-hover').forEach(el => {
+      el.addEventListener('click', () => {
+        const label = el.querySelector('.membre-hover-label');
+        document.querySelectorAll('.membre-hover-label').forEach(l => {
+          if (l !== label) l.classList.remove('visible');
+        });
+        label.classList.toggle('visible');
+      });
+    });
+  </script>
+
+  <!-- NAVIGATION BAS MOBILE -->
+  <nav class="nav-bottom">
+    <a href="index.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </a>
+    <a href="association.html" style="color:var(--violet-clair);background:rgba(152,148,219,0.25);">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </a>
+    <a href="cours.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+    </a>
+    <a href="evenements.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    </a>
+    <a href="rejoindre.html">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+    </a>
+  </nav>
 
 </body>
 </html>
