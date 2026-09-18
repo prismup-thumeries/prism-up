@@ -108,7 +108,18 @@ const EVENEMENTS = [
     lien: "rejoindre.html",
     lien_click_collect: "",
     type: "evenement"
-  }
+  },
+  {
+    titre: "Participation au Téléthon",
+    date: "2026-12-05", // Samedi 5 décembre 2026
+    heure: "Après-midi",
+    lieu: "Thumeries (Organisé par Le Souffle de Thumeries)",
+    description: "Prism Up se mobilise pour le Téléthon ! Venez nous retrouver cet après-midi-là pour une représentation pleine d'énergie et de solidarité aux côtés de l'association Le Souffle de Thumeries.",
+    lien: "https://www.facebook.com/p/Le-Souffle-de-Thumeries-100020494788317/",
+    texteLien: "Page Facebook de l'asso ↗",
+    special: "Solidaire"
+  },
+
 ];
 
 const MEMBRES = [

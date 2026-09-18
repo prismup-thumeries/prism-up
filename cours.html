@@ -803,7 +803,6 @@
             </p>
           </div>
           <div class="cours-action-right">
-            <!-- BOUTON DÉBLOQUÉ DIRECTEMENT VERS HELLOASSO -->
             <a id="btn-cours-billetterie" href="https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027" target="_blank" class="btn btn-primary" style="opacity: 1; pointer-events: auto; white-space: nowrap; font-size: 0.8rem; text-align: center;">
               ✨ S'inscrire sur HelloAsso
             </a>
@@ -858,6 +857,7 @@
               <option value="tous">Tous</option>
               <option value="maternelle">Maternelle MS/GS</option>
               <option value="cpce1">CP - CE1</option>
+              <option value="ce2cm1">CE2 - CE1</option>
               <option value="ce2cm1">CE2 - CM1</option>
               <option value="cm1">CM1 uniquement</option>
               <option value="cm2">CM2</option>
@@ -936,7 +936,7 @@
         <strong>Aucun créneau ne correspond exactement à votre recherche.</strong>
       </div>
 
-      <!-- LUNDI -->
+      <!-- LUNDI (CE2-CM1 MIS EN COMPLET) -->
       <div class="day-row mobile-visible" data-jour-row="lundi">
         <div class="day-label">
           <h3>Lundi</h3>
@@ -944,7 +944,8 @@
         </div>
 
         <div class="slots">
-          <div class="slot-card"
+          <!-- CE2-CM1 - COMPLET -->
+          <div class="slot-card is-complet"
           data-age="ce2cm1 cm1"
           data-jour="lundi"
           data-niveau="normal debutant"
@@ -954,6 +955,7 @@
           data-tarif-nom="CE2 - CM1"
           data-age-min="8"
           onclick="ouvrirInfoCours('ce2cm1')">
+            <div class="complet-ribbon">Victime de votre enthousiasme</div>
             <div>
               <p class="slot-time">18h00 — 19h00</p>
               <h4 class="slot-title">CE2 - CM1</h4>
@@ -963,6 +965,7 @@
               <span class="mini-tag">65€</span>
               <span class="mini-tag">Enfants</span>
             </div>
+            <a href="rejoindre.html" class="btn-contact-carte" onclick="event.stopPropagation()">✉️ Nous contacter</a>
           </div>
 
           <div class="slot-card"
@@ -1291,7 +1294,7 @@
 
   <script>
     const infosCours = {
-      ce2cm1: { icon: "👧", titre: "CE2 - CM1", horaire: "Lundi · 18h00-19h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "https://www.google.com/maps/place/Salle+Pierre+Legrain/@50.4703563,3.067669,20.56z/data=!4m6!3m5!1s0x47c2cdf9c4406fc9:0xc9b5c188d9254d1!8m2!3d50.4703874!4d3.0681525!16s%2Fg%2F11gglq809w?entry=ttu&g_ep=EgoyMDI2MDgyNS4wIKXMDSoASAFQAw%3D%3D", niveau: "Enfants", essai: "Lundi 7 septembre 2026 de 18h00 à 19h00", texte: "Cours destiné aux enfants en CE2 et CM1." },
+      ce2cm1: { icon: "👧", titre: "CE2 - CM1", horaire: "Lundi · 18h00-19h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "https://www.google.com/maps/place/Salle+Pierre+Legrain/@50.4703563,3.067669,20.56z/data=!4m6!3m5!1s0x47c2cdf9c4406fc9:0xc9b5c188d9254d1!8m2!3d50.4703874!4d3.0681525!16s%2Fg%2F11gglq809w?entry=ttu&g_ep=EgoyMDI2MDgyNS4wIKXMDSoASAFQAw%3D%3D", niveau: "Enfants", essai: "Lundi 7 septembre 2026 de 18h00 à 19h00", texte: "Ce cours est complet pour l'instant, sous réserve que tous les préinscrits s'inscrivent. Si vous souhaitez être inscrit sur liste d'attente, nous vous invitons à nous contacter et nous vous préviendrons si une place se libère." },
       appro8: { icon: "✨", titre: "Approfondissement 8 ans et +", horaire: "Lundi · 19h00-20h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "https://www.google.com/maps/place/Salle+Pierre+Legrain/@50.4703563,3.067669,20.56z/data=!4m6!3m5!1s0x47c2cdf9c4406fc9:0xc9b5c188d9254d1!8m2!3d50.4703874!4d3.0681525!16s%2Fg%2F11gglq809w?entry=ttu&g_ep=EgoyMDI2MDgyNS4wIKXMDSoASAFQAw%3D%3D", niveau: "Option complémentaire", essai: "Lundi 7 septembre 2026 de 19h00 à 20h00", texte: "Cours supplémentaire d'approfondissement technique." },
       lyceens: { icon: "🔥", titre: "Lycéens", horaire: "Lundi · 20h00-21h00", salleNom: "Salle annexe P. Legrain", sallePrecision: "Salle des sports Pierre Legrain", mapsUrl: "https://www.google.com/maps/place/Salle+Pierre+Legrain/@50.4703563,3.067669,20.56z/data=!4m6!3m5!1s0x47c2cdf9c4406fc9:0xc9b5c188d9254d1!8m2!3d50.4703874!4d3.0681525!16s%2Fg%2F11gglq809w?entry=ttu&g_ep=EgoyMDI2MDgyNS4wIKXMDSoASAFQAw%3D%3D", niveau: "Ados", essai: "Lundi 7 septembre 2026 de 20h00 à 21h00", texte: "Ce cours est complet pour l'instant, sous réserve que tous les préinscrits s'inscrivent. Si vous souhaitez être inscrit sur liste d'attente, nous vous invitons à nous contacter et nous vous préviendrons si une place se libère." },
       
@@ -1323,14 +1326,12 @@
     let estimationPrincipal = null;
     let estimationOptions = [];
 
-    // FONCTION DIRECTE SANS RESTRICTION D'HEURE
     function gererOuvertureInscriptionsCours() {
       const btn = document.getElementById('btn-cours-billetterie');
       const statut = document.getElementById('statut-cours-billetterie');
       
       if (!btn || !statut) return;
 
-      // Déblocage immédiat direct vers HelloAsso
       btn.href = "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027";
       btn.style.opacity = "1";
       btn.style.pointerEvents = "auto";
