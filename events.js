@@ -120,6 +120,31 @@ const EVENEMENTS = [
     special: "Solidaire"
   },
 
+    {
+    titre: "Workshop Breakdance avec Paul ⚡",
+    date: "2026-10-31", // 31 octobre 2026
+    heure: "11h00 / 12h30",
+    lieu: "Salle annexe P. Legrain, Thumeries",
+    description: "Stage exceptionnel de breakdance ouvert à tous avec le danseur professionnel Paul ! Au programme : technique, passes au sol, musicalité et gros kiff. Réserve vite ta place en ligne.",
+    lien: "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-paul-3",
+    texteLien: "Réserver ma place (HelloAsso) ↗",
+    type: "stage",
+    affiche: "workshoppaul2.2.jpg",
+    video: "https://youtube.com/shorts/UfH6IA-EYgw"
+  },
+
+  {
+  titre: "Workshop Hip-Hop Commercial avec Jow Tayler",
+  type: "stage",
+  date: "2026-10-31",
+  heure: "9h00 - 10h30",
+  lieu: "Salle annexe Pierre Legrain, Thumeries",
+  affiche: "Votre texte de paragraphe-2.jpg",
+  description: "Workshop #3 exceptionnel de Hip-Hop Commercial avec le danseur professionnel Jow Tayler (Lille London Studio)[span_1](start_span)[span_1](end_span). Débutant à intermédiaire[span_2](start_span)[span_2](end_span). Viens kiffer et apprendre un choré de folie !",
+  lien: "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-jow-tayler" // (mets ton lien HelloAsso ici si tu en as un)
+},
+
+
 ];
 
 const MEMBRES = [
