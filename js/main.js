@@ -6,6 +6,10 @@
 //
 // Le contenu (événements, cours, équipe, bandeau d'alerte) est dans
 // le dossier data/ et se modifie depuis prism-up.fr/admin.
+//
+// ⚠️ Après une modification de css/style.css ou js/main.js, change le
+// numéro "?v=..." dans les 5 pages HTML : sinon les téléphones peuvent
+// garder l'ancienne version en mémoire pendant quelques minutes.
 // ============================================================
 
 // ─── Données ───
