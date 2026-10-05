@@ -7,7 +7,8 @@
       "heure": "9h00 - 10h30",
       "lieu": "Salle annexe P. Legrain, Thumeries",
       "description": "Workshop #3 avec le danseur professionnel Jow Tayler (Lille London Studio). Niveau débutant à intermédiaire. Viens apprendre une choré de folie !",
-      "affiche": "/images/workshopjow.jpg",
+      "badge": "🎃 Spécial Halloween",
+      "affiche": "/images/114.webp",
       "cadrage": "top",
       "photos": [],
       "video": "",
@@ -23,7 +24,6 @@
       ],
       "lien": "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-jow-tayler",
       "texteLien": "",
-      "badge": "🎃 Spécial Halloween",
       "annule": false
     },
     {
@@ -33,6 +33,7 @@
       "heure": "11h00 - 12h30",
       "lieu": "Salle annexe P. Legrain, Thumeries",
       "description": "Stage de breakdance ouvert à tous avec le danseur professionnel Paul. Au programme : technique, passages au sol et musicalité.",
+      "badge": "🎃 Spécial Halloween",
       "affiche": "/images/workshoppaul2.2.jpg",
       "cadrage": "top",
       "photos": [],
@@ -49,7 +50,6 @@
       ],
       "lien": "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-paul-3",
       "texteLien": "",
-      "badge": "🎃 Spécial Halloween",
       "annule": false
     },
     {
@@ -59,6 +59,7 @@
       "heure": "Après-midi",
       "lieu": "Thumeries",
       "description": "Prism Up se mobilise pour le Téléthon ! Venez nous voir pour une représentation pleine d'énergie et de solidarité, aux côtés de l'association Le Souffle de Thumeries.",
+      "badge": "",
       "affiche": "",
       "cadrage": "",
       "photos": [],
@@ -66,7 +67,6 @@
       "tarifs": [],
       "lien": "https://www.facebook.com/p/Le-Souffle-de-Thumeries-100020494788317/",
       "texteLien": "Page Facebook de l'organisateur",
-      "badge": "",
       "annule": false
     },
     {
@@ -76,6 +76,7 @@
       "heure": "À partir de 10h",
       "lieu": "Thumeries",
       "description": "Rencontre avec l'équipe Prism Up et inscriptions en physique pour la saison 2026-2027.",
+      "badge": "",
       "affiche": "",
       "cadrage": "",
       "photos": [],
@@ -83,7 +84,6 @@
       "tarifs": [],
       "lien": "",
       "texteLien": "",
-      "badge": "",
       "annule": false
     },
     {
@@ -93,6 +93,7 @@
       "heure": "Horaires des cours",
       "lieu": "Thumeries",
       "description": "Venez assister à nos cours et découvrir l'association avant la saison prochaine.",
+      "badge": "",
       "affiche": "",
       "cadrage": "",
       "photos": [],
@@ -100,7 +101,6 @@
       "tarifs": [],
       "lien": "",
       "texteLien": "",
-      "badge": "",
       "annule": false
     },
     {
@@ -110,6 +110,7 @@
       "heure": "",
       "lieu": "Place du Général de Gaulle, Thumeries",
       "description": "Prism Up était présent à la Fête de la Musique de Thumeries pour un moment festif.",
+      "badge": "",
       "affiche": "",
       "cadrage": "",
       "photos": [],
@@ -117,7 +118,6 @@
       "tarifs": [],
       "lien": "",
       "texteLien": "",
-      "badge": "",
       "annule": false
     },
     {
@@ -127,6 +127,7 @@
       "heure": "18h30",
       "lieu": "Salle des fêtes F. Malle, Thumeries",
       "description": "Notre tout premier gala de danse, exceptionnellement gratuit pour notre première année. Une soirée placée sous le signe de l'énergie, du partage et de la passion.",
+      "badge": "",
       "affiche": "/images/affiche-gala.jpg",
       "cadrage": "top",
       "photos": [],
@@ -139,7 +140,6 @@
       ],
       "lien": "",
       "texteLien": "",
-      "badge": "",
       "annule": false
     },
     {
@@ -149,6 +149,7 @@
       "heure": "",
       "lieu": "Salle des sports F. Begin",
       "description": "Prism Up était là pour soutenir l'équipe lors de la demi-finale de championnat ! Une belle sortie collective dans une ambiance de feu.",
+      "badge": "",
       "affiche": "",
       "cadrage": "",
       "photos": [
@@ -163,7 +164,6 @@
       "tarifs": [],
       "lien": "",
       "texteLien": "",
-      "badge": "",
       "annule": false
     },
     {
@@ -173,6 +173,7 @@
       "heure": "",
       "lieu": "Thumeries",
       "description": "Premier workshop avec Paul, danseur et chorégraphe. Merci à tous les participants !",
+      "badge": "",
       "affiche": "",
       "cadrage": "",
       "photos": [
@@ -195,7 +196,6 @@
       ],
       "lien": "",
       "texteLien": "",
-      "badge": "",
       "annule": false
     }
   ],
