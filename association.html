@@ -67,6 +67,11 @@
     <div class="team" id="equipe"></div>
   </section>
 
+  <section class="section" id="section-profs">
+    <h2 class="section-title">Les profs</h2>
+    <div class="insta-row" id="profs"></div>
+  </section>
+
   <section class="section">
     <h2 class="section-title">Dans la presse</h2>
     <a class="card" href="https://www.lavoixdunord.fr/1734957/article/2026-09-07/prism-une-nouvelle-asso-petillante-pour-apprendre-les-danses-urbaines" target="_blank" rel="noopener">
@@ -86,16 +91,38 @@
 
 </main>
 
-<script src="events.js"></script>
-<script src="cours.js"></script>
 <script src="js/main.js"></script>
 <script>
+chargerDonnees().then(() => {
   const initiales = nom => nom.split(" ").map(m => m[0]).join("").slice(0, 2);
   document.getElementById("equipe").innerHTML = MEMBRES.map(m => `
     <div class="member">
       <div class="avatar">${m.photo ? `<img src="${m.photo}" alt="">` : initiales(m.nom)}</div>
       <div><b>${m.nom}</b><span>${m.role}</span></div>
     </div>`).join("");
+
+  // Profs : posts Instagram, chargés seulement quand la section apparaît à l'écran
+  const zoneProfs = document.getElementById("profs");
+  if (!PROFS.length) document.getElementById("section-profs").hidden = true;
+  zoneProfs.innerHTML = PROFS.map(p => {
+    const lien = p.instagram.split("?")[0];
+    return `
+      <figure class="insta-card">
+        <blockquote class="instagram-media" data-instgrm-permalink="${lien}" data-instgrm-version="14">
+          <a href="${lien}" target="_blank" rel="noopener">Voir le post sur Instagram</a>
+        </blockquote>
+        ${p.legende ? `<figcaption>${p.legende}</figcaption>` : ""}
+      </figure>`;
+  }).join("");
+  new IntersectionObserver((entrees, obs) => {
+    if (!entrees.some(e => e.isIntersecting)) return;
+    obs.disconnect();
+    const script = document.createElement("script");
+    script.src = "https://www.instagram.com/embed.js";
+    script.async = true;
+    document.body.append(script);
+  }, { rootMargin: "400px" }).observe(zoneProfs);
+});
 </script>
 </body>
 </html>

@@ -93,10 +93,9 @@
 
 </main>
 
-<script src="events.js"></script>
-<script src="cours.js"></script>
 <script src="js/main.js"></script>
 <script>
+chargerDonnees().then(() => {
   const annonce = document.getElementById("annonce");
   annonce.href = LIEN_ADHESION;
   document.getElementById("annonce-saison").textContent = SAISON_COURS;
@@ -118,6 +117,7 @@
           </a>`).join("")}
       </div>` : "");
   }
+});
 </script>
 </body>
 </html>

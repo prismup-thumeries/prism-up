@@ -3,7 +3,61 @@
 // (en-tête, barre d'onglets mobile, pied de page, fenêtres)
 // Le menu est écrit une seule fois ici : pour ajouter une page,
 // ajoute-la dans PAGES.
+//
+// Le contenu (événements, cours, équipe, bandeau d'alerte) est dans
+// le dossier data/ et se modifie depuis prism-up.fr/admin.
 // ============================================================
+
+// ─── Données ───
+let EVENEMENTS = [], NOMS_SAISONS = {}, MEMBRES = [], PROFS = [];
+let COURS = [], SALLES = {}, FAQ_COURS = [], TARIFS_COURS = { principal: 0, option: 0 };
+let SAISON_COURS = "", LIEN_ADHESION = "rejoindre.html", ALERTE = null;
+let promesseDonnees = null;
+
+function chargerDonnees() {
+  if (promesseDonnees) return promesseDonnees;
+  // "no-cache" : le navigateur vérifie toujours s'il y a une version plus récente
+  const lire = fichier => fetch("data/" + fichier, { cache: "no-cache" }).then(r => {
+    if (!r.ok) throw new Error(fichier + " : " + r.status);
+    return r.json();
+  });
+  promesseDonnees = Promise.all([
+    lire("evenements.json"), lire("cours.json"), lire("association.json"), lire("alerte.json")
+  ]).then(([ev, co, asso, alerte]) => {
+    EVENEMENTS = (ev.evenements || []).filter(e => e.titre && e.date);
+    NOMS_SAISONS = Object.fromEntries((ev.saisons || []).map(s => [s.cle, s.nom]));
+    COURS = co.cours || [];
+    SALLES = Object.fromEntries((co.salles || []).map(s => [s.id, s]));
+    FAQ_COURS = (co.faq || []).map(f => ({ q: f.question, r: f.reponse }));
+    TARIFS_COURS = co.tarifs || TARIFS_COURS;
+    SAISON_COURS = co.saison || "";
+    LIEN_ADHESION = co.lien_adhesion || LIEN_ADHESION;
+    MEMBRES = asso.membres || [];
+    PROFS = asso.profs || [];
+    ALERTE = alerte;
+    document.querySelectorAll("[data-lien-adhesion]").forEach(a => (a.href = LIEN_ADHESION));
+    afficherAlerte();
+  }).catch(err => {
+    console.error(err);
+    document.querySelector("main")?.insertAdjacentHTML("afterbegin",
+      `<div class="empty" style="margin-top:20px">Impossible de charger le contenu. Rechargez la page.</div>`);
+    throw err;
+  });
+  return promesseDonnees;
+}
+
+// Bandeau d'alerte (ex : "Cours annulé ce soir"), disparaît seul après la date de fin
+function afficherAlerte() {
+  const a = ALERTE;
+  if (!a || !a.actif || !a.texte) return;
+  if (a.jusqu_au && dateLocale(a.jusqu_au.slice(0, 10)) < aujourdhui()) return;
+  const barre = document.createElement(a.lien ? "a" : "div");
+  barre.className = "alert-bar" + (a.niveau === "urgent" ? " urgent" : "");
+  if (a.lien) barre.href = a.lien;
+  barre.innerHTML = `<span class="wrap"><span>${a.niveau === "urgent" ? "⚠️" : "📣"}</span><span>${a.texte}</span>${a.lien ? '<span class="chev">→</span>' : ""}</span>`;
+  barre.querySelector("span:nth-child(2)").textContent = a.texte;
+  document.querySelector(".site-header")?.after(barre);
+}
 
 const PAGES = [
   { id: "accueil", href: "index.html", label: "Accueil", court: "Accueil",
@@ -105,7 +159,7 @@ function construireMiseEnPage() {
       </nav>
       <div class="header-actions">
         <button class="theme-toggle" id="theme-toggle" type="button"></button>
-        <a class="btn btn-primary btn-sm header-cta" href="${typeof LIEN_ADHESION !== "undefined" ? LIEN_ADHESION : "rejoindre.html"}" target="_blank" rel="noopener">S'inscrire</a>
+        <a class="btn btn-primary btn-sm header-cta" href="rejoindre.html" data-lien-adhesion target="_blank" rel="noopener">S'inscrire</a>
       </div>
     </div>`;
   document.body.prepend(header);

@@ -410,6 +410,24 @@ body.no-scroll { overflow: hidden; }
 .member span { font-size: 0.8rem; color: var(--muted); }
 .quote { font-family: var(--font-title); font-weight: 700; font-size: 1.1rem; line-height: 1.35; margin: 6px 0 10px; }
 
+/* Posts Instagram des profs : défilement horizontal sur mobile */
+.insta-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
+.insta-card { min-width: 0; }
+.insta-card .instagram-media { margin: 0 !important; min-width: 0 !important; width: 100% !important; border-radius: var(--radius-lg) !important; overflow: hidden; }
+.insta-card .instagram-media a { display: block; padding: 40px 16px; text-align: center; color: var(--accent); background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); font-weight: 600; font-size: 0.9rem; }
+.insta-card figcaption { margin-top: 8px; font-weight: 600; font-size: 0.92rem; text-align: center; }
+@media (max-width: 860px) {
+  .insta-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0 -20px; padding: 0 20px 4px; }
+  .insta-row::-webkit-scrollbar { display: none; }
+  .insta-card { flex: 0 0 86%; max-width: 360px; scroll-snap-align: center; }
+}
+
+/* ─── BANDEAU D'ALERTE (modifiable depuis /admin) ─── */
+.alert-bar { display: block; background: var(--accent-soft); border-bottom: 1px solid var(--line); text-decoration: none; font-size: 0.9rem; font-weight: 600; position: relative; z-index: 2; }
+.alert-bar .wrap { display: flex; align-items: center; gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+.alert-bar .chev { margin-left: auto; color: var(--faint); }
+.alert-bar.urgent { background: var(--full-soft); color: var(--full); }
+
 /* ─── FORMULAIRES ─── */
 .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
 .field label { font-size: 0.85rem; font-weight: 600; color: var(--muted); }

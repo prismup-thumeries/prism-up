@@ -1,0 +1,208 @@
+{
+  "evenements": [
+    {
+      "titre": "Workshop Hip-Hop Commercial avec Jow Tayler",
+      "type": "stage",
+      "date": "2026-10-31",
+      "heure": "9h00 - 10h30",
+      "lieu": "Salle annexe P. Legrain, Thumeries",
+      "description": "Workshop #3 avec le danseur professionnel Jow Tayler (Lille London Studio). Niveau débutant à intermédiaire. Viens apprendre une choré de folie !",
+      "affiche": "/images/workshopjow.jpg",
+      "cadrage": "top",
+      "photos": [],
+      "video": "",
+      "tarifs": [
+        {
+          "label": "Adhérents Prism Up",
+          "prix": "10 €"
+        },
+        {
+          "label": "Extérieurs",
+          "prix": "15 €"
+        }
+      ],
+      "lien": "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-jow-tayler",
+      "texteLien": "",
+      "badge": "🎃 Spécial Halloween",
+      "annule": false
+    },
+    {
+      "titre": "Workshop Breakdance avec Paul",
+      "type": "stage",
+      "date": "2026-10-31",
+      "heure": "11h00 - 12h30",
+      "lieu": "Salle annexe P. Legrain, Thumeries",
+      "description": "Stage de breakdance ouvert à tous avec le danseur professionnel Paul. Au programme : technique, passages au sol et musicalité.",
+      "affiche": "/images/workshoppaul2.2.jpg",
+      "cadrage": "top",
+      "photos": [],
+      "video": "https://youtube.com/shorts/UfH6IA-EYgw",
+      "tarifs": [
+        {
+          "label": "Adhérents Prism Up",
+          "prix": "10 €"
+        },
+        {
+          "label": "Extérieurs",
+          "prix": "15 €"
+        }
+      ],
+      "lien": "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-paul-3",
+      "texteLien": "",
+      "badge": "🎃 Spécial Halloween",
+      "annule": false
+    },
+    {
+      "titre": "Participation au Téléthon",
+      "type": "evenement",
+      "date": "2026-12-05",
+      "heure": "Après-midi",
+      "lieu": "Thumeries",
+      "description": "Prism Up se mobilise pour le Téléthon ! Venez nous voir pour une représentation pleine d'énergie et de solidarité, aux côtés de l'association Le Souffle de Thumeries.",
+      "affiche": "",
+      "cadrage": "",
+      "photos": [],
+      "video": "",
+      "tarifs": [],
+      "lien": "https://www.facebook.com/p/Le-Souffle-de-Thumeries-100020494788317/",
+      "texteLien": "Page Facebook de l'organisateur",
+      "badge": "",
+      "annule": false
+    },
+    {
+      "titre": "Forum des associations",
+      "type": "evenement",
+      "date": "2026-09-05",
+      "heure": "À partir de 10h",
+      "lieu": "Thumeries",
+      "description": "Rencontre avec l'équipe Prism Up et inscriptions en physique pour la saison 2026-2027.",
+      "affiche": "",
+      "cadrage": "",
+      "photos": [],
+      "video": "",
+      "tarifs": [],
+      "lien": "",
+      "texteLien": "",
+      "badge": "",
+      "annule": false
+    },
+    {
+      "titre": "Portes ouvertes",
+      "type": "evenement",
+      "date": "2026-07-04",
+      "heure": "Horaires des cours",
+      "lieu": "Thumeries",
+      "description": "Venez assister à nos cours et découvrir l'association avant la saison prochaine.",
+      "affiche": "",
+      "cadrage": "",
+      "photos": [],
+      "video": "",
+      "tarifs": [],
+      "lien": "",
+      "texteLien": "",
+      "badge": "",
+      "annule": false
+    },
+    {
+      "titre": "Fête de la Musique",
+      "type": "evenement",
+      "date": "2026-06-21",
+      "heure": "",
+      "lieu": "Place du Général de Gaulle, Thumeries",
+      "description": "Prism Up était présent à la Fête de la Musique de Thumeries pour un moment festif.",
+      "affiche": "",
+      "cadrage": "",
+      "photos": [],
+      "video": "",
+      "tarifs": [],
+      "lien": "",
+      "texteLien": "",
+      "badge": "",
+      "annule": false
+    },
+    {
+      "titre": "Gala #0 — Welcome to Prism Up",
+      "type": "evenement",
+      "date": "2026-06-13",
+      "heure": "18h30",
+      "lieu": "Salle des fêtes F. Malle, Thumeries",
+      "description": "Notre tout premier gala de danse, exceptionnellement gratuit pour notre première année. Une soirée placée sous le signe de l'énergie, du partage et de la passion.",
+      "affiche": "/images/affiche-gala.jpg",
+      "cadrage": "top",
+      "photos": [],
+      "video": "",
+      "tarifs": [
+        {
+          "label": "Entrée",
+          "prix": "Gratuit"
+        }
+      ],
+      "lien": "",
+      "texteLien": "",
+      "badge": "",
+      "annule": false
+    },
+    {
+      "titre": "Sortie AGT Basket",
+      "type": "sortie",
+      "date": "2026-05-24",
+      "heure": "",
+      "lieu": "Salle des sports F. Begin",
+      "description": "Prism Up était là pour soutenir l'équipe lors de la demi-finale de championnat ! Une belle sortie collective dans une ambiance de feu.",
+      "affiche": "",
+      "cadrage": "",
+      "photos": [
+        "/images/sortie1.7.jpg",
+        "/images/sortie1.1.jpg",
+        "/images/sortie1.4.jpg",
+        "/images/sortie1.5.jpg",
+        "/images/sortie1.3.jpg",
+        "/images/sortie1.6-photo.jpg"
+      ],
+      "video": "",
+      "tarifs": [],
+      "lien": "",
+      "texteLien": "",
+      "badge": "",
+      "annule": false
+    },
+    {
+      "titre": "Workshop #1 avec Paul",
+      "type": "stage",
+      "date": "2026-04-19",
+      "heure": "",
+      "lieu": "Thumeries",
+      "description": "Premier workshop avec Paul, danseur et chorégraphe. Merci à tous les participants !",
+      "affiche": "",
+      "cadrage": "",
+      "photos": [
+        "/images/stage1.2.jpg",
+        "/images/stage1.4.jpg",
+        "/images/stage1.1.jpg",
+        "/images/stage1.3.jpg",
+        "/images/stage1.5.jpg"
+      ],
+      "video": "https://youtube.com/shorts/UfH6IA-EYgw",
+      "tarifs": [
+        {
+          "label": "Adhérents Prism Up",
+          "prix": "10 €"
+        },
+        {
+          "label": "Extérieurs",
+          "prix": "15 €"
+        }
+      ],
+      "lien": "",
+      "texteLien": "",
+      "badge": "",
+      "annule": false
+    }
+  ],
+  "saisons": [
+    {
+      "cle": "2025-2026",
+      "nom": "Demi-saison 2026"
+    }
+  ]
+}

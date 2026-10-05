@@ -75,10 +75,9 @@
 
 </main>
 
-<script src="events.js"></script>
-<script src="cours.js"></script>
 <script src="js/main.js"></script>
 <script>
+chargerDonnees().then(() => {
   const JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
   const joursAvecCours = JOURS.filter(j => COURS.some(c => c.jour === j));
   const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
@@ -199,6 +198,7 @@
 
   dessinerOnglets();
   dessinerPlanning();
+});
 </script>
 </body>
 </html>

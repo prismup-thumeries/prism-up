@@ -63,10 +63,9 @@
 
 </main>
 
-<script src="events.js"></script>
-<script src="cours.js"></script>
 <script src="js/main.js"></script>
 <script>
+chargerDonnees().then(() => {
   let typeActif = "tous";
 
   /* ─── À VENIR : le prochain en grand, les suivants en liste par mois ─── */
@@ -262,6 +261,7 @@
   }
   ouvrirDepuisAncre();
   window.addEventListener("hashchange", ouvrirDepuisAncre);
+});
 </script>
 </body>
 </html>
