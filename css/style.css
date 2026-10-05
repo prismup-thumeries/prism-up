@@ -293,14 +293,14 @@ body.no-scroll { overflow: hidden; }
 
 @media (max-width: 860px) {
   .week { grid-template-columns: minmax(0, 1fr); }
-  .day-tabs { display: flex; }
+  .day-tabs { display: flex; width: 100%; }
+  .day-tabs button { flex: 1; padding: 0 6px; }
   .week.by-day .day:not(.is-active) { display: none; }
   .week.by-day .day-head { display: none; }
-  .slot { flex-direction: row; align-items: center; gap: 12px; }
+  .slot { display: grid; grid-template-columns: 58px minmax(0, 1fr); column-gap: 12px; row-gap: 6px; align-items: start; }
   .slot .br-m { display: inline; }
-  .slot .time { width: 58px; flex-shrink: 0; line-height: 1.25; }
-  .slot .mid { flex: 1; min-width: 0; }
-  .slot .tags { margin: 0; flex-direction: column; align-items: flex-end; }
+  .slot .time { line-height: 1.25; padding-top: 2px; }
+  .slot .tags { grid-column: 2; margin: 0; }
 }
 
 .info-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
