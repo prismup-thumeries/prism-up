@@ -1,7 +1,7 @@
 {
   "actif": true,
   "texte": "Cours annulé",
-  "niveau": "urgent",
+  "niveau": "info",
   "jusqu_au": "2026-10-05",
   "lien": ""
 }
