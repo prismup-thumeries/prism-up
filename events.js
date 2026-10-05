@@ -1,167 +1,160 @@
-// ============================================
-// PRISM UP - Fichier de données
-// Modifie ce fichier pour mettre à jour le site
-// Format des dates : "AAAA-MM-JJ"
-// ============================================
+// ============================================================
+// PRISM UP — Données des ÉVÉNEMENTS, STAGES et SORTIES
+// ------------------------------------------------------------
+// Pour ajouter un événement : copie un bloc { ... }, colle-le
+// dans la liste et modifie les valeurs. Rien d'autre à toucher :
+// le site le range tout seul dans "À venir" ou "Passés" et dans
+// la bonne saison (septembre → août).
+//
+// Champs disponibles (seuls titre, date et type sont obligatoires) :
+//   titre        : "Workshop avec Paul"
+//   date         : "AAAA-MM-JJ"
+//   type         : "evenement" | "stage" | "sortie"
+//   heure        : "9h00 - 10h30"
+//   lieu         : "Salle annexe P. Legrain, Thumeries"
+//   description  : texte libre (les retours à la ligne sont gardés)
+//   affiche      : "images/mon-affiche.jpg"  → affichée en entier, jamais coupée
+//   cadrage      : "top" | "center" | "bottom" | "center 30%" → règle le
+//                  recadrage de l'affiche dans les petites vignettes
+//   photos       : ["images/photo1.jpg", ...] → galerie après l'événement
+//   video        : lien YouTube (shorts ou normal)
+//   tarifs       : [{ label: "Adhérents", prix: "10 €" }, ...]
+//   lien         : lien de réservation (HelloAsso…)
+//   texteLien    : texte du bouton (par défaut "Réserver ma place")
+//   annule       : true pour marquer l'événement comme annulé
+//
+// Astuce photos : exporte en JPG, 1080 px de large max (≈ 200-400 Ko).
+// Les PNG de 3 Mo ralentissent beaucoup le site sur téléphone.
+// ============================================================
 
 const EVENEMENTS = [
   {
-    titre: "Gala #0 — Welcome to Prism Up",
-    date: "2026-06-13",
-    heure: "18h30",
-    lieu: "Salle des fêtes F. Malle — Thumeries",
-    description: "Surprise ! Pour notre première année, le gala est exceptionnellement gratuit ✨ Nous avons le plaisir de vous présenter notre tout premier gala de danse ! Rendez-vous le 13 juin 2026 pour une soirée placée sous le signe de l'énergie, du partage et de la passion.",
-    prix: "Gratuit",
-    affiche: "images/affiche-gala.png",
-    estAffiche: true,
-    video: "",
-    photos: [],
-    lien: "https://www.helloasso.com/associations/prism-up/evenements/spectacle-2026",
-    lien_click_collect: "https://www.helloasso.com/associations/prism-up/boutiques/text-buvette",
-    type: "evenement"
+    titre: "Workshop Hip-Hop Commercial avec Jow Tayler",
+    type: "stage",
+    date: "2026-10-31",
+    heure: "9h00 - 10h30",
+    lieu: "Salle annexe P. Legrain, Thumeries",
+    description: "Workshop #3 avec le danseur professionnel Jow Tayler (Lille London Studio). Niveau débutant à intermédiaire. Viens apprendre une choré de folie !",
+    affiche: "images/workshopjow.jpg",
+    cadrage: "top",
+    tarifs: [
+      { label: "Adhérents Prism Up", prix: "10 €" },
+      { label: "Extérieurs", prix: "15 €" }
+    ],
+    lien: "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-jow-tayler"
   },
   {
-    titre: "Fête de la Musique",
-    date: "2026-06-21",
-    heure: "",
-    lieu: "Place du Général de Gaulle — Thumeries",
-    description: "Prism Up sera présent à la Fête de la Musique à Thumeries ! Venez nous retrouver pour partager un moment festif et découvrir nos danseurs. 🎵",
-    prix: "",
-    affiche: "",
-    estAffiche: false,
-    video: "",
-    photos: [],
-    lien: "",
-    lien_click_collect: "",
-    type: "evenement"
-  },
-  {
-    titre: "Portes ouvertes",
-    date: "2026-07-04",
-    heure: "Horaires des cours",
-    lieu: "Thumeries",
-    description: `Venez découvrir Prism Up lors de nos portes ouvertes ! Assistez à nos cours et rejoignez l'aventure pour la saison prochaine 🎉`,
-    prix: "",
-    affiche: "",
-    estAffiche: false,
-    video: "",
-    photos: [],
-    lien: "",
-    lien_click_collect: "",
-    type: "evenement"
-  },
-  {
-    titre: "Workshop #1 avec Paul",
-    date: "2026-04-19",
-    annule: false,
-    heure: "À confirmer",
-    lieu: "Thumeries",
-    description: "Rejoignez-nous pour un workshop exceptionnel avec Paul, danseur et chorégraphe renommé. Une occasion unique d'apprendre et de partager votre passion pour la danse !",
-    prix: "10€ adhérents / 15€ extérieur",
-    affiche: "images/stage1.2.png",
-    estAffiche: false,
+    titre: "Workshop Breakdance avec Paul",
+    type: "stage",
+    date: "2026-10-31",
+    heure: "11h00 - 12h30",
+    lieu: "Salle annexe P. Legrain, Thumeries",
+    description: "Stage de breakdance ouvert à tous avec le danseur professionnel Paul. Au programme : technique, passages au sol et musicalité.",
+    affiche: "images/workshoppaul2.2.jpg",
+    cadrage: "top",
     video: "https://youtube.com/shorts/UfH6IA-EYgw",
-    photos: [
-      "images/stage1.1.png",
-      "images/stage1.2.png",
-      "images/stage1.3.jpg",
-      "images/stage1.4.png",
-      "images/stage1.5.jpg"
+    tarifs: [
+      { label: "Adhérents Prism Up", prix: "10 €" },
+      { label: "Extérieurs", prix: "15 €" }
     ],
-    lien: "",
-    lien_click_collect: "",
-    type: "stage"
-  },
-  {
-    titre: "Sortie AGT Basket",
-    date: "2026-05-24",
-    heure: "",
-    lieu: "Salle des sports F.Begin",
-    description: "Prism Up était présent pour soutenir l'équipe lors de la demi-finale de championnat ! Une belle sortie collective dans une ambiance de feu 🏀🔥",
-    prix: "",
-    affiche: "images/sortie1.1.jpg",
-    estAffiche: false,
-    video: "",
-    photos: [
-      "images/sortie1.1.jpg",
-      "images/sortie1.4.png",
-      "images/sortie1.5.jpg",
-      "images/sortie1.3.jpg",
-      "images/sortie1.6.png",
-      "images/sortie1.7.png"
-    ],
-    lien: "",
-    lien_click_collect: "",
-    type: "sortie"
-  },
-  {
-    titre: "Forum des associations — Inscriptions 2026-2027",
-    date: "2026-09-05",
-    heure: "à partir de 10h",
-    lieu: "Thumeries",
-    description: "Rendez-vous au Forum des associations de Thumeries le samedi 5 septembre 2026. C'est l'événement important de la rentrée : vous pourrez rencontrer l'équipe Prism Up, poser vos questions et faire votre inscription en physique pour la saison 2026-2027. 💜",
-    prix: "",
-    affiche: "",
-    estAffiche: false,
-    video: "",
-    photos: [],
-    lien: "rejoindre.html",
-    lien_click_collect: "",
-    type: "evenement"
+    lien: "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-paul-3"
   },
   {
     titre: "Participation au Téléthon",
-    date: "2026-12-05", // Samedi 5 décembre 2026
+    type: "evenement",
+    date: "2026-12-05",
     heure: "Après-midi",
-    lieu: "Thumeries (Organisé par Le Souffle de Thumeries)",
-    description: "Prism Up se mobilise pour le Téléthon ! Venez nous retrouver cet après-midi-là pour une représentation pleine d'énergie et de solidarité aux côtés de l'association Le Souffle de Thumeries.",
+    lieu: "Thumeries",
+    description: "Prism Up se mobilise pour le Téléthon ! Venez nous voir pour une représentation pleine d'énergie et de solidarité, aux côtés de l'association Le Souffle de Thumeries.",
     lien: "https://www.facebook.com/p/Le-Souffle-de-Thumeries-100020494788317/",
-    texteLien: "Page Facebook de l'asso ↗",
-    special: "Solidaire"
+    texteLien: "Page Facebook de l'organisateur"
   },
-
-    {
-    titre: "Workshop Breakdance avec Paul ⚡",
-    date: "2026-10-31", // 31 octobre 2026
-    heure: "11h00 / 12h30",
-    lieu: "Salle annexe P. Legrain, Thumeries",
-    description: "Stage exceptionnel de breakdance ouvert à tous avec le danseur professionnel Paul ! Au programme : technique, passes au sol, musicalité et gros kiff. Réserve vite ta place en ligne.",
-    lien: "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-paul-3",
-    texteLien: "Réserver ma place (HelloAsso) ↗",
-    type: "stage",
-    affiche: "workshoppaul2.2.jpg",
-    video: "https://youtube.com/shorts/UfH6IA-EYgw"
-  },
-
   {
-  titre: "Workshop Hip-Hop Commercial avec Jow Tayler",
-  type: "stage",
-  date: "2026-10-31",
-  heure: "9h00 - 10h30",
-  lieu: "Salle annexe Pierre Legrain, Thumeries",
-  affiche: "Votre texte de paragraphe-2.jpg",
-  description: "Workshop #3 exceptionnel de Hip-Hop Commercial avec le danseur professionnel Jow Tayler (Lille London Studio)[span_1](start_span)[span_1](end_span). Débutant à intermédiaire[span_2](start_span)[span_2](end_span). Viens kiffer et apprendre un choré de folie !",
-  lien: "https://www.helloasso.com/associations/prism-up/evenements/stage-avec-jow-tayler" // (mets ton lien HelloAsso ici si tu en as un)
-},
-
-
+    titre: "Forum des associations",
+    type: "evenement",
+    date: "2026-09-05",
+    heure: "À partir de 10h",
+    lieu: "Thumeries",
+    description: "Rencontre avec l'équipe Prism Up et inscriptions en physique pour la saison 2026-2027."
+  },
+  {
+    titre: "Portes ouvertes",
+    type: "evenement",
+    date: "2026-07-04",
+    heure: "Horaires des cours",
+    lieu: "Thumeries",
+    description: "Venez assister à nos cours et découvrir l'association avant la saison prochaine."
+  },
+  {
+    titre: "Fête de la Musique",
+    type: "evenement",
+    date: "2026-06-21",
+    lieu: "Place du Général de Gaulle, Thumeries",
+    description: "Prism Up était présent à la Fête de la Musique de Thumeries pour un moment festif."
+  },
+  {
+    titre: "Gala #0 — Welcome to Prism Up",
+    type: "evenement",
+    date: "2026-06-13",
+    heure: "18h30",
+    lieu: "Salle des fêtes F. Malle, Thumeries",
+    description: "Notre tout premier gala de danse, exceptionnellement gratuit pour notre première année. Une soirée placée sous le signe de l'énergie, du partage et de la passion.",
+    affiche: "images/affiche-gala.png",
+    cadrage: "top",
+    tarifs: [{ label: "Entrée", prix: "Gratuit" }]
+  },
+  {
+    titre: "Sortie AGT Basket",
+    type: "sortie",
+    date: "2026-05-24",
+    lieu: "Salle des sports F. Begin",
+    description: "Prism Up était là pour soutenir l'équipe lors de la demi-finale de championnat ! Une belle sortie collective dans une ambiance de feu.",
+    affiche: "images/sortie1.1.jpg",
+    photos: [
+      "images/sortie1.1.jpg",
+      "images/sortie1.5.jpg",
+      "images/sortie1.3.jpg",
+      "images/sortie1.4.png",
+      "images/sortie1.6.png",
+      "images/sortie1.7.png"
+    ]
+  },
+  {
+    titre: "Workshop #1 avec Paul",
+    type: "stage",
+    date: "2026-04-19",
+    lieu: "Thumeries",
+    description: "Premier workshop avec Paul, danseur et chorégraphe. Merci à tous les participants !",
+    affiche: "images/stage1.2.png",
+    cadrage: "top",
+    video: "https://youtube.com/shorts/UfH6IA-EYgw",
+    tarifs: [
+      { label: "Adhérents Prism Up", prix: "10 €" },
+      { label: "Extérieurs", prix: "15 €" }
+    ],
+    photos: [
+      "images/stage1.3.jpg",
+      "images/stage1.5.jpg",
+      "images/stage1.1.png",
+      "images/stage1.2.png",
+      "images/stage1.4.png"
+    ]
+  }
 ];
+
+// Nom affiché pour chaque saison dans les archives.
+// Une saison va de septembre à août. Si une saison n'est pas listée ici,
+// le site affiche automatiquement "Saison 2027-2028", etc.
+const NOMS_SAISONS = {
+  "2025-2026": "Demi-saison 2026"
+};
 
 const MEMBRES = [
   { nom: "Raphaëlle Verdière", role: "Présidente", photo: "" },
-  { nom: "Romane Cartier", role: "Vice-Présidente", photo: "" },
+  { nom: "Romane Cartier", role: "Vice-présidente", photo: "" },
   { nom: "Julien Delauttre", role: "Secrétaire", photo: "" },
   { nom: "Tanguy Carette", role: "Trésorier", photo: "" },
   { nom: "Eloïse Verdière", role: "Professeure de danse", photo: "" },
-  { nom: "Maxime Verdière", role: "Monteur vidéo", photo: "" },
-  { nom: "Clément Bouquerel", role: "Gestion de la communication", photo: "" }
+  { nom: "Maxime Verdière", role: "Montage vidéo", photo: "" },
+  { nom: "Clément Bouquerel", role: "Communication", photo: "" }
 ];
-
-const RMUE = {
-  description: "Prism Up est une association de danse fondée par des passionnés de styles urbains.",
-  historique: "Créée à Thumeries, Prism Up propose des cours de street jazz, hip hop commercial et autres styles urbains.",
-  creations: [
-    { titre: "Création 1", annee: "2024", description: "Description de votre première création chorégraphique." },
-    { titre: "Création 2", annee: "2023", description: "Description de votre deuxième création chorégraphique." }
-  ]
-};

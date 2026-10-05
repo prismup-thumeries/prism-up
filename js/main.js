@@ -1,130 +1,197 @@
-// ============================================
-// PRISM UP - Fonctionnement du site
-// ============================================
+// ============================================================
+// PRISM UP — Fonctionnement commun à toutes les pages
+// (en-tête, barre d'onglets mobile, pied de page, fenêtres)
+// Le menu est écrit une seule fois ici : pour ajouter une page,
+// ajoute-la dans PAGES.
+// ============================================================
 
-// Menu burger (mobile)
-function initBurger() {
-  const burger = document.querySelector('.burger');
-  const navLinks = document.querySelector('.nav-links');
-  if (burger) {
-    burger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-    });
+const PAGES = [
+  { id: "accueil", href: "index.html", label: "Accueil", court: "Accueil",
+    icon: '<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>' },
+  { id: "cours", href: "cours.html", label: "Cours", court: "Cours",
+    icon: '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/>' },
+  { id: "evenements", href: "evenements.html", label: "Événements", court: "Events",
+    icon: '<path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/>' },
+  { id: "association", href: "association.html", label: "L'association", court: "Asso",
+    icon: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-4-6"/>' },
+  { id: "rejoindre", href: "rejoindre.html", label: "Nous rejoindre", court: "Rejoindre",
+    icon: '<path d="M12 21s-7.5-4.6-9.3-9.2C1.4 8.4 3.6 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.7 0 5.9 3.9 4.6 7.3C19.5 16.4 12 21 12 21z"/>' }
+];
+
+const RESEAUX = [
+  { nom: "Instagram", url: "https://www.instagram.com/prismup_thumeries/",
+    icon: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>' },
+  { nom: "Facebook", url: "https://www.facebook.com/profile.php?id=61582350400438",
+    icon: '<path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v7h4v-7h3l1-4h-4V8z"/>' },
+  { nom: "TikTok", url: "https://www.tiktok.com/@prismup",
+    icon: '<path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.5 2.6 2.3 4.4 5 4.6"/>' },
+  { nom: "YouTube", url: "https://www.youtube.com/@Prismup-n4i",
+    icon: '<rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9v6l5-3z" fill="currentColor"/>' }
+];
+
+const svg = (paths, size = 22) =>
+  `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
+
+function construireMiseEnPage() {
+  const page = document.body.dataset.page;
+  const actif = id => (id === page ? ' aria-current="page"' : "");
+
+  const header = document.createElement("header");
+  header.className = "site-header";
+  header.innerHTML = `
+    <div class="wrap">
+      <a href="index.html" class="brand"><img src="images/logo.png" alt="">PRISM UP</a>
+      <nav aria-label="Menu principal">
+        <ul class="top-links">
+          ${PAGES.map(p => `<li><a href="${p.href}"${actif(p.id)}>${p.label}</a></li>`).join("")}
+        </ul>
+      </nav>
+      <a class="btn btn-primary btn-sm header-cta" href="${typeof LIEN_ADHESION !== "undefined" ? LIEN_ADHESION : "rejoindre.html"}" target="_blank" rel="noopener">S'inscrire</a>
+    </div>`;
+  document.body.prepend(header);
+
+  const tabbar = document.createElement("nav");
+  tabbar.className = "tabbar";
+  tabbar.setAttribute("aria-label", "Navigation");
+  tabbar.innerHTML = PAGES.map(p => `<a href="${p.href}"${actif(p.id)}>${svg(p.icon)}<span>${p.court}</span></a>`).join("");
+  document.body.append(tabbar);
+
+  const footer = document.createElement("footer");
+  footer.className = "site-footer";
+  footer.innerHTML = `
+    <div class="wrap">
+      <div><strong style="color:var(--text)">Prism Up</strong> · Association de danse · Thumeries<br>
+        <a href="mailto:prismupcom@gmail.com" style="color:var(--muted)">prismupcom@gmail.com</a></div>
+      <div class="socials">
+        ${RESEAUX.map(r => `<a href="${r.url}" target="_blank" rel="noopener" aria-label="${r.nom}">${svg(r.icon, 18)}</a>`).join("")}
+      </div>
+      <div>© ${new Date().getFullYear()} Prism Up</div>
+    </div>`;
+  document.querySelector("main")?.after(footer);
+}
+
+// ─── Dates ───
+function dateLocale(str) {
+  const [a, m, j] = str.split("-").map(Number);
+  return new Date(a, m - 1, j);
+}
+function aujourdhui() {
+  const d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+function formaterDate(str, options = { weekday: "long", day: "numeric", month: "long", year: "numeric" }) {
+  const txt = dateLocale(str).toLocaleDateString("fr-FR", options);
+  return txt.charAt(0).toUpperCase() + txt.slice(1);
+}
+function joursAvant(str) {
+  return Math.round((dateLocale(str) - aujourdhui()) / 86400000);
+}
+function texteCompteRebours(str) {
+  const j = joursAvant(str);
+  if (j === 0) return "C'est aujourd'hui !";
+  if (j === 1) return "Demain";
+  return `Dans ${j} jours`;
+}
+
+// ─── Événements ───
+function slug(ev) {
+  return (ev.date + "-" + ev.titre)
+    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+function estAVenir(ev) {
+  return dateLocale(ev.date) >= aujourdhui();
+}
+function evenementsAVenir() {
+  return EVENEMENTS.filter(e => estAVenir(e) && !e.annule)
+    .sort((a, b) => dateLocale(a.date) - dateLocale(b.date));
+}
+function evenementsPasses() {
+  return EVENEMENTS.filter(e => !estAVenir(e))
+    .sort((a, b) => dateLocale(b.date) - dateLocale(a.date));
+}
+function saisonDe(ev) {
+  const d = dateLocale(ev.date);
+  const debut = d.getMonth() >= 8 ? d.getFullYear() : d.getFullYear() - 1; // septembre = mois 8
+  return `${debut}-${debut + 1}`;
+}
+function nomSaison(cle) {
+  return (typeof NOMS_SAISONS !== "undefined" && NOMS_SAISONS[cle]) || `Saison ${cle}`;
+}
+const TYPES = {
+  evenement: { label: "Événement", emoji: "🎭" },
+  stage: { label: "Stage", emoji: "💃" },
+  sortie: { label: "Sortie", emoji: "🎉" }
+};
+function typeDe(ev) {
+  return TYPES[ev.type] || TYPES.evenement;
+}
+
+// Image d'un événement : affiche entière (fond flou) ou emoji si aucune image
+function visuel(ev, { classe = "ratio-45", entier = false } = {}) {
+  const src = ev.affiche || (ev.photos && ev.photos[0]);
+  if (!src) return `<div class="frame ${classe}"><div class="placeholder">${typeDe(ev).emoji}</div></div>`;
+  const pos = ev.cadrage ? ` style="object-position:${ev.cadrage}"` : "";
+  if (entier) {
+    return `<div class="frame poster ${classe}"><img class="blur" src="${src}" alt="" loading="lazy"><img class="main" src="${src}" alt="${ev.titre}" loading="lazy"></div>`;
   }
+  return `<div class="frame ${classe}"><img src="${src}" alt="${ev.titre}" loading="lazy"${pos}></div>`;
 }
 
-// Trie automatiquement les événements passés / à venir
-function trierEvenements(liste) {
-  const aujourdhui = new Date();
-  aujourdhui.setHours(0, 0, 0, 0);
-  const avenir = liste.filter(e => new Date(e.date) >= aujourdhui);
-  const passes = liste.filter(e => new Date(e.date) < aujourdhui);
-  avenir.sort((a, b) => new Date(a.date) - new Date(b.date));
-  passes.sort((a, b) => new Date(b.date) - new Date(a.date));
-  return { avenir, passes };
+function blocDate(ev) {
+  const d = dateLocale(ev.date);
+  const mois = d.toLocaleDateString("fr-FR", { month: "short" }).replace(".", "");
+  return `<div class="date-block"><b>${d.getDate()}</b><span>${mois}</span></div>`;
 }
 
-// Formate une date en français
-function formaterDate(dateStr) {
-  const date = new Date(dateStr);
-  return date.toLocaleDateString('fr-FR', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  });
+// ─── Fenêtre (bottom sheet sur mobile) ───
+let sheetFermeture = null;
+
+function ouvrirFenetre(html, { large = false, onClose = null } = {}) {
+  let fond = document.getElementById("sheet");
+  if (!fond) {
+    fond = document.createElement("div");
+    fond.id = "sheet";
+    fond.className = "sheet-backdrop";
+    fond.innerHTML = `<div class="sheet" role="dialog" aria-modal="true"><button class="sheet-close" aria-label="Fermer">×</button><div class="sheet-content"></div></div>`;
+    fond.addEventListener("click", e => { if (e.target === fond) fermerFenetre(); });
+    fond.querySelector(".sheet-close").addEventListener("click", fermerFenetre);
+    document.body.append(fond);
+  }
+  fond.querySelector(".sheet").classList.toggle("wide", large);
+  fond.querySelector(".sheet-content").innerHTML = html;
+  fond.querySelector(".sheet").scrollTop = 0;
+  fond.classList.add("open");
+  document.body.classList.add("no-scroll");
+  sheetFermeture = onClose;
 }
 
-// Crée une carte événement
-function creerCarteEvenement(ev, estAvenir) {
-  return `
-    <div class="card">
-      ${ev.photo ? `<img src="${ev.photo}" alt="${ev.titre}" style="width:100%;border-radius:10px;margin-bottom:15px;object-fit:cover;height:180px;">` : ''}
-      <div class="card-date">${formaterDate(ev.date)} — ${ev.lieu}</div>
-      <h3>${ev.titre}</h3>
-      <p>${ev.description}</p>
-      <span class="tag ${estAvenir ? 'tag-avenir' : 'tag-passe'}">
-        ${estAvenir ? '📅 À venir' : '✅ Passé'}
-      </span>
-    </div>
-  `;
+function fermerFenetre() {
+  document.getElementById("sheet")?.classList.remove("open");
+  document.body.classList.remove("no-scroll");
+  if (sheetFermeture) { const f = sheetFermeture; sheetFermeture = null; f(); }
 }
 
-// Affiche les événements sur la page événements
-function afficherEvenements() {
-  const zoneAvenir = document.getElementById('evenements-avenir');
-  const zonePasses = document.getElementById('evenements-passes');
-  if (!zoneAvenir || !zonePasses) return;
-  const { avenir, passes } = trierEvenements(EVENEMENTS.filter(e => e.type === 'evenement'));
-  zoneAvenir.innerHTML = avenir.length
-    ? avenir.map(e => creerCarteEvenement(e, true)).join('')
-    : '<p style="color:rgba(255,255,255,0.4)">Aucun événement à venir pour le moment.</p>';
-  zonePasses.innerHTML = passes.length
-    ? passes.map(e => creerCarteEvenement(e, false)).join('')
-    : '<p style="color:rgba(255,255,255,0.4)">Aucun événement passé.</p>';
+function ouvrirVisionneuse(src) {
+  let v = document.getElementById("viewer");
+  if (!v) {
+    v = document.createElement("div");
+    v.id = "viewer";
+    v.className = "viewer";
+    v.innerHTML = "<img alt=\"\">";
+    v.addEventListener("click", () => v.classList.remove("open"));
+    document.body.append(v);
+  }
+  v.querySelector("img").src = src;
+  v.classList.add("open");
 }
 
-// Affiche les stages et sorties
-function afficherStages() {
-  const zoneAvenir = document.getElementById('stages-avenir');
-  const zonePasses = document.getElementById('stages-passes');
-  if (!zoneAvenir || !zonePasses) return;
-  const stagesEtSorties = EVENEMENTS.filter(e => e.type === 'stage' || e.type === 'sortie');
-  const { avenir, passes } = trierEvenements(stagesEtSorties);
-  zoneAvenir.innerHTML = avenir.length
-    ? avenir.map(e => creerCarteEvenement(e, true)).join('')
-    : '<p style="color:rgba(255,255,255,0.4)">Aucun stage ou sortie à venir.</p>';
-  zonePasses.innerHTML = passes.length
-    ? passes.map(e => creerCarteEvenement(e, false)).join('')
-    : '<p style="color:rgba(255,255,255,0.4)">Aucun stage ou sortie passé.</p>';
-}
-
-// Affiche les membres
-function afficherMembres() {
-  const zone = document.getElementById('membres-grid');
-  if (!zone) return;
-  zone.innerHTML = MEMBRES.map(m => `
-    <div class="membre-card">
-      ${m.photo ? `<img src="${m.photo}" alt="${m.nom}">` : ''}
-      <h3>${m.nom}</h3>
-      <p>${m.role}</p>
-    </div>
-  `).join('');
-}
-
-// Affiche les créations
-function afficherCreations() {
-  const zone = document.getElementById('creations-grid');
-  if (!zone) return;
-  zone.innerHTML = RMUE.creations.map(c => `
-    <div class="card">
-      <div class="card-date">${c.annee}</div>
-      <h3>${c.titre}</h3>
-      <p>${c.description}</p>
-    </div>
-  `).join('');
-}
-
-// Affiche les prochains événements sur la page d'accueil
-function afficherApercuAccueil() {
-  const zone = document.getElementById('apercu-evenements');
-  if (!zone) return;
-  const aujourdhui = new Date();
-  aujourdhui.setHours(0, 0, 0, 0);
-  const avenir = EVENEMENTS
-    .filter(e => new Date(e.date) >= aujourdhui)
-    .sort((a, b) => new Date(a.date) - new Date(b.date))
-    .slice(0, 3);
-  zone.innerHTML = avenir.length
-    ? avenir.map(e => creerCarteEvenement(e, true)).join('')
-    : '<p style="color:rgba(255,255,255,0.4)">Aucun événement à venir.</p>';
-}
-
-// Lancement au chargement de la page
-document.addEventListener('DOMContentLoaded', () => {
-  initBurger();
-  afficherEvenements();
-  afficherStages();
-  afficherMembres();
-  afficherCreations();
-  afficherApercuAccueil();
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  const v = document.getElementById("viewer");
+  if (v?.classList.contains("open")) v.classList.remove("open");
+  else fermerFenetre();
 });
+
+construireMiseEnPage();
