@@ -1,0 +1,53 @@
+{
+  "membres": [
+    {
+      "nom": "Raphaëlle Verdière",
+      "role": "Présidente",
+      "photo": ""
+    },
+    {
+      "nom": "Romane Cartier",
+      "role": "Vice-présidente",
+      "photo": ""
+    },
+    {
+      "nom": "Julien Delauttre",
+      "role": "Secrétaire",
+      "photo": ""
+    },
+    {
+      "nom": "Tanguy Carette",
+      "role": "Trésorier",
+      "photo": ""
+    },
+    {
+      "nom": "Eloïse Verdière",
+      "role": "Professeure de danse",
+      "photo": ""
+    },
+    {
+      "nom": "Maxime Verdière",
+      "role": "Montage vidéo",
+      "photo": ""
+    },
+    {
+      "nom": "Clément Bouquerel",
+      "role": "Communication",
+      "photo": ""
+    }
+  ],
+  "profs": [
+    {
+      "legende": "Eloïse, Romane & Raphaëlle",
+      "instagram": "https://www.instagram.com/p/Dc1RFLfjLrS/"
+    },
+    {
+      "legende": "Léane",
+      "instagram": "https://www.instagram.com/p/DcwKoJdjEQB/"
+    },
+    {
+      "legende": "Romane",
+      "instagram": "https://www.instagram.com/p/DcthQNCFNbL/"
+    }
+  ]
+}

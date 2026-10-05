@@ -1,0 +1,241 @@
+# ============================================================
+# PRISM UP — Configuration de l'espace admin (prism-up.fr/admin)
+# Outil : Sveltia CMS (https://sveltiacms.app)
+#
+# Accès : il faut se connecter avec une clé d'accès GitHub d'un compte
+# qui a les droits d'écriture sur le dépôt. Personne d'autre ne peut
+# rien modifier. Chaque enregistrement crée un commit sur "main" et le
+# site se met à jour en 1 à 2 minutes.
+# ============================================================
+
+backend:
+  name: github
+  repo: prismup-thumeries/prism-up
+  branch: main
+  auth_methods: [token]
+  site_domain: prism-up.fr
+  commit_messages:
+    update: "Admin : mise à jour de {{path}}"
+    uploadMedia: "Admin : ajout de l'image {{path}}"
+    deleteMedia: "Admin : suppression de l'image {{path}}"
+
+app_title: Prism Up — Admin
+site_url: https://prism-up.fr
+logo:
+  src: /images/logo.png
+
+media_folder: images
+public_folder: /images
+
+# Les photos envoyées depuis le téléphone sont réduites et allégées automatiquement
+media_libraries:
+  default:
+    config:
+      max_file_size: 15000000
+      transformations:
+        raster_image:
+          quality: 82
+          width: 1600
+          height: 1600
+
+editor:
+  preview: false
+
+singletons:
+  # ─── BANDEAU D'ALERTE ───
+  - name: alerte
+    label: "📣 Bandeau d'alerte"
+    icon: campaign
+    file: data/alerte.json
+    fields:
+      - { name: actif, label: "Afficher le bandeau", widget: boolean, default: false }
+      - name: texte
+        label: Message
+        widget: string
+        required: false
+        hint: "Ex : Cours de ce soir annulé · La salle change samedi"
+      - name: niveau
+        label: Couleur
+        widget: select
+        default: info
+        options:
+          - { label: "Info (lavande)", value: info }
+          - { label: "Urgent (rouge)", value: urgent }
+      - name: jusqu_au
+        label: "Afficher jusqu'au (inclus)"
+        widget: datetime
+        type: date
+        format: YYYY-MM-DD
+        required: false
+        hint: "Le bandeau disparaît tout seul après cette date. Laisser vide = pas de fin."
+      - name: lien
+        label: "Lien (facultatif)"
+        widget: string
+        required: false
+        hint: "Ex : cours.html ou evenements.html"
+
+  # ─── ÉVÉNEMENTS ───
+  - name: evenements
+    label: "🎭 Événements, stages et sorties"
+    icon: event
+    file: data/evenements.json
+    fields:
+      - name: evenements
+        label: Événements
+        label_singular: événement
+        widget: list
+        add_to_top: true
+        collapsed: true
+        summary: "{{fields.date}} · {{fields.titre}}"
+        thumbnail: affiche
+        hint: "Le site range tout seul les événements en « À venir » ou « Passés » et par saison."
+        fields:
+          - { name: titre, label: Titre, widget: string }
+          - name: type
+            label: Type
+            widget: select
+            default: evenement
+            options:
+              - { label: Événement, value: evenement }
+              - { label: Stage / workshop, value: stage }
+              - { label: Sortie, value: sortie }
+          - { name: date, label: Date, widget: datetime, type: date, format: YYYY-MM-DD }
+          - { name: heure, label: Horaire, widget: string, required: false, hint: "Ex : 9h00 - 10h30" }
+          - { name: lieu, label: Lieu, widget: string, required: false }
+          - { name: description, label: Description, widget: text, required: false }
+          - { name: badge, label: "Étiquette mise en avant", widget: string, required: false, hint: "Ex : 🎃 Spécial Halloween" }
+          - { name: affiche, label: Affiche, widget: image, required: false, hint: "Affichée en entier, jamais coupée." }
+          - name: cadrage
+            label: "Cadrage de l'affiche dans les petites vignettes"
+            widget: select
+            required: false
+            default: top
+            options:
+              - { label: Haut, value: top }
+              - { label: Centre, value: center }
+              - { label: Bas, value: bottom }
+          - name: photos
+            label: "Photos (après l'événement)"
+            widget: image
+            multiple: true
+            required: false
+            hint: "Recadre les photos avant de les envoyer (pas de grand cadre vide autour)."
+          - { name: video, label: "Vidéo YouTube (lien)", widget: string, required: false }
+          - name: tarifs
+            label: Tarifs
+            label_singular: tarif
+            widget: list
+            required: false
+            summary: "{{fields.label}} : {{fields.prix}}"
+            fields:
+              - { name: label, label: "Pour qui", widget: string, hint: "Ex : Adhérents Prism Up" }
+              - { name: prix, label: Prix, widget: string, hint: "Ex : 10 € ou Gratuit" }
+          - { name: lien, label: "Lien de réservation", widget: string, required: false, hint: "Ex : lien HelloAsso" }
+          - { name: texteLien, label: "Texte du bouton", widget: string, required: false, hint: "Par défaut : Réserver ma place" }
+          - { name: annule, label: "Événement annulé", widget: boolean, default: false }
+      - name: saisons
+        label: "Noms des saisons (archives)"
+        label_singular: saison
+        widget: list
+        collapsed: true
+        summary: "{{fields.cle}} → {{fields.nom}}"
+        hint: "Facultatif. Sinon le site affiche « Saison 2027-2028 », etc."
+        fields:
+          - { name: cle, label: "Saison", widget: string, hint: "Format : 2026-2027" }
+          - { name: nom, label: "Nom affiché", widget: string }
+
+  # ─── COURS ───
+  - name: cours
+    label: "📅 Planning des cours"
+    icon: calendar_month
+    file: data/cours.json
+    fields:
+      - { name: saison, label: Saison, widget: string, hint: "Ex : 2026-2027" }
+      - { name: lien_adhesion, label: "Lien d'inscription HelloAsso", widget: string }
+      - name: tarifs
+        label: Tarifs
+        widget: object
+        fields:
+          - { name: principal, label: "Cours principal (€)", widget: number, value_type: int }
+          - { name: option, label: "Option approfondissement (€)", widget: number, value_type: int }
+      - name: cours
+        label: Cours
+        label_singular: cours
+        widget: list
+        collapsed: true
+        summary: "{{fields.jour}} {{fields.debut}} · {{fields.titre}}"
+        hint: "Pour fermer les inscriptions d'un cours, coche « Complet »."
+        fields:
+          - { name: titre, label: Nom du cours, widget: string }
+          - { name: complet, label: "Complet", widget: boolean, default: false }
+          - name: jour
+            label: Jour
+            widget: select
+            options: [lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche]
+          - { name: debut, label: Début, widget: string, hint: "Ex : 18h00" }
+          - { name: fin, label: Fin, widget: string, hint: "Ex : 19h00" }
+          - { name: detail, label: "Précision", widget: string, required: false, hint: "Ex : Ouvert à tous, idéal débutants" }
+          - name: public
+            label: "Public (pour les filtres)"
+            widget: select
+            options:
+              - { label: Enfants, value: enfants }
+              - { label: Ados, value: ados }
+              - { label: Adultes, value: adultes }
+              - { label: Option approfondissement, value: option }
+          - name: salle
+            label: Salle
+            widget: select
+            options:
+              - { label: "Salle annexe P. Legrain", value: legrain }
+              - { label: "Salle des associations", value: assos }
+          - { name: essai, label: "Date du cours d'essai", widget: string, required: false }
+          - { name: note, label: "Note dans la fiche du cours", widget: text, required: false }
+      - name: salles
+        label: Salles
+        label_singular: salle
+        widget: list
+        collapsed: true
+        allow_add: false
+        allow_remove: false
+        summary: "{{fields.nom}}"
+        fields:
+          - { name: id, label: Identifiant, widget: hidden }
+          - { name: nom, label: Nom, widget: string }
+          - { name: precision, label: Précision, widget: string, required: false }
+          - { name: maps, label: "Lien Google Maps", widget: string, required: false }
+      - name: faq
+        label: "Questions fréquentes"
+        label_singular: question
+        widget: list
+        collapsed: true
+        summary: "{{fields.question}}"
+        fields:
+          - { name: question, label: Question, widget: string }
+          - { name: reponse, label: Réponse, widget: text }
+
+  # ─── ASSOCIATION ───
+  - name: association
+    label: "💜 Équipe et profs"
+    icon: groups
+    file: data/association.json
+    fields:
+      - name: membres
+        label: "Membres du bureau"
+        label_singular: membre
+        widget: list
+        collapsed: true
+        summary: "{{fields.nom}} · {{fields.role}}"
+        fields:
+          - { name: nom, label: Nom, widget: string }
+          - { name: role, label: Rôle, widget: string }
+          - { name: photo, label: Photo, widget: image, required: false }
+      - name: profs
+        label: "Profs (posts Instagram)"
+        label_singular: post
+        widget: list
+        collapsed: true
+        summary: "{{fields.legende}}"
+        fields:
+          - { name: legende, label: "Légende", widget: string, hint: "Ex : Léane" }
+          - { name: instagram, label: "Lien du post Instagram", widget: string, hint: "Sur Instagram : ⋯ → Copier le lien" }

@@ -8,956 +8,116 @@
     gtag('js', new Date());
     gtag('config', 'G-5QQ5K7E4S0');
   </script>
-
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prism Up — Association de danse</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#19152a">
+  <title>Prism Up — Association de danse à Thumeries</title>
+  <meta name="description" content="Prism Up, association de danse urbaine à Thumeries : street jazz, hip hop commercial, cours enfants, ados et adultes.">
   <link rel="icon" type="image/png" href="images/logosite.png">
-
-  <style>
-    /* ===============================
-       ACCUEIL — CARROUSEL MOBILE & BUREAU INTACT
-    =============================== */
-
-    body {
-      background:
-        radial-gradient(circle at top right, rgba(152,148,219,0.16), transparent 32%),
-        radial-gradient(circle at bottom left, rgba(152,148,219,0.08), transparent 35%),
-        var(--violet-fonce);
-    }
-
-    .hero-title-wrap {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-    }
-
-    .hero-logo-floating {
-      position: absolute;
-      right: -85px;
-      top: -35px;
-      width: 92px;
-      height: 92px;
-      object-fit: contain;
-      border-radius: 50%;
-      border: 2px solid rgba(152,148,219,0.75);
-      padding: 7px;
-      background: rgba(36,6,83,0.7);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 15px 45px rgba(152,148,219,0.28);
-      transform: rotate(8deg);
-      animation: floatLogo 4s ease-in-out infinite;
-    }
-
-    @keyframes floatLogo {
-      0%, 100% { transform: rotate(8deg) translateY(0); }
-      50% { transform: rotate(8deg) translateY(-8px); }
-    }
-
-    /* INTRO ANIMÉE RAPIDE */
-    .intro-screen {
-      position: fixed;
-      inset: 0;
-      z-index: 5000;
-      background:
-        radial-gradient(circle at top right, rgba(152,148,219,0.28), transparent 35%),
-        radial-gradient(circle at bottom left, rgba(152,148,219,0.18), transparent 38%),
-        linear-gradient(135deg, #240653, #13022f);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-      animation: introFadeOut 0.5s ease forwards;
-      animation-delay: 1.2s;
-    }
-
-    .intro-card {
-      text-align: center;
-      animation: introPop 0.6s ease forwards;
-    }
-
-    .intro-logo {
-      width: 120px;
-      height: 120px;
-      object-fit: contain;
-      border-radius: 50%;
-      border: 3px solid var(--violet-clair);
-      padding: 10px;
-      margin-bottom: 24px;
-      box-shadow: 0 0 45px rgba(152,148,219,0.35);
-      animation: logoPulseIntro 1.8s ease infinite;
-    }
-
-    .intro-small {
-      display: inline-block;
-      color: var(--violet-clair);
-      border: 1px solid rgba(152,148,219,0.45);
-      background: rgba(152,148,219,0.12);
-      border-radius: 999px;
-      padding: 8px 16px;
-      font-size: 0.75rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      margin-bottom: 18px;
-    }
-
-    .intro-title {
-      font-size: clamp(2.2rem, 8vw, 5rem);
-      font-weight: 900;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      line-height: 1;
-      margin-bottom: 14px;
-      white-space: nowrap;
-    }
-
-    .intro-title span { color: var(--violet-clair); }
-
-    .intro-subtitle {
-      color: rgba(255,255,255,0.72);
-      font-weight: 700;
-      line-height: 1.7;
-      font-size: 1rem;
-    }
-
-    @keyframes introPop {
-      from { opacity: 0; transform: translateY(18px) scale(0.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    @keyframes introFadeOut {
-      to { opacity: 0; visibility: hidden; pointer-events: none; }
-    }
-
-    @keyframes logoPulseIntro {
-      0%, 100% { box-shadow: 0 0 32px rgba(152,148,219,0.25); }
-      50% { box-shadow: 0 0 60px rgba(152,148,219,0.5); }
-    }
-
-    /* ANNONCE HAUT */
-    .home-announcement {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: linear-gradient(135deg, var(--violet-clair), #6b67c4);
-      z-index: 998;
-      padding: 9px 20px;
-      text-align: center;
-      transition: all 0.5s;
-    }
-
-    .home-announcement p {
-      color: var(--violet-fonce);
-      font-weight: 800;
-      font-size: 0.84rem;
-      line-height: 1.45;
-    }
-
-    .home-announcement a {
-      color: var(--violet-fonce);
-      font-weight: 900;
-      text-decoration: underline;
-    }
-
-    /* BANDEAU PRESSE ÉPHÉMÈRE ACCUEIL */
-    .press-banner-home {
-      background: linear-gradient(135deg, rgba(241, 196, 15, 0.15), rgba(152,148,219,0.2));
-      border-bottom: 1px solid rgba(241, 196, 15, 0.35);
-      padding: 10px 20px;
-      margin-top: 65px; /* Pour se placer juste sous la navbar fixe */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      z-index: 997;
-    }
-
-    .press-banner-content {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .press-banner-content p {
-      color: #fff;
-      font-size: 0.82rem;
-      font-weight: 600;
-      margin: 0;
-    }
-
-    .press-pulse-dot {
-      width: 7px;
-      height: 7px;
-      background-color: #f1c40f;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #f1c40f;
-      animation: pulse-dot 1.5s infinite;
-    }
-
-    .press-link-btn {
-      background: #f1c40f;
-      color: #1a0440;
-      padding: 3px 10px;
-      border-radius: 50px;
-      font-size: 0.72rem;
-      font-weight: 900;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: transform 0.2s;
-    }
-
-    .press-link-btn:hover {
-      transform: scale(1.05);
-    }
-
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 0.4; transform: scale(0.8); }
-      50% { opacity: 1; transform: scale(1.2); }
-    }
-
-    .floating-next {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      background: linear-gradient(135deg, var(--violet-clair), #6b67c4);
-      border-radius: 50px;
-      padding: 10px 18px;
-      z-index: 998;
-      display: none;
-      cursor: pointer;
-      box-shadow: 0 5px 20px rgba(152,148,219,0.5);
-    }
-
-    .floating-next p {
-      color: var(--violet-fonce);
-      font-weight: 800;
-      font-size: 0.8rem;
-      white-space: nowrap;
-    }
-
-    /* HERO */
-    .home-hero {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      padding: 80px 20px 40px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .home-container {
-      width: 100%;
-      max-width: 1180px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero-main {
-      text-align: center;
-      max-width: 850px;
-      margin: 0 auto 28px;
-    }
-
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 50px;
-      background: rgba(152,148,219,0.16);
-      border: 1px solid rgba(152,148,219,0.42);
-      color: var(--violet-clair);
-      font-size: 0.7rem;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-
-    .home-title {
-      font-size: clamp(3rem, 9vw, 6rem);
-      font-weight: 900;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      line-height: 1;
-      margin: 0 0 14px;
-    }
-
-    .home-title span { color: var(--violet-clair); }
-
-    .home-subtitle {
-      color: rgba(255,255,255,0.75);
-      font-size: 1rem;
-      line-height: 1.7;
-      max-width: 700px;
-      margin: 0 auto 22px;
-    }
-
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    /* CARTES IMPORTANTES (BUREAU) */
-    .highlight-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .highlight-card {
-      background:
-        radial-gradient(circle at top right, rgba(152,148,219,0.24), transparent 35%),
-        linear-gradient(145deg, rgba(152,148,219,0.14), rgba(255,255,255,0.035));
-      border: 1px solid rgba(152,148,219,0.36);
-      border-radius: 26px;
-      padding: 24px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-    }
-
-    .highlight-card.primary { border-color: rgba(152,148,219,0.7); }
-
-    .highlight-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 16px;
-    }
-
-    .highlight-label {
-      display: inline-block;
-      color: var(--violet-fonce);
-      background: var(--violet-clair);
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 0.65rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .calendar-badge {
-      width: 68px;
-      height: 68px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--violet-clair), #6b67c4);
-      color: var(--violet-fonce);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 10px 25px rgba(152,148,219,0.25);
-    }
-
-    .calendar-badge strong { font-size: 1.25rem; line-height: 1; font-weight: 900; }
-    .calendar-badge span { font-size: 0.55rem; font-weight: 900; text-transform: uppercase; }
-
-    .highlight-card h2 {
-      font-size: 1.4rem;
-      line-height: 1.2;
-      font-weight: 900;
-      margin-bottom: 8px;
-    }
-
-    .highlight-card p {
-      color: rgba(255,255,255,0.68);
-      line-height: 1.6;
-      font-size: 0.88rem;
-    }
-
-    .highlight-actions { margin-top: 20px; }
-
-    .countdown-mini {
-      display: grid;
-      grid-template-columns: 65px 1fr;
-      gap: 10px;
-      align-items: center;
-      background: rgba(0,0,0,0.16);
-      border: 1px solid rgba(152,148,219,0.22);
-      border-radius: 14px;
-      padding: 10px;
-      margin-top: 12px;
-    }
-
-    .countdown-number {
-      color: var(--violet-clair);
-      font-size: 1.8rem;
-      font-weight: 900;
-      text-align: center;
-      line-height: 1;
-    }
-
-    .countdown-mini strong { display: block; color: white; margin-bottom: 2px; font-size: 0.78rem; }
-    .countdown-mini span { color: rgba(255,255,255,0.55); font-size: 0.7rem; }
-
-    /* INDICATEURS DU CARROUSEL MOBILE */
-    .carousel-dots {
-      display: none;
-      justify-content: center;
-      gap: 6px;
-      margin-top: 15px;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(152,148,219,0.3);
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-
-    .dot.active {
-      background: var(--violet-clair);
-      transform: scale(1.25);
-    }
-
-    /* NAV RAPIDE */
-    .quick-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    .quick-link {
-      text-decoration: none;
-      color: white;
-      background: rgba(152,148,219,0.075);
-      border: 1px solid rgba(152,148,219,0.24);
-      border-radius: 18px;
-      padding: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .quick-link .icon { font-size: 1.6rem; width: 40px; flex-shrink: 0; }
-    .quick-link h3 { color: var(--violet-clair); font-size: 0.95rem; font-weight: 900; margin-bottom: 3px; }
-    .quick-link p { color: rgba(255,255,255,0.58); font-size: 0.75rem; }
-
-    /* INFOS BAS */
-    .home-info { padding: 30px 20px 50px; max-width: 1180px; margin: 0 auto; }
-
-    .home-info-card {
-      background: rgba(152,148,219,0.06);
-      border: 1px solid rgba(152,148,219,0.22);
-      border-radius: 24px;
-      padding: 26px;
-      display: grid;
-      grid-template-columns: 1fr 0.8fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .home-info-card h2 {
-      color: var(--violet-clair);
-      font-size: 1.3rem;
-      font-weight: 900;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-
-    .home-info-card p { color: rgba(255,255,255,0.72); line-height: 1.7; font-size: 0.9rem; }
-
-    .style-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
-
-    .style-chip {
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: rgba(152,148,219,0.13);
-      border: 1px solid rgba(152,148,219,0.28);
-      color: rgba(255,255,255,0.78);
-      font-size: 0.72rem;
-      font-weight: 800;
-    }
-
-    .partners-mini { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; }
-
-    .partner-mini-box {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(152,148,219,0.2);
-      border-radius: 14px;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .partner-mini-box img { height: 45px; max-width: 120px; object-fit: contain; filter: brightness(1.12); }
-
-    /* CARROUSEL & PROPORTIONS STRICTES SMARTPHONES */
-    @media (max-width: 900px) {
-      .highlight-grid {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: 12px;
-        padding-bottom: 5px;
-        -webkit-overflow-scrolling: touch;
-      }
-      .highlight-grid::-webkit-scrollbar { display: none; }
-      
-      .highlight-grid .highlight-card {
-        min-width: 85vw;
-        max-width: 85vw;
-        scroll-snap-align: center;
-        flex-shrink: 0;
-      }
-
-      .carousel-dots { display: flex; }
-      .quick-strip { grid-template-columns: 1fr; }
-      .home-info-card { grid-template-columns: 1fr; }
-      .partners-mini { justify-content: flex-start; }
-    }
-
-    @media (max-width: 768px) {
-      body { padding-bottom: 80px; }
-      .home-hero { padding: 70px 14px 20px; min-height: auto; }
-      .home-title { font-size: clamp(2.4rem, 11vw, 3.2rem); letter-spacing: 2px; }
-      .home-subtitle { font-size: 0.85rem; line-height: 1.6; }
-      .hero-logo-floating { width: 65px; height: 65px; right: -55px; top: -25px; }
-      
-      .highlight-card {
-        padding: 16px;
-        border-radius: 18px;
-        min-height: 290px;
-      }
-      .highlight-card h2 { font-size: 1.05rem; }
-      .highlight-card p { font-size: 0.78rem; line-height: 1.45; }
-      .calendar-badge { width: 48px; height: 48px; border-radius: 12px; }
-      .calendar-badge strong { font-size: 0.95rem; }
-      .calendar-badge span { font-size: 0.48rem; }
-      
-      .quick-link { padding: 12px 14px; border-radius: 14px; }
-    }
-  </style>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Prism Up">
+  <meta property="og:title" content="Prism Up — Association de danse à Thumeries">
+  <meta property="og:description" content="Prism Up, association de danse urbaine à Thumeries : street jazz, hip hop commercial, cours enfants, ados et adultes.">
+  <meta property="og:image" content="https://prism-up.fr/images/logosite.png">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap">
+  <script>
+    // Thème clair/sombre appliqué avant l'affichage (évite un flash de couleur)
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem("theme") ||
+        (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    } catch (e) { document.documentElement.dataset.theme = "dark"; }
+  </script>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+<body data-page="accueil">
 
-<body>
+<main class="wrap">
 
-  <div class="intro-screen" id="intro-screen">
-    <div class="intro-card">
-      <img src="images/logo.png" alt="Logo Prism Up" class="intro-logo">
-      <div class="intro-small">Saison 2026-2027</div>
-      <div class="intro-title">PRISM <span>UP</span></div>
-      <p class="intro-subtitle">
-        Bienvenue chez Prism Up<br>
-        Rentrée des cours · semaine du 7 septembre
-      </p>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Association de danse · Thumeries</p>
+      <h1 style="margin-top:8px">Prism <span>Up</span></h1>
+      <p class="lead">Street jazz, hip hop commercial et styles urbains, dans une ambiance familiale et bienveillante.</p>
+      <div class="btn-row">
+        <a href="cours.html" class="btn btn-primary">Voir le planning</a>
+        <a href="rejoindre.html" class="btn btn-ghost">Nous rejoindre</a>
+      </div>
     </div>
-  </div>
+    <div class="hero-visual"><img src="images/logo.png" alt="Logo Prism Up"></div>
+  </section>
 
-  <div id="barre-gala" class="home-announcement">
-    <p id="announcement-text">Chargement du prochain événement...</p>
-  </div>
+  <div id="bandeau-saison"></div>
 
-  <div id="badge-gala" class="floating-next" onclick="window.location.href='evenements.html'">
-    <p id="badge-text">Prochain événement</p>
-  </div>
+  <a class="notice" id="annonce" target="_blank" rel="noopener">
+    <span class="dot"></span>
+    <span><strong>Inscriptions <span id="annonce-saison"></span> ouvertes</strong> · <span class="muted">sur HelloAsso</span></span>
+    <span class="chev">→</span>
+  </a>
 
-  <nav>
-    <a href="index.html" class="nav-logo">PRISM UP</a>
-    <ul class="nav-links">
-      <li><a href="index.html">Accueil</a></li>
-      <li><a href="association.html">Notre association</a></li>
-      <li><a href="cours.html">Nos cours</a></li>
-      <li><a href="evenements.html">Événements</a></li>
-      <li><a href="rejoindre.html">Nous rejoindre</a></li>
-    </ul>
-    <div class="burger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </nav>
+  <section class="section">
+    <h2 class="section-title">À venir <a href="evenements.html">Tout voir →</a></h2>
+    <div id="a-venir"></div>
+  </section>
 
-  <!-- BANDEAU PRESSE ÉPHÉMÈRE -->
-  <div class="press-banner-home">
-    <div class="press-banner-content">
-      <span class="press-pulse-dot"></span>
-      <p>📰 <strong>Vu dans la presse :</strong> Prism Up à l'honneur dans La Voix du Nord !</p>
-      <a href="https://www.lavoixdunord.fr/1734957/article/2026-09-07/prism-une-nouvelle-asso-petillante-pour-apprendre-les-danses-urbaines" target="_blank" class="press-link-btn">Lire l'article →</a>
-    </div>
-  </div>
-
-  <main class="home-hero">
-    <div class="home-container">
-
-      <div class="hero-main">
-        <div class="hero-kicker">💜 Association de danse · Thumeries</div>
-
-        <div class="hero-title-wrap">
-          <h1 class="home-title">PRISM <span>UP</span></h1>
-          <img src="images/logo.png" alt="Logo Prism Up" class="hero-logo-floating">
-        </div>
-
-        <p class="home-subtitle">
-          Street jazz, hip hop commercial et styles urbains dans une ambiance familiale,
-          bienveillante et pleine d'énergie.
-        </p>
-
-        <div class="hero-actions">
-          <a href="cours.html" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.82rem;">Voir les cours</a>
-          <a href="rejoindre.html" class="btn btn-outline" style="padding: 10px 20px; font-size: 0.82rem;">Nous rejoindre</a>
-        </div>
+  <section class="section">
+    <h2 class="section-title">Prism Up en bref</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <p class="eyebrow">Styles</p>
+        <h3 style="margin-top:4px">Street jazz, hip hop commercial</h3>
+        <p>Et d'autres styles urbains au fil de la saison.</p>
       </div>
-
-      <div class="highlight-grid" id="highlight-carousel">
-
-        <div class="highlight-card primary">
-          <div>
-            <div class="highlight-top">
-              <span class="highlight-label">Nouvelle saison</span>
-              <div class="calendar-badge">
-                <strong>7</strong>
-                <span>sept.</span>
-              </div>
-            </div>
-
-            <h2>Rentrée des cours 2026-2027</h2>
-            <p>
-              Les cours reprennent à partir de la semaine du 7 septembre.
-              Chaque groupe reprend sur son créneau habituel selon le planning.
-            </p>
-          </div>
-
-          <div class="highlight-actions">
-            <a href="cours.html" class="btn btn-primary" style="width:100%; text-align:center; padding: 10px; font-size: 0.8rem;">Voir le planning</a>
-          </div>
-        </div>
-
-        <div class="highlight-card primary">
-          <div>
-            <div class="highlight-top">
-              <span class="highlight-label">Adhésions en ligne</span>
-              <div class="calendar-badge">
-                <strong>5</strong>
-                <span>sept.</span>
-              </div>
-            </div>
-
-            <h2>Inscriptions 2026-2027</h2>
-            <p>
-              Ouverture officielle de la billetterie en ligne.
-            </p>
-          </div>
-
-          <div class="highlight-actions" style="display:flex; flex-direction:column; gap:6px;">
-            <a id="btn-accueil-billetterie" href="https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027" target="_blank" class="btn btn-primary" style="opacity: 1; pointer-events: auto; width: 100%; text-align: center; white-space: nowrap; font-size: 0.75rem; padding: 10px;">
-              ✨ S'inscrire sur HelloAsso
-            </a>
-            <p id="statut-accueil-billetterie" style="font-size: 0.68rem; color: rgba(255,255,255,0.6); text-align: center; margin: 0;">
-              ✅ Inscriptions ouvertes !
-            </p>
-          </div>
-        </div>
-
-        <div class="highlight-card" id="mobile-event-card">
-          <div>
-            <div class="highlight-top">
-              <span class="highlight-label">Prochain événement</span>
-              <div class="calendar-badge" id="badge-date-evenement">
-                <strong id="badge-jour-num">-</strong>
-                <span id="badge-mois-txt">-</span>
-              </div>
-            </div>
-
-            <h2 id="next-title" style="font-size:1.15rem;">Chargement...</h2>
-            <p id="next-meta" style="font-size:0.78rem;"></p>
-
-            <div class="countdown-mini">
-              <div class="countdown-number" id="countdown-number">0</div>
-              <div>
-                <strong id="countdown-label" style="font-size: 0.75rem;">jours restants</strong>
-                <span id="countdown-subtitle" style="font-size: 0.65rem;">rendez-vous Prism Up</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="highlight-actions">
-            <a href="evenements.html" class="btn btn-primary" style="width:100%; text-align:center; padding: 10px; font-size: 0.8rem;">Voir l'événement</a>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="carousel-dots" id="carousel-dots">
-        <span class="dot active" onclick="scrollToCard(0)"></span>
-        <span class="dot" onclick="scrollToCard(1)"></span>
-        <span class="dot" onclick="scrollToCard(2)"></span>
-      </div>
-
-      <div class="quick-strip">
-        <a href="cours.html" class="quick-link">
-          <div class="icon">💃</div>
-          <div>
-            <h3>Nos cours</h3>
-            <p>Créneaux selon l'âge et le niveau.</p>
-          </div>
-        </a>
-
-        <a href="evenements.html" class="quick-link">
-          <div class="icon">🎭</div>
-          <div>
-            <h3>Événements</h3>
-            <p>Prochains rendez-vous.</p>
-          </div>
-        </a>
-
-        <a href="association.html" class="quick-link">
-          <div class="icon">💜</div>
-          <div>
-            <h3>L'association</h3>
-            <p>Histoire et équipe.</p>
-          </div>
-        </a>
-      </div>
-
-    </div>
-  </main>
-
-  <section class="home-info">
-    <div class="home-info-card">
-      <div>
-        <h2>Une passion, une famille</h2>
-        <p>
-          Prism Up est une association de danse basée à Thumeries.
-          Notre objectif : partager la danse urbaine dans une ambiance conviviale.
-        </p>
-
-        <div class="style-chips">
-          <span class="style-chip">Street Jazz</span>
-          <span class="style-chip">Hip Hop Commercial</span>
-          <span class="style-chip">Styles Urbains</span>
-        </div>
-      </div>
-
-      <div>
-        <h2>Partenaires</h2>
-        <div class="partners-mini">
-          <div class="partner-mini-box">
-            <img src="images/logosponsor.1.png" alt="Partenaire 1">
-          </div>
-          <div class="partner-mini-box">
-            <img src="images/logosponsor.2.jpg" alt="Partenaire 2">
-          </div>
-        </div>
-      </div>
+      <a class="card" href="cours.html">
+        <p class="eyebrow">Pour qui</p>
+        <h3 style="margin-top:4px">Dès 4 ans, jusqu'aux adultes</h3>
+        <p>Groupes par âge et par niveau, 4 jours par semaine.</p>
+      </a>
+      <a class="card" href="https://www.lavoixdunord.fr/1734957/article/2026-09-07/prism-une-nouvelle-asso-petillante-pour-apprendre-les-danses-urbaines" target="_blank" rel="noopener">
+        <p class="eyebrow">Dans la presse</p>
+        <h3 style="margin-top:4px">« Une nouvelle asso pétillante »</h3>
+        <p>La Voix du Nord · Lire l'article →</p>
+      </a>
     </div>
   </section>
 
-  <footer>
-    <p style="font-size:1.1rem;font-weight:700;color:var(--violet-clair);margin-bottom:10px;">PRISM UP</p>
-    <p>Association de danse · Thumeries</p>
-    <br>
-
-    <div style="display:flex;justify-content:center;gap:12px;margin:15px 0;flex-wrap:wrap;">
-      <a href="https://www.instagram.com/prismup_thumeries/" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.8rem;
-      border:1px solid rgba(152,148,219,0.4);padding:6px 14px;border-radius:50px;">📸 Instagram</a>
-      <a href="https://www.facebook.com/profile.php?id=61582350400438" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.8rem;
-      border:1px solid rgba(152,148,219,0.4);padding:6px 14px;border-radius:50px;">👥 Facebook</a>
-      <a href="https://www.tiktok.com/@prismup" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.8rem;
-      border:1px solid rgba(152,148,219,0.4);padding:6px 14px;border-radius:50px;">🎵 TikTok</a>
-      <a href="https://www.youtube.com/@Prismup-n4i" target="_blank"
-      style="color:var(--blanc);text-decoration:none;font-size:0.8rem;
-      border:1px solid rgba(152,148,219,0.4);padding:6px 14px;border-radius:50px;">▶️ YouTube</a>
+  <section class="section">
+    <h2 class="section-title">Nos partenaires</h2>
+    <div class="partners">
+      <img src="images/logosponsor.1-web.png" alt="Partenaire" loading="lazy">
+      <img src="images/logosponsor.2.jpg" alt="Partenaire" loading="lazy">
     </div>
+  </section>
 
-    <br>
+</main>
 
-    <div style="display:flex;justify-content:space-between;align-items:center;
-    flex-wrap:wrap;gap:12px;margin-top:15px;padding-top:15px;
-    border-top:1px solid rgba(152,148,219,0.15);">
-      <p style="color:rgba(255,255,255,0.4);font-size:0.75rem;">© 2026 Prism Up · Tous droits réservés</p>
-    </div>
-  </footer>
+<script src="js/main.js"></script>
+<script>
+chargerDonnees().then(() => {
+  const annonce = document.getElementById("annonce");
+  annonce.href = LIEN_ADHESION;
+  document.getElementById("annonce-saison").textContent = SAISON_COURS;
 
-  <script src="events.js"></script>
-  <script src="js/main.js"></script>
+  const zone = document.getElementById("a-venir");
+  const prochains = evenementsAVenir();
 
-  <script>
-    function formatDateAccueil(dateStr) {
-      const date = new Date(dateStr);
-      return date.toLocaleDateString('fr-FR', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      });
-    }
-
-    function prochainEvenement() {
-      const aujourdhui = new Date();
-      aujourdhui.setHours(0,0,0,0);
-
-      return EVENEMENTS
-        .filter(e => new Date(e.date) >= aujourdhui && !e.annule)
-        .sort((a, b) => new Date(a.date) - new Date(b.date))[0];
-    }
-
-    function calculerJours(dateStr) {
-      const cible = new Date(dateStr);
-      const auj = new Date();
-      auj.setHours(0,0,0,0);
-      cible.setHours(0,0,0,0);
-      return Math.ceil((cible - auj) / (1000 * 60 * 60 * 24));
-    }
-
-    function gererOuvertureInscriptions() {
-      const btn = document.getElementById('btn-accueil-billetterie'); 
-      const statut = document.getElementById('statut-accueil-billetterie'); 
-      
-      if (!btn || !statut) return;
-
-      btn.href = "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027";
-      btn.style.opacity = "1";
-      btn.style.pointerEvents = "auto";
-      btn.textContent = "✨ S'inscrire sur HelloAsso";
-      statut.textContent = "✅ Inscriptions ouvertes !";
-    }
-
-    function initialiserAccueil() {
-      const next = prochainEvenement();
-
-      const announcementText = document.getElementById('announcement-text');
-      const badgeText = document.getElementById('badge-text');
-      const nextTitle = document.getElementById('next-title');
-      const nextMeta = document.getElementById('next-meta');
-      const badgeJourNum = document.getElementById('badge-jour-num');
-      const badgeMoisTxt = document.getElementById('badge-mois-txt');
-      const countdownNumber = document.getElementById('countdown-number');
-      const countdownLabel = document.getElementById('countdown-label');
-      const countdownSubtitle = document.getElementById('countdown-subtitle');
-
-      if (!next) {
-        announcementText.innerHTML = `
-          💜 Rentrée Prism Up · cours à partir de la semaine du 7 septembre ·
-          <a href="cours.html">Voir le planning →</a>
-        `;
-        badgeText.textContent = '💜 Prism Up';
-        if (nextTitle) nextTitle.textContent = 'Aucun événement à venir';
-        if (nextMeta) nextMeta.textContent = 'Restez connectés !';
-        if (badgeJourNum) badgeJourNum.textContent = '-';
-        if (badgeMoisTxt) badgeMoisTxt.textContent = '-';
-        return;
-      }
-
-      const jours = calculerJours(next.date);
-      const dateObj = new Date(next.date);
-      const jourNum = dateObj.getDate();
-      const moisTxt = dateObj.toLocaleDateString('fr-FR', { month: 'short' }).replace('.', '');
-      const dateFormatee = formatDateAccueil(next.date);
-
-      announcementText.innerHTML = `
-        💜 Rentrée des cours : semaine du 7 septembre ·
-        Prochain événement : ${next.titre} — ${dateFormatee} ·
-        <a href="evenements.html">Détails →</a>
-      `;
-
-      badgeText.innerHTML = `💜 ${jours > 0 ? jours + 'j' : 'Aujourd’hui'}`;
-
-      if (badgeJourNum) badgeJourNum.textContent = jourNum;
-      if (badgeMoisTxt) badgeMoisTxt.textContent = moisTxt;
-
-      if (nextTitle) nextTitle.textContent = next.titre;
-      if (nextMeta) nextMeta.textContent = dateFormatee + (next.heure ? ' · ' + next.heure : '') + (next.lieu ? ' — ' + next.lieu : '');
-      if (countdownNumber) countdownNumber.textContent = jours > 0 ? jours : '🎉';
-      if (countdownLabel) {
-        countdownLabel.textContent = jours > 1 ? 'jours restants' : jours === 1 ? 'jour restant' : "c'est aujourd'hui";
-      }
-      if (countdownSubtitle) countdownSubtitle.textContent = 'avant : ' + next.titre;
-    }
-
-    function scrollToCard(index) {
-      const carousel = document.getElementById('highlight-carousel');
-      if (!carousel) return;
-      const card = carousel.children[index];
-      if (card) {
-        carousel.scrollTo({ left: card.offsetLeft - carousel.offsetLeft, behavior: 'smooth' });
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initialiserAccueil();
-      gererOuvertureInscriptions();
-
-      const carousel = document.getElementById('highlight-carousel');
-      const dots = document.querySelectorAll('.dot');
-      if (carousel && dots.length > 0) {
-        carousel.addEventListener('scroll', () => {
-          const index = Math.round(carousel.scrollLeft / carousel.clientWidth);
-          dots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-          });
-        });
-      }
-
-      const intro = document.getElementById('intro-screen');
-      const introDejaVue = sessionStorage.getItem('introPrismUpVue');
-
-      if (introDejaVue === 'true') {
-        if (intro) intro.style.display = 'none';
-      } else {
-        sessionStorage.setItem('introPrismUpVue', 'true');
-        setTimeout(() => {
-          if (intro) intro.style.display = 'none';
-        }, 1200);
-      }
-    });
-
-    window.addEventListener('scroll', () => {
-      const barre = document.getElementById('barre-gala');
-      const badge = document.getElementById('badge-gala');
-
-      if (!barre || !badge) return;
-
-      if (window.scrollY > 100) {
-        barre.style.transform = 'translateY(-100%)';
-        badge.style.display = 'block';
-      } else {
-        barre.style.transform = 'translateY(0)';
-        badge.style.display = 'none';
-      }
-    });
-  </script>
-
-  <nav class="nav-bottom">
-    <a href="index.html" style="color:var(--violet-clair);background:rgba(152,148,219,0.25);">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-    </a>
-    <a href="association.html">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-    </a>
-    <a href="cours.html">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-    </a>
-    <a href="evenements.html">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-    </a>
-    <a href="rejoindre.html">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-    </a>
-  </nav>
-
+  if (!prochains.length) {
+    zone.innerHTML = `<div class="empty">Pas d'événement prévu pour l'instant. Suivez-nous sur Instagram pour ne rien rater !</div>`;
+  } else {
+    const suivants = prochains.filter(e => e.date !== prochains[0].date);
+    zone.innerHTML = blocVedette(prochains, ev => `href="evenements.html#${slug(ev)}"`) +
+      (suivants.length ? `<div class="list" style="margin-top:12px">
+        ${suivants.slice(0, 2).map(ev => `
+          <a class="list-row" href="evenements.html#${slug(ev)}">
+            ${blocDate(ev)}
+            <span class="txt"><strong>${ev.titre}</strong><span class="sub">${typeDe(ev).label}${ev.heure ? " · " + ev.heure : ""}</span></span>
+            <span class="chev">›</span>
+          </a>`).join("")}
+      </div>` : "");
+  }
+});
+</script>
 </body>
 </html>
