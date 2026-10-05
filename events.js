@@ -21,10 +21,12 @@
 //   tarifs       : [{ label: "Adhérents", prix: "10 €" }, ...]
 //   lien         : lien de réservation (HelloAsso…)
 //   texteLien    : texte du bouton (par défaut "Réserver ma place")
+//   badge        : petite étiquette mise en avant, ex : "🎃 Spécial Halloween"
 //   annule       : true pour marquer l'événement comme annulé
 //
-// Astuce photos : exporte en JPG, 1080 px de large max (≈ 200-400 Ko).
-// Les PNG de 3 Mo ralentissent beaucoup le site sur téléphone.
+// Astuce photos : exporte en JPG, 1400 px de large max (≈ 150-300 Ko).
+// Évite les photos posées au milieu d'un grand cadre vide (export Canva) :
+// elles apparaissent toutes petites. Recadre-les avant de les ajouter.
 // ============================================================
 
 const EVENEMENTS = [
@@ -37,6 +39,7 @@ const EVENEMENTS = [
     description: "Workshop #3 avec le danseur professionnel Jow Tayler (Lille London Studio). Niveau débutant à intermédiaire. Viens apprendre une choré de folie !",
     affiche: "images/workshopjow.jpg",
     cadrage: "top",
+    badge: "🎃 Spécial Halloween",
     tarifs: [
       { label: "Adhérents Prism Up", prix: "10 €" },
       { label: "Extérieurs", prix: "15 €" }
@@ -52,6 +55,7 @@ const EVENEMENTS = [
     description: "Stage de breakdance ouvert à tous avec le danseur professionnel Paul. Au programme : technique, passages au sol et musicalité.",
     affiche: "images/workshoppaul2.2.jpg",
     cadrage: "top",
+    badge: "🎃 Spécial Halloween",
     video: "https://youtube.com/shorts/UfH6IA-EYgw",
     tarifs: [
       { label: "Adhérents Prism Up", prix: "10 €" },
@@ -99,7 +103,7 @@ const EVENEMENTS = [
     heure: "18h30",
     lieu: "Salle des fêtes F. Malle, Thumeries",
     description: "Notre tout premier gala de danse, exceptionnellement gratuit pour notre première année. Une soirée placée sous le signe de l'énergie, du partage et de la passion.",
-    affiche: "images/affiche-gala.png",
+    affiche: "images/affiche-gala.jpg",
     cadrage: "top",
     tarifs: [{ label: "Entrée", prix: "Gratuit" }]
   },
@@ -109,14 +113,13 @@ const EVENEMENTS = [
     date: "2026-05-24",
     lieu: "Salle des sports F. Begin",
     description: "Prism Up était là pour soutenir l'équipe lors de la demi-finale de championnat ! Une belle sortie collective dans une ambiance de feu.",
-    affiche: "images/sortie1.1.jpg",
     photos: [
+      "images/sortie1.7.jpg",
       "images/sortie1.1.jpg",
+      "images/sortie1.4.jpg",
       "images/sortie1.5.jpg",
       "images/sortie1.3.jpg",
-      "images/sortie1.4.png",
-      "images/sortie1.6.png",
-      "images/sortie1.7.png"
+      "images/sortie1.6-photo.jpg"
     ]
   },
   {
@@ -125,19 +128,17 @@ const EVENEMENTS = [
     date: "2026-04-19",
     lieu: "Thumeries",
     description: "Premier workshop avec Paul, danseur et chorégraphe. Merci à tous les participants !",
-    affiche: "images/stage1.2.png",
-    cadrage: "top",
     video: "https://youtube.com/shorts/UfH6IA-EYgw",
     tarifs: [
       { label: "Adhérents Prism Up", prix: "10 €" },
       { label: "Extérieurs", prix: "15 €" }
     ],
     photos: [
+      "images/stage1.2.jpg",
+      "images/stage1.4.jpg",
+      "images/stage1.1.jpg",
       "images/stage1.3.jpg",
-      "images/stage1.5.jpg",
-      "images/stage1.1.png",
-      "images/stage1.2.png",
-      "images/stage1.4.png"
+      "images/stage1.5.jpg"
     ]
   }
 ];

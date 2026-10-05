@@ -29,6 +29,40 @@ const RESEAUX = [
     icon: '<rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9v6l5-3z" fill="currentColor"/>' }
 ];
 
+// Petites touches de saison, activées automatiquement entre deux dates (MM-JJ).
+// Pour en ajouter une (ex. Noël), copie un bloc et change les dates / emojis.
+const THEMES_SAISON = [
+  {
+    nom: "halloween", du: "10-01", au: "11-02",
+    deco: ["🎃", "🦇", "👻", "🕸️"],
+    bandeau: { emoji: "🎃", titre: "Spécial Halloween", texte: "Viens danser avec nous pour Halloween !", lien: "evenements.html" }
+  }
+];
+
+function themeDuMoment() {
+  const d = new Date();
+  const jour = String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  return THEMES_SAISON.find(t => t.du <= t.au ? (jour >= t.du && jour <= t.au) : (jour >= t.du || jour <= t.au));
+}
+
+function appliquerTheme() {
+  const t = themeDuMoment();
+  if (!t) return;
+  document.documentElement.classList.add("theme-" + t.nom);
+  const deco = document.createElement("div");
+  deco.className = "season-deco";
+  deco.setAttribute("aria-hidden", "true");
+  const places = [[6, 14], [88, 10], [78, 46], [10, 62], [92, 80], [40, 90]];
+  deco.innerHTML = places.map(([x, y], i) =>
+    `<span style="left:${x}%;top:${y}%;animation-delay:${-i * 1.5}s">${t.deco[i % t.deco.length]}</span>`).join("");
+  document.body.prepend(deco);
+  const zone = document.getElementById("bandeau-saison");
+  if (zone && t.bandeau) {
+    const b = t.bandeau;
+    zone.innerHTML = `<a class="season-banner" href="${b.lien}"><span class="big">${b.emoji}</span><span><strong>${b.titre}</strong><span class="muted">${b.texte}</span></span><span class="chev">→</span></a>`;
+  }
+}
+
 const svg = (paths, size = 22) =>
   `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
 
@@ -145,10 +179,72 @@ function blocDate(ev) {
   return `<div class="date-block"><b>${d.getDate()}</b><span>${mois}</span></div>`;
 }
 
+// Carte "affiche" (même format pour tous les événements mis en avant)
+function carteAffiche(ev, attributs) {
+  const tag = attributs.startsWith("href") ? "a" : "button";
+  return `
+    <${tag} class="poster-card" ${attributs}>
+      ${visuel(ev, { classe: "ratio-45", entier: true })}
+      <div class="body">
+        ${ev.badge ? `<span class="pill pill-warm" style="align-self:flex-start">${ev.badge}</span>` : ""}
+        <h4>${ev.titre}</h4>
+        <p class="meta">${ev.heure || formaterDate(ev.date, { day: "numeric", month: "long" })}${ev.lieu ? " · " + ev.lieu : ""}</p>
+        <div class="foot">
+          <span class="cta">${ev.lien && !ev.texteLien ? "Réserver →" : "Voir →"}</span>
+          ${ev.tarifs ? `<span class="pill">${ev.tarifs.map(t => t.prix).join(" / ")}</span>` : ""}
+        </div>
+      </div>
+    </${tag}>`;
+}
+
+// Le(s) prochain(s) événement(s) : tous ceux du même jour sont mis en avant pareil
+function blocVedette(liste, attributs) {
+  if (!liste.length) return "";
+  const jour = liste[0].date;
+  const memeJour = liste.filter(e => e.date === jour);
+  return `
+    <div class="spotlight-head">
+      <h3>${formaterDate(jour, { weekday: "long", day: "numeric", month: "long" })}</h3>
+      <span class="countdown">${texteCompteRebours(jour)}${memeJour.length > 1 ? ` · ${memeJour.length} rendez-vous` : ""}</span>
+    </div>
+    <div class="spotlight${memeJour.length === 1 ? " solo" : ""}">
+      ${memeJour.map(ev => carteAffiche(ev, attributs(ev))).join("")}
+    </div>`;
+}
+
+// Carrousel de photos, toutes dans un cadre identique
+function carrouselHTML(images) {
+  return `
+    <div class="carousel">
+      <div class="carousel-track">
+        ${images.map((src, i) => `<div class="frame poster" data-i="${i}"><img class="blur" src="${src}" alt="" loading="lazy"><img class="main" src="${src}" alt="Photo ${i + 1}" loading="lazy"></div>`).join("")}
+      </div>
+      ${images.length > 1 ? `<button class="carousel-btn prev" aria-label="Photo précédente">‹</button><button class="carousel-btn next" aria-label="Photo suivante">›</button><span class="carousel-count">1 / ${images.length}</span>` : ""}
+    </div>
+    ${images.length > 1 ? `<div class="thumbs">${images.map((src, i) => `<button data-i="${i}" aria-label="Photo ${i + 1}" aria-current="${i === 0}"><img src="${src}" alt="" loading="lazy"></button>`).join("")}</div>` : ""}`;
+}
+
+function activerCarrousel(racine, images) {
+  const piste = racine.querySelector(".carousel-track");
+  if (!piste) return;
+  const aller = i => piste.scrollTo({ left: Math.max(0, Math.min(i, images.length - 1)) * piste.clientWidth, behavior: "smooth" });
+  const actuel = () => Math.round(piste.scrollLeft / piste.clientWidth);
+  racine.querySelector(".carousel-btn.prev")?.addEventListener("click", () => aller(actuel() - 1));
+  racine.querySelector(".carousel-btn.next")?.addEventListener("click", () => aller(actuel() + 1));
+  racine.querySelectorAll(".thumbs button").forEach(b => b.addEventListener("click", () => aller(+b.dataset.i)));
+  piste.querySelectorAll(".frame").forEach(f => f.addEventListener("click", () => ouvrirVisionneuse(images, +f.dataset.i)));
+  piste.addEventListener("scroll", () => {
+    const i = actuel();
+    const compteur = racine.querySelector(".carousel-count");
+    if (compteur) compteur.textContent = `${i + 1} / ${images.length}`;
+    racine.querySelectorAll(".thumbs button").forEach(b => b.setAttribute("aria-current", +b.dataset.i === i));
+  }, { passive: true });
+}
+
 // ─── Fenêtre (bottom sheet sur mobile) ───
 let sheetFermeture = null;
 
-function ouvrirFenetre(html, { large = false, onClose = null } = {}) {
+function ouvrirFenetre(html, { large = false, photos = false, onClose = null } = {}) {
   let fond = document.getElementById("sheet");
   if (!fond) {
     fond = document.createElement("div");
@@ -160,6 +256,7 @@ function ouvrirFenetre(html, { large = false, onClose = null } = {}) {
     document.body.append(fond);
   }
   fond.querySelector(".sheet").classList.toggle("wide", large);
+  fond.querySelector(".sheet").classList.toggle("photos", photos);
   fond.querySelector(".sheet-content").innerHTML = html;
   fond.querySelector(".sheet").scrollTop = 0;
   fond.classList.add("open");
@@ -173,25 +270,57 @@ function fermerFenetre() {
   if (sheetFermeture) { const f = sheetFermeture; sheetFermeture = null; f(); }
 }
 
-function ouvrirVisionneuse(src) {
+// Visionneuse plein écran : flèches, glisser au doigt, Échap pour fermer
+let visionneuse = { images: [], i: 0 };
+
+function ouvrirVisionneuse(images, index = 0) {
+  visionneuse = { images: [].concat(images), i: index };
   let v = document.getElementById("viewer");
   if (!v) {
     v = document.createElement("div");
     v.id = "viewer";
     v.className = "viewer";
-    v.innerHTML = "<img alt=\"\">";
-    v.addEventListener("click", () => v.classList.remove("open"));
+    v.innerHTML = `<img alt=""><span class="vcount"></span><button class="nav prev" aria-label="Précédente">‹</button><button class="nav next" aria-label="Suivante">›</button>`;
+    v.addEventListener("click", e => { if (!e.target.closest(".nav")) v.classList.remove("open"); });
+    v.querySelector(".prev").addEventListener("click", () => changerPhoto(-1));
+    v.querySelector(".next").addEventListener("click", () => changerPhoto(1));
+    let x0 = null;
+    v.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+    v.addEventListener("touchend", e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 40) changerPhoto(dx < 0 ? 1 : -1);
+      x0 = null;
+    });
     document.body.append(v);
   }
-  v.querySelector("img").src = src;
+  afficherPhoto();
   v.classList.add("open");
 }
 
-document.addEventListener("keydown", e => {
-  if (e.key !== "Escape") return;
+function changerPhoto(sens) {
+  const n = visionneuse.images.length;
+  visionneuse.i = (visionneuse.i + sens + n) % n;
+  afficherPhoto();
+}
+
+function afficherPhoto() {
   const v = document.getElementById("viewer");
-  if (v?.classList.contains("open")) v.classList.remove("open");
+  const n = visionneuse.images.length;
+  v.querySelector("img").src = visionneuse.images[visionneuse.i];
+  v.querySelector(".vcount").textContent = n > 1 ? `${visionneuse.i + 1} / ${n}` : "";
+  v.querySelectorAll(".nav").forEach(b => (b.style.display = n > 1 ? "" : "none"));
+}
+
+document.addEventListener("keydown", e => {
+  const v = document.getElementById("viewer");
+  const ouverte = v?.classList.contains("open");
+  if (ouverte && e.key === "ArrowRight") changerPhoto(1);
+  if (ouverte && e.key === "ArrowLeft") changerPhoto(-1);
+  if (e.key !== "Escape") return;
+  if (ouverte) v.classList.remove("open");
   else fermerFenetre();
 });
 
 construireMiseEnPage();
+appliquerTheme();

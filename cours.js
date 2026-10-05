@@ -45,12 +45,12 @@ const COURS = [
   { jour: "mardi", debut: "20h00", fin: "21h00", titre: "Adultes 3", detail: "Ouvert à tous, idéal débutants", public: "adultes", salle: "assos", essai: "Mardi 8 septembre 2026" },
 
   // JEUDI
-  { jour: "jeudi", debut: "18h00", fin: "19h00", titre: "CM1 - CM2", detail: "Enfants", public: "enfants", salle: "assos", essai: "Jeudi 10 septembre 2026", note: "Pour les CM1 ayant déjà une expérience en club (sinon, le lundi)." },
+  { jour: "jeudi", debut: "18h00", fin: "19h00", titre: "CM1 - CM2", detail: "Enfants", public: "enfants", salle: "assos", complet: true, essai: "Jeudi 10 septembre 2026", note: "Pour les CM1 ayant déjà une expérience en club (sinon, le lundi)." },
   { jour: "jeudi", debut: "19h00", fin: "20h00", titre: "Adultes 1", detail: "Rythme plus soutenu", public: "adultes", salle: "assos", essai: "Jeudi 10 septembre 2026" },
 
   // SAMEDI
   { jour: "samedi", debut: "9h00", fin: "10h00", titre: "Maternelle", detail: "Moyenne et grande section", public: "enfants", salle: "legrain", complet: true, essai: "Samedi 12 septembre 2026" },
-  { jour: "samedi", debut: "10h00", fin: "11h00", titre: "Adultes 2", detail: "Ouvert à tous, idéal débutants", public: "adultes", salle: "legrain", complet: true, essai: "Samedi 12 septembre 2026" },
+  { jour: "samedi", debut: "10h00", fin: "11h00", titre: "Adultes 2", detail: "Ouvert à tous, idéal débutants", public: "adultes", salle: "legrain", essai: "Samedi 12 septembre 2026" },
   { jour: "samedi", debut: "11h00", fin: "12h00", titre: "Collégiens", detail: "Ados", public: "ados", salle: "legrain", essai: "Samedi 12 septembre 2026" }
 ];
 

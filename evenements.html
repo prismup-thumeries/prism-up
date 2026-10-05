@@ -10,10 +10,19 @@
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0f0e13">
+  <meta name="theme-color" content="#19152a">
   <title>Événements — Prism Up</title>
   <meta name="description" content="Workshops, stages, sorties et galas de l'association de danse Prism Up à Thumeries.">
   <link rel="icon" type="image/png" href="images/logosite.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Prism Up">
+  <meta property="og:title" content="Événements — Prism Up">
+  <meta property="og:description" content="Workshops, stages, sorties et galas de l'association de danse Prism Up à Thumeries.">
+  <meta property="og:image" content="https://prism-up.fr/images/logosite.png">
+  <meta property="og:locale" content="fr_FR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="evenements">
@@ -61,7 +70,7 @@
       zone.innerHTML = `<div class="empty">Pas d'événement prévu pour l'instant.<br>Les souvenirs sont dans l'onglet « Passés » !</div>`;
       return;
     }
-    const [premier, ...suite] = liste;
+    const suite = liste.filter(e => e.date !== liste[0].date);
 
     const parMois = {};
     suite.forEach(ev => {
@@ -69,32 +78,19 @@
       (parMois[cle] = parMois[cle] || []).push(ev);
     });
 
-    zone.innerHTML = `
-      <button class="card feature" data-slug="${slug(premier)}" style="width:100%;text-align:left">
-        ${visuel(premier, { classe: "ratio-45", entier: true })}
-        <div class="body">
-          <span class="countdown">${texteCompteRebours(premier.date)} · ${typeDe(premier).label}</span>
-          <h3>${premier.titre}</h3>
-          <p class="meta">${formaterDate(premier.date)}${premier.heure ? " · " + premier.heure : ""}</p>
-          ${premier.lieu ? `<p class="meta">${premier.lieu}</p>` : ""}
-          <div class="foot">
-            <span class="btn btn-primary btn-sm">Voir le détail</span>
-            ${premier.tarifs ? `<span class="pill">${premier.tarifs.map(t => t.prix).join(" / ")}</span>` : ""}
-          </div>
-        </div>
-      </button>
-      ${Object.entries(parMois).map(([mois, evs]) => `
+    zone.innerHTML = blocVedette(liste, ev => `data-slug="${slug(ev)}"`) +
+      Object.entries(parMois).map(([mois, evs]) => `
         <div class="month">
           <h3>${mois}</h3>
           <div class="list">
             ${evs.map(ev => `
               <button class="list-row ev-row" data-slug="${slug(ev)}">
                 ${blocDate(ev)}
-                <span class="txt"><strong>${ev.titre}</strong><span class="sub">${typeDe(ev).label}${ev.heure ? " · " + ev.heure : ""}</span></span>
+                <span class="txt"><strong>${ev.titre}</strong><span class="sub">${ev.badge ? ev.badge + " · " : ""}${typeDe(ev).label}${ev.heure ? " · " + ev.heure : ""}</span></span>
                 <span class="chev">›</span>
               </button>`).join("")}
           </div>
-        </div>`).join("")}`;
+        </div>`).join("");
   }
 
   /* ─── PASSÉS : rangés par saison (septembre → août) ─── */
@@ -142,12 +138,15 @@
     if (!ev) return;
     const avenir = estAVenir(ev);
     history.replaceState(null, "", "#" + s);
+    const photos = [...new Set([...(ev.photos || []), ...(ev.photos?.length && ev.affiche ? [ev.affiche] : [])])];
+    const modePhotos = photos.length > 0;
 
     ouvrirFenetre(`
       <div class="sheet-media">
-        ${ev.affiche ? visuel(ev, { classe: "ratio-45", entier: true }) : ""}
+        ${modePhotos ? carrouselHTML(photos) : ev.affiche ? visuel(ev, { classe: "ratio-45", entier: true }) : ""}
         <div class="sheet-body">
           <p class="eyebrow">${typeDe(ev).emoji} ${typeDe(ev).label}${avenir ? " · " + texteCompteRebours(ev.date) : ""}</p>
+          ${ev.badge ? `<span class="pill pill-warm" style="margin-top:8px">${ev.badge}</span>` : ""}
           <h2 style="margin-top:6px">${ev.titre}</h2>
           ${ev.annule ? `<span class="pill pill-full">Annulé</span>` : ""}
           <div class="facts">
@@ -157,7 +156,6 @@
             ${(ev.tarifs || []).map(t => `<div><span>💶</span><span>${t.label} : <strong>${t.prix}</strong></span></div>`).join("")}
           </div>
           ${ev.description ? `<p class="desc">${ev.description}</p>` : ""}
-          ${ev.photos?.length ? `<div class="gallery">${ev.photos.map(p => `<img src="${p}" alt="" loading="lazy" data-zoom>`).join("")}</div>` : ""}
           ${ev.video ? `<div id="video-zone"><button class="btn btn-ghost btn-block" style="margin-top:16px" data-video="${urlVideo(ev.video)}">▶ Voir la vidéo</button></div>` : ""}
           <div class="actions">
             ${ev.lien && avenir && !ev.annule ? `<a class="btn btn-primary btn-block" href="${ev.lien}" target="_blank" rel="noopener">${ev.texteLien || "Réserver ma place"}</a>` : ""}
@@ -167,11 +165,11 @@
             </div>
           </div>
         </div>
-      </div>`, { large: !!ev.affiche, onClose: () => history.replaceState(null, "", location.pathname) });
+      </div>`, { large: !!ev.affiche && !modePhotos, photos: modePhotos, onClose: () => history.replaceState(null, "", location.pathname) });
 
     const sheet = document.querySelector("#sheet .sheet");
-    sheet.querySelectorAll("[data-zoom]").forEach(img => img.addEventListener("click", () => ouvrirVisionneuse(img.src)));
-    sheet.querySelector(".frame.poster")?.addEventListener("click", () => ouvrirVisionneuse(ev.affiche));
+    if (modePhotos) activerCarrousel(sheet, photos);
+    else sheet.querySelector(".frame.poster")?.addEventListener("click", () => ouvrirVisionneuse(ev.affiche));
     sheet.querySelector("[data-video]")?.addEventListener("click", e => {
       document.getElementById("video-zone").innerHTML =
         `<div class="video-box"><iframe src="${e.currentTarget.dataset.video}?autoplay=1" title="Vidéo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
