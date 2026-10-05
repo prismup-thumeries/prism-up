@@ -29,6 +29,29 @@ const RESEAUX = [
     icon: '<rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9v6l5-3z" fill="currentColor"/>' }
 ];
 
+// ─── Clair / sombre ───
+// Le thème est choisi dans le <head> de chaque page (choix mémorisé, sinon
+// réglage du téléphone). Ici : le bouton soleil/lune pour en changer.
+const ICONE_SOLEIL = '<circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+const ICONE_LUNE = '<path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z"/>';
+
+function changerTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  try { localStorage.setItem("theme", theme); } catch (e) {}
+  majBoutonTheme();
+}
+
+function majBoutonTheme() {
+  const clair = document.documentElement.dataset.theme === "light";
+  const bouton = document.getElementById("theme-toggle");
+  if (bouton) {
+    bouton.innerHTML = svg(clair ? ICONE_LUNE : ICONE_SOLEIL, 18);
+    bouton.setAttribute("aria-label", clair ? "Passer en thème sombre" : "Passer en thème clair");
+    bouton.title = bouton.getAttribute("aria-label");
+  }
+  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", clair ? "#faf8ff" : "#19152a");
+}
+
 // Petites touches de saison, activées automatiquement entre deux dates (MM-JJ).
 // Pour en ajouter une (ex. Noël), copie un bloc et change les dates / emojis.
 const THEMES_SAISON = [
@@ -80,9 +103,16 @@ function construireMiseEnPage() {
           ${PAGES.map(p => `<li><a href="${p.href}"${actif(p.id)}>${p.label}</a></li>`).join("")}
         </ul>
       </nav>
-      <a class="btn btn-primary btn-sm header-cta" href="${typeof LIEN_ADHESION !== "undefined" ? LIEN_ADHESION : "rejoindre.html"}" target="_blank" rel="noopener">S'inscrire</a>
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button"></button>
+        <a class="btn btn-primary btn-sm header-cta" href="${typeof LIEN_ADHESION !== "undefined" ? LIEN_ADHESION : "rejoindre.html"}" target="_blank" rel="noopener">S'inscrire</a>
+      </div>
     </div>`;
   document.body.prepend(header);
+  header.querySelector("#theme-toggle").addEventListener("click", () => {
+    changerTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+  });
+  majBoutonTheme();
 
   const tabbar = document.createElement("nav");
   tabbar.className = "tabbar";
