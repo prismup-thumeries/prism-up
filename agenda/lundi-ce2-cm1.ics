@@ -1,0 +1,150 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Prism Up//Agenda//FR
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Prism Up · CE2 - CM1
+X-WR-CALDESC:Cours CE2 - CM1 (lundi 18h00) et événements Prism Up
+X-WR-TIMEZONE:Europe/Paris
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Europe/Paris
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:cours-lundi-ce2-cm1@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;TZID=Europe/Paris:20260907T180000
+DTEND;TZID=Europe/Paris:20260907T190000
+RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
+SUMMARY:💃 Prism Up · CE2 - CM1
+LOCATION:Salle annexe P. Legrain\, Salle des sports Pierre Legrain\, Thumer
+ ies
+DESCRIPTION:Enfants\nPlanning : https://prism-up.fr/cours.html
+URL:https://prism-up.fr/cours.html#lundi-ce2-cm1
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Cours Prism Up : CE2 - CM1
+TRIGGER:-PT1H
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:evenement-2026-10-31-workshop-hip-hop-commercial-avec-jow-tayler@prism-
+ up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;TZID=Europe/Paris:20261031T090000
+DTEND;TZID=Europe/Paris:20261031T103000
+SUMMARY:⭐ Prism Up · Workshop Hip-Hop Commercial avec Jow Tayler
+LOCATION:Salle annexe P. Legrain\, Thumeries
+DESCRIPTION:9h00 - 10h30\n\nWorkshop #3 avec le danseur professionnel Jow T
+ ayler. Niveau intermédiaire. Viens apprendre une choré de folie !\n\nhtt
+ ps://prism-up.fr/evenements.html#2026-10-31-workshop-hip-hop-commercial-av
+ ec-jow-tayler
+URL:https://prism-up.fr/evenements.html#2026-10-31-workshop-hip-hop-commerc
+ ial-avec-jow-tayler
+END:VEVENT
+BEGIN:VEVENT
+UID:evenement-2026-10-31-workshop-breakdance-avec-paul@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;TZID=Europe/Paris:20261031T110000
+DTEND;TZID=Europe/Paris:20261031T123000
+SUMMARY:⭐ Prism Up · Workshop Breakdance avec Paul
+LOCATION:Salle annexe P. Legrain\, Thumeries
+DESCRIPTION:11h00 - 12h30\n\nStage de breakdance ouvert à tous avec le dan
+ seur professionnel Paul. Au programme : technique\, passages au sol et mus
+ icalité.\n\nhttps://prism-up.fr/evenements.html#2026-10-31-workshop-break
+ dance-avec-paul
+URL:https://prism-up.fr/evenements.html#2026-10-31-workshop-breakdance-avec
+ -paul
+END:VEVENT
+BEGIN:VEVENT
+UID:evenement-2026-12-05-participation-au-telethon@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20261205
+DTEND;VALUE=DATE:20261206
+SUMMARY:⭐ Prism Up · Participation au Téléthon
+LOCATION:Thumeries
+DESCRIPTION:Après-midi\n\nPrism Up se mobilise pour le Téléthon ! Venez 
+ nous voir pour une représentation pleine d'énergie et de solidarité\, a
+ ux côtés de l'association Le Souffle de Thumeries.\n\nhttps://prism-up.f
+ r/evenements.html#2026-12-05-participation-au-telethon
+URL:https://prism-up.fr/evenements.html#2026-12-05-participation-au-teletho
+ n
+END:VEVENT
+BEGIN:VEVENT
+UID:evenement-2026-09-05-forum-des-associations@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;TZID=Europe/Paris:20260905T100000
+DTEND;TZID=Europe/Paris:20260905T120000
+SUMMARY:⭐ Prism Up · Forum des associations
+LOCATION:Thumeries
+DESCRIPTION:À partir de 10h\n\nRencontre avec l'équipe Prism Up et inscri
+ ptions en physique pour la saison 2026-2027.\n\nhttps://prism-up.fr/evenem
+ ents.html#2026-09-05-forum-des-associations
+URL:https://prism-up.fr/evenements.html#2026-09-05-forum-des-associations
+END:VEVENT
+BEGIN:VEVENT
+UID:evenement-2026-06-21-fete-de-la-musique@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20260621
+DTEND;VALUE=DATE:20260622
+SUMMARY:⭐ Prism Up · Fête de la Musique
+LOCATION:Place du Général de Gaulle\, Thumeries
+DESCRIPTION:Prism Up était présent à la Fête de la Musique de Thumeries
+  pour un moment festif.\n\nhttps://prism-up.fr/evenements.html#2026-06-21-
+ fete-de-la-musique
+URL:https://prism-up.fr/evenements.html#2026-06-21-fete-de-la-musique
+END:VEVENT
+BEGIN:VEVENT
+UID:evenement-2026-06-13-gala-0-welcome-to-prism-up@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;TZID=Europe/Paris:20260613T183000
+DTEND;TZID=Europe/Paris:20260613T203000
+SUMMARY:⭐ Prism Up · Gala #0 — Welcome to Prism Up
+LOCATION:Salle des fêtes F. Malle\, Thumeries
+DESCRIPTION:18h30\n\nNotre tout premier gala de danse\, exceptionnellement 
+ gratuit pour notre première année. Une soirée placée sous le signe de 
+ l'énergie\, du partage et de la passion.\n\nhttps://prism-up.fr/evenement
+ s.html#2026-06-13-gala-0-welcome-to-prism-up
+URL:https://prism-up.fr/evenements.html#2026-06-13-gala-0-welcome-to-prism-
+ up
+END:VEVENT
+BEGIN:VEVENT
+UID:evenement-2026-05-24-sortie-agt-basket@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20260524
+DTEND;VALUE=DATE:20260525
+SUMMARY:⭐ Prism Up · Sortie AGT Basket
+LOCATION:Salle des sports F. Begin
+DESCRIPTION:Prism Up était là pour soutenir l'équipe lors de la demi-fin
+ ale de championnat ! Une belle sortie collective dans une ambiance de feu.
+ \n\nhttps://prism-up.fr/evenements.html#2026-05-24-sortie-agt-basket
+URL:https://prism-up.fr/evenements.html#2026-05-24-sortie-agt-basket
+END:VEVENT
+BEGIN:VEVENT
+UID:evenement-2026-04-19-workshop-1-avec-paul@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20260419
+DTEND;VALUE=DATE:20260420
+SUMMARY:⭐ Prism Up · Workshop #1 avec Paul
+LOCATION:Thumeries
+DESCRIPTION:Premier workshop avec Paul\, danseur et chorégraphe. Merci à 
+ tous les participants !\n\nhttps://prism-up.fr/evenements.html#2026-04-19-
+ workshop-1-avec-paul
+URL:https://prism-up.fr/evenements.html#2026-04-19-workshop-1-avec-paul
+END:VEVENT
+END:VCALENDAR

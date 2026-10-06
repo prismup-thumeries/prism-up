@@ -1,26 +1,15 @@
 {
   "saison": "2026-2027",
+  "debut_saison": "2026-09-07",
+  "fin_saison": "2027-06-30",
   "lien_adhesion": "https://www.helloasso.com/associations/prism-up/adhesions/adhesion-prism-up-2026-2027",
   "tarifs": {
     "principal": 65,
     "option": 30
   },
-  "salles": [
-    {
-      "id": "legrain",
-      "nom": "Salle annexe P. Legrain",
-      "precision": "Salle des sports Pierre Legrain",
-      "maps": "https://www.google.com/maps/place/Salle+Pierre+Legrain/@50.4703874,3.0681525,18z"
-    },
-    {
-      "id": "assos",
-      "nom": "Salle des associations",
-      "precision": "À droite de l'école",
-      "maps": "https://www.google.com/maps?q=50.476677,3.054848"
-    }
-  ],
   "cours": [
     {
+      "id": "lundi-ce2-cm1",
       "jour": "lundi",
       "debut": "18h00",
       "fin": "19h00",
@@ -33,6 +22,7 @@
       "note": ""
     },
     {
+      "id": "lundi-approfondissement-8",
       "jour": "lundi",
       "debut": "19h00",
       "fin": "20h00",
@@ -45,6 +35,7 @@
       "note": "Pour pousser sa technique et son sens artistique. En complément obligatoire d'un cours principal."
     },
     {
+      "id": "lundi-lyceens",
       "jour": "lundi",
       "debut": "20h00",
       "fin": "21h00",
@@ -57,6 +48,7 @@
       "note": ""
     },
     {
+      "id": "mardi-cp-ce1",
       "jour": "mardi",
       "debut": "18h00",
       "fin": "19h00",
@@ -69,6 +61,7 @@
       "note": ""
     },
     {
+      "id": "mardi-approfondissement-14",
       "jour": "mardi",
       "debut": "19h00",
       "fin": "20h00",
@@ -81,6 +74,7 @@
       "note": "Pour pousser sa technique et son sens artistique. En complément obligatoire d'un cours principal."
     },
     {
+      "id": "mardi-adultes-3",
       "jour": "mardi",
       "debut": "20h00",
       "fin": "21h00",
@@ -93,6 +87,7 @@
       "note": ""
     },
     {
+      "id": "jeudi-cm1-cm2",
       "jour": "jeudi",
       "debut": "18h00",
       "fin": "19h00",
@@ -105,6 +100,7 @@
       "note": "Pour les CM1 ayant déjà une expérience en club (sinon, le lundi)."
     },
     {
+      "id": "jeudi-adultes-1",
       "jour": "jeudi",
       "debut": "19h00",
       "fin": "20h00",
@@ -117,6 +113,7 @@
       "note": ""
     },
     {
+      "id": "samedi-maternelle",
       "jour": "samedi",
       "debut": "9h00",
       "fin": "10h00",
@@ -129,6 +126,7 @@
       "note": ""
     },
     {
+      "id": "samedi-adultes-2",
       "jour": "samedi",
       "debut": "10h00",
       "fin": "11h00",
@@ -141,6 +139,7 @@
       "note": ""
     },
     {
+      "id": "samedi-collegiens",
       "jour": "samedi",
       "debut": "11h00",
       "fin": "12h00",
@@ -151,6 +150,21 @@
       "complet": false,
       "essai": "Samedi 12 septembre 2026",
       "note": ""
+    }
+  ],
+  "sans_cours": [],
+  "salles": [
+    {
+      "id": "legrain",
+      "nom": "Salle annexe P. Legrain",
+      "precision": "Salle des sports Pierre Legrain",
+      "maps": "https://www.google.com/maps/place/Salle+Pierre+Legrain/@50.4703874,3.0681525,18z"
+    },
+    {
+      "id": "assos",
+      "nom": "Salle des associations",
+      "precision": "À droite de l'école",
+      "maps": "https://www.google.com/maps?q=50.476677,3.054848"
     }
   ],
   "faq": [

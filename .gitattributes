@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Agendas : garder les fins de ligne CRLF exigées par la norme iCalendar
+*.ics -text

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#19152a">
+  <title>Mentions légales et confidentialité — Prism Up</title>
+  <meta name="description" content="Mentions légales, données personnelles et cookies du site de l'association Prism Up.">
+  <link rel="icon" type="image/png" href="images/logosite.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="images/icones/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Prism Up">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    // Thème clair/sombre appliqué avant l'affichage (évite un flash de couleur)
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem("theme") ||
+        (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    } catch (e) { document.documentElement.dataset.theme = "dark"; }
+  </script>
+  <link rel="stylesheet" href="css/style.css?v=202610061403">
+</head>
+<body data-page="legal">
+
+<main class="wrap legal">
+
+  <header class="page-head">
+    <h1>Mentions légales et confidentialité</h1>
+    <p>Qui édite ce site, ce que nous faisons de vos données et comment gérer les cookies.</p>
+  </header>
+
+  <h2>Éditeur du site</h2>
+  <p><strong>Prism Up</strong>, association loi 1901 de danse.<br>
+    Siège : Thumeries (59239), Nord.<br>
+    Contact : <a href="mailto:prismupcom@gmail.com">prismupcom@gmail.com</a></p>
+  <p>Directrice de la publication : <strong>Raphaëlle Verdière</strong>, présidente.</p>
+
+  <h2>Hébergement</h2>
+  <p>GitHub Pages — GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+
+  <h2>Photos et droit à l'image</h2>
+  <p>Les photos et vidéos publiées sur ce site appartiennent à Prism Up ou à leurs auteurs et ne peuvent pas être réutilisées sans accord. Elles sont publiées avec l'accord des personnes concernées ou de leurs représentants légaux.</p>
+  <p>Vous souhaitez qu'une photo soit retirée ? Écrivez-nous à <a href="mailto:prismupcom@gmail.com">prismupcom@gmail.com</a>, nous la retirons rapidement.</p>
+
+  <h2>Données personnelles</h2>
+  <p>Prism Up est responsable des données collectées sur ce site. Nous ne les vendons ni ne les cédons à personne.</p>
+  <ul>
+    <li><strong>Formulaire de contact et d'avis</strong> : nom, e-mail et message, uniquement pour vous répondre. Les messages sont transmis par le service Formspree (États-Unis) puis conservés le temps de traiter votre demande, au maximum 3 ans.</li>
+    <li><strong>Adhésions et réservations</strong> : elles se font sur HelloAsso, qui applique sa propre <a href="https://www.helloasso.com/confidentialite" target="_blank" rel="noopener">politique de confidentialité</a>.</li>
+    <li><strong>Espace admin</strong> : réservé aux membres de l'association, il ne collecte aucune donnée des visiteurs.</li>
+  </ul>
+  <p>Conformément au RGPD, vous pouvez accéder à vos données, les faire rectifier ou supprimer en écrivant à <a href="mailto:prismupcom@gmail.com">prismupcom@gmail.com</a>. Vous pouvez aussi adresser une réclamation à la <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>.</p>
+
+  <h2 id="cookies">Cookies</h2>
+  <p>Certains services ne sont activés <strong>que si vous les acceptez</strong> :</p>
+  <ul>
+    <li><strong>Google Analytics</strong> : statistiques de fréquentation anonymisées (pages vues, type d'appareil), pour savoir ce qui vous intéresse.</li>
+    <li><strong>Instagram</strong> : affichage des posts de nos profs sur la page L'association.</li>
+  </ul>
+  <p>Sans accord de votre part, rien n'est chargé. Votre choix est conservé 13 mois.</p>
+  <p>Le site garde aussi dans votre navigateur quelques réglages pratiques qui ne vous suivent pas (thème clair ou sombre, votre choix de cookies, encart d'installation masqué). Les vidéos YouTube sont en mode « confidentialité renforcée » et ne se lancent que si vous cliquez dessus.</p>
+  <p><button class="btn btn-ghost" id="changer-cookies">Modifier mon choix de cookies</button></p>
+
+  <h2>Crédits</h2>
+  <p>Polices Inter et Montserrat (licence SIL Open Font). Site réalisé pour Prism Up.</p>
+
+</main>
+
+<script src="js/main.js?v=202610061403"></script>
+<script>
+  document.getElementById("changer-cookies").addEventListener("click", afficherBandeauCookies);
+</script>
+</body>
+</html>
