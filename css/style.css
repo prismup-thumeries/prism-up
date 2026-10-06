@@ -488,7 +488,6 @@ body.no-scroll { overflow: hidden; }
 .legal ul { padding-left: 20px; }
 .legal strong { color: var(--text); }
 .legal a { color: var(--accent); }
-.a-completer { background: var(--warm-soft); color: var(--warm); padding: 0 6px; border-radius: 6px; font-weight: 600; }
 
 /* ─── FORMULAIRES ─── */
 .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
