@@ -151,6 +151,8 @@ singletons:
     file: data/cours.json
     fields:
       - { name: saison, label: Saison, widget: string, hint: "Ex : 2026-2027" }
+      - { name: debut_saison, label: "Premier jour de cours", widget: datetime, type: date, format: YYYY-MM-DD, hint: "Sert à l'agenda des parents." }
+      - { name: fin_saison, label: "Dernier jour de cours", widget: datetime, type: date, format: YYYY-MM-DD }
       - { name: lien_adhesion, label: "Lien d'inscription HelloAsso", widget: string }
       - name: tarifs
         label: Tarifs
@@ -166,6 +168,7 @@ singletons:
         summary: "{{fields.jour}} {{fields.debut}} · {{fields.titre}}"
         hint: "Pour fermer les inscriptions d'un cours, coche « Complet »."
         fields:
+          - { name: id, label: Identifiant, widget: uuid, read_only: true, hint: "Automatique. Sert au lien de l'agenda des parents." }
           - { name: titre, label: Nom du cours, widget: string }
           - { name: complet, label: "Complet", widget: boolean, default: false }
           - name: jour
@@ -189,8 +192,22 @@ singletons:
             options:
               - { label: "Salle annexe P. Legrain", value: legrain }
               - { label: "Salle des associations", value: assos }
+          - { name: age_min, label: "Âge minimum", widget: number, value_type: int, hint: "Pour « Quel cours pour moi ? » sur l'accueil" }
+          - { name: age_max, label: "Âge maximum", widget: number, value_type: int, hint: "Mettre 99 pour « et + » ou adultes" }
           - { name: essai, label: "Date du cours d'essai", widget: string, required: false }
           - { name: note, label: "Note dans la fiche du cours", widget: text, required: false }
+      - name: sans_cours
+        label: "Jours sans cours (vacances, fériés…)"
+        label_singular: période
+        widget: list
+        required: false
+        collapsed: true
+        summary: "{{fields.du}} → {{fields.au}} · {{fields.motif}}"
+        hint: "Ces jours sont retirés automatiquement de l'agenda des parents."
+        fields:
+          - { name: du, label: "Du", widget: datetime, type: date, format: YYYY-MM-DD }
+          - { name: au, label: "Au (inclus)", widget: datetime, type: date, format: YYYY-MM-DD, required: false, hint: "Laisser vide pour un seul jour" }
+          - { name: motif, label: Motif, widget: string, required: false, hint: "Ex : Vacances de la Toussaint" }
       - name: salles
         label: Salles
         label_singular: salle

@@ -329,6 +329,155 @@ function activerCarrousel(racine, images) {
   }, { passive: true });
 }
 
+// ─── Agenda à s'abonner (fichiers agenda/*.ics générés automatiquement) ───
+function ouvrirAgenda(fichier, titre, texte) {
+  const https = `${location.origin}/agenda/${fichier}.ics`;
+  const webcal = https.replace(/^https?:/, "webcal:");
+  const google = "https://calendar.google.com/calendar/render?cid=" + encodeURIComponent(webcal);
+  const apple = /iPhone|iPad|Macintosh/.test(navigator.userAgent);
+  const boutonApple = `<a class="btn ${apple ? "btn-primary" : "btn-ghost"} btn-block" href="${webcal}">iPhone, iPad, Mac</a>`;
+  const boutonGoogle = `<a class="btn ${apple ? "btn-ghost" : "btn-primary"} btn-block" href="${google}" target="_blank" rel="noopener">Google Agenda (Android)</a>`;
+  ouvrirFenetre(`
+    <div class="sheet-body">
+      <p class="eyebrow">📅 Agenda Prism Up</p>
+      <h2 style="margin-top:6px">${titre}</h2>
+      <p class="muted">${texte}</p>
+      <div class="facts">
+        <div><span>🔄</span><span>Abonnement : l'agenda se met à jour tout seul (horaires, vacances, nouveaux événements).</span></div>
+        <div><span>🔔</span><span>Astuce : ajoutez une alerte (ex. 1 h avant) dans les réglages de l'agenda.</span></div>
+      </div>
+      <div class="actions">
+        ${apple ? boutonApple + boutonGoogle : boutonGoogle + boutonApple}
+        <button class="btn btn-ghost btn-block" id="copier-agenda">Copier le lien (Outlook, autres)</button>
+      </div>
+    </div>`);
+  document.getElementById("copier-agenda").addEventListener("click", async e => {
+    try { await navigator.clipboard.writeText(https); e.currentTarget.textContent = "Lien copié ✓"; }
+    catch (err) { prompt("Copiez ce lien :", https); }
+  });
+}
+
+// ─── Galerie « Souvenirs » : bandes de photos qui défilent doucement ───
+function toutesLesPhotos() {
+  return evenementsPasses().flatMap(ev =>
+    (ev.photos || []).map(src => ({ src, titre: ev.titre, slug: slug(ev) })));
+}
+
+function galerieSouvenirs(zone) {
+  const photos = toutesLesPhotos();
+  if (photos.length < 3) { zone.closest("section")?.setAttribute("hidden", ""); return; }
+  const rangees = [photos.filter((_, i) => i % 2 === 0), photos.filter((_, i) => i % 2 === 1)];
+  zone.innerHTML = rangees.map((r, n) => {
+    // la liste est doublée pour que le défilement boucle sans coupure
+    const imgs = [...r, ...r].map(p => {
+      const i = photos.indexOf(p);
+      return `<button class="souvenir" data-i="${i}" aria-label="${p.titre}"><img data-src="${p.src}" alt=""></button>`;
+    }).join("");
+    return `<div class="marquee${n % 2 ? " reverse" : ""}" style="--duree:${Math.max(30, r.length * 9)}s"><div class="marquee-track">${imgs}</div></div>`;
+  }).join("");
+
+  // Les images ne se chargent qu'à l'approche de la section
+  new IntersectionObserver((entrees, obs) => {
+    if (!entrees.some(e => e.isIntersecting)) return;
+    obs.disconnect();
+    zone.querySelectorAll("img[data-src]").forEach(img => { img.src = img.dataset.src; });
+    zone.classList.add("is-ready");
+  }, { rootMargin: "300px" }).observe(zone);
+
+  zone.querySelectorAll(".souvenir").forEach(b => b.addEventListener("click", () =>
+    ouvrirVisionneuse(photos.map(p => p.src), +b.dataset.i, photos.map(p => p.titre))));
+}
+
+// ─── Données structurées pour Google (événements avec date et lieu) ───
+function donneesGoogleEvenements() {
+  const abs = src => src ? new URL(src, location.origin).href : undefined;
+  const prix = t => /gratuit/i.test(t) ? 0 : parseFloat(String(t).replace(",", ".").replace(/[^\d.]/g, "")) || undefined;
+  const iso = (date, h) => {
+    const m = h && h.match(/(\d{1,2})\s*h\s*(\d{2})?/i);
+    return m ? `${date}T${m[1].padStart(2, "0")}:${m[2] || "00"}` : date;
+  };
+  const evenements = EVENEMENTS.map(ev => {
+    const heures = String(ev.heure || "").match(/\d{1,2}\s*h\s*(\d{2})?/gi) || [];
+    const url = `${location.origin}/evenements.html#${slug(ev)}`;
+    return {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      name: ev.titre,
+      startDate: iso(ev.date, heures[0]),
+      ...(heures[1] ? { endDate: iso(ev.date, heures[1]) } : {}),
+      eventStatus: ev.annule ? "https://schema.org/EventCancelled" : "https://schema.org/EventScheduled",
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      location: {
+        "@type": "Place",
+        name: ev.lieu || "Thumeries",
+        address: { "@type": "PostalAddress", streetAddress: ev.lieu || undefined, addressLocality: "Thumeries", postalCode: "59239", addressRegion: "Hauts-de-France", addressCountry: "FR" }
+      },
+      ...(ev.affiche || ev.photos?.length ? { image: [abs(ev.affiche || ev.photos[0])] } : {}),
+      description: ev.description || ev.titre,
+      url,
+      organizer: { "@type": "Organization", name: "Prism Up", url: location.origin },
+      ...(ev.tarifs?.length ? {
+        offers: ev.tarifs.map(t => ({
+          "@type": "Offer", name: t.label, price: prix(t.prix), priceCurrency: "EUR",
+          url: ev.lien || url, availability: "https://schema.org/InStock"
+        }))
+      } : {})
+    };
+  });
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(evenements);
+  document.head.append(script);
+}
+
+// ─── Appli installable (PWA) ───
+const estInstallee = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+let invitationInstall = null;
+addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  invitationInstall = e;
+  document.querySelectorAll("[data-installer]").forEach(b => (b.hidden = false));
+});
+
+function encartInstallation(zone) {
+  if (!zone || estInstallee()) return;
+  try { if (localStorage.getItem("install-masque")) return; } catch (e) {}
+  const ios = /iPhone|iPad|iPod/.test(navigator.userAgent);
+  const mobile = matchMedia("(max-width: 760px)").matches;
+  if (!ios && !mobile && !invitationInstall) return;
+  zone.innerHTML = `
+    <div class="install-card">
+      <img src="images/icones/icone-192.png" alt="" width="48" height="48">
+      <div class="txt">
+        <strong>Installe l'appli Prism Up</strong>
+        <span class="muted small">${ios
+          ? "Touche <b>Partager</b> <span aria-hidden=\"true\">⬆️</span> puis <b>« Sur l'écran d'accueil »</b>."
+          : "Planning, événements et alertes en un geste, même hors connexion."}</span>
+      </div>
+      ${ios ? "" : `<button class="btn btn-primary btn-sm" data-installer ${invitationInstall ? "" : "hidden"}>Installer</button>`}
+      <button class="install-close" aria-label="Masquer">×</button>
+    </div>`;
+  zone.querySelector(".install-close").addEventListener("click", () => {
+    zone.innerHTML = "";
+    try { localStorage.setItem("install-masque", "1"); } catch (e) {}
+  });
+  zone.querySelector("[data-installer]")?.addEventListener("click", async () => {
+    if (!invitationInstall) return;
+    invitationInstall.prompt();
+    await invitationInstall.userChoice;
+    invitationInstall = null;
+    zone.innerHTML = "";
+  });
+}
+
+function activerAppli() {
+  if (!("serviceWorker" in navigator)) return;
+  if (location.protocol !== "https:" && location.hostname !== "localhost") return;
+  // La version du site (le "?v=" de main.js) sert aussi à mettre à jour l'appli
+  const version = new URL(document.currentScript?.src || location.href).searchParams.get("v") || "1";
+  addEventListener("load", () => navigator.serviceWorker.register(`/sw.js?v=${version}`).catch(() => {}));
+}
+
 // ─── Fenêtre (bottom sheet sur mobile) ───
 let sheetFermeture = null;
 
@@ -359,10 +508,10 @@ function fermerFenetre() {
 }
 
 // Visionneuse plein écran : flèches, glisser au doigt, Échap pour fermer
-let visionneuse = { images: [], i: 0 };
+let visionneuse = { images: [], i: 0, legendes: [] };
 
-function ouvrirVisionneuse(images, index = 0) {
-  visionneuse = { images: [].concat(images), i: index };
+function ouvrirVisionneuse(images, index = 0, legendes = []) {
+  visionneuse = { images: [].concat(images), i: index, legendes };
   let v = document.getElementById("viewer");
   if (!v) {
     v = document.createElement("div");
@@ -396,7 +545,8 @@ function afficherPhoto() {
   const v = document.getElementById("viewer");
   const n = visionneuse.images.length;
   v.querySelector("img").src = visionneuse.images[visionneuse.i];
-  v.querySelector(".vcount").textContent = n > 1 ? `${visionneuse.i + 1} / ${n}` : "";
+  const legende = visionneuse.legendes[visionneuse.i];
+  v.querySelector(".vcount").textContent = [legende, n > 1 ? `${visionneuse.i + 1} / ${n}` : ""].filter(Boolean).join(" · ");
   v.querySelectorAll(".nav").forEach(b => (b.style.display = n > 1 ? "" : "none"));
 }
 
@@ -412,3 +562,4 @@ document.addEventListener("keydown", e => {
 
 construireMiseEnPage();
 appliquerTheme();
+activerAppli();

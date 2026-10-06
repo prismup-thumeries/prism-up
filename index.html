@@ -14,12 +14,41 @@
   <title>Prism Up — Association de danse à Thumeries</title>
   <meta name="description" content="Prism Up, association de danse urbaine à Thumeries : street jazz, hip hop commercial, cours enfants, ados et adultes.">
   <link rel="icon" type="image/png" href="images/logosite.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="images/icones/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Prism Up">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Prism Up">
   <meta property="og:title" content="Prism Up — Association de danse à Thumeries">
   <meta property="og:description" content="Prism Up, association de danse urbaine à Thumeries : street jazz, hip hop commercial, cours enfants, ados et adultes.">
   <meta property="og:image" content="https://prism-up.fr/images/logosite.png">
   <meta property="og:locale" content="fr_FR">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsClub",
+    "name": "Prism Up",
+    "alternateName": "Prism Up — Danse & Expression",
+    "description": "Association de danse urbaine à Thumeries : street jazz, hip hop commercial et styles urbains, cours enfants, ados et adultes.",
+    "url": "https://prism-up.fr/",
+    "logo": "https://prism-up.fr/images/logo.png",
+    "image": "https://prism-up.fr/images/bureaux.jpg",
+    "email": "prismupcom@gmail.com",
+    "sport": "Danse",
+    "foundingDate": "2026-01",
+    "address": { "@type": "PostalAddress", "addressLocality": "Thumeries", "postalCode": "59239", "addressRegion": "Hauts-de-France", "addressCountry": "FR" },
+    "areaServed": "Thumeries",
+    "sameAs": [
+      "https://www.instagram.com/prismup_thumeries/",
+      "https://www.facebook.com/profile.php?id=61582350400438",
+      "https://www.tiktok.com/@prismup",
+      "https://www.youtube.com/@Prismup-n4i"
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap">
@@ -30,7 +59,7 @@
         (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
     } catch (e) { document.documentElement.dataset.theme = "dark"; }
   </script>
-  <link rel="stylesheet" href="css/style.css?v=202610051755">
+  <link rel="stylesheet" href="css/style.css?v=202610061335">
 </head>
 <body data-page="accueil">
 
@@ -58,8 +87,22 @@
   </a>
 
   <section class="section">
+    <h2 class="section-title">Quel cours pour moi ?</h2>
+    <div class="card finder">
+      <p class="finder-q">Âge du danseur</p>
+      <div class="chips" id="ages" role="group" aria-label="Âge"></div>
+      <div id="resultats-cours" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="section">
     <h2 class="section-title">À venir <a href="evenements.html">Tout voir →</a></h2>
     <div id="a-venir"></div>
+  </section>
+
+  <section class="section souvenirs-section">
+    <h2 class="section-title">Souvenirs <a href="evenements.html#passes">Tous les événements →</a></h2>
+    <div class="souvenirs" id="souvenirs"></div>
   </section>
 
   <section class="section">
@@ -83,6 +126,8 @@
     </div>
   </section>
 
+  <div id="installer-appli"></div>
+
   <section class="section">
     <h2 class="section-title">Nos partenaires</h2>
     <div class="partners">
@@ -93,7 +138,7 @@
 
 </main>
 
-<script src="js/main.js?v=202610051755"></script>
+<script src="js/main.js?v=202610061335"></script>
 <script>
 chargerDonnees().then(() => {
   const annonce = document.getElementById("annonce");
@@ -117,6 +162,42 @@ chargerDonnees().then(() => {
           </a>`).join("")}
       </div>` : "");
   }
+
+  // ─── Quel cours pour moi ? ───
+  const AGES = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+  const zoneAges = document.getElementById("ages");
+  zoneAges.innerHTML = AGES.map(a =>
+    `<button class="chip" data-age="${a}" aria-pressed="false">${a === 18 ? "Adulte" : a + " ans"}</button>`).join("");
+  const resultats = document.getElementById("resultats-cours");
+  resultats.innerHTML = `<p class="muted small" style="margin-top:12px">Touchez un âge pour voir les cours qui correspondent.</p>`;
+
+  const ligneCours = c => `
+    <a class="list-row" href="cours.html#${c.id}">
+      <span class="date-block"><b>${c.jour.slice(0, 3)}</b><span>${c.debut}</span></span>
+      <span class="txt"><strong>${c.titre}</strong><span class="sub">${c.detail || ""}</span></span>
+      ${c.complet ? `<span class="pill pill-full">Complet</span>` : `<span class="pill pill-ok">Dispo</span>`}
+    </a>`;
+
+  function montrerCours(age) {
+    const pour = COURS.filter(c => age >= (c.age_min ?? 0) && age <= (c.age_max ?? 99));
+    const principaux = pour.filter(c => c.public !== "option");
+    const options = pour.filter(c => c.public === "option");
+    const dispo = principaux.filter(c => !c.complet).length;
+    resultats.innerHTML = !principaux.length
+      ? `<div class="empty" style="margin-top:12px">Pas encore de cours pour cet âge. <a href="rejoindre.html#contact" style="color:var(--accent)">Écrivez-nous</a>, on vous tient au courant !</div>`
+      : `<p class="finder-summary">${principaux.length} cours possible${principaux.length > 1 ? "s" : ""} · <strong>${dispo ? dispo + " avec des places" : "complets pour l'instant"}</strong></p>
+         <div class="list">${principaux.map(ligneCours).join("")}</div>
+         ${options.length ? `<p class="finder-sub">En plus (option +${TARIFS_COURS.option} €)</p><div class="list">${options.map(ligneCours).join("")}</div>` : ""}
+         ${!dispo ? `<a class="btn btn-ghost btn-block" style="margin-top:12px" href="rejoindre.html#contact">Demander la liste d'attente</a>` : ""}`;
+  }
+
+  zoneAges.querySelectorAll(".chip").forEach(chip => chip.addEventListener("click", () => {
+    zoneAges.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === chip));
+    montrerCours(+chip.dataset.age);
+  }));
+
+  galerieSouvenirs(document.getElementById("souvenirs"));
+  encartInstallation(document.getElementById("installer-appli"));
 });
 </script>
 </body>

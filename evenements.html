@@ -14,6 +14,12 @@
   <title>Événements — Prism Up</title>
   <meta name="description" content="Workshops, stages, sorties et galas de l'association de danse Prism Up à Thumeries.">
   <link rel="icon" type="image/png" href="images/logosite.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="images/icones/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Prism Up">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Prism Up">
   <meta property="og:title" content="Événements — Prism Up">
@@ -30,7 +36,7 @@
         (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
     } catch (e) { document.documentElement.dataset.theme = "dark"; }
   </script>
-  <link rel="stylesheet" href="css/style.css?v=202610051755">
+  <link rel="stylesheet" href="css/style.css?v=202610061335">
 </head>
 <body data-page="evenements">
 
@@ -51,7 +57,16 @@
 
   <div id="vue-avenir"></div>
 
+  <button class="list-row agenda-row" id="abonnement" type="button">
+    <span class="ico">📅</span>
+    <span class="txt"><strong>Ne rate aucun événement</strong><span class="sub">Ajoute l'agenda Prism Up à ton téléphone</span></span>
+    <span class="chev">›</span>
+  </button>
+
   <div id="vue-passes" hidden>
+    <section class="souvenirs-section" style="margin-bottom:22px">
+      <div class="souvenirs" id="souvenirs"></div>
+    </section>
     <div class="chips" id="types" style="margin-bottom:16px">
       <button class="chip" data-type="tous" aria-pressed="true">Tout</button>
       <button class="chip" data-type="evenement" aria-pressed="false">Événements</button>
@@ -63,7 +78,7 @@
 
 </main>
 
-<script src="js/main.js?v=202610051755"></script>
+<script src="js/main.js?v=202610061335"></script>
 <script>
 chargerDonnees().then(() => {
   let typeActif = "tous";
@@ -230,6 +245,7 @@ chargerDonnees().then(() => {
     document.getElementById("vue-avenir").hidden = vue !== "avenir";
     document.getElementById("vue-passes").hidden = vue !== "passes";
     document.getElementById("saison").hidden = vue !== "passes";
+    document.getElementById("abonnement").hidden = vue !== "avenir";
     if (vue === "passes") dessinerPasses();
   }
 
@@ -249,7 +265,13 @@ chargerDonnees().then(() => {
   dessinerSaisons();
 
   // Lien direct vers un événement (ex : partagé sur Instagram)
+  document.getElementById("abonnement").addEventListener("click", () =>
+    ouvrirAgenda("evenements", "Agenda des événements", "Tous les stages, sorties et galas Prism Up dans ton agenda."));
+  galerieSouvenirs(document.getElementById("souvenirs"));
+  donneesGoogleEvenements();
+
   function ouvrirDepuisAncre() {
+    if (location.hash === "#passes") { changerVue("passes"); return; }
     const ancre = decodeURIComponent(location.hash.slice(1));
     const cible = EVENEMENTS.find(e => slug(e) === ancre);
     if (!cible) return;

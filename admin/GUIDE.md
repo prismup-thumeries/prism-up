@@ -62,6 +62,31 @@ C'est tout : l'appareil reste connecté.
 
 ---
 
+## Agenda des parents (abonnement)
+
+Sur la page Cours, chaque fiche a un bouton **« Ajouter ce cours à mon agenda »**
+(et la page Événements propose l'agenda des événements). Les parents s'abonnent
+une fois ; ensuite leur agenda se met à jour **tout seul**.
+
+Ce qui le met à jour, depuis l'admin → **📅 Planning des cours** :
+
+- **Premier / dernier jour de cours** : début et fin de la saison.
+- **Jours sans cours** : ajoute les vacances scolaires, jours fériés, jour du gala…
+  Ils disparaissent automatiquement de l'agenda des parents.
+- Les **événements** ajoutés dans 🎭 Événements apparaissent aussi.
+
+Après un enregistrement, GitHub régénère les agendas (1 à 3 minutes), puis
+chaque téléphone les relit à son rythme (souvent dans l'heure, parfois jusqu'à
+une journée sur Google Agenda).
+
+> Ne renomme pas l'**identifiant** d'un cours : il sert d'adresse à l'agenda
+> des parents abonnés.
+
+## « Quel cours pour moi ? » (accueil)
+
+Chaque cours a un **âge minimum** et un **âge maximum** (99 = « et + »).
+C'est ce qui décide quels cours s'affichent quand un parent choisit un âge.
+
 ## Astuces
 
 - **Bandeau d'alerte** : mets toujours une date dans « Afficher jusqu'au ».

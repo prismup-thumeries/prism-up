@@ -1,0 +1,55 @@
+# Régénère les agendas (agenda/*.ics) dès que les données changent
+# (par exemple après un enregistrement dans prism-up.fr/admin).
+name: Agenda Prism Up
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "scripts/generer-agenda.mjs"
+      - ".github/workflows/agenda.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: agenda
+  cancel-in-progress: false
+
+jobs:
+  agenda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Générer les agendas
+        run: node scripts/generer-agenda.mjs
+
+      - name: Enregistrer s'il y a des changements
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain agenda)" ]; then
+            echo "Agendas déjà à jour."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add agenda
+          git commit -m "Agenda : mise à jour automatique"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          # Les envois faits par cette automatisation ne relancent pas toujours
+          # la publication du site : on la demande explicitement.
+          curl -fsS -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" \
+            || echo "Publication non relancée (elle se fera au prochain envoi)."
