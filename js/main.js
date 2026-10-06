@@ -368,11 +368,14 @@ function galerieSouvenirs(zone) {
   const photos = toutesLesPhotos();
   if (photos.length < 3) { zone.closest("section")?.setAttribute("hidden", ""); return; }
   const rangees = [photos.filter((_, i) => i % 2 === 0), photos.filter((_, i) => i % 2 === 1)];
+  // Chaque bande contient juste assez de photos pour couvrir l'écran, puis est doublée :
+  // le défilement boucle sans trou, sans créer de bande trop large (Safari n'aime pas).
+  const largeurEcran = Math.max(innerWidth, screen.width || 0, 400);
+  const largeurPhoto = innerWidth > 760 ? 295 : 235;
+  const minimum = Math.ceil(largeurEcran / largeurPhoto) + 1;
   zone.innerHTML = rangees.map((r, n) => {
-    // Chaque bande est répétée jusqu'à être plus large que l'écran, puis doublée :
-    // le défilement boucle sans jamais laisser de trou, même avec peu de photos.
     let moitie = [...r];
-    while (moitie.length < 10) moitie = moitie.concat(r);
+    while (moitie.length < minimum) moitie = moitie.concat(r);
     const imgs = [...moitie, ...moitie].map(p => {
       const i = photos.indexOf(p);
       return `<button class="souvenir" data-i="${i}" aria-label="${p.titre}"><img data-src="${p.src}" alt=""></button>`;

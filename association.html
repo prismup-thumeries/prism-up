@@ -27,7 +27,7 @@
         (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
     } catch (e) { document.documentElement.dataset.theme = "dark"; }
   </script>
-  <link rel="stylesheet" href="css/style.css?v=202610061403">
+  <link rel="stylesheet" href="css/style.css?v=202610061410">
 </head>
 <body data-page="association">
 
@@ -88,7 +88,7 @@
 
 </main>
 
-<script src="js/main.js?v=202610061403"></script>
+<script src="js/main.js?v=202610061410"></script>
 <script>
 chargerDonnees().then(() => {
   const initiales = nom => nom.split(" ").map(m => m[0]).join("").slice(0, 2);
