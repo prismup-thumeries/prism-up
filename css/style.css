@@ -434,35 +434,25 @@ body.no-scroll { overflow: hidden; }
 .alert-bar .chev { margin-left: auto; color: var(--faint); }
 .alert-bar.urgent { background: var(--full-soft); color: var(--full); }
 
-/* ─── QUEL COURS POUR MOI ? ─── */
-.finder .finder-q { font-weight: 600; font-size: 0.9rem; color: var(--muted); margin-bottom: 10px; }
-.finder .chips { margin: 0 -20px; padding: 0 20px 2px; }
-.finder-summary { margin: 16px 0 10px; font-size: 0.92rem; color: var(--muted); }
-.finder-summary strong { color: var(--text); }
-.finder-sub { margin: 14px 0 8px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
-.finder .list { box-shadow: none; }
-.finder .list-row .txt strong { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.finder .date-block b { font-size: 0.95rem; text-transform: capitalize; }
-.finder .date-block span { font-size: 0.7rem; text-transform: none; }
-
-/* ─── SOUVENIRS : bandes de photos qui défilent ─── */
-.souvenirs { display: flex; flex-direction: column; gap: 10px; margin: 0 -20px; overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.marquee { overflow: hidden; }
-.marquee-track { display: flex; gap: 10px; width: max-content; animation: defile var(--duree, 60s) linear infinite; }
-.marquee.reverse .marquee-track { animation-direction: reverse; }
-.souvenirs:hover .marquee-track { animation-play-state: paused; }
-.souvenir { flex-shrink: 0; height: 150px; aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; background: var(--surface-2); transform: rotate(-1deg); transition: transform .3s; }
-.marquee.reverse .souvenir { transform: rotate(1deg); }
-.souvenir img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s, transform .4s; }
+/* ─── SOUVENIRS : bandes de photos qui défilent en continu ─── */
+.souvenirs { display: flex; flex-direction: column; gap: 10px; margin: 0 -20px; }
+.marquee { overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee-track { display: flex; gap: 10px; width: max-content; will-change: transform;
+  -webkit-animation: defile var(--duree, 60s) linear infinite; animation: defile var(--duree, 60s) linear infinite; }
+.marquee.reverse .marquee-track { -webkit-animation-name: defile-inverse; animation-name: defile-inverse; }
+.souvenir { flex-shrink: 0; height: 150px; aspect-ratio: 3 / 2; border-radius: 16px; overflow: hidden; background: var(--surface-2); }
+.souvenir img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .6s; }
 .souvenirs.is-ready .souvenir img { opacity: 1; }
-.souvenir:hover { transform: rotate(0) scale(1.04); z-index: 1; }
-@keyframes defile { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@media (min-width: 761px) { .souvenir { height: 200px; } .souvenirs { margin: 0; } }
+@-webkit-keyframes defile { from { -webkit-transform: translate3d(0, 0, 0); } to { -webkit-transform: translate3d(-50%, 0, 0); } }
+@keyframes defile { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+@-webkit-keyframes defile-inverse { from { -webkit-transform: translate3d(-50%, 0, 0); } to { -webkit-transform: translate3d(0, 0, 0); } }
+@keyframes defile-inverse { from { transform: translate3d(-50%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
+@media (min-width: 761px) { .souvenir { height: 190px; } .souvenirs { margin: 0; } }
 @media (prefers-reduced-motion: reduce) {
   .marquee { overflow-x: auto; }
-  .marquee-track { animation: none; }
+  .marquee-track { -webkit-animation: none; animation: none; }
 }
 
 /* ─── INSTALLER L'APPLI ─── */

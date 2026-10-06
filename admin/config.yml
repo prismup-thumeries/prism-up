@@ -192,8 +192,6 @@ singletons:
             options:
               - { label: "Salle annexe P. Legrain", value: legrain }
               - { label: "Salle des associations", value: assos }
-          - { name: age_min, label: "Âge minimum", widget: number, value_type: int, hint: "Pour « Quel cours pour moi ? » sur l'accueil" }
-          - { name: age_max, label: "Âge maximum", widget: number, value_type: int, hint: "Mettre 99 pour « et + » ou adultes" }
           - { name: essai, label: "Date du cours d'essai", widget: string, required: false }
           - { name: note, label: "Note dans la fiche du cours", widget: text, required: false }
       - name: sans_cours

@@ -82,11 +82,6 @@ une journée sur Google Agenda).
 > Ne renomme pas l'**identifiant** d'un cours : il sert d'adresse à l'agenda
 > des parents abonnés.
 
-## « Quel cours pour moi ? » (accueil)
-
-Chaque cours a un **âge minimum** et un **âge maximum** (99 = « et + »).
-C'est ce qui décide quels cours s'affichent quand un parent choisit un âge.
-
 ## Astuces
 
 - **Bandeau d'alerte** : mets toujours une date dans « Afficher jusqu'au ».

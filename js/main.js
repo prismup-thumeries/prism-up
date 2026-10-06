@@ -369,12 +369,15 @@ function galerieSouvenirs(zone) {
   if (photos.length < 3) { zone.closest("section")?.setAttribute("hidden", ""); return; }
   const rangees = [photos.filter((_, i) => i % 2 === 0), photos.filter((_, i) => i % 2 === 1)];
   zone.innerHTML = rangees.map((r, n) => {
-    // la liste est doublée pour que le défilement boucle sans coupure
-    const imgs = [...r, ...r].map(p => {
+    // Chaque bande est répétée jusqu'à être plus large que l'écran, puis doublée :
+    // le défilement boucle sans jamais laisser de trou, même avec peu de photos.
+    let moitie = [...r];
+    while (moitie.length < 10) moitie = moitie.concat(r);
+    const imgs = [...moitie, ...moitie].map(p => {
       const i = photos.indexOf(p);
       return `<button class="souvenir" data-i="${i}" aria-label="${p.titre}"><img data-src="${p.src}" alt=""></button>`;
     }).join("");
-    return `<div class="marquee${n % 2 ? " reverse" : ""}" style="--duree:${Math.max(30, r.length * 9)}s"><div class="marquee-track">${imgs}</div></div>`;
+    return `<div class="marquee${n % 2 ? " reverse" : ""}" style="--duree:${moitie.length * 5}s"><div class="marquee-track">${imgs}</div></div>`;
   }).join("");
 
   // Les images ne se chargent qu'à l'approche de la section

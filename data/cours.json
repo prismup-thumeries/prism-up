@@ -19,9 +19,7 @@
       "salle": "legrain",
       "complet": true,
       "essai": "Lundi 7 septembre 2026",
-      "note": "",
-      "age_min": 8,
-      "age_max": 9
+      "note": ""
     },
     {
       "id": "lundi-approfondissement-8",
@@ -34,9 +32,7 @@
       "salle": "legrain",
       "complet": false,
       "essai": "Lundi 7 septembre 2026",
-      "note": "Pour pousser sa technique et son sens artistique. En complément obligatoire d'un cours principal.",
-      "age_min": 8,
-      "age_max": 99
+      "note": "Pour pousser sa technique et son sens artistique. En complément obligatoire d'un cours principal."
     },
     {
       "id": "lundi-lyceens",
@@ -49,9 +45,7 @@
       "salle": "legrain",
       "complet": true,
       "essai": "Lundi 7 septembre 2026",
-      "note": "",
-      "age_min": 15,
-      "age_max": 17
+      "note": ""
     },
     {
       "id": "mardi-cp-ce1",
@@ -64,9 +58,7 @@
       "salle": "assos",
       "complet": true,
       "essai": "Mardi 8 septembre 2026",
-      "note": "",
-      "age_min": 6,
-      "age_max": 7
+      "note": ""
     },
     {
       "id": "mardi-approfondissement-14",
@@ -79,9 +71,7 @@
       "salle": "assos",
       "complet": false,
       "essai": "Mardi 8 septembre 2026",
-      "note": "Pour pousser sa technique et son sens artistique. En complément obligatoire d'un cours principal.",
-      "age_min": 14,
-      "age_max": 99
+      "note": "Pour pousser sa technique et son sens artistique. En complément obligatoire d'un cours principal."
     },
     {
       "id": "mardi-adultes-3",
@@ -94,9 +84,7 @@
       "salle": "assos",
       "complet": false,
       "essai": "Mardi 8 septembre 2026",
-      "note": "",
-      "age_min": 18,
-      "age_max": 99
+      "note": ""
     },
     {
       "id": "jeudi-cm1-cm2",
@@ -109,9 +97,7 @@
       "salle": "assos",
       "complet": true,
       "essai": "Jeudi 10 septembre 2026",
-      "note": "Pour les CM1 ayant déjà une expérience en club (sinon, le lundi).",
-      "age_min": 9,
-      "age_max": 10
+      "note": "Pour les CM1 ayant déjà une expérience en club (sinon, le lundi)."
     },
     {
       "id": "jeudi-adultes-1",
@@ -124,9 +110,7 @@
       "salle": "assos",
       "complet": false,
       "essai": "Jeudi 10 septembre 2026",
-      "note": "",
-      "age_min": 18,
-      "age_max": 99
+      "note": ""
     },
     {
       "id": "samedi-maternelle",
@@ -139,9 +123,7 @@
       "salle": "legrain",
       "complet": true,
       "essai": "Samedi 12 septembre 2026",
-      "note": "",
-      "age_min": 4,
-      "age_max": 5
+      "note": ""
     },
     {
       "id": "samedi-adultes-2",
@@ -154,9 +136,7 @@
       "salle": "legrain",
       "complet": false,
       "essai": "Samedi 12 septembre 2026",
-      "note": "",
-      "age_min": 18,
-      "age_max": 99
+      "note": ""
     },
     {
       "id": "samedi-collegiens",
@@ -169,9 +149,7 @@
       "salle": "legrain",
       "complet": false,
       "essai": "Samedi 12 septembre 2026",
-      "note": "",
-      "age_min": 11,
-      "age_max": 14
+      "note": ""
     }
   ],
   "sans_cours": [],
