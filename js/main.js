@@ -187,9 +187,10 @@ function construireMiseEnPage() {
       <div class="socials">
         ${RESEAUX.map(r => `<a href="${r.url}" target="_blank" rel="noopener" aria-label="${r.nom}">${svg(r.icon, 18)}</a>`).join("")}
       </div>
-      <div>© ${new Date().getFullYear()} Prism Up</div>
+      <div>© ${new Date().getFullYear()} Prism Up · <a href="mentions-legales.html" style="color:var(--muted)">Mentions légales</a> · <button class="lien-cookies" id="lien-cookies">Cookies</button></div>
     </div>`;
   document.querySelector("main")?.after(footer);
+  footer.querySelector("#lien-cookies").addEventListener("click", afficherBandeauCookies);
 }
 
 // ─── Dates ───
@@ -430,6 +431,64 @@ function donneesGoogleEvenements() {
   document.head.append(script);
 }
 
+// ─── Cookies et mesure d'audience (règles CNIL) ───
+// Google Analytics et les contenus Instagram ne se chargent qu'après « Accepter ».
+// Le choix est gardé 13 mois, puis redemandé. Lien « Cookies » dans le pied de page.
+const ID_ANALYTICS = "G-5QQ5K7E4S0";
+const DUREE_CHOIX = 395 * 86400000; // 13 mois
+
+function lireConsentement() {
+  try {
+    const c = JSON.parse(localStorage.getItem("consentement") || "null");
+    return c && Date.now() - c.date < DUREE_CHOIX ? c.choix : null;
+  } catch (e) { return null; }
+}
+
+function enregistrerConsentement(choix) {
+  try { localStorage.setItem("consentement", JSON.stringify({ choix, date: Date.now() })); } catch (e) {}
+  document.getElementById("bandeau-cookies")?.remove();
+  if (choix === "accepte") chargerAnalytics();
+  dispatchEvent(new CustomEvent("consentement", { detail: choix }));
+}
+
+let analyticsCharge = false;
+function chargerAnalytics() {
+  if (analyticsCharge) return;
+  analyticsCharge = true;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag("js", new Date());
+  gtag("config", ID_ANALYTICS);
+  const s = document.createElement("script");
+  s.async = true;
+  s.src = "https://www.googletagmanager.com/gtag/js?id=" + ID_ANALYTICS;
+  document.head.append(s);
+}
+
+function afficherBandeauCookies() {
+  if (document.getElementById("bandeau-cookies")) return;
+  const b = document.createElement("div");
+  b.id = "bandeau-cookies";
+  b.className = "cookie-bar";
+  b.setAttribute("role", "dialog");
+  b.setAttribute("aria-label", "Cookies");
+  b.innerHTML = `
+    <p><strong>🍪 Cookies</strong> On aimerait mesurer la fréquentation du site (Google Analytics) et afficher nos posts Instagram. Tu es libre de refuser.
+      <a href="mentions-legales.html#cookies">En savoir plus</a></p>
+    <div class="cookie-actions">
+      <button class="btn btn-ghost btn-sm" data-choix="refuse">Refuser</button>
+      <button class="btn btn-ghost btn-sm" data-choix="accepte">Accepter</button>
+    </div>`;
+  b.querySelectorAll("[data-choix]").forEach(x => x.addEventListener("click", () => enregistrerConsentement(x.dataset.choix)));
+  document.body.append(b);
+}
+
+function initialiserConsentement() {
+  const choix = lireConsentement();
+  if (choix === "accepte") chargerAnalytics();
+  else if (choix === null) afficherBandeauCookies();
+}
+
 // ─── Appli installable (PWA) ───
 const estInstallee = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
 let invitationInstall = null;
@@ -563,3 +622,4 @@ document.addEventListener("keydown", e => {
 construireMiseEnPage();
 appliquerTheme();
 activerAppli();
+initialiserConsentement();

@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5QQ5K7E4S0"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-5QQ5K7E4S0');
-  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#19152a">
@@ -26,9 +19,7 @@
   <meta property="og:description" content="Planning des cours de danse Prism Up à Thumeries : enfants, ados, adultes. Cours d'essai gratuit.">
   <meta property="og:image" content="https://prism-up.fr/images/logosite.png">
   <meta property="og:locale" content="fr_FR">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap">
+  <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <script>
     // Thème clair/sombre appliqué avant l'affichage (évite un flash de couleur)
     try {
@@ -36,7 +27,7 @@
         (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
     } catch (e) { document.documentElement.dataset.theme = "dark"; }
   </script>
-  <link rel="stylesheet" href="css/style.css?v=202610061335">
+  <link rel="stylesheet" href="css/style.css?v=202610061341">
 </head>
 <body data-page="cours">
 
@@ -87,7 +78,7 @@
 
 </main>
 
-<script src="js/main.js?v=202610061335"></script>
+<script src="js/main.js?v=202610061341"></script>
 <script>
 chargerDonnees().then(() => {
   const JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];

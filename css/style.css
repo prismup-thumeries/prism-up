@@ -5,7 +5,13 @@
    les variables dans :root ci-dessous.
    ============================================================ */
 
-/* Polices chargées dans le <head> de chaque page (plus rapide qu'un @import). */
+/* Polices hébergées sur le site (aucune donnée envoyée à Google). Licence OFL : fonts/ */
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400; font-display: swap; src: url("../fonts/inter-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap; src: url("../fonts/inter-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url("../fonts/inter-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 700; font-display: swap; src: url("../fonts/inter-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 700; font-display: swap; src: url("../fonts/montserrat-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-style: normal; font-weight: 800; font-display: swap; src: url("../fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
 
 :root {
   /* Fonds : prune profonde, plus chaleureuse qu'un noir pur */
@@ -469,6 +475,30 @@ body.no-scroll { overflow: hidden; }
 /* Ligne « agenda » */
 .agenda-row { margin-top: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow); }
 .agenda-row[hidden] { display: none; }
+
+/* ─── BANDEAU COOKIES ─── */
+.cookie-bar { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 400; width: calc(100% - 32px); max-width: 640px; display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius-lg); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25); font-size: 0.86rem; animation: slideup .3s ease; }
+.cookie-bar p { flex: 1; color: var(--muted); }
+.cookie-bar p strong { color: var(--text); margin-right: 4px; }
+.cookie-bar a { color: var(--accent); }
+.cookie-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.lien-cookies { color: var(--muted); text-decoration: underline; font-size: inherit; }
+@media (max-width: 760px) {
+  .cookie-bar { flex-direction: column; align-items: stretch; bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 10px); }
+  .cookie-actions .btn { flex: 1; }
+}
+
+/* Posts Instagram en attente d'accord */
+.insta-attente { padding: 22px; text-align: center; background: var(--surface); border: 1px dashed var(--line-strong); border-radius: var(--radius-lg); color: var(--muted); font-size: 0.9rem; }
+.insta-attente .btn { margin-top: 12px; }
+
+/* ─── PAGE MENTIONS LÉGALES ─── */
+.legal h2 { font-family: var(--font-title); font-size: 1.1rem; font-weight: 700; margin: 28px 0 8px; }
+.legal p, .legal li { color: var(--muted); font-size: 0.95rem; max-width: 72ch; margin-bottom: 8px; }
+.legal ul { padding-left: 20px; }
+.legal strong { color: var(--text); }
+.legal a { color: var(--accent); }
+.a-completer { background: var(--warm-soft); color: var(--warm); padding: 0 6px; border-radius: 6px; font-weight: 600; }
 
 /* ─── FORMULAIRES ─── */
 .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
