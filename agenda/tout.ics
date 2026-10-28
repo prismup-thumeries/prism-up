@@ -211,6 +211,18 @@ TRIGGER:-PT1H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:evenement-2026-12-19-fete-de-noel@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20261219
+DTEND;VALUE=DATE:20261220
+SUMMARY:⭐ Prism Up · Fête de noël
+LOCATION:Salle des fêtes F. Malle\, Thumeries
+DESCRIPTION:à définir\n\nSpectacle de nos danseurs\, repas de Noël\, bat
+ tles et une petite surprise pour les enfants… On vous en dit plus très 
+ vite 👀\n\nhttps://prism-up.fr/evenements.html#2026-12-19-fete-de-noel
+URL:https://prism-up.fr/evenements.html#2026-12-19-fete-de-noel
+END:VEVENT
+BEGIN:VEVENT
 UID:evenement-2026-10-31-workshop-hip-hop-commercial-avec-jow-tayler@prism-
  up.fr
 DTSTAMP:20260101T000000Z
