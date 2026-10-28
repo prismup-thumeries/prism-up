@@ -1,6 +1,23 @@
 {
   "evenements": [
     {
+      "titre": "Gala #1",
+      "type": "evenement",
+      "date": "2027-05-22",
+      "heure": "à définir",
+      "lieu": "Salle des fêtes F. Malle, Thumeries",
+      "description": "Le grand rendez-vous de l’année, où tous nos groupes monteront sur scène pour vous montrer tout le travail de la saison.",
+      "badge": "",
+      "affiche": "",
+      "cadrage": "top",
+      "photos": [],
+      "video": "",
+      "tarifs": [],
+      "lien": "",
+      "texteLien": "",
+      "annule": false
+    },
+    {
       "titre": "Fête de noël",
       "type": "evenement",
       "date": "2026-12-19",
