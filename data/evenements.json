@@ -1,6 +1,23 @@
 {
   "evenements": [
     {
+      "titre": "Fête de noël",
+      "type": "evenement",
+      "date": "2026-12-19",
+      "heure": "à définir",
+      "lieu": "Salle des fêtes F. Malle, Thumeries",
+      "description": "Spectacle de nos danseurs, repas de Noël, battles et une petite surprise pour les enfants… On vous en dit plus très vite 👀",
+      "badge": "🎄 Spécial Noël",
+      "affiche": "",
+      "cadrage": "top",
+      "photos": [],
+      "video": "",
+      "tarifs": [],
+      "lien": "",
+      "texteLien": "",
+      "annule": false
+    },
+    {
       "titre": "Workshop Hip-Hop Commercial avec Jow Tayler",
       "type": "stage",
       "date": "2026-10-31",
