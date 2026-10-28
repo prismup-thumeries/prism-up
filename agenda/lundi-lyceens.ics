@@ -43,6 +43,18 @@ TRIGGER:-PT1H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:evenement-2027-05-22-gala-1@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;VALUE=DATE:20270522
+DTEND;VALUE=DATE:20270523
+SUMMARY:⭐ Prism Up · Gala #1
+LOCATION:Salle des fêtes F. Malle\, Thumeries
+DESCRIPTION:à définir\n\nLe grand rendez-vous de l’année\, où tous no
+ s groupes monteront sur scène pour vous montrer tout le travail de la sai
+ son.\n\nhttps://prism-up.fr/evenements.html#2027-05-22-gala-1
+URL:https://prism-up.fr/evenements.html#2027-05-22-gala-1
+END:VEVENT
+BEGIN:VEVENT
 UID:evenement-2026-12-19-fete-de-noel@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20261219
