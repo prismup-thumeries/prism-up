@@ -104,12 +104,14 @@ function blocEvenement(ev) {
   const jour = ev.date.replace(/-/g, "");
   const heures = String(ev.heure || "").match(/\d{1,2}\s*h\s*(\d{2})?/gi) || [];
   let dates;
+  const fin_ = /^\d{4}-\d{2}-\d{2}$/.test(ev.date_fin || "") ? ev.date_fin : ev.date; // événement sur plusieurs jours
+  const jourFin = fin_.replace(/-/g, "");
   if (heures.length) {
     const debut = heure(heures[0]);
-    const fin = heures[1] ? heure(heures[1]) : String(Math.min(+debut.slice(0, 2) + 2, 23)).padStart(2, "0") + debut.slice(2);
-    dates = [`DTSTART;TZID=Europe/Paris:${jour}T${debut}`, `DTEND;TZID=Europe/Paris:${jour}T${fin}`];
+    const fin = heures[1] ? heure(heures[1]) : fin_ !== ev.date ? debut : String(Math.min(+debut.slice(0, 2) + 2, 23)).padStart(2, "0") + debut.slice(2);
+    dates = [`DTSTART;TZID=Europe/Paris:${jour}T${debut}`, `DTEND;TZID=Europe/Paris:${jourFin}T${fin}`];
   } else {
-    dates = [`DTSTART;VALUE=DATE:${jour}`, `DTEND;VALUE=DATE:${jourAAAAMMJJ(plusJours(dateUTC(ev.date), 1))}`];
+    dates = [`DTSTART;VALUE=DATE:${jour}`, `DTEND;VALUE=DATE:${jourAAAAMMJJ(plusJours(dateUTC(fin_), 1))}`];
   }
   const s = slugEvenement(ev);
   return [

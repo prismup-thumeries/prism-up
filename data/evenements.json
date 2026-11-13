@@ -1,6 +1,68 @@
 {
   "evenements": [
     {
+      "titre": "24h sur la piste pour le Téléthon",
+      "type": "evenement",
+      "date": "2026-12-04",
+      "date_fin": "2026-12-05",
+      "heure": "Vendredi 18h → samedi 18h, non-stop",
+      "lieu": "Piste du stade, Thumeries",
+      "serie": "Week-end Téléthon",
+      "accroche": "24h",
+      "description": "Avec l'Avant Garde Thumeries, la piste du stade reste ouverte non-stop du vendredi 18h au samedi 18h. Notre défi : qu'il y ait toujours au moins un membre de Prism Up sur la piste, de jour comme de nuit. Venez courir ou marcher avec nous, à votre rythme !",
+      "infos": [
+        {
+          "icone": "🏃",
+          "texte": "Courir ou marcher, à votre rythme"
+        },
+        {
+          "icone": "🌙",
+          "texte": "Piste ouverte jour et nuit, du vendredi 18h au samedi 18h"
+        },
+        {
+          "icone": "💛",
+          "texte": "3 € l'accès, entièrement reversés au Téléthon"
+        },
+        {
+          "icone": "🎯",
+          "texte": "Le défi Prism Up : toujours au moins un membre sur la piste"
+        },
+        {
+          "icone": "🤝",
+          "texte": "Organisé avec l'Avant Garde Thumeries"
+        }
+      ],
+      "pour_qui": [
+        {
+          "qui": "Adhérent·e Prism Up",
+          "texte": "Viens relever le défi avec nous : chaque tour compte, même en pleine nuit !"
+        },
+        {
+          "qui": "Parents et enfants",
+          "texte": "Venez marcher ou courir en famille, à votre rythme. Chaque place réservée aide le Téléthon."
+        },
+        {
+          "qui": "Entreprises et partenaires",
+          "texte": "Envie de soutenir le défi ? Écrivez-nous à prismupcom@gmail.com."
+        }
+      ],
+      "badge": "💛 Téléthon",
+      "affiche": "",
+      "cadrage": "",
+      "photos": [],
+      "video": "",
+      "tarifs": [
+        {
+          "label": "Accès à la piste (reversé au Téléthon)",
+          "prix": "3 €"
+        }
+      ],
+      "lien": "https://www.helloasso.com/associations/prism-up/evenements/telethon-football-ag-thumeries-by-prism-up",
+      "texteLien": "Réserver ma place · 3 €",
+      "instagram": "https://www.instagram.com/p/DfpwcfKj6l8/",
+      "annule": false
+    },
+    {
       "titre": "Gala #1",
       "type": "evenement",
       "date": "2027-05-22",
@@ -87,21 +149,37 @@
       "annule": false
     },
     {
-      "titre": "Participation au Téléthon",
+      "titre": "Téléthon du Souffle de Thumeries",
       "type": "evenement",
       "date": "2026-12-05",
-      "heure": "Après-midi",
-      "lieu": "Thumeries",
-      "description": "Prism Up se mobilise pour le Téléthon ! Venez nous voir pour une représentation pleine d'énergie et de solidarité, aux côtés de l'association Le Souffle de Thumeries.",
-      "badge": "",
+      "heure": "Samedi 16h – 16h30",
+      "lieu": "Salle des fêtes de Thumeries",
+      "description": "On sera aussi présents pour le Téléthon organisé par Le Souffle de Thumeries. Passez nous voir !",
+      "badge": "💛 Téléthon",
       "affiche": "/images/invitation.webp",
-      "cadrage": "",
+      "cadrage": "top",
       "photos": [],
       "video": "",
       "tarifs": [],
       "lien": "https://www.facebook.com/p/Le-Souffle-de-Thumeries-100020494788317/",
       "texteLien": "Page Facebook de l'organisateur",
-      "annule": false
+      "annule": false,
+      "serie": "Week-end Téléthon",
+      "infos": [
+        {
+          "icone": "💃",
+          "texte": "Prism Up : samedi de 16h à 16h30"
+        },
+        {
+          "icone": "🎉",
+          "texte": "Après-midi récréative dès 14h30, organisée par Le Souffle de Thumeries"
+        },
+        {
+          "icone": "🗳️",
+          "texte": "Une urne est à votre disposition pour vos dons"
+        }
+      ],
+      "instagram": "https://www.instagram.com/p/DfpwcfKj6l8/"
     },
     {
       "titre": "Forum des associations",
