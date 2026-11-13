@@ -210,8 +210,9 @@ function formaterDate(str, options = { weekday: "long", day: "numeric", month: "
 function joursAvant(str) {
   return Math.round((dateLocale(str) - aujourdhui()) / 86400000);
 }
-function texteCompteRebours(str) {
+function texteCompteRebours(str, fin) {
   const j = joursAvant(str);
+  if (j < 0 && fin && joursAvant(fin) >= 0) return "En ce moment !";
   if (j === 0) return "C'est aujourd'hui !";
   if (j === 1) return "Demain";
   return `Dans ${j} jours`;
@@ -223,8 +224,19 @@ function slug(ev) {
     .normalize("NFD").replace(/[̀-ͯ]/g, "")
     .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
+// Un événement peut durer plusieurs jours (champ date_fin)
+const finDe = ev => ev.date_fin || ev.date;
 function estAVenir(ev) {
-  return dateLocale(ev.date) >= aujourdhui();
+  return dateLocale(finDe(ev)) >= aujourdhui();
+}
+// « Samedi 5 décembre 2026 » ou « Ven. 4 → sam. 5 décembre 2026 »
+function periode(ev, avecAnnee = true) {
+  if (!ev.date_fin || ev.date_fin === ev.date) {
+    return formaterDate(ev.date, avecAnnee ? undefined : { weekday: "long", day: "numeric", month: "long" });
+  }
+  const debut = formaterDate(ev.date, { weekday: "short", day: "numeric" });
+  const fin = formaterDate(ev.date_fin, { weekday: "short", day: "numeric", month: "long", ...(avecAnnee ? { year: "numeric" } : {}) });
+  return `${debut} → ${fin.charAt(0).toLowerCase() + fin.slice(1)}`;
 }
 function evenementsAVenir() {
   return EVENEMENTS.filter(e => estAVenir(e) && !e.annule)
@@ -254,6 +266,13 @@ function typeDe(ev) {
 // Image d'un événement : affiche entière (fond flou) ou emoji si aucune image
 function visuel(ev, { classe = "ratio-45", entier = false } = {}) {
   const src = ev.affiche || (ev.photos && ev.photos[0]);
+  if (!src && ev.accroche) {
+    // Pas d'affiche : visuel automatique avec un grand mot d'accroche (ex. « 24h »)
+    return `<div class="frame ${classe} auto-poster"><div class="auto">
+      <span class="auto-emoji">${ev.infos?.[0]?.icone || typeDe(ev).emoji}</span>
+      <span class="auto-acc">${ev.accroche}</span>
+      <span class="auto-titre">${ev.titre}</span></div></div>`;
+  }
   if (!src) return `<div class="frame ${classe}"><div class="placeholder">${typeDe(ev).emoji}</div></div>`;
   const pos = ev.cadrage ? ` style="object-position:${ev.cadrage}"` : "";
   if (entier) {
@@ -265,7 +284,8 @@ function visuel(ev, { classe = "ratio-45", entier = false } = {}) {
 function blocDate(ev) {
   const d = dateLocale(ev.date);
   const mois = d.toLocaleDateString("fr-FR", { month: "short" }).replace(".", "");
-  return `<div class="date-block"><b>${d.getDate()}</b><span>${mois}</span></div>`;
+  const f = ev.date_fin && ev.date_fin !== ev.date ? dateLocale(ev.date_fin).getDate() : null;
+  return `<div class="date-block"><b>${d.getDate()}${f ? `<small>–${f}</small>` : ""}</b><span>${mois}</span></div>`;
 }
 
 // Carte "affiche" (même format pour tous les événements mis en avant)
@@ -277,27 +297,40 @@ function carteAffiche(ev, attributs) {
       <div class="body">
         ${ev.badge ? `<span class="pill pill-warm" style="align-self:flex-start">${ev.badge}</span>` : ""}
         <h4>${ev.titre}</h4>
-        <p class="meta">${ev.heure || formaterDate(ev.date, { day: "numeric", month: "long" })}${ev.lieu ? " · " + ev.lieu : ""}</p>
+        <p class="meta"><strong>${ev.heure || periode(ev, false)}</strong>${ev.lieu ? "<br>" + ev.lieu : ""}</p>
         <div class="foot">
-          <span class="cta">${ev.lien && !ev.texteLien ? "Réserver →" : "Voir →"}</span>
-          ${ev.tarifs ? `<span class="pill">${ev.tarifs.map(t => t.prix).join(" / ")}</span>` : ""}
+          <span class="cta">${ev.lien && (!ev.texteLien || /helloasso\.com/.test(ev.lien)) && estAVenir(ev) ? "Réserver →" : "Voir →"}</span>
+          ${ev.tarifs?.length ? `<span class="pill">${ev.tarifs.map(t => t.prix).join(" / ")}</span>` : ""}
         </div>
       </div>
     </${tag}>`;
 }
 
 // Le(s) prochain(s) événement(s) : tous ceux du même jour sont mis en avant pareil
+// Les événements mis en avant ensemble : même « série » (ex. Week-end Téléthon) ou même jour
+function groupeVedette(liste) {
+  if (!liste.length) return [];
+  const premier = liste[0];
+  return premier.serie ? liste.filter(e => e.serie === premier.serie) : liste.filter(e => e.date === premier.date);
+}
+
 function blocVedette(liste, attributs) {
-  if (!liste.length) return "";
-  const jour = liste[0].date;
-  const memeJour = liste.filter(e => e.date === jour);
+  const groupe = groupeVedette(liste);
+  if (!groupe.length) return "";
+  const debut = groupe[0].date;
+  const fin = groupe.map(finDe).sort().at(-1);
+  const etendue = { date: debut, date_fin: fin };
+  const titre = groupe[0].serie || periode(etendue, false);
   return `
     <div class="spotlight-head">
-      <h3>${formaterDate(jour, { weekday: "long", day: "numeric", month: "long" })}</h3>
-      <span class="countdown">${texteCompteRebours(jour)}${memeJour.length > 1 ? ` · ${memeJour.length} rendez-vous` : ""}</span>
+      <div>
+        <h3>${titre}</h3>
+        ${groupe[0].serie ? `<p class="spotlight-dates">${periode(etendue, false)}</p>` : ""}
+      </div>
+      <span class="countdown">${texteCompteRebours(debut, fin)}${groupe.length > 1 ? ` · ${groupe.length} rendez-vous` : ""}</span>
     </div>
-    <div class="spotlight${memeJour.length === 1 ? " solo" : ""}">
-      ${memeJour.map(ev => carteAffiche(ev, attributs(ev))).join("")}
+    <div class="spotlight${groupe.length === 1 ? " solo" : ""}">
+      ${groupe.map(ev => carteAffiche(ev, attributs(ev))).join("")}
     </div>`;
 }
 
@@ -411,7 +444,7 @@ function donneesGoogleEvenements() {
       "@type": "Event",
       name: ev.titre,
       startDate: iso(ev.date, heures[0]),
-      ...(heures[1] ? { endDate: iso(ev.date, heures[1]) } : {}),
+      ...(heures[1] || ev.date_fin ? { endDate: iso(finDe(ev), heures[1] || heures[0]) } : {}),
       eventStatus: ev.annule ? "https://schema.org/EventCancelled" : "https://schema.org/EventScheduled",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       location: {

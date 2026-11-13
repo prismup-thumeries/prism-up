@@ -555,6 +555,28 @@ body.no-scroll { overflow: hidden; }
   .spotlight.solo .poster-card h4 { font-size: 1.05rem; }
 }
 
+/* Visuel automatique quand un événement n'a pas d'affiche (champ « accroche ») */
+.auto-poster { background: radial-gradient(120% 90% at 20% 10%, rgba(255, 179, 138, 0.55), transparent 60%), radial-gradient(120% 90% at 90% 100%, rgba(198, 187, 255, 0.6), transparent 60%), linear-gradient(160deg, #3a2a5c, #1c1530); }
+.auto-poster .auto { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 16px; text-align: center; color: #fff; }
+.auto-poster .auto-emoji { font-size: 1.8rem; }
+.auto-poster .auto-acc { font-family: var(--font-title); font-weight: 800; font-size: clamp(3rem, 12vw, 5.5rem); line-height: 1; letter-spacing: -0.03em; background: linear-gradient(180deg, #fff, #ffd9c2); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.auto-poster .auto-titre { font-weight: 600; font-size: 0.85rem; opacity: 0.85; max-width: 22ch; }
+.spotlight:not(.solo) .auto-poster .auto-acc { font-size: clamp(2.6rem, 9vw, 4.5rem); }
+.poster-card .auto-titre { display: none; }
+.spotlight-head .spotlight-dates { color: var(--muted); font-size: 0.88rem; margin-top: 2px; }
+.date-block small { font-size: 0.75em; }
+.poster-card .meta strong { color: var(--text); font-weight: 600; }
+
+/* Fiche événement : points clés, « Vous êtes… », billetterie intégrée */
+.points-cles { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 4px 0 16px; padding: 14px 16px; border-radius: var(--radius); background: var(--warm-soft); border: 1px solid var(--line); }
+.points-cles li { display: flex; gap: 10px; font-size: 0.93rem; font-weight: 500; }
+.points-cles li span:first-child { width: 22px; flex-shrink: 0; text-align: center; }
+.sheet-sous-titre { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 18px 0 8px; }
+.pour-qui { display: flex; flex-direction: column; gap: 8px; }
+.pour-qui div { padding: 10px 12px; border-radius: 12px; background: var(--surface-2); font-size: 0.88rem; display: flex; flex-direction: column; gap: 2px; }
+.pour-qui span { color: var(--muted); }
+.ha-widget { width: 100%; height: 750px; border: 0; border-radius: var(--radius); background: #fff; }
+
 /* ─── CARROUSEL PHOTOS (fiche événement) ───
    Toutes les photos dans un cadre de même taille, entières, sur fond flou. */
 .carousel { position: relative; background: #0d0a16; }

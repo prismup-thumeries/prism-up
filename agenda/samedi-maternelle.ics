@@ -44,6 +44,22 @@ TRIGGER:-PT1H
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:evenement-2026-12-04-24h-sur-la-piste-pour-le-telethon@prism-up.fr
+DTSTAMP:20260101T000000Z
+DTSTART;TZID=Europe/Paris:20261204T180000
+DTEND;TZID=Europe/Paris:20261205T180000
+SUMMARY:⭐ Prism Up · 24h sur la piste pour le Téléthon
+LOCATION:Piste du stade\, Thumeries
+DESCRIPTION:Vendredi 18h → samedi 18h\, non-stop\n\nAvec l'Avant Garde Th
+ umeries\, la piste du stade reste ouverte non-stop du vendredi 18h au same
+ di 18h. Notre défi : qu'il y ait toujours au moins un membre de Prism Up 
+ sur la piste\, de jour comme de nuit. Venez courir ou marcher avec nous\, 
+ à votre rythme !\n\nhttps://prism-up.fr/evenements.html#2026-12-04-24h-su
+ r-la-piste-pour-le-telethon
+URL:https://prism-up.fr/evenements.html#2026-12-04-24h-sur-la-piste-pour-le
+ -telethon
+END:VEVENT
+BEGIN:VEVENT
 UID:evenement-2027-05-22-gala-1@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20270522
@@ -97,18 +113,17 @@ URL:https://prism-up.fr/evenements.html#2026-10-31-workshop-breakdance-avec
  -paul
 END:VEVENT
 BEGIN:VEVENT
-UID:evenement-2026-12-05-participation-au-telethon@prism-up.fr
+UID:evenement-2026-12-05-telethon-du-souffle-de-thumeries@prism-up.fr
 DTSTAMP:20260101T000000Z
-DTSTART;VALUE=DATE:20261205
-DTEND;VALUE=DATE:20261206
-SUMMARY:⭐ Prism Up · Participation au Téléthon
-LOCATION:Thumeries
-DESCRIPTION:Après-midi\n\nPrism Up se mobilise pour le Téléthon ! Venez 
- nous voir pour une représentation pleine d'énergie et de solidarité\, a
- ux côtés de l'association Le Souffle de Thumeries.\n\nhttps://prism-up.f
- r/evenements.html#2026-12-05-participation-au-telethon
-URL:https://prism-up.fr/evenements.html#2026-12-05-participation-au-teletho
- n
+DTSTART;TZID=Europe/Paris:20261205T160000
+DTEND;TZID=Europe/Paris:20261205T163000
+SUMMARY:⭐ Prism Up · Téléthon du Souffle de Thumeries
+LOCATION:Salle des fêtes de Thumeries
+DESCRIPTION:Samedi 16h – 16h30\n\nOn sera aussi présents pour le Télét
+ hon organisé par Le Souffle de Thumeries. Passez nous voir !\n\nhttps://p
+ rism-up.fr/evenements.html#2026-12-05-telethon-du-souffle-de-thumeries
+URL:https://prism-up.fr/evenements.html#2026-12-05-telethon-du-souffle-de-t
+ humeries
 END:VEVENT
 BEGIN:VEVENT
 UID:evenement-2026-09-05-forum-des-associations@prism-up.fr
