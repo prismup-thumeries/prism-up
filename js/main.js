@@ -621,8 +621,140 @@ function ouvrirFenetre(html, { large = false, photos = false, onClose = null } =
 
 function fermerFenetre() {
   document.getElementById("sheet")?.classList.remove("open");
-  document.body.classList.remove("no-scroll");
+  if (!document.getElementById("detail")?.classList.contains("open")) document.body.classList.remove("no-scroll");
   if (sheetFermeture) { const f = sheetFermeture; sheetFermeture = null; f(); }
+}
+
+// ─── Fiche détaillée (événements, cours) ───
+// L'essentiel d'abord (titre, 3-4 pastilles, une phrase, un seul bouton),
+// le reste dans « En savoir plus ». À l'ouverture, la carte touchée s'agrandit
+// jusqu'à devenir la fiche (View Transitions, sinon un glissement simple).
+// Sur téléphone, on ferme en faisant glisser la fiche vers le bas.
+let detailEtat = null;
+const sansAnimation = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function avecTransition(maj) {
+  if (!document.startViewTransition || sansAnimation()) { maj(); return Promise.resolve(); }
+  return document.startViewTransition(maj).finished.catch(() => {});
+}
+
+function ouvrirDetail({ origine = null, media = "", deuxColonnes = false, surtitre = "", titre = "", pastilles = [],
+                        resume = "", plus = "", icones = [], action = null, onClose = null, apresOuverture = null }) {
+  let fond = document.getElementById("detail");
+  if (!fond) {
+    fond = document.createElement("div");
+    fond.id = "detail";
+    fond.className = "detail-backdrop";
+    fond.addEventListener("click", e => { if (e.target === fond) fermerDetail(); });
+    document.body.append(fond);
+  }
+  const pastille = p => p.href
+    ? `<a class="chip-info" href="${p.href}" target="_blank" rel="noopener">${p.ico ? ico(p.ico, 15) : ""}<span>${p.texte}</span></a>`
+    : `<span class="chip-info${p.classe ? " " + p.classe : ""}">${p.ico ? ico(p.ico, 15) : ""}<span>${p.texte}</span></span>`;
+  const bouton = (b, i) => b.href
+    ? `<a class="rond" href="${b.href}" target="_blank" rel="noopener" aria-label="${b.label}" title="${b.label}">${ico(b.ico)}</a>`
+    : `<button class="rond" data-icone="${i}" aria-label="${b.label}" title="${b.label}">${ico(b.ico)}</button>`;
+
+  const rendu = () => {
+    fond.innerHTML = `
+      <article class="detail-panel${deuxColonnes ? " deux-colonnes" : ""}${media ? "" : " sans-media"}" role="dialog" aria-modal="true" aria-label="${titre.replace(/"/g, "&quot;")}">
+        <div class="detail-barre">
+          <span class="detail-barre-titre">${titre}</span>
+          <div class="detail-icones">
+            ${icones.map(bouton).join("")}
+            <button class="rond" data-fermer aria-label="Fermer" title="Fermer">${svg('<path d="M6 6l12 12M18 6L6 18"/>', 18)}</button>
+          </div>
+        </div>
+        ${media ? `<div class="detail-media">${media}</div>` : ""}
+        <div class="detail-contenu">
+          ${surtitre ? `<p class="detail-surtitre">${surtitre}</p>` : ""}
+          <h2>${titre}</h2>
+          ${pastilles.length ? `<div class="detail-pastilles">${pastilles.map(pastille).join("")}</div>` : ""}
+          ${resume ? `<p class="detail-resume">${resume}</p>` : ""}
+          ${plus ? `<details class="detail-plus"><summary>En savoir plus</summary><div class="detail-plus-corps">${plus}</div></details>` : ""}
+          <div class="detail-zone-action"></div>
+          ${action ? `<div class="detail-action">${action.href
+            ? `<a class="btn btn-primary btn-block" href="${action.href}" ${action.externe === false ? "" : 'target="_blank" rel="noopener"'}>${action.texte}</a>`
+            : `<button class="btn btn-primary btn-block" data-action>${action.texte}</button>`}</div>` : ""}
+        </div>
+      </article>`;
+    fond.classList.add("open");
+    document.body.classList.add("no-scroll");
+    brancher();
+  };
+
+  // Boutons, barre du haut et geste de fermeture : branchés juste après l'affichage
+  const brancher = () => {
+  const panneau = fond.querySelector(".detail-panel");
+  panneau.querySelector("[data-fermer]").addEventListener("click", () => fermerDetail());
+  panneau.querySelectorAll("[data-icone]").forEach(b => b.addEventListener("click", e => icones[+b.dataset.icone].action(e.currentTarget)));
+  panneau.querySelector("[data-action]")?.addEventListener("click", () => action.action(panneau));
+
+  // Barre du haut : le titre apparaît quand l'image a défilé
+  const media_ = panneau.querySelector(".detail-media, .detail-contenu h2");
+  new IntersectionObserver(([e]) => panneau.classList.toggle("defile", !e.isIntersecting), { root: panneau, threshold: 0.15 }).observe(media_);
+
+  // Glisser vers le bas pour fermer (téléphone)
+  let y0 = null, dy = 0;
+  panneau.addEventListener("touchstart", e => { y0 = panneau.scrollTop <= 0 ? e.touches[0].clientY : null; dy = 0; }, { passive: true });
+  panneau.addEventListener("touchmove", e => {
+    if (y0 === null) return;
+    dy = e.touches[0].clientY - y0;
+    if (dy > 0) { panneau.style.transform = `translateY(${dy}px)`; panneau.style.transition = "none"; }
+  }, { passive: true });
+  panneau.addEventListener("touchend", () => {
+    if (y0 === null) return;
+    panneau.style.transition = "";
+    if (dy > 110) fermerDetail({ glisse: true });
+    else panneau.style.transform = "";
+    y0 = null;
+  });
+
+    if (apresOuverture) apresOuverture(panneau);
+  };
+
+  // L'élément qui s'agrandit : la carte touchée devient l'image (ou le panneau) de la fiche
+  const cible = () => fond.querySelector(media ? ".detail-media" : ".detail-panel");
+  if (origine && document.startViewTransition && !sansAnimation()) {
+    origine.style.viewTransitionName = "fiche";
+    avecTransition(() => {
+      origine.style.viewTransitionName = "";
+      rendu();
+      cible().style.viewTransitionName = "fiche";
+    }).then(() => { const c = cible(); if (c) c.style.viewTransitionName = ""; });
+  } else {
+    rendu();
+    fond.querySelector(".detail-panel").classList.add("entree");
+  }
+  detailEtat = { origine, onClose, media: !!media };
+}
+
+
+function fermerDetail({ glisse = false } = {}) {
+  const fond = document.getElementById("detail");
+  if (!fond || !fond.classList.contains("open")) return;
+  const etat = detailEtat || {};
+  const fermer = () => {
+    fond.classList.remove("open");
+    fond.innerHTML = "";
+    document.body.classList.remove("no-scroll");
+  };
+  const origine = etat.origine && document.body.contains(etat.origine) && etat.origine.getBoundingClientRect().height ? etat.origine : null;
+  const source = fond.querySelector(etat.media ? ".detail-media" : ".detail-panel");
+  if (!glisse && origine && source && document.startViewTransition && !sansAnimation()) {
+    source.style.viewTransitionName = "fiche";
+    avecTransition(() => { fermer(); origine.style.viewTransitionName = "fiche"; })
+      .then(() => { origine.style.viewTransitionName = ""; });
+  } else if (glisse) {
+    const panneau = fond.querySelector(".detail-panel");
+    panneau.style.transform = "translateY(100%)";
+    fond.classList.add("sortie");
+    setTimeout(() => { fond.classList.remove("sortie"); fermer(); }, 220);
+  } else {
+    fermer();
+  }
+  detailEtat = null;
+  if (etat.onClose) etat.onClose();
 }
 
 // Visionneuse plein écran : flèches, glisser au doigt, Échap pour fermer
@@ -675,7 +807,8 @@ document.addEventListener("keydown", e => {
   if (ouverte && e.key === "ArrowLeft") changerPhoto(-1);
   if (e.key !== "Escape") return;
   if (ouverte) v.classList.remove("open");
-  else fermerFenetre();
+  else if (document.getElementById("sheet")?.classList.contains("open")) fermerFenetre();
+  else fermerDetail();
 });
 
 construireMiseEnPage();
