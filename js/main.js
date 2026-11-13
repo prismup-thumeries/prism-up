@@ -58,7 +58,7 @@ function afficherAlerte() {
   const barre = document.createElement(a.lien ? "a" : "div");
   barre.className = "alert-bar" + (a.niveau === "urgent" ? " urgent" : "");
   if (a.lien) barre.href = a.lien;
-  barre.innerHTML = `<span class="wrap"><span>${a.niveau === "urgent" ? "⚠️" : "📣"}</span><span>${a.texte}</span>${a.lien ? '<span class="chev">→</span>' : ""}</span>`;
+  barre.innerHTML = `<span class="wrap"><span class="alert-ico">${ico(a.niveau === "urgent" ? "alerte" : "info")}</span><span>${a.texte}</span>${a.lien ? '<span class="chev">→</span>' : ""}</span>`;
   barre.querySelector("span:nth-child(2)").textContent = a.texte;
   document.querySelector(".site-header")?.after(barre);
 }
@@ -115,8 +115,8 @@ function majBoutonTheme() {
 const THEMES_SAISON = [
   {
     nom: "halloween", du: "10-01", au: "11-02",
-    deco: ["🎃", "🦇", "👻", "🕸️"],
-    bandeau: { emoji: "🎃", titre: "Spécial Halloween", texte: "Viens danser avec nous pour Halloween !", lien: "evenements.html" }
+    deco: [],
+    bandeau: { titre: "Spécial Halloween", texte: "Viens danser avec nous pour Halloween !", lien: "evenements.html" }
   }
 ];
 
@@ -140,9 +140,30 @@ function appliquerTheme() {
   const zone = document.getElementById("bandeau-saison");
   if (zone && t.bandeau) {
     const b = t.bandeau;
-    zone.innerHTML = `<a class="season-banner" href="${b.lien}"><span class="big">${b.emoji}</span><span><strong>${b.titre}</strong><span class="muted">${b.texte}</span></span><span class="chev">→</span></a>`;
+    zone.innerHTML = `<a class="season-banner" href="${b.lien}">${b.emoji ? `<span class="big">${b.emoji}</span>` : ""}<span><strong>${b.titre}</strong><span class="muted">${b.texte}</span></span><span class="chev">→</span></a>`;
   }
 }
+
+// Icônes au trait de l'interface (sobres, à la couleur du texte)
+const ICONES = {
+  calendrier: '<rect x="3" y="4.5" width="18" height="16.5" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/>',
+  horloge: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  lieu: '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  prix: '<path d="M17.5 7.5a6.5 6.5 0 1 0 0 9"/><path d="M4.5 10.5h8M4.5 13.5h8"/>',
+  cadeau: '<rect x="3.5" y="8.5" width="17" height="12" rx="2"/><path d="M3.5 12.5h17M12 8.5v12"/><path d="M12 8.5C10.5 5 7 4.5 7 6.8S10 8.5 12 8.5zm0 0c1.5-3.5 5-4 5-1.7S14 8.5 12 8.5z"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  maj: '<path d="M20 11a8 8 0 0 0-14.6-4.5M4.5 3.5v3h3M4 13a8 8 0 0 0 14.6 4.5M19.5 20.5v-3h-3"/>',
+  cloche: '<path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/>',
+  instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>',
+  danse: '<circle cx="12" cy="4.5" r="2"/><path d="M12 7.5v6.5m0 0l-4 7m4-7l4 7M6 9.5l6-2 6 2"/>',
+  coeur: '<path d="M12 20s-7-4.4-8.6-8.7C2.2 8.1 4.3 4.5 7.8 4.5c1.9 0 3.2 1 4.2 2.5 1-1.5 2.3-2.5 4.2-2.5 3.5 0 5.6 3.6 4.4 6.8C19 15.6 12 20 12 20z"/>',
+  entreprise: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4.5h6V7M3 12.5h18"/>',
+  alerte: '<path d="M12 3.5l9 16.5H3z"/><path d="M12 10v4.5M12 17.2v.1"/>',
+  info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.8v.1"/>',
+  partager: '<path d="M12 3.5v11M8 7l4-3.5L16 7"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/>'
+};
+const ico = (nom, taille = 18) => svg(ICONES[nom] || "", taille);
 
 const svg = (paths, size = 22) =>
   `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths}</svg>`;
@@ -255,9 +276,9 @@ function nomSaison(cle) {
   return (typeof NOMS_SAISONS !== "undefined" && NOMS_SAISONS[cle]) || `Saison ${cle}`;
 }
 const TYPES = {
-  evenement: { label: "Événement", emoji: "🎭" },
-  stage: { label: "Stage", emoji: "💃" },
-  sortie: { label: "Sortie", emoji: "🎉" }
+  evenement: { label: "Événement" },
+  stage: { label: "Stage" },
+  sortie: { label: "Sortie" }
 };
 function typeDe(ev) {
   return TYPES[ev.type] || TYPES.evenement;
@@ -269,11 +290,10 @@ function visuel(ev, { classe = "ratio-45", entier = false } = {}) {
   if (!src && ev.accroche) {
     // Pas d'affiche : visuel automatique avec un grand mot d'accroche (ex. « 24h »)
     return `<div class="frame ${classe} auto-poster"><div class="auto">
-      <span class="auto-emoji">${ev.infos?.[0]?.icone || typeDe(ev).emoji}</span>
       <span class="auto-acc">${ev.accroche}</span>
       <span class="auto-titre">${ev.titre}</span></div></div>`;
   }
-  if (!src) return `<div class="frame ${classe}"><div class="placeholder">${typeDe(ev).emoji}</div></div>`;
+  if (!src) return `<div class="frame ${classe}"><div class="placeholder"><span>${typeDe(ev).label}</span></div></div>`;
   const pos = ev.cadrage ? ` style="object-position:${ev.cadrage}"` : "";
   if (entier) {
     return `<div class="frame poster ${classe}"><img class="blur" src="${src}" alt="" loading="lazy"><img class="main" src="${src}" alt="${ev.titre}" loading="lazy"></div>`;
@@ -373,12 +393,12 @@ function ouvrirAgenda(fichier, titre, texte) {
   const boutonGoogle = `<a class="btn ${apple ? "btn-ghost" : "btn-primary"} btn-block" href="${google}" target="_blank" rel="noopener">Google Agenda (Android)</a>`;
   ouvrirFenetre(`
     <div class="sheet-body">
-      <p class="eyebrow">📅 Agenda Prism Up</p>
+      <p class="eyebrow">Agenda Prism Up</p>
       <h2 style="margin-top:6px">${titre}</h2>
       <p class="muted">${texte}</p>
       <div class="facts">
-        <div><span>🔄</span><span>Abonnement : l'agenda se met à jour tout seul (horaires, vacances, nouveaux événements).</span></div>
-        <div><span>🔔</span><span>Astuce : ajoutez une alerte (ex. 1 h avant) dans les réglages de l'agenda.</span></div>
+        <div><span>${ico("maj")}</span><span>Abonnement : l'agenda se met à jour tout seul (horaires, vacances, nouveaux événements).</span></div>
+        <div><span>${ico("cloche")}</span><span>Astuce : ajoutez une alerte (ex. 1 h avant) dans les réglages de l'agenda.</span></div>
       </div>
       <div class="actions">
         ${apple ? boutonApple + boutonGoogle : boutonGoogle + boutonApple}
@@ -512,7 +532,7 @@ function afficherBandeauCookies() {
   b.setAttribute("role", "dialog");
   b.setAttribute("aria-label", "Cookies");
   b.innerHTML = `
-    <p><strong>🍪 Cookies</strong> On aimerait mesurer la fréquentation du site (Google Analytics) et afficher nos posts Instagram. Tu es libre de refuser.
+    <p><strong>Cookies</strong> On aimerait mesurer la fréquentation du site (Google Analytics) et afficher nos posts Instagram. Tu es libre de refuser.
       <a href="mentions-legales.html#cookies">En savoir plus</a></p>
     <div class="cookie-actions">
       <button class="btn btn-ghost btn-sm" data-choix="refuse">Refuser</button>
@@ -549,7 +569,7 @@ function encartInstallation(zone) {
       <div class="txt">
         <strong>Installe l'appli Prism Up</strong>
         <span class="muted small">${ios
-          ? "Touche <b>Partager</b> <span aria-hidden=\"true\">⬆️</span> puis <b>« Sur l'écran d'accueil »</b>."
+          ? `Touche <b>Partager</b> <span class="ico-inline">${ico("partager", 15)}</span> puis <b>« Sur l'écran d'accueil »</b>.`
           : "Planning, événements et alertes en un geste, même hors connexion."}</span>
       </div>
       ${ios ? "" : `<button class="btn btn-primary btn-sm" data-installer ${invitationInstall ? "" : "hidden"}>Installer</button>`}
@@ -659,6 +679,8 @@ document.addEventListener("keydown", e => {
 });
 
 construireMiseEnPage();
+// Icônes écrites dans le HTML : <span data-ico="calendrier"></span>
+document.querySelectorAll("[data-ico]").forEach(el => { el.innerHTML = ico(el.dataset.ico, 20); });
 appliquerTheme();
 activerAppli();
 initialiserConsentement();

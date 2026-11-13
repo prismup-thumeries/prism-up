@@ -89,7 +89,7 @@ function blocCours(c) {
     `DTEND;TZID=Europe/Paris:${jourAAAAMMJJ(premier)}T${fin || debut}`,
     `RRULE:FREQ=WEEKLY;UNTIL=${jourAAAAMMJJ(finSaison)}T225959Z`,
     ...(exclues.length ? [`EXDATE;TZID=Europe/Paris:${exclues.join(",")}`] : []),
-    `SUMMARY:${echap("💃 Prism Up · " + c.titre)}`,
+    `SUMMARY:${echap("Prism Up · " + c.titre)}`,
     `LOCATION:${echap([salle.nom, salle.precision, "Thumeries"].filter(Boolean).join(", "))}`,
     `DESCRIPTION:${echap([c.detail, `Planning : ${SITE}/cours.html`].filter(Boolean).join("\n"))}`,
     `URL:${SITE}/cours.html#${c.id || ""}`,
@@ -116,7 +116,7 @@ function blocEvenement(ev) {
   const s = slugEvenement(ev);
   return [
     "BEGIN:VEVENT", `UID:evenement-${s}@prism-up.fr`, `DTSTAMP:${STAMP}`, ...dates,
-    `SUMMARY:${echap((ev.annule ? "ANNULÉ · " : "⭐ Prism Up · ") + ev.titre)}`,
+    `SUMMARY:${echap((ev.annule ? "ANNULÉ · " : "Prism Up · ") + ev.titre)}`,
     ...(ev.lieu ? [`LOCATION:${echap(ev.lieu)}`] : []),
     `DESCRIPTION:${echap([ev.heure, ev.description, `${SITE}/evenements.html#${s}`].filter(Boolean).join("\n\n"))}`,
     `URL:${SITE}/evenements.html#${s}`,

@@ -31,7 +31,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260907T180000
 DTEND;TZID=Europe/Paris:20260907T190000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · CE2 - CM1
+SUMMARY:Prism Up · CE2 - CM1
 LOCATION:Salle annexe P. Legrain\, Salle des sports Pierre Legrain\, Thumer
  ies
 DESCRIPTION:Enfants\nPlanning : https://prism-up.fr/cours.html
@@ -48,7 +48,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260907T190000
 DTEND;TZID=Europe/Paris:20260907T200000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · Approfondissement
+SUMMARY:Prism Up · Approfondissement
 LOCATION:Salle annexe P. Legrain\, Salle des sports Pierre Legrain\, Thumer
  ies
 DESCRIPTION:8 ans et +\nPlanning : https://prism-up.fr/cours.html
@@ -65,7 +65,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260907T200000
 DTEND;TZID=Europe/Paris:20260907T210000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · Lycéens
+SUMMARY:Prism Up · Lycéens
 LOCATION:Salle annexe P. Legrain\, Salle des sports Pierre Legrain\, Thumer
  ies
 DESCRIPTION:Ados\nPlanning : https://prism-up.fr/cours.html
@@ -82,7 +82,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260908T180000
 DTEND;TZID=Europe/Paris:20260908T190000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · CP - CE1
+SUMMARY:Prism Up · CP - CE1
 LOCATION:Salle des associations\, À droite de l'école\, Thumeries
 DESCRIPTION:Enfants\nPlanning : https://prism-up.fr/cours.html
 URL:https://prism-up.fr/cours.html#mardi-cp-ce1
@@ -98,7 +98,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260908T190000
 DTEND;TZID=Europe/Paris:20260908T200000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · Approfondissement
+SUMMARY:Prism Up · Approfondissement
 LOCATION:Salle des associations\, À droite de l'école\, Thumeries
 DESCRIPTION:14 ans et +\nPlanning : https://prism-up.fr/cours.html
 URL:https://prism-up.fr/cours.html#mardi-approfondissement-14
@@ -114,7 +114,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260908T200000
 DTEND;TZID=Europe/Paris:20260908T210000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · Adultes 3
+SUMMARY:Prism Up · Adultes 3
 LOCATION:Salle des associations\, À droite de l'école\, Thumeries
 DESCRIPTION:Ouvert à tous\, idéal débutants\nPlanning : https://prism-up
  .fr/cours.html
@@ -131,7 +131,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260910T180000
 DTEND;TZID=Europe/Paris:20260910T190000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · CM1 - CM2
+SUMMARY:Prism Up · CM1 - CM2
 LOCATION:Salle des associations\, À droite de l'école\, Thumeries
 DESCRIPTION:Enfants\nPlanning : https://prism-up.fr/cours.html
 URL:https://prism-up.fr/cours.html#jeudi-cm1-cm2
@@ -147,7 +147,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260910T190000
 DTEND;TZID=Europe/Paris:20260910T200000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · Adultes 1
+SUMMARY:Prism Up · Adultes 1
 LOCATION:Salle des associations\, À droite de l'école\, Thumeries
 DESCRIPTION:Rythme plus soutenu\nPlanning : https://prism-up.fr/cours.html
 URL:https://prism-up.fr/cours.html#jeudi-adultes-1
@@ -163,7 +163,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260912T090000
 DTEND;TZID=Europe/Paris:20260912T100000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · Maternelle
+SUMMARY:Prism Up · Maternelle
 LOCATION:Salle annexe P. Legrain\, Salle des sports Pierre Legrain\, Thumer
  ies
 DESCRIPTION:Moyenne et grande section\nPlanning : https://prism-up.fr/cours
@@ -181,7 +181,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260912T100000
 DTEND;TZID=Europe/Paris:20260912T110000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · Adultes 2
+SUMMARY:Prism Up · Adultes 2
 LOCATION:Salle annexe P. Legrain\, Salle des sports Pierre Legrain\, Thumer
  ies
 DESCRIPTION:Ouvert à tous\, idéal débutants\nPlanning : https://prism-up
@@ -199,7 +199,7 @@ DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260912T110000
 DTEND;TZID=Europe/Paris:20260912T120000
 RRULE:FREQ=WEEKLY;UNTIL=20270630T225959Z
-SUMMARY:💃 Prism Up · Collégiens
+SUMMARY:Prism Up · Collégiens
 LOCATION:Salle annexe P. Legrain\, Salle des sports Pierre Legrain\, Thumer
  ies
 DESCRIPTION:Ados\nPlanning : https://prism-up.fr/cours.html
@@ -215,7 +215,7 @@ UID:evenement-2026-12-04-24h-sur-la-piste-pour-le-telethon@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20261204T180000
 DTEND;TZID=Europe/Paris:20261205T180000
-SUMMARY:⭐ Prism Up · 24h sur la piste pour le Téléthon
+SUMMARY:Prism Up · 24h sur la piste pour le Téléthon
 LOCATION:Piste du stade\, Thumeries
 DESCRIPTION:Vendredi 18h → samedi 18h\, non-stop\n\nAvec l'Avant Garde Th
  umeries\, la piste du stade reste ouverte non-stop du vendredi 18h au same
@@ -231,7 +231,7 @@ UID:evenement-2027-05-22-gala-1@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20270522
 DTEND;VALUE=DATE:20270523
-SUMMARY:⭐ Prism Up · Gala #1
+SUMMARY:Prism Up · Gala #1
 LOCATION:Salle des fêtes F. Malle\, Thumeries
 DESCRIPTION:à définir\n\nLe grand rendez-vous de l’année\, où tous no
  s groupes monteront sur scène pour vous montrer tout le travail de la sai
@@ -243,7 +243,7 @@ UID:evenement-2026-12-19-fete-de-noel@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20261219
 DTEND;VALUE=DATE:20261220
-SUMMARY:⭐ Prism Up · Fête de noël
+SUMMARY:Prism Up · Fête de noël
 LOCATION:Salle des fêtes F. Malle\, Thumeries
 DESCRIPTION:à définir\n\nSpectacle de nos danseurs\, repas de Noël\, bat
  tles et une petite surprise pour les enfants… On vous en dit plus très 
@@ -256,7 +256,7 @@ UID:evenement-2026-10-31-workshop-hip-hop-commercial-avec-jow-tayler@prism-
 DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20261031T090000
 DTEND;TZID=Europe/Paris:20261031T103000
-SUMMARY:⭐ Prism Up · Workshop Hip-Hop Commercial avec Jow Tayler
+SUMMARY:Prism Up · Workshop Hip-Hop Commercial avec Jow Tayler
 LOCATION:Salle annexe P. Legrain\, Thumeries
 DESCRIPTION:9h00 - 10h30\n\nWorkshop #3 avec le danseur professionnel Jow T
  ayler. Niveau débutant / intermédiaire. \nViens apprendre une choré de 
@@ -270,7 +270,7 @@ UID:evenement-2026-10-31-workshop-breakdance-avec-paul@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20261031T110000
 DTEND;TZID=Europe/Paris:20261031T123000
-SUMMARY:⭐ Prism Up · Workshop Breakdance avec Paul
+SUMMARY:Prism Up · Workshop Breakdance avec Paul
 LOCATION:Salle annexe P. Legrain\, Thumeries
 DESCRIPTION:11h00 - 12h30\n\nStage de breakdance ouvert à tous avec le dan
  seur professionnel Paul. Au programme : technique\, passages au sol et mus
@@ -284,7 +284,7 @@ UID:evenement-2026-12-05-telethon-du-souffle-de-thumeries@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20261205T160000
 DTEND;TZID=Europe/Paris:20261205T163000
-SUMMARY:⭐ Prism Up · Téléthon du Souffle de Thumeries
+SUMMARY:Prism Up · Téléthon du Souffle de Thumeries
 LOCATION:Salle des fêtes de Thumeries
 DESCRIPTION:Samedi 16h – 16h30\n\nOn sera aussi présents pour le Télét
  hon organisé par Le Souffle de Thumeries. Passez nous voir !\n\nhttps://p
@@ -297,7 +297,7 @@ UID:evenement-2026-09-05-forum-des-associations@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260905T100000
 DTEND;TZID=Europe/Paris:20260905T120000
-SUMMARY:⭐ Prism Up · Forum des associations
+SUMMARY:Prism Up · Forum des associations
 LOCATION:Thumeries
 DESCRIPTION:À partir de 10h\n\nRencontre avec l'équipe Prism Up et inscri
  ptions en physique pour la saison 2026-2027.\n\nhttps://prism-up.fr/evenem
@@ -309,7 +309,7 @@ UID:evenement-2026-06-21-fete-de-la-musique@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260621
 DTEND;VALUE=DATE:20260622
-SUMMARY:⭐ Prism Up · Fête de la Musique
+SUMMARY:Prism Up · Fête de la Musique
 LOCATION:Place du Général de Gaulle\, Thumeries
 DESCRIPTION:Prism Up était présent à la Fête de la Musique de Thumeries
   pour un moment festif.\n\nhttps://prism-up.fr/evenements.html#2026-06-21-
@@ -321,7 +321,7 @@ UID:evenement-2026-06-13-gala-0-welcome-to-prism-up@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;TZID=Europe/Paris:20260613T183000
 DTEND;TZID=Europe/Paris:20260613T203000
-SUMMARY:⭐ Prism Up · Gala #0 — Welcome to Prism Up
+SUMMARY:Prism Up · Gala #0 — Welcome to Prism Up
 LOCATION:Salle des fêtes F. Malle\, Thumeries
 DESCRIPTION:18h30\n\nNotre tout premier gala de danse\, exceptionnellement 
  gratuit pour notre première année. Une soirée placée sous le signe de 
@@ -335,7 +335,7 @@ UID:evenement-2026-05-24-sortie-agt-basket@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260524
 DTEND;VALUE=DATE:20260525
-SUMMARY:⭐ Prism Up · Sortie AGT Basket
+SUMMARY:Prism Up · Sortie AGT Basket
 LOCATION:Salle des sports F. Begin
 DESCRIPTION:Prism Up était là pour soutenir l'équipe lors de la demi-fin
  ale de championnat ! Une belle sortie collective dans une ambiance de feu.
@@ -347,7 +347,7 @@ UID:evenement-2026-04-19-workshop-1-avec-paul@prism-up.fr
 DTSTAMP:20260101T000000Z
 DTSTART;VALUE=DATE:20260419
 DTEND;VALUE=DATE:20260420
-SUMMARY:⭐ Prism Up · Workshop #1 avec Paul
+SUMMARY:Prism Up · Workshop #1 avec Paul
 LOCATION:Thumeries
 DESCRIPTION:Premier workshop avec Paul\, danseur et chorégraphe. Merci à 
  tous les participants !\n\nhttps://prism-up.fr/evenements.html#2026-04-19-

@@ -104,7 +104,7 @@ singletons:
           - { name: heure, label: Horaire, widget: string, required: false, hint: "Ex : 9h00 - 10h30" }
           - { name: lieu, label: Lieu, widget: string, required: false }
           - { name: description, label: Description, widget: text, required: false }
-          - { name: badge, label: "Étiquette mise en avant", widget: string, required: false, hint: "Ex : 🎃 Spécial Halloween" }
+          - { name: badge, label: "Étiquette mise en avant", widget: string, required: false, hint: "Ex : Spécial Halloween (sans emoji, pour rester sobre)" }
           - { name: serie, label: "Regrouper avec (série)", widget: string, required: false, hint: "Même texte sur plusieurs événements = affichés ensemble. Ex : Week-end Téléthon" }
           - { name: accroche, label: "Mot d'accroche (si pas d'affiche)", widget: string, required: false, hint: "Affiché en grand à la place de l'affiche. Ex : 24h" }
           - name: infos
@@ -112,10 +112,9 @@ singletons:
             label_singular: point
             widget: list
             required: false
-            summary: "{{fields.icone}} {{fields.texte}}"
+            summary: "{{fields.texte}}"
             hint: "Les infos essentielles, une par ligne, affichées en évidence."
             fields:
-              - { name: icone, label: Emoji, widget: string, required: false, hint: "Ex : 💶" }
               - { name: texte, label: Texte, widget: string }
           - name: pour_qui
             label: "Vous êtes…"
