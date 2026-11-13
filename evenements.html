@@ -27,7 +27,7 @@
         (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
     } catch (e) { document.documentElement.dataset.theme = "dark"; }
   </script>
-  <link rel="stylesheet" href="css/style.css?v=202611131531">
+  <link rel="stylesheet" href="css/style.css?v=202611131540">
 </head>
 <body data-page="evenements">
 
@@ -69,7 +69,7 @@
 
 </main>
 
-<script src="js/main.js?v=202611131531"></script>
+<script src="js/main.js?v=202611131540"></script>
 <script>
 chargerDonnees().then(() => {
   let typeActif = "tous";
@@ -146,69 +146,84 @@ chargerDonnees().then(() => {
     return id ? `https://www.youtube-nocookie.com/embed/${id}` : url;
   }
 
-  function ouvrirEvenement(s) {
+  // Première phrase de la description pour le résumé, le reste dans « En savoir plus »
+  function couperDescription(texte) {
+    const t = (texte || "").trim();
+    const m = t.match(/^(.{20,180}?[.!?…])\s+(.+)$/s);
+    return m ? [m[1], m[2]] : [t, ""];
+  }
+
+  function ouvrirEvenement(s, origine = null) {
     const ev = EVENEMENTS.find(e => slug(e) === s);
     if (!ev) return;
     const avenir = estAVenir(ev);
     history.replaceState(null, "", "#" + s);
     const photos = [...new Set([...(ev.photos || []), ...(ev.photos?.length && ev.affiche ? [ev.affiche] : [])])];
     const modePhotos = photos.length > 0;
-
     const widget = avenir && !ev.annule ? widgetHelloAsso(ev.lien) : null;
+    const [resume, suite] = couperDescription(ev.description);
+
     const media = modePhotos ? carrouselHTML(photos)
       : ev.affiche ? visuel(ev, { classe: "ratio-45", entier: true })
       : ev.accroche ? visuel(ev, { classe: "ratio-169" }) : "";
 
-    ouvrirFenetre(`
-      <div class="sheet-media">
-        ${media}
-        <div class="sheet-body">
-          <p class="eyebrow">${typeDe(ev).label}${avenir ? " · " + texteCompteRebours(ev.date, ev.date_fin) : ""}</p>
-          ${ev.badge ? `<span class="pill pill-warm" style="margin-top:8px">${ev.badge}</span>` : ""}
-          <h2 style="margin-top:6px">${ev.titre}</h2>
-          ${ev.annule ? `<span class="pill pill-full">Annulé</span>` : ""}
-          <div class="facts">
-            <div><span>${ico("calendrier")}</span><span>${periode(ev)}</span></div>
-            ${ev.heure ? `<div><span>${ico("horloge")}</span><span>${ev.heure}</span></div>` : ""}
-            ${ev.lieu ? `<div><span>${ico("lieu")}</span><span>${ev.lieu}</span></div>` : ""}
-            ${(ev.tarifs || []).map(t => `<div><span>${ico("prix")}</span><span>${t.label} : <strong>${t.prix}</strong></span></div>`).join("")}
-          </div>
-          ${ev.infos?.length ? `<ul class="points-cles">${ev.infos.map(i => `<li>${i.texte}</li>`).join("")}</ul>` : ""}
-          ${ev.description ? `<p class="desc">${ev.description}</p>` : ""}
-          ${ev.pour_qui?.length ? `
-            <h3 class="sheet-sous-titre">Vous êtes…</h3>
-            <div class="pour-qui">${ev.pour_qui.map(p => `<div><strong>${p.qui}</strong><span>${p.texte}</span></div>`).join("")}</div>` : ""}
-          ${ev.video ? `<div id="video-zone"><button class="btn btn-ghost btn-block" style="margin-top:16px" data-video="${urlVideo(ev.video)}">▶ Voir la vidéo</button></div>` : ""}
-          <div class="actions">
-            ${widget
-              ? `<div id="billetterie"><button class="btn btn-primary btn-block" data-billetterie>${ev.texteLien || "Réserver ma place"}</button>
-                 <p class="small muted" style="text-align:center;margin-top:6px">Paiement sécurisé HelloAsso, directement ici · <a href="${ev.lien}" target="_blank" rel="noopener" style="color:var(--accent)">ouvrir sur HelloAsso ↗</a></p></div>`
-              : ev.lien && avenir && !ev.annule ? `<a class="btn btn-primary btn-block" href="${ev.lien}" target="_blank" rel="noopener">${ev.texteLien || "Réserver ma place"}</a>` : ""}
-            ${ev.instagram ? `<a class="btn btn-ghost btn-block" href="${ev.instagram}" target="_blank" rel="noopener">Voir la publication Instagram</a>` : ""}
-            <div class="btn-row">
-              ${avenir ? `<button class="btn btn-ghost" data-ics>Ajouter à l'agenda</button>` : ""}
-              <button class="btn btn-ghost" data-partage>Partager</button>
-            </div>
-          </div>
-        </div>
-      </div>`, { large: !!ev.affiche && !modePhotos, photos: modePhotos, onClose: () => history.replaceState(null, "", location.pathname) });
+    // Les infos que tout le monde cherche, en pastilles
+    const prix = (ev.tarifs || []).map(t => t.prix);
+    const pastilles = [
+      ev.annule ? { texte: "Annulé", classe: "full" } : null,
+      { ico: "calendrier", texte: periode(ev, false) },
+      ev.heure ? { ico: "horloge", texte: ev.heure } : null,
+      ev.lieu ? { ico: "lieu", texte: ev.lieu, href: "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(ev.lieu) } : null,
+      prix.length ? { ico: "prix", texte: prix.length > 1 ? prix.join(" / ") : prix[0] } : null
+    ].filter(Boolean);
 
-    const sheet = document.querySelector("#sheet .sheet");
-    if (modePhotos) activerCarrousel(sheet, photos);
-    else sheet.querySelector(".frame.poster")?.addEventListener("click", () => ouvrirVisionneuse(ev.affiche));
-    sheet.querySelector("[data-video]")?.addEventListener("click", e => {
-      document.getElementById("video-zone").innerHTML =
-        `<div class="video-box"><iframe src="${e.currentTarget.dataset.video}?autoplay=1" title="Vidéo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+    // Le détail, replié
+    const plus = [
+      ev.infos?.length ? `<ul class="points-cles">${ev.infos.map(i => `<li>${i.texte}</li>`).join("")}</ul>` : "",
+      suite ? `<p>${suite}</p>` : "",
+      prix.length > 1 || (ev.tarifs?.[0]?.label && ev.tarifs[0].label !== "Entrée")
+        ? `<p>${ev.tarifs.map(t => `${t.label} : <strong style="color:var(--text)">${t.prix}</strong>`).join("<br>")}</p>` : "",
+      ev.video ? `<div id="video-zone"><button class="btn btn-ghost btn-block" data-video="${urlVideo(ev.video)}">Voir la vidéo</button></div>` : "",
+      widget ? `<p class="small">Vous préférez ? <a href="${ev.lien}" target="_blank" rel="noopener" style="color:var(--accent)">Réserver directement sur HelloAsso</a></p>` : ""
+    ].join("");
+
+    // Un seul bouton principal
+    let action = null;
+    if (widget) action = { texte: ev.texteLien || "Réserver ma place", action: panneau => ouvrirBilletterie(panneau, widget, ev) };
+    else if (ev.lien && avenir && !ev.annule) action = { texte: ev.texteLien || "Réserver ma place", href: ev.lien };
+    else if (avenir && !ev.annule) action = { texte: "Ajouter à mon agenda", action: () => telechargerAgenda(ev) };
+
+    // Les actions secondaires, en petites icônes
+    const icones = [
+      avenir && action?.texte !== "Ajouter à mon agenda" ? { ico: "calendrier", label: "Ajouter à mon agenda", action: () => telechargerAgenda(ev) } : null,
+      { ico: "partager", label: "Partager", action: b => partager(ev, b) },
+      ev.instagram ? { ico: "instagram", label: "Voir la publication Instagram", href: ev.instagram } : null
+    ].filter(Boolean);
+
+    ouvrirDetail({
+      origine, media, deuxColonnes: !!ev.affiche && !modePhotos,
+      surtitre: [ev.badge, avenir ? texteCompteRebours(ev.date, ev.date_fin) : typeDe(ev).label].filter(Boolean).join(" · "),
+      titre: ev.titre, pastilles, resume, plus, icones, action,
+      onClose: () => history.replaceState(null, "", location.pathname),
+      apresOuverture: panneau => {
+        if (modePhotos) activerCarrousel(panneau, photos);
+        else panneau.querySelector(".frame.poster")?.addEventListener("click", () => ouvrirVisionneuse(ev.affiche));
+        panneau.querySelector("[data-video]")?.addEventListener("click", e => {
+          document.getElementById("video-zone").innerHTML =
+            `<div class="video-box"><iframe src="${e.currentTarget.dataset.video}?autoplay=1" title="Vidéo" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`;
+        });
+      }
     });
-    // Billetterie HelloAsso intégrée : chargée seulement quand on clique (pas de cookies avant)
-    sheet.querySelector("[data-billetterie]")?.addEventListener("click", () => {
-      document.getElementById("billetterie").innerHTML = `
-        <iframe class="ha-widget" title="Billetterie HelloAsso" src="${widget}" scrolling="auto"
-          allow="payment 'self' https://paymenthub.helloassopay.com https://helloasso.com" allowtransparency="true"></iframe>
-        <p class="small muted" style="text-align:center;margin-top:6px">Un souci d'affichage ? <a href="${ev.lien}" target="_blank" rel="noopener" style="color:var(--accent)">Réserver sur HelloAsso ↗</a></p>`;
-    });
-    sheet.querySelector("[data-ics]")?.addEventListener("click", () => telechargerAgenda(ev));
-    sheet.querySelector("[data-partage]")?.addEventListener("click", e => partager(ev, e.currentTarget));
+  }
+
+  // Billetterie HelloAsso intégrée : chargée seulement au clic (pas de cookies avant)
+  function ouvrirBilletterie(panneau, widget, ev) {
+    const zone = panneau.querySelector(".detail-zone-action");
+    zone.innerHTML = `<iframe class="ha-widget" title="Billetterie HelloAsso" src="${widget}" scrolling="auto"
+      allow="payment 'self' https://paymenthub.helloassopay.com https://helloasso.com" allowtransparency="true"></iframe>
+      <p class="small muted" style="text-align:center;margin:8px 0 16px">Un souci d'affichage ? <a href="${ev.lien}" target="_blank" rel="noopener" style="color:var(--accent)">Réserver sur HelloAsso</a></p>`;
+    panneau.querySelector(".detail-action")?.remove();
+    zone.scrollIntoView({ behavior: sansAnimation() ? "auto" : "smooth", block: "start" });
   }
 
   // Le widget HelloAsso indique sa hauteur : on agrandit le cadre pour éviter une double barre de défilement
@@ -285,7 +300,7 @@ chargerDonnees().then(() => {
   }));
   document.querySelector("main").addEventListener("click", e => {
     const cible = e.target.closest("[data-slug]");
-    if (cible) ouvrirEvenement(cible.dataset.slug);
+    if (cible) ouvrirEvenement(cible.dataset.slug, cible.querySelector(".frame") || cible);
   });
 
   dessinerAVenir();

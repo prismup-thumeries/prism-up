@@ -116,16 +116,6 @@ singletons:
             hint: "Les infos essentielles, une par ligne, affichées en évidence."
             fields:
               - { name: texte, label: Texte, widget: string }
-          - name: pour_qui
-            label: "Vous êtes…"
-            label_singular: profil
-            widget: list
-            required: false
-            summary: "{{fields.qui}}"
-            hint: "Un message adapté à chaque public (adhérents, parents, entreprises…)."
-            fields:
-              - { name: qui, label: "Profil", widget: string, hint: "Ex : Parents et enfants" }
-              - { name: texte, label: Message, widget: text }
           - { name: affiche, label: Affiche, widget: image, required: false, hint: "Affichée en entier, jamais coupée." }
           - name: cadrage
             label: "Cadrage de l'affiche dans les petites vignettes"

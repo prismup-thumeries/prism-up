@@ -27,7 +27,7 @@
         (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
     } catch (e) { document.documentElement.dataset.theme = "dark"; }
   </script>
-  <link rel="stylesheet" href="css/style.css?v=202611131531">
+  <link rel="stylesheet" href="css/style.css?v=202611131540">
 </head>
 <body data-page="cours">
 
@@ -78,7 +78,7 @@
 
 </main>
 
-<script src="js/main.js?v=202611131531"></script>
+<script src="js/main.js?v=202611131540"></script>
 <script>
 chargerDonnees().then(() => {
   const JOURS = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
@@ -124,7 +124,7 @@ chargerDonnees().then(() => {
         </div>`;
     }).join("") + `<div class="empty" id="vide" hidden></div>`;
 
-    planning.querySelectorAll(".slot").forEach(b => b.addEventListener("click", () => ouvrirCours(+b.dataset.i)));
+    planning.querySelectorAll(".slot").forEach(b => b.addEventListener("click", () => ouvrirCours(+b.dataset.i, b)));
     appliquerFiltres();
   }
 
@@ -175,33 +175,37 @@ chargerDonnees().then(() => {
     appliquerFiltres();
   }));
 
-  function ouvrirCours(i) {
+  function ouvrirCours(i, origine = null) {
     const c = COURS[i];
     const salle = SALLES[c.salle] || {};
-    ouvrirFenetre(`
-      <div class="sheet-body">
-        <p class="eyebrow">${cap(c.jour)} · ${c.debut} – ${c.fin}</p>
-        <h2 style="margin-top:6px">${c.titre}</h2>
-        <p class="muted">${c.detail || ""}</p>
-        <div class="facts">
-          <div><span><i class="statut ${c.complet ? "full" : "ok"}"></i></span><span>${c.complet ? "Complet pour l'instant — liste d'attente possible" : "Places disponibles"}</span></div>
-          <div><span>${ico("prix")}</span><span>${prixDe(c)}${c.public === "option" ? " (en plus d'un cours principal)" : " pour la saison"}</span></div>
-          <div><span>${ico("cadeau")}</span><span>Essai gratuit : ${c.essai}</span></div>
-          <div><span>${ico("lieu")}</span><span>${salle.nom}${salle.precision ? ` <span class="muted">· ${salle.precision}</span>` : ""}</span></div>
-        </div>
-        ${c.note ? `<p class="desc">${c.note}</p>` : ""}
-        <div class="actions">
-          ${c.complet
-            ? `<a class="btn btn-primary btn-block" href="rejoindre.html#contact">Demander la liste d'attente</a>`
-            : `<a class="btn btn-primary btn-block" href="${LIEN_ADHESION}" target="_blank" rel="noopener">S'inscrire sur HelloAsso</a>`}
-          <button class="btn btn-ghost btn-block" id="agenda-cours">Ajouter ce cours à mon agenda</button>
-          ${salle.maps ? `<a class="btn btn-ghost btn-block" href="${salle.maps}" target="_blank" rel="noopener">Itinéraire Google Maps</a>` : ""}
-        </div>
-      </div>`, { onClose: () => history.replaceState(null, "", location.pathname) });
     if (c.id) history.replaceState(null, "", "#" + c.id);
-    document.getElementById("agenda-cours").addEventListener("click", () =>
-      ouvrirAgenda(c.id, `${c.titre} · ${cap(c.jour)} ${c.debut}`,
-        `Ton cours chaque semaine (sauf vacances) et les événements Prism Up, directement dans ton agenda.`));
+    const agenda = () => ouvrirAgenda(c.id, `${c.titre} · ${cap(c.jour)} ${c.debut}`,
+      "Ton cours chaque semaine (sauf vacances) et les événements Prism Up, directement dans ton agenda.");
+    ouvrirDetail({
+      origine,
+      surtitre: c.public === "option" ? "Option approfondissement" : "Cours",
+      titre: c.titre,
+      pastilles: [
+        { texte: c.complet ? "Complet" : "Places disponibles", classe: c.complet ? "full" : "ok" },
+        { ico: "calendrier", texte: `${cap(c.jour)} · ${c.debut} – ${c.fin}` },
+        { ico: "lieu", texte: salle.nom || "", href: salle.maps },
+        { ico: "prix", texte: prixDe(c) + (c.public === "option" ? " en option" : " la saison") }
+      ],
+      resume: [c.detail, c.essai ? `Premier cours d'essai gratuit : ${c.essai.charAt(0).toLowerCase() + c.essai.slice(1)}.` : ""].filter(Boolean).join(". ").replace(/\.\./g, "."),
+      plus: [
+        c.note ? `<p>${c.note}</p>` : "",
+        c.public === "option" ? "<p>L'option se prend en plus d'un cours principal.</p>" : "",
+        salle.precision ? `<p>${salle.nom} : ${salle.precision.charAt(0).toLowerCase() + salle.precision.slice(1)}.</p>` : "",
+        c.complet ? "<p>Le cours est complet pour l'instant : demandez la liste d'attente, on vous prévient dès qu'une place se libère.</p>" : ""
+      ].join(""),
+      icones: [
+        { ico: "calendrier", label: "Ajouter ce cours à mon agenda", action: agenda }
+      ],
+      action: c.complet
+        ? { texte: "Demander la liste d'attente", href: "rejoindre.html#contact", externe: false }
+        : { texte: "S'inscrire sur HelloAsso", href: LIEN_ADHESION },
+      onClose: () => history.replaceState(null, "", location.pathname)
+    });
   }
 
   document.getElementById("agenda-complet").addEventListener("click", () =>
