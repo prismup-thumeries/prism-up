@@ -226,7 +226,7 @@ a.card:hover, button.card:hover { border-color: var(--line-strong); }
 .list-row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; text-decoration: none; text-align: left; width: 100%; border-top: 1px solid var(--line); }
 .list-row:first-child { border-top: 0; }
 .list-row:hover { background: var(--surface-2); }
-.list-row .ico { width: 38px; height: 38px; border-radius: 12px; background: var(--surface-2); display: grid; place-items: center; flex-shrink: 0; font-size: 1.1rem; }
+.list-row .ico { width: 38px; height: 38px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; flex-shrink: 0; }
 .list-row .txt { flex: 1; min-width: 0; }
 .list-row strong { display: block; font-size: 0.95rem; font-weight: 600; }
 .list-row span.sub { display: block; color: var(--muted); font-size: 0.84rem; }
@@ -246,7 +246,7 @@ a.card:hover, button.card:hover { border-color: var(--line-strong); }
 .frame.ratio-169 { aspect-ratio: 16 / 9; }
 .frame.poster > .blur { position: absolute; inset: -20px; width: calc(100% + 40px); height: calc(100% + 40px); object-fit: cover; filter: blur(24px) brightness(0.55); }
 .frame.poster > .main { position: relative; object-fit: contain; }
-.frame .placeholder { position: absolute; inset: 0; display: grid; place-items: center; font-size: 2.4rem; background: linear-gradient(135deg, var(--surface-2), var(--placeholder-end)); }
+.frame .placeholder { position: absolute; inset: 0; display: grid; place-items: center; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); background: linear-gradient(135deg, var(--surface-2), var(--placeholder-end)); }
 
 /* ─── FEUILLE / MODALE (bottom sheet sur mobile) ─── */
 .sheet-backdrop { position: fixed; inset: 0; z-index: 500; background: rgba(0, 0, 0, 0.6); display: none; align-items: center; justify-content: center; padding: 20px; }
@@ -258,7 +258,9 @@ a.card:hover, button.card:hover { border-color: var(--line-strong); }
 .sheet h2 { font-family: var(--font-title); font-size: 1.35rem; font-weight: 800; line-height: 1.2; margin-bottom: 6px; padding-right: 36px; }
 .sheet .facts { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; padding: 14px 16px; background: var(--surface-2); border-radius: var(--radius); }
 .sheet .facts div { display: flex; gap: 10px; font-size: 0.92rem; }
-.sheet .facts div > span:first-child { width: 22px; flex-shrink: 0; text-align: center; }
+.sheet .facts div > span:first-child { width: 22px; flex-shrink: 0; display: flex; justify-content: center; padding-top: 2px; color: var(--muted); }
+.statut { display: block; width: 9px; height: 9px; margin-top: 4px; border-radius: 50%; background: var(--ok); }
+.statut.full { background: var(--full); }
 .sheet .desc { color: var(--muted); font-size: 0.95rem; white-space: pre-line; }
 .sheet .actions { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
 .sheet .actions .btn-row .btn { flex: 1; }
@@ -431,6 +433,8 @@ body.no-scroll { overflow: hidden; }
 /* ─── BANDEAU D'ALERTE (modifiable depuis /admin) ─── */
 .alert-bar { display: block; background: var(--accent-soft); border-bottom: 1px solid var(--line); text-decoration: none; font-size: 0.9rem; font-weight: 600; position: relative; z-index: 2; }
 .alert-bar .wrap { display: flex; align-items: center; gap: 10px; padding-top: 10px; padding-bottom: 10px; }
+.alert-bar .alert-ico { display: flex; }
+.ico-inline { display: inline-flex; vertical-align: -2px; }
 .alert-bar .chev { margin-left: auto; color: var(--faint); }
 .alert-bar.urgent { background: var(--full-soft); color: var(--full); }
 
@@ -558,7 +562,6 @@ body.no-scroll { overflow: hidden; }
 /* Visuel automatique quand un événement n'a pas d'affiche (champ « accroche ») */
 .auto-poster { background: radial-gradient(120% 90% at 20% 10%, rgba(255, 179, 138, 0.55), transparent 60%), radial-gradient(120% 90% at 90% 100%, rgba(198, 187, 255, 0.6), transparent 60%), linear-gradient(160deg, #3a2a5c, #1c1530); }
 .auto-poster .auto { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 16px; text-align: center; color: #fff; }
-.auto-poster .auto-emoji { font-size: 1.8rem; }
 .auto-poster .auto-acc { font-family: var(--font-title); font-weight: 800; font-size: clamp(3rem, 12vw, 5.5rem); line-height: 1; letter-spacing: -0.03em; background: linear-gradient(180deg, #fff, #ffd9c2); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .auto-poster .auto-titre { font-weight: 600; font-size: 0.85rem; opacity: 0.85; max-width: 22ch; }
 .spotlight:not(.solo) .auto-poster .auto-acc { font-size: clamp(2.6rem, 9vw, 4.5rem); }
@@ -569,8 +572,8 @@ body.no-scroll { overflow: hidden; }
 
 /* Fiche événement : points clés, « Vous êtes… », billetterie intégrée */
 .points-cles { list-style: none; display: flex; flex-direction: column; gap: 8px; margin: 4px 0 16px; padding: 14px 16px; border-radius: var(--radius); background: var(--warm-soft); border: 1px solid var(--line); }
-.points-cles li { display: flex; gap: 10px; font-size: 0.93rem; font-weight: 500; }
-.points-cles li span:first-child { width: 22px; flex-shrink: 0; text-align: center; }
+.points-cles li { position: relative; padding-left: 18px; font-size: 0.93rem; font-weight: 500; }
+.points-cles li::before { content: ""; position: absolute; left: 2px; top: 0.55em; width: 6px; height: 6px; border-radius: 50%; background: var(--warm); }
 .sheet-sous-titre { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 18px 0 8px; }
 .pour-qui { display: flex; flex-direction: column; gap: 8px; }
 .pour-qui div { padding: 10px 12px; border-radius: 12px; background: var(--surface-2); font-size: 0.88rem; display: flex; flex-direction: column; gap: 2px; }

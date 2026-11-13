@@ -27,7 +27,7 @@
         (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
     } catch (e) { document.documentElement.dataset.theme = "dark"; }
   </script>
-  <link rel="stylesheet" href="css/style.css?v=202611131528">
+  <link rel="stylesheet" href="css/style.css?v=202611131531">
 </head>
 <body data-page="evenements">
 
@@ -49,7 +49,7 @@
   <div id="vue-avenir"></div>
 
   <button class="list-row agenda-row" id="abonnement" type="button">
-    <span class="ico">📅</span>
+    <span class="ico" data-ico="calendrier"></span>
     <span class="txt"><strong>Ne rate aucun événement</strong><span class="sub">Ajoute l'agenda Prism Up à ton téléphone</span></span>
     <span class="chev">›</span>
   </button>
@@ -69,7 +69,7 @@
 
 </main>
 
-<script src="js/main.js?v=202611131528"></script>
+<script src="js/main.js?v=202611131531"></script>
 <script>
 chargerDonnees().then(() => {
   let typeActif = "tous";
@@ -127,7 +127,7 @@ chargerDonnees().then(() => {
             <button class="ev-card" data-slug="${slug(ev)}">
               <div style="position:relative">
                 ${visuel(couverture, { classe: "" })}
-                ${nb ? `<span class="count">📷 ${nb}</span>` : ""}
+                ${nb ? `<span class="count">${nb} photos</span>` : ""}
               </div>
               <div class="body">
                 <p class="eyebrow">${formaterDate(ev.date, { day: "numeric", month: "short" })} · ${typeDe(ev).label}</p>
@@ -163,17 +163,17 @@ chargerDonnees().then(() => {
       <div class="sheet-media">
         ${media}
         <div class="sheet-body">
-          <p class="eyebrow">${typeDe(ev).emoji} ${typeDe(ev).label}${avenir ? " · " + texteCompteRebours(ev.date, ev.date_fin) : ""}</p>
+          <p class="eyebrow">${typeDe(ev).label}${avenir ? " · " + texteCompteRebours(ev.date, ev.date_fin) : ""}</p>
           ${ev.badge ? `<span class="pill pill-warm" style="margin-top:8px">${ev.badge}</span>` : ""}
           <h2 style="margin-top:6px">${ev.titre}</h2>
           ${ev.annule ? `<span class="pill pill-full">Annulé</span>` : ""}
           <div class="facts">
-            <div><span>📅</span><span>${periode(ev)}</span></div>
-            ${ev.heure ? `<div><span>🕒</span><span>${ev.heure}</span></div>` : ""}
-            ${ev.lieu ? `<div><span>📍</span><span>${ev.lieu}</span></div>` : ""}
-            ${(ev.tarifs || []).map(t => `<div><span>💶</span><span>${t.label} : <strong>${t.prix}</strong></span></div>`).join("")}
+            <div><span>${ico("calendrier")}</span><span>${periode(ev)}</span></div>
+            ${ev.heure ? `<div><span>${ico("horloge")}</span><span>${ev.heure}</span></div>` : ""}
+            ${ev.lieu ? `<div><span>${ico("lieu")}</span><span>${ev.lieu}</span></div>` : ""}
+            ${(ev.tarifs || []).map(t => `<div><span>${ico("prix")}</span><span>${t.label} : <strong>${t.prix}</strong></span></div>`).join("")}
           </div>
-          ${ev.infos?.length ? `<ul class="points-cles">${ev.infos.map(i => `<li><span>${i.icone || "•"}</span><span>${i.texte}</span></li>`).join("")}</ul>` : ""}
+          ${ev.infos?.length ? `<ul class="points-cles">${ev.infos.map(i => `<li>${i.texte}</li>`).join("")}</ul>` : ""}
           ${ev.description ? `<p class="desc">${ev.description}</p>` : ""}
           ${ev.pour_qui?.length ? `
             <h3 class="sheet-sous-titre">Vous êtes…</h3>
@@ -181,7 +181,7 @@ chargerDonnees().then(() => {
           ${ev.video ? `<div id="video-zone"><button class="btn btn-ghost btn-block" style="margin-top:16px" data-video="${urlVideo(ev.video)}">▶ Voir la vidéo</button></div>` : ""}
           <div class="actions">
             ${widget
-              ? `<div id="billetterie"><button class="btn btn-primary btn-block" data-billetterie>🎟️ ${ev.texteLien || "Réserver ma place"}</button>
+              ? `<div id="billetterie"><button class="btn btn-primary btn-block" data-billetterie>${ev.texteLien || "Réserver ma place"}</button>
                  <p class="small muted" style="text-align:center;margin-top:6px">Paiement sécurisé HelloAsso, directement ici · <a href="${ev.lien}" target="_blank" rel="noopener" style="color:var(--accent)">ouvrir sur HelloAsso ↗</a></p></div>`
               : ev.lien && avenir && !ev.annule ? `<a class="btn btn-primary btn-block" href="${ev.lien}" target="_blank" rel="noopener">${ev.texteLien || "Réserver ma place"}</a>` : ""}
             ${ev.instagram ? `<a class="btn btn-ghost btn-block" href="${ev.instagram}" target="_blank" rel="noopener">Voir la publication Instagram</a>` : ""}

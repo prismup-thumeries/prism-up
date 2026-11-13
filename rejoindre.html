@@ -27,7 +27,7 @@
         (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
     } catch (e) { document.documentElement.dataset.theme = "dark"; }
   </script>
-  <link rel="stylesheet" href="css/style.css?v=202611131528">
+  <link rel="stylesheet" href="css/style.css?v=202611131531">
 </head>
 <body data-page="rejoindre">
 
@@ -40,17 +40,17 @@
 
   <div class="list">
     <a class="list-row" id="row-adhesion" target="_blank" rel="noopener">
-      <span class="ico">💃</span>
+      <span class="ico" data-ico="danse"></span>
       <span class="txt"><strong>Devenir adhérent</strong><span class="sub">Inscription en ligne sur HelloAsso</span></span>
       <span class="pill pill-ok">Ouvert</span>
     </a>
     <button class="list-row" data-choix="benevole">
-      <span class="ico">🙌</span>
+      <span class="ico" data-ico="coeur"></span>
       <span class="txt"><strong>Devenir bénévole</strong><span class="sub">Événements, com', logistique…</span></span>
       <span class="chev">›</span>
     </button>
     <button class="list-row" data-choix="sponsor">
-      <span class="ico">🤝</span>
+      <span class="ico" data-ico="entreprise"></span>
       <span class="txt"><strong>Devenir sponsor</strong><span class="sub">Soutenir un projet local et familial</span></span>
       <span class="chev">›</span>
     </button>
@@ -88,17 +88,17 @@
 
       <div class="list">
         <a class="list-row" href="mailto:prismupcom@gmail.com">
-          <span class="ico">✉️</span>
+          <span class="ico" data-ico="mail"></span>
           <span class="txt"><strong>Email</strong><span class="sub">prismupcom@gmail.com</span></span>
           <span class="chev">›</span>
         </a>
         <a class="list-row" href="https://www.instagram.com/prismup_thumeries/" target="_blank" rel="noopener">
-          <span class="ico">📸</span>
+          <span class="ico" data-ico="instagram"></span>
           <span class="txt"><strong>Instagram</strong><span class="sub">@prismup_thumeries</span></span>
           <span class="chev">›</span>
         </a>
         <a class="list-row" href="cours.html">
-          <span class="ico">📅</span>
+          <span class="ico" data-ico="calendrier"></span>
           <span class="txt"><strong>Planning des cours</strong><span class="sub">Horaires, salles, essai gratuit</span></span>
           <span class="chev">›</span>
         </a>
@@ -148,7 +148,7 @@
 
 </main>
 
-<script src="js/main.js?v=202611131528"></script>
+<script src="js/main.js?v=202611131531"></script>
 <script>
 chargerDonnees().then(() => {
   const FORMSPREE = "https://formspree.io/f/xkoagejw";
@@ -175,7 +175,7 @@ chargerDonnees().then(() => {
       <div class="sheet-body">
         <h2>${c.titre}</h2>
         <p class="muted">${c.texte}</p>
-        <div class="facts">${c.points.map(p => `<div><span>✓</span><span>${p}</span></div>`).join("")}</div>
+        <div class="facts">${c.points.map(p => `<div><span>${ico("check")}</span><span>${p}</span></div>`).join("")}</div>
         <div class="actions"><button class="btn btn-primary btn-block" id="go-contact">Nous écrire</button></div>
       </div>`);
     document.getElementById("go-contact").addEventListener("click", () => {

@@ -12,23 +12,18 @@
       "description": "Avec l'Avant Garde Thumeries, la piste du stade reste ouverte non-stop du vendredi 18h au samedi 18h. Notre défi : qu'il y ait toujours au moins un membre de Prism Up sur la piste, de jour comme de nuit. Venez courir ou marcher avec nous, à votre rythme !",
       "infos": [
         {
-          "icone": "🏃",
           "texte": "Courir ou marcher, à votre rythme"
         },
         {
-          "icone": "🌙",
           "texte": "Piste ouverte jour et nuit, du vendredi 18h au samedi 18h"
         },
         {
-          "icone": "💛",
           "texte": "3 € l'accès, entièrement reversés au Téléthon"
         },
         {
-          "icone": "🎯",
           "texte": "Le défi Prism Up : toujours au moins un membre sur la piste"
         },
         {
-          "icone": "🤝",
           "texte": "Organisé avec l'Avant Garde Thumeries"
         }
       ],
@@ -46,7 +41,7 @@
           "texte": "Envie de soutenir le défi ? Écrivez-nous à prismupcom@gmail.com."
         }
       ],
-      "badge": "💛 Téléthon",
+      "badge": "Téléthon",
       "affiche": "",
       "cadrage": "",
       "photos": [],
@@ -86,7 +81,7 @@
       "heure": "à définir",
       "lieu": "Salle des fêtes F. Malle, Thumeries",
       "description": "Spectacle de nos danseurs, repas de Noël, battles et une petite surprise pour les enfants… On vous en dit plus très vite 👀",
-      "badge": "🎄 Spécial Noël",
+      "badge": "Spécial Noël",
       "affiche": "",
       "cadrage": "top",
       "photos": [],
@@ -103,7 +98,7 @@
       "heure": "9h00 - 10h30",
       "lieu": "Salle annexe P. Legrain, Thumeries",
       "description": "Workshop #3 avec le danseur professionnel Jow Tayler. Niveau débutant / intermédiaire. \nViens apprendre une choré de folie !",
-      "badge": "🎃 Spécial Halloween",
+      "badge": "Spécial Halloween",
       "affiche": "/images/114.webp",
       "cadrage": "top",
       "photos": [],
@@ -129,7 +124,7 @@
       "heure": "11h00 - 12h30",
       "lieu": "Salle annexe P. Legrain, Thumeries",
       "description": "Stage de breakdance ouvert à tous avec le danseur professionnel Paul. Au programme : technique, passages au sol et musicalité.",
-      "badge": "🎃 Spécial Halloween",
+      "badge": "Spécial Halloween",
       "affiche": "/images/113.webp",
       "cadrage": "top",
       "photos": [],
@@ -155,7 +150,7 @@
       "heure": "Samedi 16h – 16h30",
       "lieu": "Salle des fêtes de Thumeries",
       "description": "On sera aussi présents pour le Téléthon organisé par Le Souffle de Thumeries. Passez nous voir !",
-      "badge": "💛 Téléthon",
+      "badge": "Téléthon",
       "affiche": "/images/invitation.webp",
       "cadrage": "top",
       "photos": [],
@@ -167,15 +162,12 @@
       "serie": "Week-end Téléthon",
       "infos": [
         {
-          "icone": "💃",
           "texte": "Prism Up : samedi de 16h à 16h30"
         },
         {
-          "icone": "🎉",
           "texte": "Après-midi récréative dès 14h30, organisée par Le Souffle de Thumeries"
         },
         {
-          "icone": "🗳️",
           "texte": "Une urne est à votre disposition pour vos dons"
         }
       ],
